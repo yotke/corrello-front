@@ -1,16 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-class _CardDetail extends React.Component {
+class _CardDetails extends React.Component {
+
 
 
     componentDidMount() {
-        this.props.loadCard()
+        
+
+
+
+
+
     }
 
 
     render() {
-        return ()
+        return (<section> 
+
+        </section>)
     }
 }
 
@@ -25,4 +33,4 @@ const mapDispatchToProps = {
 }
 
 
-export const CardDetail = connect(mapStateToProps, mapDispatchToProps)(_CardDetail)
+export const CardDetails = connect(mapStateToProps, mapDispatchToProps)(_CardDetails)
