@@ -27,6 +27,17 @@ export function loadBoards() {
     }
 }
 
+export function loadBoard(boardId) {
+    return async dispatch => {
+        try {
+            const board = await boardService.getById(boardId)
+            dispatch({ type: 'SET_BOARD', board })
+        } catch (err) {
+            console.log('BoardActions: err in loadBoard', err)
+        }
+    }
+}
+
 export function onRemoveBoard(boardId) {
     return (dispatch, getState) => {
         boardService.remove(boardId)
@@ -96,24 +107,6 @@ export function removeFromCart(boardId) {
             type: 'REMOVE_FROM_CART',
             boardId
         })
-    }
-}
-
-export function checkout() {
-    return async (dispatch, getState) => {
-        try {
-            const state = getState()
-            const total = state.boardModule.boardt.reduce((acc, board) => acc + board.price, 0)
-            const score = await userService.changeScore(-total)
-            dispatch({ type: 'SET_SCORE', score })
-            dispatch({ type: 'CLEAR_CART'})
-            showSuccessMsg('Charged you: $' + total.toLocaleString())
-
-
-        } catch (err) {
-            showErrorMsg('Cannot checkout, login first')
-            console.log('BoardActions: err in checkout', err)
-        }
     }
 }
 
