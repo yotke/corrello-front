@@ -2,14 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 
-import { loadBoards, onAddBoard, onRemoveBoard, onSaveBoard } from '../store/board.actions.js'
+import { loadBoard, onAddBoard, onRemoveBoard , loadBoards} from '../store/board.actions.js'
 // import { showSuccessMsg } from '../services/event-bus.service.js'
 
 class _BoardApp extends React.Component {
     state = {
     }
     componentDidMount() {
-        this.props.loadBoard()
+        console.log('componnet mounted')
+        // const { boardId } = this.props.match.params
+        this.props.loadBoards()
     }
 
     onRemoveBoard = (boardId) => {
@@ -20,34 +22,19 @@ class _BoardApp extends React.Component {
     }
 
     render() {
-        const { Boards } = this.props
+        const { Board} = this.props
         return (
             <div>
                 <h3>Boards App</h3>
-                <main>
+                {/* <main>
                     <button onClick={this.onAddBoard}>Add Board ⛐</button>
                     <ul className="Board-list">
-                        {Boards.map(Board =>
-                            <li className="Board-preview" key={Board._id}>
-                                <h4>{Board.vendor}</h4>
-                                <h1>⛐</h1>
-                                <p>Price: <span>${Board.price.toLocaleString()}</span></p>
-                                <p>Owner: <span>{car.owner && car.owner.fullname}</span></p>
-                                <div>
-                                    <button onClick={() => {
-                                        this.onRemoveCar(car._id)
-                                    }}>x</button>
-                                    <button onClick={() => {
-                                        this.onEditCar(car)
-                                    }}>Edit</button>
-                                </div>
-                                <button className="buy" onClick={() => {
-                                    this.addToCart(car)
-                                }}>Add to Cart</button>
-
+                        {Board.list.map((currList, idx) =>
+                            <li className="Board-preview" key={idx}>
+                                <h4>{currList.title}</h4>
                             </li>)}
                     </ul>
-                </main>
+                </main> */}
             </div>
         )
     }
@@ -56,14 +43,15 @@ class _BoardApp extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        cars: state.carModule.cars
+        cars: state.boardModule.board
     }
 }
 const mapDispatchToProps = {
-    loadBoards,
+    loadBoard,
     onRemoveBoard,
     onAddBoard,
-    onSaveBoard
+    loadBoards
+    // onSaveBoard
 
 }
 

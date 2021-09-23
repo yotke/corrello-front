@@ -3,7 +3,14 @@ import { connect } from 'react-redux'
 
 class _CardDetails extends React.Component {
 
-
+    constructor() {
+        super();
+        this.state = {
+          show: false
+        };
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
+      }
 
     componentDidMount() {
         
@@ -14,12 +21,24 @@ class _CardDetails extends React.Component {
 
     }
 
+    showModal = () => {
+        this.setState({ show: true });
+      };
+    
+      hideModal = () => {
+        this.setState({ show: false });
+      };
 
     render() {
-        return (<section> 
-
-        </section>)
-    }
+    return (
+      <main>
+        <h1>React Modal</h1>
+        <button type="button" onClick={this.showModal}>
+          Open
+        </button>
+      </main>
+    );
+  }
 }
 
 function mapStateToProps(state) {

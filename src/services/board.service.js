@@ -2,10 +2,11 @@
 import { storageService } from './async-storage.service.js'
 // import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
-import { data } from '../json/board.json'
+import data from '../json/board.json'
 
 const STORAGE_KEY = 'boardDB'
 const listeners = []
+const DATA = data;
 
 export const boardService = {
     query,
@@ -22,11 +23,10 @@ _saveToLocalStorage();
 
 //save inital data (board) to local storage
 function _saveToLocalStorage() {
-    if (!storageService.query(STORAGE_KEY)) return storageService.post(STORAGE_KEY, JSON.stringify(data))
-    return storageService.query(STORAGE_KEY);
-
-
+    console.log('DATA FROM STORAGAE', JSON.stringify(DATA))
+    return storageService.post(STORAGE_KEY, JSON.stringify(DATA))
 }
+
 
 function query() {
     return storageService.query(STORAGE_KEY)

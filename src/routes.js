@@ -1,47 +1,48 @@
-import {HomePage} from './pages/home-page.jsx'
-import {AboutUs} from './pages/about-us.jsx'
-import {Workspace} from './pages/workspace.jsx'
-import {ReviewApp} from './pages/review-app.jsx'
+import { HomePage } from './pages/home-page.jsx'
+import { AboutUs } from './pages/about-us.jsx'
+import { Workspace } from './pages/workspace.jsx'
+import { ReviewApp } from './pages/review-app.jsx'
 import { ChatApp } from './pages/chat-app.jsx'
 import { AdminApp } from './pages/admin-app.jsx'
-import { CardDetail } from './pages/card-detail.jsx'
+import { CardDetails } from './pages/card-details.jsx'
+import { BoardApp } from './pages/board-app.jsx'
 
 // Routes accesible from the main navigation (in AppHeader)
 const routes = [
     {
-        path:'/',
+        path: '/',
         component: HomePage,
         label: 'Home 🏠',
     },
     {
-        path:'/workspace',
+        path: '/workspace',
         component: Workspace,
         label: 'Workspace'
     },
     {
-        path:'/review',
-        component: ReviewApp,
-        label: 'Reviews'
+        path: '/board',
+        component: BoardApp,
+        label: 'board'
     },
     {
-        path:'/chat',
+        path: '/chat',
         component: ChatApp,
         label: 'Chat'
     },
     {
-        path:'/about',
+        path: '/about',
         component: AboutUs,
         label: 'About us'
     },
     {
-        path:'/admin',
+        path: '/admin',
         component: AdminApp,
         label: 'Admin Only'
     },
     {
-        path:'/card:id',
-        component: CardDetail,
-        label: 'CardDetail'
+        path:'/card-details:id',
+        component: CardDetails,
+        label: 'Card Details'
     }
 ]
 

@@ -14,9 +14,9 @@ class _HomePage extends React.Component {
 
     render() {
         const { count } = this.props
-        return (
+        return ( 
             <section>
-                <img src={logo} alt="Logo" style={{maxWidth: '300px'}} />
+                {/* <img src={logo} alt="Logo" style={{maxWidth: '300px'}} />
                 <h2>
                     Count {count}
                     <button onClick={() => {
@@ -25,7 +25,7 @@ class _HomePage extends React.Component {
                     <button onClick={() => {
                         this.changeCount(10)
                     }}>+10</button>
-                </h2 >
+                </h2 > */}
             </section >
         )
     }
