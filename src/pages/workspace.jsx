@@ -16,7 +16,7 @@ class _Workspace extends React.Component {
         this.props.onRemoveBoard(boardId)
     }
     onAddBoard = () => {
-       this.props.onAddBoard()
+        this.props.onAddBoard()
     }
     onEditBoard = (board) => {
         const price = +prompt('New price?')
@@ -29,35 +29,27 @@ class _Workspace extends React.Component {
         showSuccessMsg('Added to Cart')
     }
     render() {
-        const { boards } = this.props
+        const { boards, user } = this.props
         return (
-            <div>
-                <h3>Boards App</h3>
+            <section className="workspace-container">
+                <div className="tabbed-pane-header">
+                    <div className="tabbed-pane-header-wrapper">
+                        <div className="tabbed-pane-header-conten flex">
+                            <h1>header of Workspace </h1>
+                        </div>
+                    </div>
+                        <ul><li class="tabbed-pane-nav-item"><a class="tabbed-pane-nav-item-button js-org-profile active" data-tab="boards" href={`/${user}`}>Boards</a></li></ul>
+                </div>
                 <main>
                     <button onClick={this.onAddBoard}>Add Board ⛐</button>
                     <ul className="board-list">
-                        {boards.map(board =>
+                        {/* {boards.map(board =>
                             <li className="board-preview" key={board._id}>
-                                <h4>{board.vendor}</h4>
-                                <h1>⛐</h1>
-                                <p>Price: <span>${board.price.toLocaleString()}</span></p>
-                                <p>Owner: <span>{board.owner && board.owner.fullname}</span></p>
-                                <div>
-                                    <button onClick={() => {
-                                        this.onRemoveBoard(board._id)
-                                    }}>x</button>
-                                    <button onClick={() => {
-                                        this.onEditBoard(board)
-                                    }}>Edit</button>
-                                </div>
-                                <button className="buy" onClick={() => {
-                                    this.addToCart(board)
-                                }}>Add to Cart</button>
 
-                            </li>)}
+                            </li>)} */}
                     </ul>
                 </main>
-            </div>
+            </section>
         )
     }
 }
@@ -65,7 +57,8 @@ class _Workspace extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        boards: state.boardModule.boards
+        boards: state.boardModule.boards,
+        user: state.userModule.user
     }
 }
 const mapDispatchToProps = {

@@ -1,38 +1,67 @@
-.app-header {
-    background-color: $clr4;
-    padding: 10px;
-
-    .user-info {
-        // background-color: $clr2;
-        // padding: 2px 8px;
-        color: $clr1;
-        .score {
-            background-color: $clr2;
-            color:$clr6;
-            padding: 8px;
-            margin: 10px;
-            border-radius: 50%;
+/* HOME PAGE HEADER */
+.main-header {
+    max-height: 44px;
+    max-height: 44px;
+    padding: 4px;
+    &.in-board {
+        background-color: rgba($color: #026aa7, $alpha: 1);
+    }
+    .btn-header-container {
+        flex-grow: 1;
+        align-items: center;
+        // max-width: 45%;
+        &:first-of-type {
+            justify-content: flex-start;
+        }
+        &:last-of-type {
+            justify-content: flex-end;
         }
     }
-    .user-info .btn-link{
-        color: $clr2;
-    }
-    nav {
-        font-size: .8em;
-        background-color: $clr5;
-        padding: 5px;
+    // header buttons //
+    .btn-header {
+        // background-color: rgba(255, 255, 255, 0.3), rgba(9, 30, 66, 0.04), rgba(255, 255, 255, 0.2);
+        background-color: transparent;
+        border-radius: 0.2rem;
+        align-items: center;
+        color: #ffffff;
+        display: flex;
+        height: 32px;
+
+        // margin: 0 4px 0 0;
+        // padding: 0 6px 0;
+        white-space: nowrap;
+        transition: 0.15s;
+        cursor: pointer;
+        .txt-btn-wraper {
+            display: inline-block;
+            align-items: center;
+        }
+        span {
+            padding: 0 2px 0 8px;
+            // display: inline-block;
+            
+        }
         
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        &.new-notific {
+            background-color: #e54c31d6;
+        }
     }
-    nav a:first-child {
-        margin-right: 30px;
+
+    .logo {
+        align-items: center;
+        color: white;
+        span {
+            display: flex;
+            margin: 3px;
+            background-image: url(https://a.trellocdn.com/prgb/dist/images/header-logo-spirit-loading.87e1af770a49ce8e84e3.gif);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+                color: #026aa7;
+
+        }
     }
-    nav a:not(:first-child) {
-        border-top: 1px solid $clr1;
-        padding: 0 5px;
-        margin: 10px;
-    }
-    nav .active {
-        color: $clr1;
-    }
-    
 }

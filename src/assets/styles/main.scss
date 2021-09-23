@@ -17,6 +17,7 @@
 @import "views/home-page";
 @import "views/board-app";
 @import "views/review-app";
+@import "views/workspace";
 
 // Components
 @import "cmps/app-header";
@@ -24,7 +25,18 @@
 @import "cmps/user-msg";
 
 
+body, button, html, input, select, textarea {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
 
 
+li{
+    text-decoration: none;
+}
+a {
+    color: #172b4d;
 
 
+}
