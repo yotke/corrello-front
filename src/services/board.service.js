@@ -1,9 +1,10 @@
 
 import { storageService } from './async-storage.service.js'
-import { utilService } from './util.service.js'
+// import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
+import { data } from '../json/board.json'
 
-const STORAGE_KEY = 'board'
+const STORAGE_KEY = 'boardDB'
 const listeners = []
 
 export const boardService = {
@@ -11,12 +12,21 @@ export const boardService = {
     getById,
     save,
     remove,
-    getEmptyBoard,
-    subscribe
-    
+    subscribe,
+    removeCard
+
 }
 window.cs = boardService;
+_saveToLocalStorage();
 
+
+//save inital data (board) to local storage
+function _saveToLocalStorage() {
+    if (!storageService.query(STORAGE_KEY)) return storageService.post(STORAGE_KEY, JSON.stringify(data))
+    return storageService.query(STORAGE_KEY);
+
+
+}
 
 function query() {
     return storageService.query(STORAGE_KEY)
@@ -40,12 +50,12 @@ function save(board) {
     }
 }
 
-function getEmptyBoard() {
-    return {
-        vendor: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
-    }
-}
+// function getEmptyBoard() {
+//     return {
+//         vendor: 'Susita-' + (Date.now() % 1000),
+//         price: utilService.getRandomIntInclusive(1000, 9000),
+//     }
+// }
 
 function subscribe(listener) {
     listeners.push(listener)
@@ -61,7 +71,7 @@ window.addEventListener('storage', () => {
     query()
         .then(boards => {
             _notifySubscribersBoardsChanged(boards)
-        }) 
+        })
 })
 
 // TEST DATA
@@ -70,3 +80,19 @@ window.addEventListener('storage', () => {
 
 
 
+export function updateCardInBoard(board, updatedCard) {
+    board.lists.forEach(list => {
+        list.cards.forEach((card, idx) => {
+            if (card.id === updatedCard.id) list.cards[idx] = updatedCard
+        })
+    })
+    return { ...board }
+}
+
+function removeCard(board, card) {
+    board.lists.forEach(list => {
+        if (list.cards.some(boardCard => boardCard.id === card.id))
+            list.cards = list.cards.filter(boardCard => boardCard.id !== card.id)
+    })
+    return { ...board }
+}
