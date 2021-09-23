@@ -4,6 +4,7 @@ import {Workspace} from './pages/workspace.jsx'
 import {ReviewApp} from './pages/review-app.jsx'
 import { ChatApp } from './pages/chat-app.jsx'
 import { AdminApp } from './pages/admin-app.jsx'
+import { CardDetail } from './pages/card-detail.jsx'
 
 // Routes accesible from the main navigation (in AppHeader)
 const routes = [
@@ -36,6 +37,11 @@ const routes = [
         path:'/admin',
         component: AdminApp,
         label: 'Admin Only'
+    },
+    {
+        path:'/card:id',
+        component: CardDetail,
+        label: 'CardDetail'
     }
 ]
 
