@@ -1,6 +1,6 @@
 
 import React from "react"
-
+import { Link, NavLink } from 'react-router-dom'
 
 export class BoardPreview extends React.Component {
 
@@ -11,9 +11,11 @@ export class BoardPreview extends React.Component {
                 <ul className="board-list">
                     {boards.map(board =>
                         //<Filter/>
-                        <li className="board-preview" key={board._id}>
-                            board.id
-                        </li>
+                        <Link to={`/workspace/${board._id}`}>
+                            <li className="board-preview" key={board._id}>
+                                {board._id}
+                            </li>
+                        </Link>
                     )}
                 </ul>
             </section >
