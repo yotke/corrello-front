@@ -32,7 +32,10 @@ export function loadBoard(boardId) {
         try {
             const board = await boardService.getById(boardId)
             console.log('board from get id', board)
-            dispatch({ type: 'SET_BOARD', board })
+            dispatch({
+                type: 'SET_BOARD',
+                board
+            })
         } catch (err) {
             console.log('BoardActions: err in loadBoard', err)
         }
