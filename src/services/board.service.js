@@ -99,3 +99,7 @@ function removeCard(board, card) {
     })
     return { ...board }
 }
+
+function getEmptyBoard(){
+    
+}
