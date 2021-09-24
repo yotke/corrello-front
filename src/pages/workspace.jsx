@@ -12,6 +12,7 @@ class _Workspace extends React.Component {
     }
     componentDidMount() {
         this.props.loadBoards()
+        
     }
 
     onRemoveBoard = (boardId) => {
@@ -34,7 +35,7 @@ class _Workspace extends React.Component {
         const { isOpen } = this.state
         const { boards, user } = this.props
 
-        
+
         return (
             <section className="workspace-container">
                 <div className="tabbed-pane-header">
@@ -72,10 +73,8 @@ class _Workspace extends React.Component {
                         <div className="board-preview-bar">
                             <ul className="board-list">
                                 {boards.map(board => {
-                                  console.log('board id:', board);
-                                  return   <Link key={board._id} to={`/workspace/${board._id}`}>
+                                  return   <Link key={board._id} to={`/board/${board._id}`}>
                                         <li className="board-preview" key={board._id}>
-                                            {console.log(board._id)}
                                             {board._id}
                                         </li>
                                     </Link>

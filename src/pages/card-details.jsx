@@ -22,7 +22,6 @@ class _CardDetails extends React.Component {
     }
 
     setLocalState = (listId, cardId) => {
-        //debugger
 
 
 

@@ -22,18 +22,18 @@ export const boardService = {
 
 }
 window.cs = boardService;
-// _saveToLocalStorage();
+_saveToLocalStorage();
 
 
-//save inital data (board) to local storage
-//todo
-// function _saveToLocalStorage() {
-//     console.log('DATA FROM STORAGAE', JSON.stringify(DATA))
+// save inital data(board) to local storage
+// todo
+function _saveToLocalStorage() {
+    console.log('DATA FROM STORAGAE', JSON.stringify(DATA))
 
-//     query().then((respone) => {
-//         if (!respone.length) storageService.post(STORAGE_KEY, DATA);
-//     })
-// }
+    query().then((respone) => {
+        if (!respone.length) storageService.post(STORAGE_KEY, DATA);
+    })
+}
 
 
 function query() {
@@ -50,7 +50,6 @@ function remove(boardId) {
     return storageService.remove(STORAGE_KEY, boardId)
 }
 function save(board) {
-    debugger
     if (board._id) {
         return storageService.put(STORAGE_KEY, board)
     } else {
