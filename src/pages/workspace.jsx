@@ -72,10 +72,8 @@ class _Workspace extends React.Component {
                         <div className="board-preview-bar">
                             <ul className="board-list">
                                 {boards.map(board => {
-                                  console.log('board id:', board);
-                                  return   <Link key={board._id} to={`/workspace/${board._id}`}>
+                                  return   <Link key={board._id} to={`/board/${board._id}`}>
                                         <li className="board-preview" key={board._id}>
-                                            {console.log(board._id)}
                                             {board._id}
                                         </li>
                                     </Link>
