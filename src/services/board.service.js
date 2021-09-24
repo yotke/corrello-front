@@ -1,8 +1,11 @@
 
 import { storageService } from './async-storage.service.js'
 // import { utilService } from './util.service.js'
+import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 import data from '../json/board.json'
+import { useLocation } from 'react-router'
+import testUtils from 'react-dom/test-utils'
 
 const STORAGE_KEY = 'boardDB'
 const listeners = []
@@ -14,22 +17,23 @@ export const boardService = {
     save,
     remove,
     subscribe,
-    removeCard
+    removeCard,
+    getEmptyBoard
 
 }
 window.cs = boardService;
-_saveToLocalStorage();
+// _saveToLocalStorage();
 
 
 //save inital data (board) to local storage
 //todo
-function _saveToLocalStorage() {
-    console.log('DATA FROM STORAGAE', JSON.stringify(DATA))
+// function _saveToLocalStorage() {
+//     console.log('DATA FROM STORAGAE', JSON.stringify(DATA))
 
-    query().then((respone) => {
-        (respone.length) ? query() : storageService.post(STORAGE_KEY, DATA);
-    })
-}
+//     query().then((respone) => {
+//         if (!respone.length) storageService.post(STORAGE_KEY, DATA);
+//     })
+// }
 
 
 function query() {
@@ -46,11 +50,12 @@ function remove(boardId) {
     return storageService.remove(STORAGE_KEY, boardId)
 }
 function save(board) {
+    debugger
     if (board._id) {
         return storageService.put(STORAGE_KEY, board)
     } else {
-        board.owner = userService.getLoggedinUser()
-        return storageService.post(STORAGE_KEY, board)
+        //board.owner = userService.getLoggedinUser()
+        return storageService.post(STORAGE_KEY, { _id: utilService.makeId(), ...board })
     }
 }
 
@@ -101,6 +106,14 @@ function removeCard(board, card) {
     return { ...board }
 }
 
-function getEmptyBoard() {
 
+function getEmptyBoard() {
+    const board = {
+        // _id: utilService.makeId(),
+        name: 'yoyo',
+        imgUrl: '',
+        list: []
+
+    }
+    return board;
 }

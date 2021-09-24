@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import { Link, NavLink } from 'react-router-dom'
 
 import { loadBoards, onAddBoard, onEditBoard, onRemoveBoard, addToCart } from '../store/board.actions.js'
 import { showSuccessMsg } from '../services/event-bus.service.js'
@@ -10,9 +10,9 @@ class _Workspace extends React.Component {
     state = {
         isOpen: false,
     }
-    // componentDidMount() {
-    //     this.props.loadBoards()
-    // }
+    componentDidMount() {
+        this.props.loadBoards()
+    }
 
     onRemoveBoard = (boardId) => {
         this.props.onRemoveBoard(boardId)
@@ -33,6 +33,8 @@ class _Workspace extends React.Component {
     render() {
         const { isOpen } = this.state
         const { boards, user } = this.props
+
+        
         return (
             <section className="workspace-container">
                 <div className="tabbed-pane-header">
@@ -66,6 +68,19 @@ class _Workspace extends React.Component {
                                     </span>
                                 </button>
                             </div>
+                        </div>
+                        <div className="board-preview-bar">
+                            <ul className="board-list">
+                                {boards.map(board => {
+                                  console.log('board id:', board);
+                                  return   <Link key={board._id} to={`/workspace/${board._id}`}>
+                                        <li className="board-preview" key={board._id}>
+                                            {console.log(board._id)}
+                                            {board._id}
+                                        </li>
+                                    </Link>
+                                })}
+                            </ul>
                         </div>
                     </div>
                     {/* <div className="board-preview"> */}

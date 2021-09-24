@@ -3,6 +3,8 @@ const initialState = {
     lastRemoveBoard: null
 }
 export function boardReducer(state = initialState, action) {
+
+
     var newState = state
     var boards
     var cart

@@ -11,9 +11,9 @@ class _BoardApp extends React.Component {
     componentDidMount() {
         console.log('board componnet mounted')
         // const { boardId } = this.props.match.params
-        const boardId = 'b101'
-        this.props.loadBoard(boardId)
-        // this.props.loadBoards()
+        // const boardId = 'b101'
+        // this.props.loadBoard(boardId)
+        this.props.loadBoards()
     }
 
     onRemoveBoard = (boardId) => {
