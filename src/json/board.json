@@ -1,8 +1,6 @@
 
 
 [
-
-
 {
   "_id": "b101",
   "title": "Robot dev proj",
@@ -27,7 +25,7 @@
           "imgUrl": "https://www.google.com"
       }
   ],
-  "list": [
+  "lists": [
       {
           "id": "g101",
           "title": "Group 1",
