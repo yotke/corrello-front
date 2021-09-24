@@ -72,6 +72,7 @@ class _Workspace extends React.Component {
                                 {boards.map(board =>
                                     <Link to={`/workspace/${board._id}`}>
                                         <li className="board-preview" key={board._id}>
+                                            {console.log(board._id)}
                                             {board._id}
                                         </li>
                                     </Link>
