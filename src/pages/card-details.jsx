@@ -1,41 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { loadBoard } from '../store/board.actions.js'
+
 
 class _CardDetails extends React.Component {
 
-    constructor() {
-        super();
-        this.state = {
-          show: false
-        };
-        this.showModal = this.showModal.bind(this);
-        this.hideModal = this.hideModal.bind(this);
-      }
-
-    componentDidMount() {
-        
-
-
-
+    state = {
 
 
     }
 
-    showModal = () => {
-        this.setState({ show: true });
-      };
-    
-      hideModal = () => {
-        this.setState({ show: false });
-      };
+    componentDidMount() {
+        var boardId = 'b101';
+        this.props.loadBoard(boardId)
+        
+    }
 
     render() {
     return (
       <main>
-        <h1>React Modal</h1>
-        <button type="button" onClick={this.showModal}>
-          Open
-        </button>
+        
       </main>
     );
   }
@@ -43,13 +27,12 @@ class _CardDetails extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        card: state.userModule.card
+        cars: state.boardModule.board
     }
 }
 
 const mapDispatchToProps = {
-    loadCard
+    loadBoard
 }
-
 
 export const CardDetails = connect(mapStateToProps, mapDispatchToProps)(_CardDetails)
