@@ -24,7 +24,10 @@ _saveToLocalStorage();
 //save inital data (board) to local storage
 function _saveToLocalStorage() {
     console.log('DATA FROM STORAGAE', JSON.stringify(DATA))
-    return storageService.post(STORAGE_KEY, JSON.stringify(DATA))
+
+    query().then((respone) => {
+        (respone.length) ? query() : storageService.post(STORAGE_KEY, DATA);
+    })
 }
 
 
