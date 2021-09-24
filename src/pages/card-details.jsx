@@ -23,8 +23,11 @@ class _CardDetails extends React.Component {
 
     setLocalState = (listId, cardId) => {
 
+
+
+
         const { board } = this.props
-        console.log('board',board)
+        // console.log('board',board)
 
 
         // const list = lists.find(list => list._id === listId)
