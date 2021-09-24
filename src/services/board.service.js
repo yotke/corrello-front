@@ -22,6 +22,7 @@ _saveToLocalStorage();
 
 
 //save inital data (board) to local storage
+//todo
 function _saveToLocalStorage() {
     console.log('DATA FROM STORAGAE', JSON.stringify(DATA))
 
@@ -100,6 +101,6 @@ function removeCard(board, card) {
     return { ...board }
 }
 
-function getEmptyBoard(){
-    
+function getEmptyBoard() {
+
 }
