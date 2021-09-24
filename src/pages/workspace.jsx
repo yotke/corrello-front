@@ -44,10 +44,10 @@ class _Workspace extends React.Component {
                             <h1>header of Workspace </h1>
                         </div>
                     </div>
-                    <ul><li class="tabbed-pane-nav-item"><a class="tabbed-pane-nav-item-button js-org-profile active" data-tab="boards" href={`/${user}`}>Boards</a></li></ul>
+                    <ul><li className="tabbed-pane-nav-item"><a className="tabbed-pane-nav-item-button js-org-profile active" data-tab="boards" href={`/${user}`}>Boards</a></li></ul>
                 </div>
                 <main>
-                    <div className="nav-bar-workspace-container">
+                    <div classNameName="nav-bar-workspace-container">
                         workspace view
                         <br />
                         <div className="small-nav-bar-workspace">
@@ -73,10 +73,6 @@ class _Workspace extends React.Component {
                         <div className="board-preview-bar">
                             <ul className="board-list">
                                 {boards.map(board => {
-<<<<<<< HEAD
-                                  console.log('board id:', board);
-=======
->>>>>>> 0dbeb8150e6bb07657d4db00f677502638b8f562
                                   return   <Link key={board._id} to={`/board/${board._id}`}>
                                         <li className="board-preview" key={board._id}>
                                             {board._id}
