@@ -20,7 +20,7 @@ const routes = [
         label: 'Workspace'
     },
     {
-        path: '/board',
+        path: '/board/:id',
         component: BoardApp,
         label: 'board'
     },
@@ -40,7 +40,7 @@ const routes = [
         label: 'Admin Only'
     },
     {
-        path:'/card-details/:listId/:cardId',
+        path: '/card-details/:listId/:cardId',
         component: CardDetails,
         label: 'Card Details'
     }
