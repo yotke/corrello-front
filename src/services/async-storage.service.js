@@ -23,7 +23,6 @@ function query(entityType, delay = 1200) {
 
 
 function get(entityType, entityId) {
-    debugger
     return query(entityType)
         .then(entities => 
             {
