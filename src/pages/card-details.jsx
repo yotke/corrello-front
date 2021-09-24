@@ -26,7 +26,7 @@ class _CardDetails extends React.Component {
         
         const list = lists.find(list => list._id === listId)
 
-        console.log('list',list)
+        // console.log('list',list)
 
         const { cards } = list
         console.log('cards', cards)
