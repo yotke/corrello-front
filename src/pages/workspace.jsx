@@ -33,6 +33,8 @@ class _Workspace extends React.Component {
     render() {
         const { isOpen } = this.state
         const { boards, user } = this.props
+
+        
         return (
             <section className="workspace-container">
                 <div className="tabbed-pane-header">
@@ -69,14 +71,15 @@ class _Workspace extends React.Component {
                         </div>
                         <div className="board-preview-bar">
                             <ul className="board-list">
-                                {boards.map(board =>
-                                    <Link to={`/workspace/${board._id}`}>
+                                {boards.map(board => {
+                                  console.log('board id:', board);
+                                  return   <Link key={board._id} to={`/workspace/${board._id}`}>
                                         <li className="board-preview" key={board._id}>
                                             {console.log(board._id)}
                                             {board._id}
                                         </li>
                                     </Link>
-                                )}
+                                })}
                             </ul>
                         </div>
                     </div>
