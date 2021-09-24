@@ -14,21 +14,26 @@ class _CardDetails extends React.Component {
         console.log('componentDidMount')
         var boardId = 'b101';
         this.props.loadBoard(boardId)
-        
+
         const { listId, cardId } = this.props.match.params
         console.log('listId', listId, 'cardId', cardId)
 
-        // setLocalState(listId, cardId)
+        this.setLocalState(listId, cardId)
     }
 
     setLocalState = (listId, cardId) => {
-        const { lists } = this.props.board;
-        const list = lists.find(list => list._id === listId)
+        debugger
 
-        console.log('list',list)
+        const { board } = this.props
+        console.log('board',board)
 
-        const { cards } = list
-        console.log('cards', cards)
+
+        // const list = lists.find(list => list._id === listId)
+
+        // console.log('list',list)
+
+        // const { cards } = list
+        // console.log('cards', cards)
 
 
 

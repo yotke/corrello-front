@@ -43,7 +43,7 @@ class _BoardApp extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        cars: state.boardModule.board
+        board: state.boardModule.board
     }
 }
 const mapDispatchToProps = {
