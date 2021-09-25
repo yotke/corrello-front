@@ -1,29 +1,26 @@
-
-
-
-    {
-        "_id": "b101",
-        "title": "Robot dev proj",
-        "createdAt": 1589983468418,
-        "createdBy": {
+{
+    "_id": "b101",
+    "title": "Robot dev proj",
+    "createdAt": 1589983468418,
+    "createdBy": {
+        "_id": "u101",
+        "fullname": "Abi Abambi",
+        "imgUrl": "http://some-img"
+    },
+    "style": {},
+    "labels": [
+        {
+            "id": "l101",
+            "title": "Done",
+            "color": "#61bd4f"
+        }
+    ],
+    "members": [
+        {
             "_id": "u101",
-            "fullname": "Abi Abambi",
-            "imgUrl": "http://some-img"
-        },
-        "style": {},
-        "labels": [
-            {
-                "id": "l101",
-                "title": "Done",
-                "color": "#61bd4f"
-            }
-        ],
-        "members": [
-            {
-                "_id": "u101",
-                "fullname": "Tal Tarablus",
-                "imgUrl": "https://www.google.com"
-      }
+            "fullname": "Tal Tarablus",
+            "imgUrl": "https://www.google.com"
+        }
     ],
     "lists": [
         {
@@ -63,7 +60,7 @@
                                 "fullname": "Tal Tarablus",
                                 "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                             }
-                      }
+                        }
                     ],
                     "checklists": [
                         {
@@ -82,22 +79,25 @@
                         {
                             "_id": "u101",
                             "username": "Tal",
-                          "fullname": "Tal Tarablus",
-                          "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            "fullname": "Tal Tarablus",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                         }
                     ],
-                    "labelIds": ["l101", "l102"],
+                    "labelIds": [
+                        "l101",
+                        "l102"
+                    ],
                     "createdAt": 1590999730348,
                     "dueDate": 16156215211,
                     "byMember": {
                         "_id": "u101",
-                      "username": "Tal",
-                      "fullname": "Tal Tarablus",
-                      "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        "username": "Tal",
+                        "fullname": "Tal Tarablus",
+                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                     },
                     "style": {
                         "bgColor": "#26de81"
-                  }
+                    }
                 }
             ],
             "style": {}
@@ -113,11 +113,10 @@
                 "fullname": "Abi Abambi",
                 "imgUrl": "http://some-img"
             },
-            "task": {
+            "card": {
                 "id": "c101",
                 "title": "Replace Logo"
             }
         }
     ]
 }
-
