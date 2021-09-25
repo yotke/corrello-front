@@ -83,6 +83,8 @@ class _AppHeader extends React.Component {
                             {/* <ElementOverlay /> */}
                         </button>
                     </div>
+                    <input id="name" type="search" placeholder="Search…" value=""/>
+
                     <div className="btn-header-container flex">
                         <div>
                             <button className="btn-header wide-layout" >
