@@ -1,19 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import {CardDetails} from '../pages/card-details.jsx'
+import { CardDetails } from '../pages/card-details.jsx'
 import { Route } from 'react-router'
-import {Loader} from '../cmps/Loader.jsx'
-import {ListPreview} from '../cmps/list-preview.jsx'
+import { Loader } from '../cmps/Loader.jsx'
+import { ListPreview } from '../cmps/list-preview.jsx'
 import { MainBoardHeader } from '../cmps/main-board-header.jsx'
 import { ListAdd } from '../cmps/list-add.jsx'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-
-import { loadBoard, onAddBoard, onRemoveBoard , loadBoards, onSaveBoard} from '../store/board.actions.js'
+import { loadBoard, onAddBoard, onRemoveBoard, loadBoards, onSaveBoard ,onEditBoard} from '../store/board.actions.js'
+import { boardService } from '../services/board.service.js'
 // import { showSuccessMsg } from '../services/event-bus.service.js'
 
 class _BoardApp extends React.Component {
     state = {
     }
+
     async componentDidMount() {
         try {
             console.log('board componnet mounted')
@@ -22,8 +24,8 @@ class _BoardApp extends React.Component {
             // this.props.loadBoards()
 
         }
-        catch (err){
-console.log(err);
+        catch (err) {
+            console.log(err);
         }
     }
 
@@ -31,39 +33,67 @@ console.log(err);
         this.props.onRemoveBoard(boardId)
     }
     onAddBoard = () => {
-       this.props.onAddBoard()
+        this.props.onAddBoard()
     }
 
+    handleOnDragEnd = (result) => {
+      
+        const  { lists } = this.props.board
+        console.log('lists',lists)
+        if (!result.destination) return;
+        const items = Array.from(lists);
+        const [reorderedItem] = items.splice(result.source.index, 1);
+        items.splice(result.destination.index, 0, reorderedItem);
+        console.log('items',items)
+        this.props.board.lists=items
+        this.props.onEditBoard(this.props.board)
+    }
+
+
     render() {
-        const {board} = this.props
-        const {onSaveBoard} = this.props;
-        console.log('curr board',board);
+
+        const { board } = this.props
+        const { onSaveBoard } = this.props;
+        console.log('curr board', board);
         if (!board) return <Loader />
 
         return (
             <>
-            <div className="board-background" style={{
-                backgroundImage:"url(" + board.style.background + ")",
-                backgroundSize:'cover',
-                height:'100vh',
-                overflow: 'hidden',
-                backgroundPosition: '50%'
+                <div className="board-background" style={{
+                    backgroundImage: "url(" + board.style.background + ")",
+                    backgroundSize: 'cover',
+                    height: '100vh',
+                    overflow: 'hidden',
+                    backgroundPosition: '50%'
 
-            }}>
-  
-                
-                 <main>
-                     <section className="main-board"> 
-                     <MainBoardHeader board={board} onSaveBoard={onSaveBoard} />
-                     <Route path="/board/:boardId/:listId/:cardId" component={CardDetails} />
-                    <div className="lists-container">
-                        {board.lists.map((currList,listIdx ) => 
-                 <ListPreview board={board} key={listIdx} listIdx={listIdx} currList={currList} onSaveBoard={onSaveBoard}/>)}
-                <ListAdd board={board} onSaveBoard={onSaveBoard} />
+                }}>
 
-                    </div>
-                     </section>
-                </main> 
+                    <main>
+                            <DragDropContext onDragEnd={this.handleOnDragEnd}>
+                        <section className="main-board">
+                            <MainBoardHeader board={board} onSaveBoard={onSaveBoard} />
+                            <Route path="/board/:boardId/:listId/:cardId" component={CardDetails} />
+                                <Droppable droppableId="characters">
+                                    {(provided) => (
+                                        <ul className="lists-container" {...provided.droppableProps} ref={provided.innerRef}>
+                                            {board.lists.map((currList, listIdx) =>
+                                                <Draggable key={currList.id} draggableId={currList.id} index={listIdx}>
+                                                    {(provided) => (
+                                                        <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                                            <ListPreview board={board} key={listIdx} listIdx={listIdx} currList={currList} onSaveBoard={onSaveBoard} />
+                                                        </li>
+                                                    )}
+                                                </Draggable>
+                                            )}
+                                            {provided.placeholder}
+                                        </ul>
+                                    )}
+                                </Droppable>
+                            <ListAdd board={board} onSaveBoard={onSaveBoard} />
+
+                        </section>
+                            </DragDropContext>
+                    </main>
                 </div>
             </>
         )
@@ -79,6 +109,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     loadBoard,
     onRemoveBoard,
+    onEditBoard,
     onAddBoard,
     loadBoards,
     onSaveBoard
