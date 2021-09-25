@@ -35,6 +35,12 @@
     .nav-bar-workspace-container{
         // display: flex;
         // flex-direction: column;
+        button{
+            border: none;
+        }
+        br{
+            color: gray;
+        }
         position: absolute;
         top :50px;
         margin: 0;
@@ -47,6 +53,10 @@
         button{
             color: rgb(107, 119, 140);
             background-color:inherit;
+        }
+        .nav-bar-header{
+            display: flex;
+            justify-content: space-between;
         }
         .small-nav-bar-workspace{
             display: flex;

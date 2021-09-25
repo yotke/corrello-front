@@ -9,10 +9,11 @@ import { BoardPreview } from '../cmps/board-preview.jsx'
 class _Workspace extends React.Component {
     state = {
         isOpen: false,
+        isOpenNavBar:true
     }
     componentDidMount() {
         this.props.loadBoards()
-        
+
     }
 
     onRemoveBoard = (boardId) => {
@@ -32,7 +33,7 @@ class _Workspace extends React.Component {
         showSuccessMsg('Added to Cart')
     }
     render() {
-        const { isOpen } = this.state
+        const { isOpen,isOpenNavBar } = this.state
         const { boards, user } = this.props
 
 
@@ -47,8 +48,15 @@ class _Workspace extends React.Component {
                     <ul><li className="tabbed-pane-nav-item"><a className="tabbed-pane-nav-item-button js-org-profile active" data-tab="boards" href={`/${user}`}>Boards</a></li></ul>
                 </div>
                 <main>
-                    <div className="nav-bar-workspace-container">
-                        workspace view
+                    {isOpenNavBar&&<div className="nav-bar-workspace-container">
+                        <div className="nav-bar-header">
+                            workspace view
+                            <button className="_1ul6gs_kHQukwk _3TTqkG5muwOzqZ" data-test-id="workspace-navigation-collapse-button" type="button" onClick={() => {
+                                this.setState({isOpenNavBar:!isOpenNavBar})
+                            }}>
+                                <img className="_1iDWq-WSaSDrjd" src="https://a.trellocdn.com/prgb/dist/images/workspace-navigation/double-chevron-close.87f7a764e600465f9077.svg" alt="Workspace navigation collapse icon" />
+                            </button>
+                        </div>
                         <br />
                         <div className="small-nav-bar-workspace">
                             Your boards
@@ -73,7 +81,7 @@ class _Workspace extends React.Component {
                         <div className="board-preview-bar">
                             <ul className="board-list">
                                 {boards.map(board => {
-                                  return   <Link key={board._id} to={`/board/${board._id}`}>
+                                    return <Link key={board._id} to={`/board/${board._id}`}>
                                         <li className="board-preview" key={board._id}>
                                             {board._id}
                                         </li>
@@ -81,7 +89,7 @@ class _Workspace extends React.Component {
                                 })}
                             </ul>
                         </div>
-                    </div>
+                    </div>}
                     {/* <div className="board-preview"> */}
                     <BoardPreview boards={boards} />
                     {/* </div> */}

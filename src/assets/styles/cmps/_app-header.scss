@@ -18,6 +18,7 @@
         }
         // header buttons //
         .btn-header {
+            border: none;
             // background-color: rgba(255, 255, 255, 0.3), rgba(9, 30, 66, 0.04), rgba(255, 255, 255, 0.2);
             background-color: transparent;
             border-radius: 0.2rem;
@@ -63,16 +64,19 @@
         }
     }
     &.out-board {
+        
         padding: 15px;
+        width: 90%;
         justify-content: space-between;
         transition: background 1s ease 0s;
         padding-top: 1rem !important;
         padding-bottom: 1rem !important;
         box-sizing: unset;
         align-items: center;
-        background-color:  #eae6ff;
-
+        background-color: #eae6ff;
+        position: fixed;
         .btn-header-container {
+            
             display: none;
         }
     }
