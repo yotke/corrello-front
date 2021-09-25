@@ -9,6 +9,7 @@
       padding: 32px;
       position: relative;
     }
+<<<<<<< HEAD
     .tabbed-pane-nav-item-button.active,
     .tabbed-pane-nav-item-button.active:active,
     .tabbed-pane-nav-item-button.active:hover {
@@ -17,6 +18,39 @@
       cursor: default;
       margin-bottom: -1px;
       padding-bottom: 9px;
+=======
+    .nav-bar-workspace-container{
+        // display: flex;
+        // flex-direction: column;
+        button{
+            border: none;
+        }
+        br{
+            color: gray;
+        }
+        position: absolute;
+        top :50px;
+        margin: 0;
+        padding: 10px;
+        height: 100%;
+        width: 20%;
+        background-color: white;
+        border-right: 1px solid gray;
+        border-collapse: collapse;
+        button{
+            color: rgb(107, 119, 140);
+            background-color:inherit;
+        }
+        .nav-bar-header{
+            display: flex;
+            justify-content: space-between;
+        }
+        .small-nav-bar-workspace{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+>>>>>>> ced05a72779987a9142618518ec1af7908b08dd8
     }
     .tabbed-pane-nav-item-button {
       background-color: #dfe1e6;
