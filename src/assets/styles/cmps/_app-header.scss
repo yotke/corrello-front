@@ -68,9 +68,11 @@
         transition: background 1s ease 0s;
         padding-top: 1rem !important;
         padding-bottom: 1rem !important;
-        box-sizing:unset;
+        box-sizing: unset;
         align-items: center;
-        .btn-header-container{
+        background-color:  #eae6ff;
+
+        .btn-header-container {
             display: none;
         }
     }
