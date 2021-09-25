@@ -1,57 +1,56 @@
 .workspace-container {
-    .tabbed-pane-header{
-        background-color: #f4f5f7;
-        .tabbed-pane-header-wrapper {
-        
-            flex-direction: column;
-            justify-content: center;
-            margin: 0 auto;
-            max-width: 650px;
-            padding: 32px;
-            position: relative;
-        }
-        .tabbed-pane-nav-item-button.active, .tabbed-pane-nav-item-button.active:active, .tabbed-pane-nav-item-button.active:hover {
-            background-color: #fff;
-            border-color: #dfe1e6;
-            cursor: default;
-            margin-bottom: -1px;
-            padding-bottom: 9px;
-        }
-        .tabbed-pane-nav-item-button {
-    
-            background-color: #dfe1e6;
-            border: 1px solid #dfe1e6;
-            border-bottom: 0;
-            border-radius: 3px 3px 0 0;
-            box-sizing: border-box;
-            display: inline-block;
-            font-weight: 700;
-            margin: 2px 2px 0;
-            padding: 8px 20px;
-            text-decoration: none;
-        }
-       
+  .tabbed-pane-header {
+    background-color: #f4f5f7;
+    .tabbed-pane-header-wrapper {
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 auto;
+      max-width: 650px;
+      padding: 32px;
+      position: relative;
     }
-    .nav-bar-workspace-container{
-        // display: flex;
-        // flex-direction: column;
-        position: absolute;
-        top :50px;
-        margin: 0;
-        padding: 10px;
-        height: 100%;
-        width: 20%;
-        background-color: white;
-        border-right: 1px solid gray;
-        border-collapse: collapse;
-        button{
-            color: rgb(107, 119, 140);
-            background-color:inherit;
-        }
-        .small-nav-bar-workspace{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+    .tabbed-pane-nav-item-button.active,
+    .tabbed-pane-nav-item-button.active:active,
+    .tabbed-pane-nav-item-button.active:hover {
+      background-color: #fff;
+      border-color: #dfe1e6;
+      cursor: default;
+      margin-bottom: -1px;
+      padding-bottom: 9px;
     }
+    .tabbed-pane-nav-item-button {
+      background-color: #dfe1e6;
+      border: 1px solid #dfe1e6;
+      border-bottom: 0;
+      border-radius: 3px 3px 0 0;
+      box-sizing: border-box;
+      display: inline-block;
+      font-weight: 700;
+      margin: 2px 2px 0;
+      padding: 8px 20px;
+      text-decoration: none;
+    }
+  }
+  .nav-bar-workspace-container {
+    // display: flex;
+    // flex-direction: column;
+    position: absolute;
+    top: 50px;
+    margin: 0;
+    padding: 10px;
+    height: 100%;
+    width: 20%;
+    background-color: white;
+    border-right: 1px solid gray;
+    border-collapse: collapse;
+    button {
+      color: rgb(107, 119, 140);
+      background-color: inherit;
+    }
+    .small-nav-bar-workspace {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
 }
