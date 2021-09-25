@@ -19,15 +19,16 @@ class _CardDetails extends React.Component {
         console.log('componentDidMount')
         var boardId = 'b101';
         await this.props.loadBoard(boardId)
-
+debugger
         const { listId, cardId } = this.props.match.params
+        
         console.log('listId', listId, 'cardId', cardId)
 
         this.setLocalState(listId, cardId)
     }
 
     setLocalState = (listId, cardId) => {
-
+debugger
         console.log('this.props', this.props)
         const { board } = this.props
         const list = board.lists.find(list => list.id === listId)
@@ -38,9 +39,9 @@ class _CardDetails extends React.Component {
 
     render() {
         const { card, list } = this.state
- 
+        
         if (!card) return <div>Loading Card...</div>
-
+debugger
         const { board } = this.props
         const { activities } = board
 

@@ -8,19 +8,18 @@ export class CardDetailsActivity extends Component {
         const { card, activities } = this.props
 
         debugger
-        activities = activities.filter(activity => {
+        const currActivities = activities.filter(activity => {
             if (!activity.card) return false
             debugger
             return activity.card.id === card.id
         })
 
-        return activities;
+        return currActivities;
     }
 
     render() {
 
         if(!this.cardActivities.length) return <div>Load Activities...</div>
-
 
         return (
             <div className="card-details-activity">

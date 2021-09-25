@@ -49,6 +49,16 @@
 @import 'cmps/user-msg';
 @import 'cmps/board-header';
 
+//Components card-details-cmps
+@import 'cmps/card-details-cmps/card-details-activity-list';
+@import 'cmps/card-details-cmps/card-details-activity-preview';
+@import 'cmps/card-details-cmps/card-details-activity';
+@import 'cmps/card-details-cmps/card-details-checklists';
+@import 'cmps/card-details-cmps/card-details-cover';
+@import 'cmps/card-details-cmps/card-details-data';
+@import 'cmps/card-details-cmps/card-details-desc';
+@import 'cmps/card-details-cmps/card-details-header';
+
 body,
 button,
 html,
