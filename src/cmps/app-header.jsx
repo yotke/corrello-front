@@ -22,7 +22,7 @@ class _AppHeader extends React.Component {
         const { isNewNotific } = this.state
         var { isBoardStyle, user } = this.props
         if (!isBoardStyle) {
-            isBoardStyle = true;
+            isBoardStyle = false;
         }
         return (
             <section>
