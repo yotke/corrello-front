@@ -31,6 +31,8 @@ export function onLogin(credentials) {
     return async (dispatch) => {
         try {
             const user = await userService.login(credentials)
+            console.log('user in onLogin',user);
+            console.log('credentials',credentials);
             dispatch({
                 type: 'SET_USER',
                 user
@@ -38,6 +40,18 @@ export function onLogin(credentials) {
         } catch (err) {
             showErrorMsg('Cannot login')
             console.log('Cannot login', err)
+        }
+    }
+}
+
+export function onGoogleLogin(tokenId) {
+    return async dispatch => {
+        try {
+            const user = await userService.googleLogin(tokenId)
+            dispatch({ type: 'SET_USER', user })
+            socketService.emit('user-watch', user._id)
+        } catch (err) {
+            console.log('UserActions: err in login', err)
         }
     }
 }

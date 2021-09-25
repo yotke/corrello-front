@@ -7,7 +7,7 @@ class _HomePage extends React.Component {
     state = {}
 
     render() {
-        const { count } = this.props
+        const { count ,user} = this.props
         return (
             <section className="home-page-container">
                 <div className="first-home-page-container">
@@ -47,6 +47,7 @@ class _HomePage extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        user: state.userModule.loggedInUser,
         count: state.userModule.count
     }
 }

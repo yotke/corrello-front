@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, withRouter } from 'react-router-dom'
 import { ReactComponent as HomeIcon } from '../assets/img/icons/home.svg'
 import { ReactComponent as BoardIcon } from '../assets/img/icons/board.svg'
 import { ReactComponent as AddIcon } from '../assets/img/icons/add.svg'
@@ -20,9 +20,9 @@ class _AppHeader extends React.Component {
     }
     render() {
         const { isNewNotific } = this.state
-        var { isBoardStyle } = this.props
+        var { isBoardStyle, user } = this.props
         if (!isBoardStyle) {
-            isBoardStyle = false;
+            isBoardStyle = true;
         }
         return (
             <section>
@@ -83,7 +83,7 @@ class _AppHeader extends React.Component {
                             {/* <ElementOverlay /> */}
                         </button>
                     </div>
-                    <input id="name" type="search" placeholder="Search…" value=""/>
+                    <input id="name" type="search" placeholder="Search…" value="" />
 
                     <div className="btn-header-container flex">
                         <div>
@@ -97,11 +97,19 @@ class _AppHeader extends React.Component {
                             </button>
                         </div>
                     </div>
-                    <div className="login-signup-container">
+                    {!user && <div className="login-signup-container">
                         {/* {!isBoardStyle && <small>hello userName</small>} */}
-                        {isBoardStyle && <button className="btn-login">Login</button>}
-                        {isBoardStyle && <button className="btn-signup">signup</button>}
-                    </div>
+                        {isBoardStyle && <button className="btn-login" onClick={() => {
+                            this.props.history.push('/login')
+                        }}>Login</button>}
+                        {isBoardStyle && <button className="btn-signup" onClick={() => {
+                            this.props.history.push('/signup')
+                        }}>signup</button>}
+                    </div>}
+                    {user && <div className="user-welcome-container">Hello {user.username} <button className="btn-logout" onClick={() => {
+                        this.props.onLogout()
+                        this.props.history.push('/')
+                    }}>Log Out</button></div>}
                 </div>
             </section>
         )
@@ -129,4 +137,4 @@ const mapDispatchToProps = {
 
 
 
-export const AppHeader = connect(mapStateToProps, mapDispatchToProps)(_AppHeader)
+export const AppHeader = connect(mapStateToProps, mapDispatchToProps)(withRouter(_AppHeader))

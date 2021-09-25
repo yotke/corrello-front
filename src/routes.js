@@ -6,6 +6,7 @@ import { ChatApp } from './pages/chat-app.jsx'
 import { AdminApp } from './pages/admin-app.jsx'
 import { CardDetails } from './pages/card-details.jsx'
 import { BoardApp } from './pages/board-app.jsx'
+import { LoginSignup } from './pages/login-signup.jsx'
 
 // Routes accesible from the main navigation (in AppHeader)
 const routes = [
@@ -23,6 +24,11 @@ const routes = [
         path: '/board/:boardId',
         component: BoardApp,
         label: 'board'
+    },
+    {
+        path: '/login',
+        component: LoginSignup,
+        label: 'login'
     },
     {
         path: '/chat',
