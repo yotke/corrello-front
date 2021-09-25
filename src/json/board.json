@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "_id": "b101",
     "title": "Robot dev proj",
@@ -21,6 +22,33 @@
             "fullname": "Tal Tarablus",
             "imgUrl": "https://www.google.com"
         }
+=======
+    {
+        "_id": "b101",
+        "title": "Robot dev proj",
+        "createdAt": 1589983468418,
+        "createdBy": {
+            "_id": "u101",
+            "fullname": "Abi Abambi",
+            "imgUrl": "http://some-img"
+        },
+        "style": {
+            "background":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1283x1920/5442c84e9d91238aeb465e80974294ff/photo-1536293182766-c9c0c4133b55.jpg"
+        },
+        "labels": [
+            {
+                "id": "l101",
+                "title": "Done",
+                "color": "#61bd4f"
+            }
+        ],
+        "members": [
+            {
+                "_id": "u101",
+                "fullname": "Tal Tarablus",
+                "imgUrl": "https://www.google.com"
+      }
+>>>>>>> 794db6fafc9c20bc1e803739871f0b26770b08e2
     ],
     "lists": [
         {
@@ -100,7 +128,8 @@
                     }
                 }
             ],
-            "style": {}
+            "style": {
+            }
         }
     ],
     "activities": [

@@ -108,11 +108,26 @@ function removeCard(board, card) {
 
 function getEmptyBoard() {
     const board = {
-        // _id: utilService.makeId(),
-        name: 'yoyo',
-        imgUrl: '',
-        list: []
+        title: "",
+        createdAt: Date.now(),
+        createdBy: {
+            _id: "",
+            fullname: "",
+            imgUrl: ""
+        },
+        style: {},
+        labels: [
+        ],
+        members: [
 
+        ],
+        lists: [
+        ],
+        activities: [
+        ]
     }
+
+
+
     return board;
 }
