@@ -3,9 +3,12 @@ import { connect } from 'react-redux'
 import {CardDetails} from '../pages/card-details.jsx'
 import { Route } from 'react-router'
 import {Loader} from '../cmps/Loader.jsx'
+import {ListPreview} from '../cmps/list-preview.jsx'
+import { MainBoardHeader } from '../cmps/main-board-header.jsx'
+import { ListAdd } from '../cmps/list-add.jsx'
 
 
-import { loadBoard, onAddBoard, onRemoveBoard , loadBoards} from '../store/board.actions.js'
+import { loadBoard, onAddBoard, onRemoveBoard , loadBoards, onSaveBoard} from '../store/board.actions.js'
 // import { showSuccessMsg } from '../services/event-bus.service.js'
 
 class _BoardApp extends React.Component {
@@ -33,6 +36,7 @@ console.log(err);
 
     render() {
         const {board} = this.props
+        const {onSaveBoard} = this.props;
         console.log('curr board',board);
         if (!board) return <Loader />
 
@@ -46,30 +50,21 @@ console.log(err);
                 backgroundPosition: '50%'
 
             }}>
-
+  
                 
                  <main>
                      <section className="main-board"> 
+                     <MainBoardHeader board={board} onSaveBoard={onSaveBoard} />
                      <Route path="/board/:boardId/:listId/:cardId" component={CardDetails} />
-                    <ul className="lists-container">
-                        {board.lists.map((currList, idx) =>
-                            <li className="list-preview" key={idx}>
-                                <div className="list-header">
-                                <h2>{currList.title}</h2>
-                                </div>
-                                {console.log('curr list',currList)}
-                                {currList.cards.map((currCard, cardId) => 
-                                <ul key={cardId} className="card-container">
-                                  <li className="card-preview" key={cardId}>
-                                  <h4>{currCard.title}</h4>
-                                  </li>  
-                                  </ul>
-                                 ) }
-                            </li>)}
-                    </ul>
+                    <div className="lists-container">
+                        {board.lists.map((currList,listIdx ) => 
+                 <ListPreview board={board} key={listIdx} listIdx={listIdx} currList={currList} onSaveBoard={onSaveBoard}/>)}
+                <ListAdd board={board} onSaveBoard={onSaveBoard} />
+
+                    </div>
                      </section>
                 </main> 
-            </div>
+                </div>
             </>
         )
     }
@@ -85,8 +80,8 @@ const mapDispatchToProps = {
     loadBoard,
     onRemoveBoard,
     onAddBoard,
-    loadBoards
-    // onSaveBoard
+    loadBoards,
+    onSaveBoard
 
 }
 
