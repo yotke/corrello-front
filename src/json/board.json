@@ -10,7 +10,9 @@
             "fullname": "Abi Abambi",
             "imgUrl": "http://some-img"
         },
-        "style": {},
+        "style": {
+            "background":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1283x1920/5442c84e9d91238aeb465e80974294ff/photo-1536293182766-c9c0c4133b55.jpg"
+        },
         "labels": [
             {
                 "id": "l101",
@@ -100,7 +102,8 @@
                   }
                 }
             ],
-            "style": {}
+            "style": {
+            }
         }
     ],
     "activities": [

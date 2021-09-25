@@ -5,6 +5,9 @@
 @import 'setup/typography';
 @import 'setup/main-setup';
 
+//pages
+@import 'pages/board';
+
 // Basics
 @import 'basics/helpers';
 @import 'basics/layout';
@@ -13,11 +16,11 @@
 @import 'basics/forms';
 
 // Views
-@import "views/about-us";
-@import "views/home-page";
-@import "views/board-app";
-@import "views/review-app";
-@import "views/card-details";
+@import 'views/about-us';
+@import 'views/home-page';
+@import 'views/board-app';
+@import 'views/review-app';
+@import 'views/card-details';
 @import 'views/about-us';
 @import 'views/home-page';
 @import 'views/board-app';
@@ -28,6 +31,7 @@
 @import 'cmps/app-header';
 @import 'cmps/app-footer';
 @import 'cmps/user-msg';
+@import 'cmps/loader';
 
 body,
 button,

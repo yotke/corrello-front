@@ -1,0 +1,41 @@
+.main-board {
+  height: 100%;
+}
+
+.list-preview {
+  display: flex;
+  flex-direction: column;
+  background-color: #ebecf0;
+  width: 272px;
+  padding: 1rem;
+  gap: 4px;
+}
+
+.list-header {
+  font-size: 0.8rem;
+}
+
+.lists-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  position: relative;
+  height: 100%;
+}
+
+.card-container {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.card-preview {
+  min-height: 56px;
+  flex-direction: column;
+  background-color: #fff;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px 4px;
+  margin: 0 0 2px;
+  font-size: 14px;
+  cursor: pointer;
+}

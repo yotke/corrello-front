@@ -20,7 +20,7 @@ const routes = [
         label: 'Workspace'
     },
     {
-        path: '/board/:id',
+        path: '/board/:boardId',
         component: BoardApp,
         label: 'board'
     },
