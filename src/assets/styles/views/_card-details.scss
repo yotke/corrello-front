@@ -1,31 +1,36 @@
 .card-details-container {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  // height: 1000px;
+  padding: 30px;
+  background-color: #f4f5f7;
+  border-radius: 2px;
+  position: relative;
+  width: 768px;
+
+  .card-body-container {
+
+    .card-details-main {
+      float: left;
+      margin: 0;
+      min-height: 24px;
+      padding: 0 8px 8px 16px;
+      position: relative;
+      width: 552px;
+    }
+
+    .card-details-sidebar {
+      float: right;
+      padding: 0 16px 8px 8px;
+      width: calc(100% - 600px);
+
+      .btn-card-details {
+        background-color: #091e420a;
+        color:#172b4d;
+      }
+
+    }
   }
-  .board-preview {
-    background-color: $clr7;
-    color: whitesmoke;
-    border-radius: 0.2em;
-    margin: 5px;
-    text-align: center;
-    padding: 5px;
-  }
-  
-  .board-preview span {
-    color: pink;
-  }
-  
-  .cart {
-    background-color: $clr2;
-    color: $clr6;
-    padding: 20px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-  .cart li button {
-    margin: 5px;
-  }
-  
+}
