@@ -69,10 +69,10 @@ class _BoardApp extends React.Component {
                 }}>
 
                     <main>
-                            <DragDropContext onDragEnd={this.handleOnDragEnd}>
                         <section className="main-board">
                             <MainBoardHeader board={board} onSaveBoard={onSaveBoard} />
                             <Route path="/board/:boardId/:listId/:cardId" component={CardDetails} />
+                            <DragDropContext onDragEnd={this.handleOnDragEnd}>
                                 <Droppable droppableId="characters">
                                     {(provided) => (
                                         <ul className="lists-container" {...provided.droppableProps} ref={provided.innerRef}>
@@ -89,10 +89,10 @@ class _BoardApp extends React.Component {
                                         </ul>
                                     )}
                                 </Droppable>
+                            </DragDropContext>
                             <ListAdd board={board} onSaveBoard={onSaveBoard} />
 
                         </section>
-                            </DragDropContext>
                     </main>
                 </div>
             </>
