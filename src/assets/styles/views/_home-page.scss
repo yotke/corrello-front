@@ -1,59 +1,91 @@
 .home-page-container {
-    background: linear-gradient(0deg, #fff, #eae6ff 100%);
-    font-family: "Charlie Text", sans-serif;
-    font-size: 20px;
-    .first-home-page-container {
-        display: flex;
-        width: 100%;
-        max-width: 1140px;
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-right: auto;
-        margin-left: auto;
-        padding-top: 7rem !important;
-        padding-bottom: 5rem !important;
-        align-items: center;
-        h1 {
-            font-size: 3rem;
-            line-height: 1.25;
-        }
-        .first-part-txt {
-            padding: 3%;
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            margin-right: 8.33333333%;
-        }
-        img {
-            margin-left: 8.33333333%;
-        }
-        .btn-homepage-signup {
-            padding: 3%;
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            margin-right: 8.33333333%;
-            display: flex;
-            > * {
-                flex-basis: 50%;
-            }
-            .btn-home-page-submit {
-                color: #fff;
-                background-color: #0065ff;
-                border-color: #0065ff;
-                padding-left: 1.5rem !important;
-                padding-right: 1.5rem !important;
-                font-family: inherit;
-                margin: 0;
-            }
-        }
-    }
-    .second-home-page-container{
-        text-align: center !important;
-        padding-top: 5rem !important;
-        padding-bottom: 5rem !important;
-        width: 100%;
+  background: linear-gradient(0deg, #fff, #eae6ff 100%);
+  font-family: 'Charlie Text', sans-serif;
+  font-size: 20px;
+  .first-home-page-container {
+    display: flex;
+    width: 100%;
+    max-width: 1140px;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+    padding-top: 7rem !important;
+    padding-bottom: 5rem !important;
+    align-items: center;
+    h1 {
+      font-size: 3rem;
+      line-height: 1.25;
     }
+    .first-part-txt {
+      padding: 3%;
+      margin-top: 0;
+      flex: 0 0 58.33333333%;
+      max-width: 58.33333333%;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      margin-right: -8.33333333%;
+    }
+    .hero-img-pic img {
+      margin-left: -8.33333333%;
+    }
+
+    .form-control {
+      display: block;
+      width: 100%;
+      height: auto;
+      padding: 0.375rem 0.75rem;
+      font-size: 1.25rem;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: 6px;
+      -webkit-transition: border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    .btn-homepage-signup {
+      padding: 3%;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      margin-right: -9rem;
+
+      display: flex;
+      > * {
+        flex-basis: 50%;
+      }
+      .btn-home-page-submit {
+        border-radius: 6px;
+        border: none;
+        outline: none;
+        font-size: 1.25rem;
+        line-height: 2.75rem;
+        letter-spacing: 1px;
+        color: #fff;
+        background-color: #0065ff;
+      }
+    }
+  }
+  .nav-btns a:last-child {
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    font-size: 1.25rem;
+    line-height: 2.75rem;
+    letter-spacing: 1px;
+    color: #fff;
+    background-color: #0065ff;
+  }
+  .second-home-page-container {
+    text-align: center !important;
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
