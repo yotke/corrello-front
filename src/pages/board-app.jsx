@@ -42,14 +42,7 @@ console.log(err);
 
         return (
             <>
-            <div className="board-background" style={{
-                backgroundImage:"url(" + board.style.background + ")",
-                backgroundSize:'cover',
-                height:'100vh',
-                overflow: 'hidden',
-                backgroundPosition: '50%'
 
-            }}>
   
                 
                  <main>
@@ -64,7 +57,7 @@ console.log(err);
                     </div>
                      </section>
                 </main> 
-                </div>
+                
             </>
         )
     }
