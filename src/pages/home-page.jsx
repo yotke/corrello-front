@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
 import logo from '../assets/img/logo.png'
+import { HomeHeader } from '../cmps/home-header'
 
 class _HomePage extends React.Component {
     state = {}
@@ -9,7 +9,9 @@ class _HomePage extends React.Component {
     render() {
         const { count ,user} = this.props
         return (
+            
             <section className="home-page-container">
+                <HomeHeader/>
                 <div className="first-home-page-container">
                     <div className="introduction-signup">
                         <p className="first-part-txt">
@@ -23,7 +25,7 @@ class _HomePage extends React.Component {
                         </div>
                     </div>
                     <div className="home-page-pic">
-                        <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/spirit/hero/6a3ccd8e5c9a0e8ebea4235d12da6b24/hero.png" alt="" />
+                        <img src="https://raw.githubusercontent.com/alaattinerby/Covid-19-Website/4c233460e18c1a8cfba4f7c4830e8da0e7c5e8e9/Covid-19/img/section-image.svg" alt="" />
                     </div>
                 </div>
                 <div className="second-home-page-container">

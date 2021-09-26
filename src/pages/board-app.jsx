@@ -58,15 +58,7 @@ class _BoardApp extends React.Component {
 
         return (
             <>
-                <div className="board-background" style={{
-                    backgroundImage: "url(" + board.style.background + ")",
-                    backgroundSize: 'cover',
-                    height: '100vh',
-                    overflow: 'hidden',
-                    backgroundPosition: '50%'
-
-                }}>
-
+      
                     <main>
                         <section className="main-board">
                             <MainBoardHeader board={board} onSaveBoard={onSaveBoard} />
@@ -93,7 +85,6 @@ class _BoardApp extends React.Component {
 
                         </section>
                     </main>
-                </div>
             </>
         )
     }
