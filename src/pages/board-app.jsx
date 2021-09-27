@@ -42,26 +42,37 @@ class _BoardApp extends React.Component {
 
     handleOnDragEnd = (result) => {
 
-
         const { destination, source, draggableId } = result;
-        if (!result.destination) return;
+        console.log('destination.droppableId', destination.droppableId);
         const { lists } = this.props.board
-        const start = lists[source.droppableId];
-        const finish = lists[destination.droppableId];
+        if (destination.droppableId != 'all-lists') {
+
+            console.log('draggableId', draggableId);
+            if (!result.destination) return;
+            const start = lists[source.droppableId];
+            const finish = lists[destination.droppableId];
 
 
-        if (start === finish) {
-            const cards = Array.from(start.cards);
-            const [reorderedItem] = cards.splice(source.index, 1);
-            cards.splice(destination.index, 0, reorderedItem);
-            console.log('cards', cards);
-            this.props.board.lists[source.droppableId].cards = cards
+            if (start === finish) {
+                const cards = Array.from(start.cards);
+                const [reorderedItem] = cards.splice(source.index, 1);
+                cards.splice(destination.index, 0, reorderedItem);
+                console.log('cards', cards);
+                this.props.board.lists[source.droppableId].cards = cards
+            }
+            else {
+                var itemsArr = this.updateElemDND(start.cards, finish.cards, source, destination)
+                this.updateBoardDND(itemsArr, source, destination)
+            }
         }
         else {
-            var itemsArr = this.updateElemDND(start.cards, finish.cards, source, destination)
-            this.updateBoardDND(itemsArr, source, destination)
-        }
+            const items = Array.from(lists);
+            const [reorderedItem] = items.splice(source.index, 1);
+            items.splice(destination.index, 0, reorderedItem);
+            this.props.board.lists = items
+            this.props.onEditBoard(this.props.board)
 
+        }
     }
 
     updateBoardDND = (itemsArr, src, des) => {
@@ -81,7 +92,7 @@ class _BoardApp extends React.Component {
 
     onCardClicked = () => {
         this.setState({ isCardClicked: true })
-        console.log('isCardClicked',this.state.isCardClicked);
+        console.log('isCardClicked', this.state.isCardClicked);
     }
     render() {
 
