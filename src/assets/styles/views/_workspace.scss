@@ -1,36 +1,46 @@
 .workspace-container {
   .workspace-sticky-cotainter {
-    align-items: flex-start;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    flex: 1 1 0%;
+    position: relative;
+    overflow-y: auto;
+    height: 90vh;
   }
   .nav-bar-workspace-container {
-    // display: flex;
-    // flex-direction: column;
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+    height: 100%;
+    min-height: 100%;
+    z-index: 5;
+    transform: translate3d(0%, 0, 0);
+    transition: transform 100ms ease-in;
+    width: 260px;
+
     button {
       border: none;
     }
-    br {
-      color: gray;
-    }
   }
-  .nav-bar-workspace-container {
-    // display: flex;
-    // flex-direction: column;
-    position: sticky;
-    top: 0px;
+  .expand-container {
+    height: 100%;
+    z-index: 5;
     left: 0;
-    .home-left-bar {
-      margin: 40px 0 0;
-      padding: 0 16px;
-      width: 240px;
+    transition: transform 100ms ease-in;
+
+    .on-expand {
+      height: 100%;
+      width: 100%;
+      min-height: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
   }
-  button {
-    color: rgb(107, 119, 140);
-    background-color: inherit;
-  }
+}
+button {
+  color: rgb(107, 119, 140);
+  background-color: inherit;
 }
 
 .all-boards-main {

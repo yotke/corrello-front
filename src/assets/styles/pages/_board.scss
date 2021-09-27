@@ -1,15 +1,14 @@
-.main-board {
-  height: 100%;
-}
-
 .list-preview {
   display: flex;
   flex-direction: column;
-  background-color: #ebecf0;
   width: 272px;
   padding: 1rem;
   gap: 4px;
-  height: 100%;
+  background-color: #ebecf0;
+  border-radius: 3px;
+  box-sizing: border-box;
+  max-height: 100%;
+  white-space: normal;
 }
 
 .list-header {
@@ -19,9 +18,34 @@
 .lists-container {
   display: flex;
   flex-direction: row;
+  list-style-type: none;
   gap: 20px;
   position: relative;
+  // overflow-x: auto;
+  // overflow-y: hidden;
+  // height: 100%;
+  margin: 0 0 4px;
+  padding: 0 4px;
+  white-space: nowrap;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.card-list-add {
+  background-color: #cecece7a;
+  width: 250px;
+  padding: 0.8rem;
+  border-radius: 3px;
+  &:hover {
+    background-color: #00000014;
+  }
+}
+.board-content {
+  overflow-x: auto;
+  overflow-y: hidden;
   height: 100%;
+  margin: 0 0.3rem;
+  white-space: nowrap;
 }
 
 .card-container {
@@ -30,13 +54,28 @@
   list-style: none;
 }
 .card-preview {
+  display: flex;
+  flex-direction: row;
   min-height: 56px;
-  flex-direction: column;
   background-color: #fff;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 4px 4px;
-  margin: 0 0 2px;
-  font-size: 14px;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 #091e4240;
   cursor: pointer;
+  margin-bottom: 8px;
+  max-width: 300px;
+  position: relative;
+  text-decoration: none;
+  z-index: 0;
+}
+.card-title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-bottom: 0;
+  padding-bottom: 8px;
+}
+
+.card-content {
+  overflow: hidden;
+  padding: 6px 8px 2px;
 }
