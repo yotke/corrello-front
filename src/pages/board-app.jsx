@@ -7,6 +7,7 @@ import { ListPreview } from '../cmps/list-preview.jsx'
 import { MainBoardHeader } from '../cmps/main-board-header.jsx'
 import { ListAdd } from '../cmps/list-add.jsx'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { SideNav } from '../cmps/sidenav.jsx'
 
 import { loadBoard, onAddBoard, onRemoveBoard, loadBoards, onSaveBoard ,onEditBoard} from '../store/board.actions.js'
 import { boardService } from '../services/board.service.js'
@@ -14,6 +15,7 @@ import { boardService } from '../services/board.service.js'
 
 class _BoardApp extends React.Component {
     state = {
+        isMainBoard: true
     }
 
     async componentDidMount() {
@@ -21,7 +23,7 @@ class _BoardApp extends React.Component {
             console.log('board componnet mounted')
             const { boardId } = this.props.match.params
             await this.props.loadBoard(boardId)
-            // this.props.loadBoards()
+            await this.props.loadBoards()
 
         }
         catch (err) {
@@ -54,14 +56,19 @@ class _BoardApp extends React.Component {
 
         const { board } = this.props
         const { onSaveBoard } = this.props;
-        console.log('curr board', board);
+        const {boards} = this.props;
+        const {isMainBoard} = this.state
         if (!board) return <Loader />
 
         return (
+
             <>
       
-                    <main>
-                        <section className="main-board">
+                   
+                        <section className="main-board flex row">
+                            <SideNav boards={boards} isMainBoard={isMainBoard}/>
+                            <div className="board-content flex column"> 
+
                             <MainBoardHeader board={board} onSaveBoard={onSaveBoard} />
                             <Route path="/board/:boardId/:listId/:cardId" component={CardDetails} />
                             <DragDropContext onDragEnd={this.handleOnDragEnd}>
@@ -78,14 +85,14 @@ class _BoardApp extends React.Component {
                                                 </Draggable>
                                             )}
                                             {provided.placeholder}
+                                            <ListAdd board={board} onSaveBoard={onSaveBoard} />
                                         </ul>
                                     )}
                                 </Droppable>
                             </DragDropContext>
-                            <ListAdd board={board} onSaveBoard={onSaveBoard} />
+                            </div>
 
                         </section>
-                    </main>
             </>
         )
     }
@@ -94,7 +101,8 @@ class _BoardApp extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        board: state.boardModule.board
+        board: state.boardModule.board,
+        boards: state.boardModule.boards
     }
 }
 const mapDispatchToProps = {

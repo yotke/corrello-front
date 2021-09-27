@@ -59,7 +59,7 @@ export class ListAdd extends Component {
                     </div>
                     :
                     <div className="card-list-add" onClick={this.toggleListAdd}>
-                        +  Add list
+                        +  Add another list
                         </div>
                 }
             </div>

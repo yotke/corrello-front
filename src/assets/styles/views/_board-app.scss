@@ -1,3 +1,7 @@
+.main-board {
+  height: calc(100vh - 40px); // check responsive
+}
+
 .board-list {
   list-style: none;
   display: flex;

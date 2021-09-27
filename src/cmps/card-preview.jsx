@@ -10,8 +10,8 @@ export class CardPreview extends Component {
         return (
             <>
                         <div className="card-preview">
-                            <Link to={`/board/${board._id}/${currList?.id}/${card.id}`}>
-                                <h4>{card.title}</h4>
+                            <Link className="card-content clean-link" to={`/board/${board._id}/${currList?.id}/${card.id}`}>
+                                <h4 className="card-title">{card.title}</h4>
                             </Link>
                         </div>
                     
