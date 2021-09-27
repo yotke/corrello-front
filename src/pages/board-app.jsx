@@ -9,7 +9,7 @@ import { ListAdd } from '../cmps/list-add.jsx'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { SideNav } from '../cmps/sidenav.jsx'
 
-import { loadBoard, onAddBoard, onRemoveBoard, loadBoards, onSaveBoard ,onEditBoard} from '../store/board.actions.js'
+import { loadBoard, onAddBoard, onRemoveBoard, loadBoards, onSaveBoard, onEditBoard } from '../store/board.actions.js'
 import { boardService } from '../services/board.service.js'
 // import { showSuccessMsg } from '../services/event-bus.service.js'
 
@@ -38,15 +38,18 @@ class _BoardApp extends React.Component {
         this.props.onAddBoard()
     }
 
+
     handleOnDragEnd = (result) => {
-        const  { lists } = this.props.board
-        console.log('lists',lists)
+        const { destination, source, type } = result
+        console.log(' destination, source, type', destination, source, type);
+        const { lists } = this.props.board
+        console.log('lists', lists)
         if (!result.destination) return;
         const items = Array.from(lists);
         const [reorderedItem] = items.splice(result.source.index, 1);
         items.splice(result.destination.index, 0, reorderedItem);
-        console.log('items',items)
-        this.props.board.lists=items
+        console.log('items', items)
+        this.props.board.lists = items
         this.props.onEditBoard(this.props.board)
     }
 
@@ -55,43 +58,43 @@ class _BoardApp extends React.Component {
 
         const { board } = this.props
         const { onSaveBoard } = this.props;
-        const {boards} = this.props;
-        const {isMainBoard} = this.state
+        const { boards } = this.props;
+        const { isMainBoard } = this.state
         if (!board) return <Loader />
 
         return (
 
             <>
-      
-                   
-                        <section className="main-board flex row">
-                            <SideNav boards={boards} isMainBoard={isMainBoard}/>
-                            <div className="board-content flex column"> 
 
-                            <MainBoardHeader board={board} onSaveBoard={onSaveBoard} />
-                            <Route path="/board/:boardId/:listId/:cardId" component={CardDetails} />
-                            <DragDropContext onDragEnd={this.handleOnDragEnd}>
-                                <Droppable droppableId="characters">
-                                    {(provided) => (
-                                        <ul className="lists-container" {...provided.droppableProps} ref={provided.innerRef}>
-                                            {board.lists.map((currList, listIdx) =>
-                                                <Draggable key={currList.id} draggableId={currList.id} index={listIdx}>
-                                                    {(provided) => (
-                                                        <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                            <ListPreview board={board} key={listIdx} listIdx={listIdx} currList={currList} onSaveBoard={onSaveBoard} />
-                                                        </li>
-                                                    )}
-                                                </Draggable>
-                                            )}
-                                            {provided.placeholder}
-                                            <ListAdd board={board} onSaveBoard={onSaveBoard} />
-                                        </ul>
-                                    )}
-                                </Droppable>
-                            </DragDropContext>
-                            </div>
 
-                        </section>
+                <section className="main-board flex row">
+                    <SideNav boards={boards} isMainBoard={isMainBoard} />
+                    <div className="board-content flex column">
+
+                        <MainBoardHeader board={board} onSaveBoard={onSaveBoard} />
+                        <Route path="/board/:boardId/:listId/:cardId" component={CardDetails} />
+                        <DragDropContext onDragEnd={this.handleOnDragEnd}>
+                            <Droppable droppableId="all-lists" direction="horizontal" type="list">
+                                {provided => (
+                                    <ul className="lists-container" {...provided.droppableProps} ref={provided.innerRef}>
+                                        {board.lists.map((currList, listIdx) =>
+                                            <Draggable key={currList.id} draggableId={currList.id} index={listIdx}>
+                                                {(provided) => (
+                                                    <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                                        <ListPreview board={board} key={listIdx} listIdx={listIdx} currList={currList} onSaveBoard={onSaveBoard} />
+                                                    </li>
+                                                )}
+                                            </Draggable>
+                                        )}
+                                        {provided.placeholder}
+                                        <ListAdd board={board} onSaveBoard={onSaveBoard} />
+                                    </ul>
+                                )}
+                            </Droppable>
+                        </DragDropContext>
+                    </div>
+
+                </section>
             </>
         )
     }
