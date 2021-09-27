@@ -18,8 +18,10 @@ export const boardService = {
     remove,
     subscribe,
     removeCard,
-    getEmptyBoard
-
+    getEmptyBoard,
+    updateCardInBoard,
+    addCardToBoard,
+    updateListInBoard
 }
 window.cs = boardService;
 _saveToLocalStorage();
@@ -69,6 +71,7 @@ function subscribe(listener) {
     listeners.push(listener)
 }
 
+
 function _notifySubscribersBoardsChanged(boards) {
     console.log('Notifying Listeners');
     listeners.forEach(listener => listener(boards))
@@ -85,26 +88,50 @@ window.addEventListener('storage', () => {
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
 
+function updateCardInBoard(board, updateCard) {
+    debugger
+    board = { ...board }
 
-
-
-export function updateCardInBoard(board, updatedCard) {
     board.lists.forEach(list => {
         list.cards.forEach((card, idx) => {
-            if (card.id === updatedCard.id) list.cards[idx] = updatedCard
+            if (card.id === updateCard.id) list.cards[idx] = updateCard
         })
     })
-    return { ...board }
+    return board
+}
+
+function addCardToBoard(board, listId, addCard) {
+    debugger
+    board = { ...board }
+
+    const listIdx = board.lists.findIndex(currList => currList.id === listId);
+
+    if (listIdx === -1) return { ...board }
+    else board.lists[listIdx].cards.push({ ...addCard })
+
+    return board
+}
+
+function updateListInBoard(board, updateList) {
+    debugger
+    board = { ...board }
+
+    board.lists.forEach((list, idx) => {
+        if (list.id === updateList.id) board.lists[idx] = updateList
+    })
+    
+    return board
 }
 
 function removeCard(board, card) {
+    board = { ...board }
+
     board.lists.forEach(list => {
         if (list.cards.some(boardCard => boardCard.id === card.id))
             list.cards = list.cards.filter(boardCard => boardCard.id !== card.id)
     })
-    return { ...board }
+    return board
 }
-
 
 function getEmptyBoard() {
     const board = {

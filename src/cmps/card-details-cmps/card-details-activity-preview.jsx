@@ -10,10 +10,10 @@ export class CardDetailsActivityPreview extends Component {
             <section>
                 <div className="activity-preview">
                     <div className="activity-creator">
-                        <div className="activity-creator-member">
+                        {/* <div className="activity-creator-member">
                             <img className="activity-creator-member-avatar"
                                 src={byMember.imgUrl} />
-                        </div>
+                        </div> */}
                         <h4>{byMember.fullname}</h4>
                     </div>
                     <div className="activity-desc">
