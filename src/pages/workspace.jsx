@@ -23,14 +23,14 @@ class _Workspace extends React.Component {
         this.props.onAddBoard()
     }
     render() {
-        const { boards } = this.props
+        const { boards , onAddBoard} = this.props
         const {isWorkSpace} =this.state; 
 
         return (
             <section className="workspace-container">
                 <div className="workspace-sticky-cotainter">
                 
-                    <SideNav boards={boards} />
+                    <SideNav boards={boards} onAddBoard={onAddBoard} />
 
 
                     <div className="all-boards-main"> 

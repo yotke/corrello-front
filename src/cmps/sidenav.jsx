@@ -14,7 +14,7 @@ export class SideNav extends React.Component {
   };
 
   render() {
-   const {boards, isMainBoard} = this.props
+   const {boards, isMainBoard, onAddBoard} = this.props
    const {isOpen} = this.state
     return (
       <div className={`leftMenu ${isMainBoard ? 'main' : 'workspace'}`}>
@@ -26,7 +26,7 @@ export class SideNav extends React.Component {
         <div className="small-nav-bar-workspace">
           Your boards
           <div className="small-nav-bar-btn-container">
-            <button className="" onClick={this.onAddBoard}>
+            <button className="" onClick={onAddBoard}>
               <svg
                 width="15"
                 height="15"
