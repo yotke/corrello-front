@@ -43,12 +43,12 @@ class _BoardApp extends React.Component {
     handleOnDragEnd = (result) => {
 
         const { destination, source, draggableId } = result;
+        if (!result.destination) return;
         console.log('destination.droppableId', destination.droppableId);
         const { lists } = this.props.board
         if (destination.droppableId != 'all-lists') {
 
             console.log('draggableId', draggableId);
-            if (!result.destination) return;
             const start = lists[source.droppableId];
             const finish = lists[destination.droppableId];
 
@@ -106,8 +106,8 @@ class _BoardApp extends React.Component {
             <>
                 <section className="main-board flex row">
                     <SideNav boards={boards} isMainBoard={isMainBoard} />
-                    <div className="board-content">
                         <MainBoardHeader board={board} onSaveBoard={onSaveBoard} />
+                    <div className="board-content">
                         <Route path="/board/:boardId/:listId/:cardId" component={CardDetails} />
                         <DragDropContext onDragEnd={this.handleOnDragEnd}>
                             <Droppable droppableId="all-lists" direction="horizontal" type="list">
@@ -129,6 +129,7 @@ class _BoardApp extends React.Component {
                             </Droppable>
                         </DragDropContext>
                     </div>
+
 
                 </section>
             </>
