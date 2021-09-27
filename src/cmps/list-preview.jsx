@@ -19,7 +19,7 @@ class _ListPreview extends Component {
     const { listIdx } = this.props
     const { cards } = this.props.currList
     console.log(cards);
-    this.props.handleOnDragEndCards(result,listIdx,cards)
+    this.props.handleOnDragEndCards(result, listIdx, cards)
   }
 
 
@@ -34,30 +34,34 @@ class _ListPreview extends Component {
         </div>
         <div className="card-container" >
           {/* <DragDropContext onDragEnd={this.handleOnDragEnd}> */}
-            <Droppable droppableId={`${listIdx}`} >
-              {(provided) => (
-                <ul className="card-list-element clean-list"  {...provided.droppableProps} ref={provided.innerRef}>
-                  {/* {console.log('curr list', currList)} */}
-                  {currList.cards.map((currCard, cardIdx) => (
-                    <Draggable key={currCard.id} draggableId={currCard.id} index={cardIdx}>
-                      {(provided) => (
-                        <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                          <CardPreview
-                            key={currCard.id}
-                            card={currCard}
-                            cardIdx={cardIdx}
-                            currList={currList}
-                            board={board}
-                            onSaveBoard={onSaveBoard}
-                          />
-                        </li>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </ul>
-              )}
-            </Droppable>
+          <Droppable droppableId={`${listIdx}`} >
+            {(provided) => (
+              <ul className="card-list-element clean-list"  {...provided.droppableProps} ref={provided.innerRef}>
+                {/* {console.log('curr list', currList)} */}
+                {currList.cards.map((currCard, cardIdx) => (
+                  <Draggable key={currCard.id} draggableId={currCard.id} index={cardIdx}>
+                    {(provided) => (
+                      <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} onDrag={(ev) => {
+                        { console.log('ev', ev) }
+                        this.props.onCardClicked()
+                      }
+                      }>
+                        <CardPreview
+                          key={currCard.id}
+                          card={currCard}
+                          cardIdx={cardIdx}
+                          currList={currList}
+                          board={board}
+                          onSaveBoard={onSaveBoard}
+                        />
+                      </li>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
           {/* </DragDropContext> */}
           {isAddToggeld && (
             <CardAdd
