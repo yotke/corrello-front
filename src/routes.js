@@ -46,7 +46,7 @@ const routes = [
         label: 'Admin Only'
     },
     {
-        path: '/card-details/:listId/:cardId',
+        path: '/board/:boardId/:listId/:cardId',
         component: CardDetails,
         label: 'Card Details'
     }

@@ -7,10 +7,10 @@ export class CardDetailsActivity extends Component {
     get cardActivities () {
         const { card, activities } = this.props
 
-        debugger
+        //debugger
         const currActivities = activities.filter(activity => {
             if (!activity.card) return false
-            debugger
+            //debugger
             return activity.card.id === card.id
         })
 

@@ -39,7 +39,6 @@ class _BoardApp extends React.Component {
     }
 
     handleOnDragEnd = (result) => {
-      
         const  { lists } = this.props.board
         console.log('lists',lists)
         if (!result.destination) return;

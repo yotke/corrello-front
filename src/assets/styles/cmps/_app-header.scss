@@ -28,7 +28,6 @@
   .btn-header-container {
     flex-grow: 1;
     align-items: center;
-    // max-width: 45%;
     &:first-of-type {
       justify-content: flex-start;
     }
@@ -39,16 +38,12 @@
   // header buttons //
   .btn-header {
     border: none;
-    // background-color: rgba(255, 255, 255, 0.3), rgba(9, 30, 66, 0.04), rgba(255, 255, 255, 0.2);
     background-color: transparent;
     border-radius: 0.2rem;
     align-items: center;
     color: #ffffff;
     display: flex;
     height: 32px;
-
-    // margin: 0 4px 0 0;
-    // padding: 0 6px 0;
     white-space: nowrap;
     transition: 0.15s;
     cursor: pointer;
