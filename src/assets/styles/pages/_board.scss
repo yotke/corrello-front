@@ -1,3 +1,6 @@
+.all-board-content {
+}
+
 .list-preview {
   display: flex;
   flex-direction: column;
@@ -16,8 +19,6 @@
 }
 
 .lists-container {
-  display: flex;
-  flex-direction: row;
   list-style-type: none;
   gap: 20px;
   position: relative;

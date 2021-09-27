@@ -90,14 +90,13 @@ class _BoardApp extends React.Component {
             <>
                 <section className="main-board flex row">
                     <SideNav boards={boards} isMainBoard={isMainBoard} />
-                    <div className="board-content flex column">
-
+                    <div className="board-content">
                         <MainBoardHeader board={board} onSaveBoard={onSaveBoard} />
                         <Route path="/board/:boardId/:listId/:cardId" component={CardDetails} />
                         <DragDropContext onDragEnd={this.handleOnDragEnd}>
                             <Droppable droppableId="all-lists" direction="horizontal" type="list">
                                 {provided => (
-                                    <ul className="lists-container clean-list" {...provided.droppableProps} ref={provided.innerRef}>
+                                    <ul className="lists-container clean-list flex row" {...provided.droppableProps} ref={provided.innerRef}>
                                         {board.lists.map((currList, listIdx) =>
                                             <Draggable key={currList.id} draggableId={currList.id} index={listIdx}>
                                                 {(provided) => (
