@@ -13,6 +13,8 @@ import { loadBoard, onAddBoard, onRemoveBoard, loadBoards, onSaveBoard, onEditBo
 import { boardService } from '../services/board.service.js'
 import { LocalGroceryStoreTwoTone, TimerSharp } from '@material-ui/icons'
 // import { showSuccessMsg } from '../services/event-bus.service.js'
+import { isEmpty } from "lodash";
+
 
 class _BoardApp extends React.Component {
     state = {
@@ -43,12 +45,12 @@ class _BoardApp extends React.Component {
     handleOnDragEnd = (result) => {
 
         const { destination, source, draggableId } = result;
-        if (!result.destination) return;
         console.log('destination.droppableId', destination.droppableId);
         const { lists } = this.props.board
         if (destination.droppableId != 'all-lists') {
 
             console.log('draggableId', draggableId);
+            if (!result.destination) return;
             const start = lists[source.droppableId];
             const finish = lists[destination.droppableId];
 
@@ -94,6 +96,8 @@ class _BoardApp extends React.Component {
         this.setState({ isCardClicked: true })
         console.log('isCardClicked', this.state.isCardClicked);
     }
+
+    
     render() {
 
         const { board } = this.props
@@ -106,7 +110,8 @@ class _BoardApp extends React.Component {
             <>
                 <section className="main-board flex row">
                     <SideNav boards={boards} isMainBoard={isMainBoard} />
-                        <MainBoardHeader board={board} onSaveBoard={onSaveBoard} />
+                    <div className="layout-helper flex column">
+                        <MainBoardHeader/>
                     <div className="board-content">
                         <Route path="/board/:boardId/:listId/:cardId" component={CardDetails} />
                         <DragDropContext onDragEnd={this.handleOnDragEnd}>
@@ -116,7 +121,7 @@ class _BoardApp extends React.Component {
                                         {board.lists.map((currList, listIdx) =>
                                             <Draggable key={currList.id} draggableId={currList.id} index={listIdx}>
                                                 {(provided) => (
-                                                    <li className="clean-list" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                                    <li className="list-wrapper" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                                                         <ListPreview board={board} key={listIdx} listIdx={listIdx} currList={currList} onSaveBoard={onSaveBoard} handleOnDragEndCards={this.handleOnDragEndCards} onCardClicked={this.onCardClicked} />
                                                     </li>
                                                 )}
@@ -129,7 +134,7 @@ class _BoardApp extends React.Component {
                             </Droppable>
                         </DragDropContext>
                     </div>
-
+                    </div>
 
                 </section>
             </>

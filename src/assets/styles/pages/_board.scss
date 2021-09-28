@@ -1,20 +1,30 @@
-
-
 .list-preview {
   display: flex;
   flex-direction: column;
   width: 272px;
-  padding: 1rem;
-  gap: 4px;
   background-color: #ebecf0;
   border-radius: 3px;
   box-sizing: border-box;
   max-height: 100%;
   white-space: normal;
+  margin: 2px 0 8px 8px;
+}
+
+.list-wrapper {
+  padding-bottom: 3.4rem;
+  scroll-snap-align: center;
+}
+
+.layout-helper {
+  overflow-y: scroll;
 }
 
 .list-header {
   font-size: 0.8rem;
+  flex: 0 0 auto;
+  min-height: 20px;
+  padding: 10px 8px;
+  position: relative;
 }
 
 .lists-container {
@@ -28,6 +38,7 @@
   padding: 0 4px;
   white-space: nowrap;
   padding-bottom: 10px;
+  max-height: 100%;
   margin-bottom: 10px;
 }
 
@@ -48,11 +59,57 @@
   white-space: nowrap;
 }
 
-.card-container {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+//scroll bar board settings
+.board-content::-webkit-scrollbar {
+  -webkit-appearance: none;
 }
+.board-content::-webkit-scrollbar-track {
+  background-color: rgba(51, 51, 51, 0.5);
+  border-radius: 10px;
+}
+
+.board-content::-webkit-scrollbar:vertical {
+  width: 12px;
+}
+
+.board-content::-webkit-scrollbar:horizontal {
+  height: 14px;
+}
+
+.board-content::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(202, 202, 202, 0.5);
+}
+
+// all the card in the list
+.card-container {
+  padding: 0 8px;
+  list-style: none;
+  overflow-x: hidden;
+}
+
+//scorll bar list settings
+.card-container::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+.card-container::-webkit-scrollbar-track {
+  background-color: rgba(184, 184, 184, 0.5);
+  border-radius: 8px;
+}
+
+.card-container::-webkit-scrollbar:vertical {
+  width: 8px;
+}
+
+.card-container::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+
+.card-container::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: rgba(136, 136, 136, 0.5);
+}
+
 .card-preview {
   display: flex;
   flex-direction: row;
@@ -61,6 +118,7 @@
   border-radius: 3px;
   box-shadow: 0 1px 0 #091e4240;
   cursor: pointer;
+  padding: 6px 8px 2px;
   margin-bottom: 8px;
   max-width: 300px;
   position: relative;
@@ -78,4 +136,13 @@
 .card-content {
   overflow: hidden;
   padding: 6px 8px 2px;
+}
+
+.list-footer {
+  margin: 2px 0 8px 8px;
+  padding: 4px 8px;
+}
+
+//header extra icon
+.extra-content {
 }
