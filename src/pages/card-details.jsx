@@ -6,7 +6,7 @@ import { CardDetailsActions } from '../cmps/CardDetailsActions';
 import { onSaveBoard } from '../store/board.actions.js';
 import { openPopover, closePopover } from '../store/popover.actions.js';
 import { Loader } from '../cmps/Loader.jsx';
-import {CardDetailsLabels} from '../cmps/card-details-labels.jsx'
+import { CardDetailsLabels } from '../cmps/card-details-labels.jsx'
 
 class _CardDetails extends React.Component {
   state = {
@@ -48,11 +48,11 @@ class _CardDetails extends React.Component {
     const { card: { labelIds } } = this.state
     const { board: { labels } } = this.props
     const cardLabels = labels.reduce((acc, label) => {
-        if (labelIds.some(labelId => labelId === label.id)) acc.push(label)
-        return acc
+      if (labelIds.some(labelId => labelId === label.id)) acc.push(label)
+      return acc
     }, [])
     return cardLabels
-}
+  }
 
 
   render() {
@@ -64,56 +64,56 @@ class _CardDetails extends React.Component {
     return (
       <section className="card-details-container flex column">
         <div className="card-details-header">Card Details</div>
-<main className="card-details-content flex justify-space-between">
+        <main className="card-details-content flex justify-space-between">
 
-        <div className="card-details-main flex column">
-          <div className="card-details-items-container flex column">
-            {!!this.cardLabels.length && (
-              <CardDetailsLabels
-                labels={this.cardLabels}
-                openPopover={openPopover}
-                card={card}
-              />
-            )}
+          <div className="card-details-main flex column">
+            <div className="card-details-items-container flex column">
+              {!!this.cardLabels.length && (
+                <CardDetailsLabels
+                  labels={this.cardLabels}
+                  openPopover={openPopover}
+                  card={card}
+                />
+              )}
 
-            {
-              !!dueDate && <p>date cmp placeholder</p>
-              // <DueDateDisplay/>
-            }
-          </div>
+              {
+                !!dueDate && <p>date cmp placeholder</p>
+                // <DueDateDisplay/>
+              }
+            </div>
 
-          {/* card description left menu side */}
-
-          {/* <CardDescription
+            {/* card description left menu side */}
+            <p>{description}</p>
+            {/* <CardDescription
             description={description}
             onSaveCardDescription={this.onSaveCardDescription}
           /> */}
 
-          {/* checkList left side section */}
+            {/* checkList left side section */}
 
-          {/* <CardChecklists
+            {/* <CardChecklists
             card={card}
             checklists={checklists}
             onSaveCardChecklists={this.onSaveCardChecklists}
           /> */}
 
-          {/* activities left menu */}
+            {/* activities left menu */}
 
-          {/* <CardActivities card={card} activities={activities} /> */}
-        </div>
-
-        <div className="card-details-action-container">
-          <div className="card-details-sidebar flex column">
-            <CardDetailsActions
-              board={board}
-              card={card}
-              onSaveBoard={onSaveBoard}
-              onSaveCardFromActions={this.onSaveCardFromActions}
-            />
+            {/* <CardActivities card={card} activities={activities} /> */}
           </div>
-        </div>
 
-</main>
+          <div className="card-details-action-container">
+            <div className="card-details-sidebar flex column">
+              <CardDetailsActions
+                board={board}
+                card={card}
+                onSaveBoard={onSaveBoard}
+                onSaveCardFromActions={this.onSaveCardFromActions}
+              />
+            </div>
+          </div>
+
+        </main>
       </section>
     );
   }

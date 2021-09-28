@@ -31,11 +31,19 @@
             "cards": [
                 {
                     "id": "c101",
-                    "title": "Replace logo"
+                    "title": "Replace logo",
+                    "labelIds": [
+                        "l101",
+                        "l102"
+                    ]
                 },
                 {
                     "id": "c102",
-                    "title": "Add Samples"
+                    "title": "Add Samples",
+                    "labelIds": [
+                        "l101",
+                        "l102"
+                    ]
                 }
             ],
             "style": {}
