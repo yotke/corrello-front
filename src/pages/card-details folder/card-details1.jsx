@@ -15,7 +15,7 @@ import { closePopover, openPopover } from '../store/popover.actions.js'
 import {CardDetailsLabels} from '../cmps/CardDetailsLabels.jsx'
 
 
-class _CardDetails extends React.Component {
+class _CardDetails1 extends React.Component {
 
     state = {
         card: null,
@@ -276,4 +276,4 @@ const mapDispatchToProps = {
     onSaveBoard
 }
 
-export const CardDetails = connect(mapStateToProps, mapDispatchToProps)(_CardDetails)
+ const CardDetails1 = connect(mapStateToProps, mapDispatchToProps)(_CardDetails)
