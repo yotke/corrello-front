@@ -9,6 +9,9 @@ import { CardDetailsData } from '../cmps/card-details-cmps/card-details-data'
 import { CardDetailsDesc } from '../cmps/card-details-cmps/card-details-desc'
 import { CardDetailsChecklist } from '../cmps/card-details-cmps/card-details-checklist'
 import { CardDetailsActivity } from '../cmps/card-details-cmps/card-details-activity'
+import {IconHeader} from '../assets/img/cmps/card-details/icon-activity.png'
+import CoIconHeadererIcon from '../assets/img/cmps/card-details/icon-activity.png';
+
 
 class _CardDetails extends React.Component {
 
@@ -46,11 +49,10 @@ class _CardDetails extends React.Component {
         this.props.onSaveBoard(updatedBoard)
     }
 
-    onCopyCardToList = () => {
-        const { list, card } = this.state
+    onCopyCardToList = (newCard) => {
+        const { list } = this.state
         const { board } = this.props
-        card.id = utilService.makeId()
-        const updatedBoard = boardService.addCardToBoard(board, list.id, card)
+        const updatedBoard = boardService.addCardToBoard(board, list.id, newCard)
         this.props.onSaveBoard(updatedBoard)
     }
 
@@ -68,8 +70,8 @@ class _CardDetails extends React.Component {
         debugger
         const member = {
             _id: utilService.makeId(),
-            username: `(user) ${utilService.makeLorem(utilService.getRandomIntInclusive(1, 2))}`,
-            fullname: `(name) ${utilService.makeLorem(utilService.getRandomIntInclusive(1, 3))}`,
+            username: prompt("Write user name"),
+            fullname: prompt("Write full name"),
             imgUrl: "https://ca.slack-edge.com/T021743D5T8-U024HLL8UQZ-caf8640ec902-512"
         }
 
@@ -86,14 +88,16 @@ class _CardDetails extends React.Component {
         debugger
         const checklist = {
             id: utilService.makeId(),
-            title: `(title) ${utilService.makeLorem(utilService.getRandomIntInclusive(2, 4))}`,
+            title: prompt("Write new checklist name"),
             todos: []
         }
 
-        for (let i = 0; i < utilService.getRandomIntInclusive(1, 6); i++) {
+        const newTodosCount = +prompt("How many todos to add?")
+
+        for (let i = 0; i < newTodosCount; i++) {
             const todo = {
                 id: utilService.makeId(),
-                title: `(todo) ${utilService.makeLorem(utilService.getRandomIntInclusive(2, 4))}`,
+                title: prompt("Write new todo name"),
                 isDone: false
             }
             checklist.todos.push(todo)
@@ -107,7 +111,7 @@ class _CardDetails extends React.Component {
 
     onSaveLabels = () => {
         const { card } = this.state
-        //card = {...card }   
+        //const newCard = {...card }   
         
         debugger
         const labelId = `l${utilService.makeId(3)}`
@@ -119,19 +123,19 @@ class _CardDetails extends React.Component {
 
     onChangeDueDate = () => {
         const { card } = this.state
-        //card = {...card }
+        //const newCard = {...card }
 
         debugger
         card.dueDate = Date.now()
         this.setState({ card }, this.onSaveCardToBoard())
     }
 
-    onChangeListTitle = () => {
+    onChangeCardTitle = () => {
         const { card } = this.state
         //card = {...card }
 
         debugger
-        card.title = `(title) ${utilService.makeLorem(utilService.getRandomIntInclusive(2, 3))}`
+        card.title = prompt("Rename card title")
         this.setState({ card }, this.onSaveCardToBoard())
     }
     
@@ -150,14 +154,26 @@ class _CardDetails extends React.Component {
 
     onCopyCard = () => {
         // const { board, onSaveBoard } = this.props
+
         const { card } = this.state
         debugger
         const newCard = { ...card }
         const id = utilService.makeId()
-        newCard.title = `${id} copy of ${newCard.id}`
+        const newTitle = prompt("Enter card title")
+        newCard.title = `${newTitle} (copy ${newCard.title})`
         newCard.id = id
 
         this.onCopyCardToList(newCard)
+    }
+
+    updateTodoStatusInCardChecklist = (checklistId, todoId, isChecked) => {
+        const { card } = this.state
+        
+        //const checkListIdx = card.checklists.findIndex(checkList => checkList.id === checkListiId) 
+        
+        
+        //this.setState({ card }, this.onSaveCardToBoard())
+        return Promise.resolve()
     }
 
     render() {
@@ -182,13 +198,17 @@ class _CardDetails extends React.Component {
                             {/* {<CardDetailsData card={card} />} */}
                             {(!!card.description) && <CardDetailsDesc card={card} />}
                             
-                            {(!!card.checklists && !!card.checklists.length) && card.checklists.map((checklist, index) => <CardDetailsChecklist checklist={checklist} key={index} checklistId={checklist.id} onDeleteChecklist={this.onDeleteChecklist}/>)}
+                            {(!!card.checklists && !!card.checklists.length) && <dir>
+                                <h3>Check Lists</h3>
+                                {card.checklists.map((checklist, index) => <CardDetailsChecklist checklist={checklist} key={index} checklistId={checklist.id} onDeleteChecklist={this.onDeleteChecklist} updateTodoStatusInCardChecklist={this.updateTodoStatusInCardChecklist}/>)}
+                                </dir>}
                             {!!activities && <CardDetailsActivity card={card} activities={activities} />}
                         </div>
                         <div className="card-details-sidebar flex column">
                             <div>
-                                <h3>LIST</h3>
-                                <button className="btn-list-title btn-card-details" onMouseDown={this.onChangeListTitle}>Change title</button>
+                                <h3>CHANGE CARD</h3>   
+                                <button className="btn-list-title btn-card-details" onMouseDown={this.onChangeCardTitle}>Rename title</button>
+
 
                                 <h3>ADD TO CARD</h3>
                                 <button className="btn-card-members btn-card-details" onMouseDown={this.onSaveMembers}>Members</button>

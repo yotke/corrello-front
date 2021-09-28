@@ -24,13 +24,13 @@
     .card-details-sidebar {
       float: right;
       padding: 0 16px 8px 8px;
-      width: calc(100% - 600px);
+      width: calc(100% - 560px);
 
       .btn-card-details {
         background-color: #091e420a;
         color:#172b4d;
+        width: 100px;
       }
-
     }
   }
 }
