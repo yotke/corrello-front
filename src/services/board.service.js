@@ -90,7 +90,7 @@ window.addEventListener('storage', () => {
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
 
 function updateCardInBoard(board, updateCard) {
-    debugger
+    //debugger
     board = { ...board }
 
     board.lists.forEach(list => {
@@ -114,7 +114,7 @@ function addCardToBoard(board, listId, addCard) {
 }
 
 function updateListInBoard(board, updateList) {
-    debugger
+    //debugger
     board = { ...board }
 
     board.lists.forEach((list, idx) => {

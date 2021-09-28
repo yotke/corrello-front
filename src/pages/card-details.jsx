@@ -182,7 +182,7 @@ class _CardDetails extends React.Component {
 
     onCreateNewTodo = (checklistId, todo) => {
         const { card } = this.state
-        debugger
+        //debugger
         const checklistIdx = card.checklists.findIndex(checklist => checklist.id === checklistId)
         if (checklistIdx === -1) return
         card.checklists[checklistIdx].todos.push(todo)

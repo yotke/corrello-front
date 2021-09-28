@@ -23,7 +23,7 @@ export class CardDetailsChecklistTodoAdd extends Component {
             this.onAddTodo()
             return;
         }
-        debugger
+        //debugger
         this.setState({ todo: { title: value } });
     }
 
@@ -53,7 +53,7 @@ export class CardDetailsChecklistTodoAdd extends Component {
         return (<section>
             <div className="add-todo">
                 <button className={`btn-add-todo ${isEditMode ? 'hidden' : 'show'}`} onClick={this.onEditMode}>Add an item</button>
-                {!isEditMode && <div>
+                {isEditMode && <div>
                     <TextareaAutosize className="card-add-input"
                         onBlur={() => this.onEditMode()}
                         onChange={this.handleChange}
