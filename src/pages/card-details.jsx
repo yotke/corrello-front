@@ -9,225 +9,226 @@ import { CardDetailsData } from '../cmps/card-details-cmps/card-details-data'
 import { CardDetailsDesc } from '../cmps/card-details-cmps/card-details-desc'
 import { CardDetailsChecklist } from '../cmps/card-details-cmps/card-details-checklist'
 import { CardDetailsActivity } from '../cmps/card-details-cmps/card-details-activity'
-import {IconHeader} from '../assets/img/cmps/card-details/icon-activity.png'
+import { IconHeader } from '../assets/img/cmps/card-details/icon-activity.png'
 import CoIconHeadererIcon from '../assets/img/cmps/card-details/icon-activity.png';
-
+import { PopoverMembers } from  '../cmps/Popover/PopoverMembers.jsx'
 
 class _CardDetails extends React.Component {
 
-    state = {
-        card: null,
-        list: null
-    }
-
-    componentDidMount() {
-        console.log('componentDidMount')
-
-        const { listId, cardId } = this.props.match.params
-
-        console.log('listId', listId, 'cardId', cardId)
-
-        this.setLocalState(listId, cardId)
-    }
-
-    setLocalState = (listId, cardId) => {
-        //debugger
-        console.log('this.props', this.props)
-        
-        const { board } = this.props
-
-        const list = board.lists.find(list => list.id === listId)
-        const { cards } = list
-        var card = cards.find(card => card.id === cardId)
-        this.setState({ card, list })
-    }
-
-    onSaveCardToBoard = () => {
-        const { card } = this.state
-        const { board } = this.props
-        const updatedBoard = boardService.updateCardInBoard(board, card)
-        this.props.onSaveBoard(updatedBoard)
-    }
-
-    onCopyCardToList = (newCard) => {
-        const { list } = this.state
-        const { board } = this.props
-        const updatedBoard = boardService.addCardToBoard(board, list.id, newCard)
-        this.props.onSaveBoard(updatedBoard)
-    }
-
-    onSaveListToBoard = () => {
-        const { list } = this.state
-        const { board } = this.props
-        const updatedBoard = boardService.updateListInBoard(board, list)
-        this.props.onSaveBoard(updatedBoard)
-    }
-
-    onSaveMembers = () => {
-        const { card } = this.state
-        //card = {...card }
-
-        debugger
-        const member = {
-            _id: utilService.makeId(),
-            username: prompt("Write user name"),
-            fullname: prompt("Write full name"),
-            imgUrl: "https://ca.slack-edge.com/T021743D5T8-U024HLL8UQZ-caf8640ec902-512"
+        state = {
+            card: null,
+            list: null
         }
 
-        if(!card.members) card.members = []
+        componentDidMount() {
+            console.log('componentDidMount')
 
-        card.members.push(member)
-        this.setState({ card }, this.onSaveCardToBoard())
-    }
+            const { listId, cardId } = this.props.match.params
 
-    onSaveChecklist = () => {
-        const { card } = this.state
-        //card = {...card }
+            console.log('listId', listId, 'cardId', cardId)
 
-        debugger
-        const checklist = {
-            id: utilService.makeId(),
-            title: prompt("Write new checklist name"),
-            todos: []
+            this.setLocalState(listId, cardId)
         }
 
-        const newTodosCount = +prompt("How many todos to add?")
+        setLocalState = (listId, cardId) => {
+            //debugger
+            console.log('this.props', this.props)
 
-        for (let i = 0; i < newTodosCount; i++) {
-            const todo = {
-                id: utilService.makeId(),
-                title: prompt("Write new todo name"),
-                isDone: false
+            const { board } = this.props
+
+            const list = board.lists.find(list => list.id === listId)
+            const { cards } = list
+            var card = cards.find(card => card.id === cardId)
+            this.setState({ card, list })
+        }
+
+        onSaveCardToBoard = () => {
+            const { card } = this.state
+            const { board } = this.props
+            const updatedBoard = boardService.updateCardInBoard(board, card)
+            this.props.onSaveBoard(updatedBoard)
+        }
+
+        onCopyCardToList = (newCard) => {
+            const { list } = this.state
+            const { board } = this.props
+            const updatedBoard = boardService.addCardToBoard(board, list.id, newCard)
+            this.props.onSaveBoard(updatedBoard)
+        }
+
+        onSaveListToBoard = () => {
+            const { list } = this.state
+            const { board } = this.props
+            const updatedBoard = boardService.updateListInBoard(board, list)
+            this.props.onSaveBoard(updatedBoard)
+        }
+
+        onSaveMembers = () => {
+            console.log('new pop over here');
+            <PopoverMembers/>
+            const { card } = this.state
+            //card = {...card }
+            
+
+            const member = {
+                _id: utilService.makeId(),
+                username: prompt("Write user name"),
+                fullname: prompt("Write full name"),
+                imgUrl: "https://ca.slack-edge.com/T021743D5T8-U024HLL8UQZ-caf8640ec902-512"
             }
-            checklist.todos.push(todo)
+
+            if (!card.members) card.members = []
+
+            card.members.push(member)
+            this.setState({ card }, this.onSaveCardToBoard())
         }
 
-        if(!card.checklists) card.checklists = [] 
-        
-        card.checklists.push(checklist)
-        this.setState({ card }, this.onSaveCardToBoard())
-    }
-
-    onSaveLabels = () => {
-        const { card } = this.state
-        //const newCard = {...card }   
-        
-        debugger
-        const labelId = `l${utilService.makeId(3)}`
-        if(!card.labelIds) card.labelIds = []
-        card.labelIds.push(labelId)
-
-        this.setState({ card }, this.onSaveCardToBoard())
-    }
-
-    onChangeDueDate = () => {
-        const { card } = this.state
-        //const newCard = {...card }
-
-        debugger
-        card.dueDate = Date.now()
-        this.setState({ card }, this.onSaveCardToBoard())
-    }
-
-    onChangeCardTitle = () => {
-        const { card } = this.state
-        //card = {...card }
-
-        debugger
-        card.title = prompt("Rename card title")
-        this.setState({ card }, this.onSaveCardToBoard())
-    }
-    
-
-    onDeleteChecklist = (checklistId) => {
-        const { card } = this.state
-        //card = {...card }
-
-        const checkListIdx = card.checklists.findIndex(checkList => checkList.id === checklistId ) 
-        if(checkListIdx === -1) return
-
-        card.checklists.splice(checklistId, 1)
-        this.setState({ card }, this.onSaveCardToBoard())
-    }
+        onSaveChecklist = () => {
+            const { card } = this.state
+            //card = {...card }
 
 
-    onCopyCard = () => {
-        // const { board, onSaveBoard } = this.props
+            const checklist = {
+                id: utilService.makeId(),
+                title: prompt("Write new checklist name"),
+                todos: []
+            }
 
-        const { card } = this.state
-        debugger
-        const newCard = { ...card }
-        const id = utilService.makeId()
-        const newTitle = prompt("Enter card title")
-        newCard.title = `${newTitle} (copy ${newCard.title})`
-        newCard.id = id
+            const newTodosCount = +prompt("How many todos to add?")
 
-        this.onCopyCardToList(newCard)
-    }
+            for (let i = 0; i < newTodosCount; i++) {
+                const todo = {
+                    id: utilService.makeId(),
+                    title: prompt("Write new todo name"),
+                    isDone: false
+                }
+                checklist.todos.push(todo)
+            }
 
-    updateTodoStatusInCardChecklist = (checklistId, todoId, isChecked) => {
-        const { card } = this.state
-        
-        //const checkListIdx = card.checklists.findIndex(checkList => checkList.id === checkListiId) 
-        
-        
-        //this.setState({ card }, this.onSaveCardToBoard())
-        return Promise.resolve()
-    }
+            if (!card.checklists) card.checklists = []
 
-    render() {
-        const { card, list } = this.state
+            card.checklists.push(checklist)
+            this.setState({ card }, this.onSaveCardToBoard())
+        }
 
-        if (!card) return <div>Loading Card...</div>
-        //debugger
-        const { board } = this.props
-        const { activities } = board
-        //const { title, members, description, checklists, dueDate, style, attachs, isArchived } = card
+        onSaveLabels = () => {
+            <PopoverMembers />
+            const { card } = this.state
+            //const newCard = {...card }   
 
-        console.log('card', card)
-        return (
-            <section className="card-details-container">
 
-                <h1>Head Line card</h1>
+            const labelId = `l${utilService.makeId(3)}`
+            if (!card.labelIds) card.labelIds = []
+            card.labelIds.push(labelId)
 
-                <div className="card-body-container flex column">
-                    <CardDetailsHeader card={card} />
-                    <div>
-                        <div className="card-details-main flex column">
-                            {/* {<CardDetailsData card={card} />} */}
-                            {(!!card.description) && <CardDetailsDesc card={card} />}
-                            
-                            {(!!card.checklists && !!card.checklists.length) && <dir>
-                                <h3>Check Lists</h3>
-                                {card.checklists.map((checklist, index) => <CardDetailsChecklist checklist={checklist} key={index} checklistId={checklist.id} onDeleteChecklist={this.onDeleteChecklist} updateTodoStatusInCardChecklist={this.updateTodoStatusInCardChecklist}/>)}
+            this.setState({ card }, this.onSaveCardToBoard())
+        }
+
+        onChangeDueDate = () => {
+            const { card } = this.state
+            //const newCard = {...card }
+
+
+            card.dueDate = Date.now()
+            this.setState({ card }, this.onSaveCardToBoard())
+        }
+
+        onChangeCardTitle = () => {
+            const { card } = this.state
+            //card = {...card }
+            card.title = prompt("Rename card title")
+            this.setState({ card }, this.onSaveCardToBoard())
+        }
+
+
+        onDeleteChecklist = (checklistId) => {
+            const { card } = this.state
+            //card = {...card }
+
+            const checkListIdx = card.checklists.findIndex(checkList => checkList.id === checklistId)
+            if (checkListIdx === -1) return
+
+            card.checklists.splice(checklistId, 1)
+            this.setState({ card }, this.onSaveCardToBoard())
+        }
+
+
+        onCopyCard = () => {
+            // const { board, onSaveBoard } = this.props
+
+            const { card } = this.state
+            const newCard = { ...card }
+            const id = utilService.makeId()
+            const newTitle = prompt("Enter card title")
+            newCard.title = `${newTitle} (copy ${newCard.title})`
+            newCard.id = id
+
+            this.onCopyCardToList(newCard)
+        }
+
+        updateTodoStatusInCardChecklist = (checklistId, todoId, isChecked) => {
+            const { card } = this.state
+
+            //const checkListIdx = card.checklists.findIndex(checkList => checkList.id === checkListiId) 
+
+
+            //this.setState({ card }, this.onSaveCardToBoard())
+            return Promise.resolve()
+        }
+
+        render() {
+            const { card, list } = this.state
+
+            if (!card) return <div>Loading Card...</div>
+            //debugger
+            const { board } = this.props
+            const { activities } = board
+            //const { title, members, description, checklists, dueDate, style, attachs, isArchived } = card
+
+            console.log('card', card)
+            return (
+                <section className="card-details-container">
+
+                    <h1>Head Line card</h1>
+
+                    <div className="card-body-container flex column">
+                        <CardDetailsHeader card={card} />
+                        <div>
+                            <div className="card-details-main flex column">
+                                {/* {<CardDetailsData card={card} />} */}
+                                {(!!card.description) && <CardDetailsDesc card={card} />}
+
+
+                                {(!!card.checklists && !!card.checklists.length) && <dir>
+                                    <h3>Check Lists</h3>
+                                    {card.checklists.map((checklist, index) => <CardDetailsChecklist checklist={checklist} key={index} checklistId={checklist.id} onDeleteChecklist={this.onDeleteChecklist} updateTodoStatusInCardChecklist={this.updateTodoStatusInCardChecklist} />)}
                                 </dir>}
-                            {!!activities && <CardDetailsActivity card={card} activities={activities} />}
-                        </div>
-                        <div className="card-details-sidebar flex column">
-                            <div>
-                                <h3>CHANGE CARD</h3>   
-                                <button className="btn-list-title btn-card-details" onMouseDown={this.onChangeCardTitle}>Rename title</button>
-
-
-                                <h3>ADD TO CARD</h3>
-                                <button className="btn-card-members btn-card-details" onMouseDown={this.onSaveMembers}>Members</button>
-                                <button className="btn-card-labels btn-card-details" onMouseDown={this.onSaveLabels}>Labels</button>
-                                <button className="btn-card-checklist btn-card-details" onMouseDown={this.onSaveChecklist}>Checklist</button>
-                                <button className="btn-card-dates btn-card-details" onMouseDown={this.onChangeDueDate}>Dates</button>
+                                {!!activities && <CardDetailsActivity card={card} activities={activities} />}
                             </div>
-                            <div>
-                                <h3>ACTIONS</h3>
-                                <button className="btn-card-copy btn-card-details" onMouseDown={this.onCopyCard}>Copy</button>
+                            <div className="card-details-sidebar flex column">
+                                <div>
+                                    <h3>CHANGE CARD</h3>
+                                    <button className="btn-list-title btn-card-details" onClick={this.onChangeCardTitle}>Rename title</button>
+
+
+                                    <h3>ADD TO CARD</h3>
+                                    <button className="btn-card-members btn-card-details" onClick={this.onSaveMembers}>Members</button>
+                                    <button className="btn-card-labels btn-card-details" onClick={this.onSaveLabels}>Labels</button>
+                                    <button className="btn-card-checklist btn-card-details" onClick={this.onSaveChecklist}>Checklist</button>
+                                    <button className="btn-card-dates btn-card-details" onClick={this.onChangeDueDate}>Dates</button>
+                                </div>
+                                <div>
+                                    <h3>ACTIONS</h3>
+                                    <button className="btn-card-copy btn-card-details" onClick={this.onCopyCard}>Copy</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-            </section>
-        );
+                </section>
+            );
+        }
     }
-}
 
 function mapStateToProps(state) {
     return {
