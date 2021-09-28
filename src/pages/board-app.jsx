@@ -45,12 +45,12 @@ class _BoardApp extends React.Component {
     handleOnDragEnd = (result) => {
 
         const { destination, source, draggableId } = result;
+        if (!result.destination) return;
         console.log('destination.droppableId', destination.droppableId);
         const { lists } = this.props.board
         if (destination.droppableId != 'all-lists') {
 
             console.log('draggableId', draggableId);
-            if (!result.destination) return;
             const start = lists[source.droppableId];
             const finish = lists[destination.droppableId];
 
@@ -97,7 +97,7 @@ class _BoardApp extends React.Component {
         console.log('isCardClicked', this.state.isCardClicked);
     }
 
-    
+
     render() {
 
         const { board } = this.props
@@ -111,29 +111,29 @@ class _BoardApp extends React.Component {
                 <section className="main-board flex row">
                     <SideNav boards={boards} isMainBoard={isMainBoard} />
                     <div className="layout-helper flex column">
-                        <MainBoardHeader/>
-                    <div className="board-content">
-                        <Route path="/board/:boardId/:listId/:cardId" component={CardDetails} />
-                        <DragDropContext onDragEnd={this.handleOnDragEnd}>
-                            <Droppable droppableId="all-lists" direction="horizontal" type="list">
-                                {provided => (
-                                    <ul className="lists-container clean-list flex row" {...provided.droppableProps} ref={provided.innerRef}>
-                                        {board.lists.map((currList, listIdx) =>
-                                            <Draggable key={currList.id} draggableId={currList.id} index={listIdx}>
-                                                {(provided) => (
-                                                    <li className="list-wrapper" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                        <ListPreview board={board} key={listIdx} listIdx={listIdx} currList={currList} onSaveBoard={onSaveBoard} handleOnDragEndCards={this.handleOnDragEndCards} onCardClicked={this.onCardClicked} />
-                                                    </li>
-                                                )}
-                                            </Draggable>
-                                        )}
-                                        {provided.placeholder}
-                                        <ListAdd board={board} onSaveBoard={onSaveBoard} />
-                                    </ul>
-                                )}
-                            </Droppable>
-                        </DragDropContext>
-                    </div>
+                        <MainBoardHeader />
+                        <div className="board-content">
+                            <Route path="/board/:boardId/:listId/:cardId" component={CardDetails} />
+                            <DragDropContext onDragEnd={this.handleOnDragEnd}>
+                                <Droppable droppableId="all-lists" direction="horizontal" type="list">
+                                    {provided => (
+                                        <ul className="lists-container clean-list flex row" {...provided.droppableProps} ref={provided.innerRef}>
+                                            {board.lists.map((currList, listIdx) =>
+                                                <Draggable key={currList.id} draggableId={currList.id} index={listIdx}>
+                                                    {(provided) => (
+                                                        <li className="list-wrapper" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                                            <ListPreview board={board} key={listIdx} listIdx={listIdx} currList={currList} onSaveBoard={onSaveBoard} handleOnDragEndCards={this.handleOnDragEndCards} onCardClicked={this.onCardClicked} />
+                                                        </li>
+                                                    )}
+                                                </Draggable>
+                                            )}
+                                            {provided.placeholder}
+                                            <ListAdd board={board} onSaveBoard={onSaveBoard} />
+                                        </ul>
+                                    )}
+                                </Droppable>
+                            </DragDropContext>
+                        </div>
                     </div>
 
                 </section>
