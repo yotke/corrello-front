@@ -12,6 +12,9 @@ import { CardDetailsActivity } from '../cmps/card-details-cmps/card-details-acti
 import { IconHeader } from '../assets/img/cmps/card-details/icon-activity.png'
 import CoIconHeadererIcon from '../assets/img/cmps/card-details/icon-activity.png';
 import { PopoverMembers } from  '../cmps/Popover/PopoverMembers.jsx'
+import { closePopover, openPopover } from '../store/popover.actions.js'
+import {CardDetailsLabels} from '../cmps/CardDetailsLabels.jsx'
+
 
 class _CardDetails extends React.Component {
 
@@ -116,6 +119,28 @@ class _CardDetails extends React.Component {
             const { card } = this.state
             //const newCard = {...card }   
 
+<<<<<<< HEAD
+=======
+
+    get cardLabels() {
+        const { card: { labelIds } } = this.state
+        const { board: { labels } } = this.props
+        const cardLabels = labels.reduce((acc, label) => {
+            if (labelIds.some(labelId => labelId === label.id)) acc.push(label)
+            return acc
+        }, [])
+        return cardLabels
+    }
+
+
+    onSaveLabels = () => {
+        const { card } = this.state
+        //const newCard = {...card }   
+        
+        const labelId = `l${utilService.makeId(3)}`
+        if(!card.labelIds) card.labelIds = []
+        card.labelIds.push(labelId)
+>>>>>>> cb7237fce4c5802d9c8d876414f5027e7f35b6cf
 
             const labelId = `l${utilService.makeId(3)}`
             if (!card.labelIds) card.labelIds = []
@@ -152,6 +177,21 @@ class _CardDetails extends React.Component {
             this.setState({ card }, this.onSaveCardToBoard())
         }
 
+<<<<<<< HEAD
+=======
+    onOpenPopover = (ev, PopoverName) => {
+        const elPos = ev.target.getBoundingClientRect()
+        const props = {
+            card: this.state.card,
+            addFile: this.addFile
+        }
+        this.props.openPopover(PopoverName, elPos, props)
+    }
+
+
+    onCopyCard = () => {
+        // const { board, onSaveBoard } = this.props
+>>>>>>> cb7237fce4c5802d9c8d876414f5027e7f35b6cf
 
         onCopyCard = () => {
             // const { board, onSaveBoard } = this.props
@@ -166,11 +206,47 @@ class _CardDetails extends React.Component {
             this.onCopyCardToList(newCard)
         }
 
+<<<<<<< HEAD
         updateTodoStatusInCardChecklist = (checklistId, todoId, isChecked) => {
             const { card } = this.state
+=======
+    render() {
+        const { card, list } = this.state
+
+        if (!card) return <div>Loading Card...</div>
+        //debugger
+        const { board , openPopover, closePopover} = this.props
+        const { activities } = board
+        //const { title, members, description, checklists, dueDate, style, attachs, isArchived } = card
+
+        console.log('card', card)
+        return (
+            <section className="card-details-container">
+
+                <h1>Head Line card</h1>
+
+                <div className="card-body-container flex column">
+                    <CardDetailsHeader card={card} />
+                    <div>
+                        <div className="card-details-main flex column">
+                            {/* {<CardDetailsData card={card} />} */}
+                            {(!!card.description) && <CardDetailsDesc card={card} />}
+                            
+                            {(!!card.checklists && !!card.checklists.length) && <dir>
+                                <h3>Check Lists</h3>
+                                {card.checklists.map((checklist, index) => <CardDetailsChecklist checklist={checklist} key={index} checklistId={checklist.id} onDeleteChecklist={this.onDeleteChecklist} updateTodoStatusInCardChecklist={this.updateTodoStatusInCardChecklist}/>)}
+                                </dir>}
+                            {!!activities && <CardDetailsActivity card={card} activities={activities} />}
+                        </div>
+                        <div className="card-details-sidebar flex column">
+                            <div>
+                                <h3>CHANGE CARD</h3>   
+                                <button className="btn-list-title btn-card-details" onMouseDown={this.onChangeCardTitle}>Rename title</button>
+>>>>>>> cb7237fce4c5802d9c8d876414f5027e7f35b6cf
 
             //const checkListIdx = card.checklists.findIndex(checkList => checkList.id === checkListiId) 
 
+<<<<<<< HEAD
 
             //this.setState({ card }, this.onSaveCardToBoard())
             return Promise.resolve()
@@ -204,6 +280,24 @@ class _CardDetails extends React.Component {
                                     {card.checklists.map((checklist, index) => <CardDetailsChecklist checklist={checklist} key={index} checklistId={checklist.id} onDeleteChecklist={this.onDeleteChecklist} updateTodoStatusInCardChecklist={this.updateTodoStatusInCardChecklist} />)}
                                 </dir>}
                                 {!!activities && <CardDetailsActivity card={card} activities={activities} />}
+=======
+                                <h3>ADD TO CARD</h3>
+                                <button className="btn-card-members btn-card-details" onMouseDown={this.onSaveMembers}>Members</button>
+                                {/* <button className="btn-card-labels btn-card-details" onMouseDown={this.onSaveLabels}>Labels</button> */}
+
+                                <button className="secondary-btn actions-btn"
+                    onClick={(ev) => this.onOpenPopover(ev, 'LABELS')}>
+                    <div className="actions-btn-content flex align-center">
+                        <span>Labels</span>
+                    </div>
+                </button>
+                                {!!this.cardLabels.length && <CardDetailsLabels
+                                    labels={this.cardLabels}
+                                    openPopover={openPopover}
+                                    card={card} />}
+                                <button className="btn-card-checklist btn-card-details" onMouseDown={this.onSaveChecklist}>Checklist</button>
+                                <button className="btn-card-dates btn-card-details" onMouseDown={this.onChangeDueDate}>Dates</button>
+>>>>>>> cb7237fce4c5802d9c8d876414f5027e7f35b6cf
                             </div>
                             <div className="card-details-sidebar flex column">
                                 <div>
@@ -237,6 +331,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
+    closePopover,
+    openPopover,
     loadBoard,
     onSaveBoard
 }

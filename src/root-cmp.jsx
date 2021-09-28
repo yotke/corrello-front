@@ -7,6 +7,7 @@ import routes from './routes'
 import { connect } from 'react-redux';
 import {AppHeader} from './cmps/app-header'
 import {UserDetails} from './pages/user-details'
+import {DynamicPopover} from './cmps/popover/dynamic-popover.jsx'
 
 
  class _RootCmp extends React.Component {
@@ -51,6 +52,7 @@ import {UserDetails} from './pages/user-details'
                         {routes.map(route=> <Route key={route.path} exact component={route.component} path={route.path} /> )}
                         <Route path="/user/:id" component={UserDetails} />
                     </Switch>
+                    <DynamicPopover/>
                 </main>
             </div>
         )
@@ -59,10 +61,12 @@ import {UserDetails} from './pages/user-details'
 function mapStateToProps(state) {
     return {
       board: state.boardModule.board,
+      currPopover: state.popoverModule.currPopover,
     }
   }
   
   const mapDispatchToProps = {
+      
   }
   
   const _RootCmpWithRoute = withRouter(_RootCmp)
