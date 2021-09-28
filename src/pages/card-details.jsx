@@ -9,7 +9,7 @@ import { CardDetailsData } from '../cmps/card-details-cmps/card-details-data'
 import { CardDetailsDesc } from '../cmps/card-details-cmps/card-details-desc'
 import { CardDetailsChecklist } from '../cmps/card-details-cmps/card-details-checklist'
 import { CardDetailsActivity } from '../cmps/card-details-cmps/card-details-activity'
-import {IconHeader} from '../assets/img/cmps/card-details/icon-activity.png'
+import { IconHeader } from '../assets/img/cmps/card-details/icon-activity.png'
 import CoIconHeadererIcon from '../assets/img/cmps/card-details/icon-activity.png';
 
 
@@ -21,21 +21,12 @@ class _CardDetails extends React.Component {
     }
 
     componentDidMount() {
-        console.log('componentDidMount')
-
         const { listId, cardId } = this.props.match.params
-
-        console.log('listId', listId, 'cardId', cardId)
-
         this.setLocalState(listId, cardId)
     }
 
     setLocalState = (listId, cardId) => {
-        //debugger
-        console.log('this.props', this.props)
-        
         const { board } = this.props
-
         const list = board.lists.find(list => list.id === listId)
         const { cards } = list
         var card = cards.find(card => card.id === cardId)
@@ -65,9 +56,6 @@ class _CardDetails extends React.Component {
 
     onSaveMembers = () => {
         const { card } = this.state
-        //card = {...card }
-
-        debugger
         const member = {
             _id: utilService.makeId(),
             username: prompt("Write user name"),
@@ -75,7 +63,7 @@ class _CardDetails extends React.Component {
             imgUrl: "https://ca.slack-edge.com/T021743D5T8-U024HLL8UQZ-caf8640ec902-512"
         }
 
-        if(!card.members) card.members = []
+        if (!card.members) card.members = []
 
         card.members.push(member)
         this.setState({ card }, this.onSaveCardToBoard())
@@ -83,9 +71,6 @@ class _CardDetails extends React.Component {
 
     onSaveChecklist = () => {
         const { card } = this.state
-        //card = {...card }
-
-        debugger
         const checklist = {
             id: utilService.makeId(),
             title: prompt("Write new checklist name"),
@@ -103,19 +88,16 @@ class _CardDetails extends React.Component {
             checklist.todos.push(todo)
         }
 
-        if(!card.checklists) card.checklists = [] 
-        
+        if (!card.checklists) card.checklists = []
+
         card.checklists.push(checklist)
         this.setState({ card }, this.onSaveCardToBoard())
     }
 
     onSaveLabels = () => {
         const { card } = this.state
-        //const newCard = {...card }   
-        
-        debugger
         const labelId = `l${utilService.makeId(3)}`
-        if(!card.labelIds) card.labelIds = []
+        if (!card.labelIds) card.labelIds = []
         card.labelIds.push(labelId)
 
         this.setState({ card }, this.onSaveCardToBoard())
@@ -123,29 +105,22 @@ class _CardDetails extends React.Component {
 
     onChangeDueDate = () => {
         const { card } = this.state
-        //const newCard = {...card }
-
-        debugger
         card.dueDate = Date.now()
         this.setState({ card }, this.onSaveCardToBoard())
     }
 
     onChangeCardTitle = () => {
         const { card } = this.state
-        //card = {...card }
-
-        debugger
         card.title = prompt("Rename card title")
         this.setState({ card }, this.onSaveCardToBoard())
     }
-    
+
 
     onDeleteChecklist = (checklistId) => {
         const { card } = this.state
-        //card = {...card }
 
-        const checkListIdx = card.checklists.findIndex(checkList => checkList.id === checklistId ) 
-        if(checkListIdx === -1) return
+        const checkListIdx = card.checklists.findIndex(checkList => checkList.id === checklistId)
+        if (checkListIdx === -1) return
 
         card.checklists.splice(checklistId, 1)
         this.setState({ card }, this.onSaveCardToBoard())
@@ -153,10 +128,8 @@ class _CardDetails extends React.Component {
 
 
     onCopyCard = () => {
-        // const { board, onSaveBoard } = this.props
-
         const { card } = this.state
-        debugger
+
         const newCard = { ...card }
         const id = utilService.makeId()
         const newTitle = prompt("Enter card title")
@@ -166,13 +139,29 @@ class _CardDetails extends React.Component {
         this.onCopyCardToList(newCard)
     }
 
-    updateTodoStatusInCardChecklist = (checklistId, todoId, isChecked) => {
+    onUpdateTodoStatus = (checklistId, todoId, isChecked) => {
         const { card } = this.state
-        
-        //const checkListIdx = card.checklists.findIndex(checkList => checkList.id === checkListiId) 
-        
-        
-        //this.setState({ card }, this.onSaveCardToBoard())
+
+        card.checklists.forEach((checklist, idx) => {
+            if (checklist.id === checklistId) {
+                checklist.todos.forEach((todo, idx) => {
+                    if (todo.id === todoId) checklist.todos[idx].isDone = isChecked
+                })
+            }
+        })
+
+        this.setState({ card }, this.onSaveCardToBoard())
+        return Promise.resolve()
+    }
+
+    onCreateNewTodo = (checklistId, todo) => {
+        const { card } = this.state
+        debugger
+        const checklistIdx = card.checklists.findIndex(checklist => checklist.id === checklistId)
+        if (checklistIdx === -1) return
+        card.checklists[checklistIdx].todos.push(todo)
+
+        this.setState({ card }, this.onSaveCardToBoard())
         return Promise.resolve()
     }
 
@@ -196,29 +185,35 @@ class _CardDetails extends React.Component {
                     <div>
                         <div className="card-details-main flex column">
                             {/* {<CardDetailsData card={card} />} */}
-                            {(!!card.description) && <CardDetailsDesc card={card} />}
-                            
-                            {(!!card.checklists && !!card.checklists.length) && <dir>
+                            {(card.description) && <CardDetailsDesc card={card} />}
+
+                            {(card.checklists && !!card.checklists.length) && <dir>
                                 <h3>Check Lists</h3>
-                                {card.checklists.map((checklist, index) => <CardDetailsChecklist checklist={checklist} key={index} checklistId={checklist.id} onDeleteChecklist={this.onDeleteChecklist} updateTodoStatusInCardChecklist={this.updateTodoStatusInCardChecklist}/>)}
-                                </dir>}
-                            {!!activities && <CardDetailsActivity card={card} activities={activities} />}
+                                {card.checklists.map((checklist, index) =>
+                                    <CardDetailsChecklist checklist={checklist}
+                                        key={index}
+                                        checklistId={checklist.id}
+                                        onDeleteChecklist={this.onDeleteChecklist}
+                                        onUpdateTodoStatus={this.onUpdateTodoStatus} 
+                                        onCreateNewTodo={this.onCreateNewTodo}/>)}
+                            </dir>}
+                            {activities && <CardDetailsActivity card={card} activities={activities} />}
                         </div>
                         <div className="card-details-sidebar flex column">
                             <div>
-                                <h3>CHANGE CARD</h3>   
-                                <button className="btn-list-title btn-card-details" onMouseDown={this.onChangeCardTitle}>Rename title</button>
+                                <h3>CHANGE CARD</h3>
+                                <button className="btn-list-title btn-card-details" onClick={this.onChangeCardTitle}>Rename title</button>
 
 
                                 <h3>ADD TO CARD</h3>
-                                <button className="btn-card-members btn-card-details" onMouseDown={this.onSaveMembers}>Members</button>
-                                <button className="btn-card-labels btn-card-details" onMouseDown={this.onSaveLabels}>Labels</button>
-                                <button className="btn-card-checklist btn-card-details" onMouseDown={this.onSaveChecklist}>Checklist</button>
-                                <button className="btn-card-dates btn-card-details" onMouseDown={this.onChangeDueDate}>Dates</button>
+                                <button className="btn-card-members btn-card-details" onClick={this.onSaveMembers}>Members</button>
+                                <button className="btn-card-labels btn-card-details" onClick={this.onSaveLabels}>Labels</button>
+                                <button className="btn-card-checklist btn-card-details" onClick={this.onSaveChecklist}>Checklist</button>
+                                <button className="btn-card-dates btn-card-details" onClick={this.onChangeDueDate}>Dates</button>
                             </div>
                             <div>
                                 <h3>ACTIONS</h3>
-                                <button className="btn-card-copy btn-card-details" onMouseDown={this.onCopyCard}>Copy</button>
+                                <button className="btn-card-copy btn-card-details" onClick={this.onCopyCard}>Copy</button>
                             </div>
                         </div>
                     </div>
