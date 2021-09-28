@@ -110,11 +110,8 @@ class _CardDetails extends React.Component {
 
     onSaveLabels = () => {
         const { card } = this.state
-<<<<<<< HEAD
-=======
         //const newCard = {...card }   
         
->>>>>>> cb7237fce4c5802d9c8d876414f5027e7f35b6cf
         const labelId = `l${utilService.makeId(3)}`
         if (!card.labelIds) card.labelIds = []
         card.labelIds.push(labelId)
