@@ -10,21 +10,24 @@ export class CardDetailsChecklistTodo extends Component {
 
     componentDidMount() {
         const { todo } = this.props
-        const isChecked = todo.isChecked
+
+        //debugger
+
+        const isChecked = todo.isDone
         this.setState({ isChecked })
     }
 
     handleOnTodoChecked = (ev) => {
         const id = ev.target.id;
-        const { index, checklistId, todo, updateTodoStatusInCardChecklist} = this.props
+        const { checklistId, onUpdateTodoStatus} = this.props
         //const defaultChecked = ev.target.defaultChecked
-
+        debugger
         const { isChecked } = this.state
         const newIsChecked = !isChecked
 
         const todoId = id.split('-')[1]
     
-        updateTodoStatusInCardChecklist(checklistId, todoId, isChecked)
+        onUpdateTodoStatus(checklistId, todoId, newIsChecked)
             .then(() => {
                 this.setState({ isChecked: newIsChecked })
             })
@@ -40,10 +43,10 @@ export class CardDetailsChecklistTodo extends Component {
 
         return (
             <span><input type="checkbox" id={`todo-${todo.id}`} name={`todo-${todo.id}`}
-                // defaultChecked={isChecked}
+                //defaultChecked={isChecked}
                 checked={isChecked}
                 value={isChecked} onChange={this.handleOnTodoChecked} />
-                <label for={`todo-${index}`}>{todo.title}</label><br /> </span>
+                <label htmlFor={`todo-${index}`}>{todo.title}</label><br /> </span>
         )
     }
 }
