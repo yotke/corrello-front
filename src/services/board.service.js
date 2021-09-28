@@ -21,7 +21,8 @@ export const boardService = {
     getEmptyBoard,
     updateCardInBoard,
     addCardToBoard,
-    updateListInBoard
+    updateListInBoard,
+    setPopoverPos
 }
 window.cs = boardService;
 _saveToLocalStorage();
@@ -119,7 +120,7 @@ function updateListInBoard(board, updateList) {
     board.lists.forEach((list, idx) => {
         if (list.id === updateList.id) board.lists[idx] = updateList
     })
-    
+
     return board
 }
 
@@ -132,6 +133,19 @@ function removeCard(board, card) {
     })
     return board
 }
+
+
+function setPopoverPos(pos, elRect, diff = 38) {
+    let { left, top } = pos
+    top += diff
+    const { height, width } = elRect
+    const viewportWidth = window.innerWidth
+    const viewportHeight = window.innerHeight
+    if (left + width > viewportWidth) left = viewportWidth - width - 10
+    if (top + height > viewportHeight) top = viewportHeight - height - 10
+    return { left, top, width }
+}
+
 
 function getEmptyBoard() {
     const board = {

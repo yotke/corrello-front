@@ -11,6 +11,8 @@ import { CardDetailsChecklist } from '../cmps/card-details-cmps/card-details-che
 import { CardDetailsActivity } from '../cmps/card-details-cmps/card-details-activity'
 import { IconHeader } from '../assets/img/cmps/card-details/icon-activity.png'
 import CoIconHeadererIcon from '../assets/img/cmps/card-details/icon-activity.png';
+import { closePopover, openPopover } from '../store/popover.actions.js'
+import {CardDetailsLabels} from '../cmps/CardDetailsLabels.jsx'
 
 
 class _CardDetails extends React.Component {
@@ -94,8 +96,25 @@ class _CardDetails extends React.Component {
         this.setState({ card }, this.onSaveCardToBoard())
     }
 
+
+    get cardLabels() {
+        const { card: { labelIds } } = this.state
+        const { board: { labels } } = this.props
+        const cardLabels = labels.reduce((acc, label) => {
+            if (labelIds.some(labelId => labelId === label.id)) acc.push(label)
+            return acc
+        }, [])
+        return cardLabels
+    }
+
+
     onSaveLabels = () => {
         const { card } = this.state
+<<<<<<< HEAD
+=======
+        //const newCard = {...card }   
+        
+>>>>>>> cb7237fce4c5802d9c8d876414f5027e7f35b6cf
         const labelId = `l${utilService.makeId(3)}`
         if (!card.labelIds) card.labelIds = []
         card.labelIds.push(labelId)
@@ -124,6 +143,16 @@ class _CardDetails extends React.Component {
 
         card.checklists.splice(checklistId, 1)
         this.setState({ card }, this.onSaveCardToBoard())
+    }
+
+
+    onOpenPopover = (ev, PopoverName) => {
+        const elPos = ev.target.getBoundingClientRect()
+        const props = {
+            card: this.state.card,
+            addFile: this.addFile
+        }
+        this.props.openPopover(PopoverName, elPos, props)
     }
 
 
@@ -170,7 +199,7 @@ class _CardDetails extends React.Component {
 
         if (!card) return <div>Loading Card...</div>
         //debugger
-        const { board } = this.props
+        const { board , openPopover, closePopover} = this.props
         const { activities } = board
         //const { title, members, description, checklists, dueDate, style, attachs, isArchived } = card
 
@@ -210,6 +239,21 @@ class _CardDetails extends React.Component {
                                 <button className="btn-card-labels btn-card-details" onClick={this.onSaveLabels}>Labels</button>
                                 <button className="btn-card-checklist btn-card-details" onClick={this.onSaveChecklist}>Checklist</button>
                                 <button className="btn-card-dates btn-card-details" onClick={this.onChangeDueDate}>Dates</button>
+                                <button className="btn-card-members btn-card-details" onMouseDown={this.onSaveMembers}>Members</button>
+                                {/* <button className="btn-card-labels btn-card-details" onMouseDown={this.onSaveLabels}>Labels</button> */}
+
+                                <button className="secondary-btn actions-btn"
+                    onClick={(ev) => this.onOpenPopover(ev, 'LABELS')}>
+                    <div className="actions-btn-content flex align-center">
+                        <span>Labels</span>
+                    </div>
+                </button>
+                                {!!this.cardLabels.length && <CardDetailsLabels
+                                    labels={this.cardLabels}
+                                    openPopover={openPopover}
+                                    card={card} />}
+                                <button className="btn-card-checklist btn-card-details" onMouseDown={this.onSaveChecklist}>Checklist</button>
+                                <button className="btn-card-dates btn-card-details" onMouseDown={this.onChangeDueDate}>Dates</button>
                             </div>
                             <div>
                                 <h3>ACTIONS</h3>
@@ -231,6 +275,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
+    closePopover,
+    openPopover,
     loadBoard,
     onSaveBoard
 }
