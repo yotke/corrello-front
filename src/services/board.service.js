@@ -113,11 +113,6 @@ function addCardToBoard(board, listId, addCard) {
 }
 
 function updateListInBoard(board, updateList) {
-<<<<<<< HEAD
-    //debugger
-=======
-
->>>>>>> 776ff6380eda87e5a1e20ec2ac26824bb6a32d8d
     board = { ...board }
 
     board.lists.forEach((list, idx) => {
