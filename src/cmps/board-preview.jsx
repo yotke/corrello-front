@@ -11,9 +11,15 @@ export class BoardPreview extends React.Component {
                 <ul className="board-list">
                     {boards.map(board =>
                         //<Filter/>
-                        <Link to={`/board/${board._id}`}  key={board._id} >
-                            <li className="board-preview"  key={board._id}>
-                                {board._id}
+                        <Link to={`/board/${board._id}`} key={board._id} >
+                            <li className="board-preview" key={board._id} style={board.style&&{
+                                backgroundImage: "url(" + board.style.background + ")",
+                                backgroundRepeat: 'no-repeat',
+                                backgroundAttachment: 'fixed',
+                                backgroundPosition: 'center'
+                            }}>
+                                {board.title}
+
                             </li>
                         </Link>
                     )}

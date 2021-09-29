@@ -34,7 +34,6 @@ export class _Popover extends Component {
 
     onSetPopoverPos = () => {
         const { elPos, displayMode } = this.props
-        console.log('pos', elPos);
         if (!this.selectedDiv) return
         const elRect = this.selectedDiv.getBoundingClientRect()
         let { left, top } = boardService.setPopoverPos(elPos, elRect)
@@ -42,7 +41,7 @@ export class _Popover extends Component {
             top = 40;
             left = window.innerWidth - elRect.width;
         }
-        debugger
+
         this.setState({ top, left })
     }
 

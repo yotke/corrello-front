@@ -5,7 +5,9 @@ import { Link, NavLink } from 'react-router-dom'
 import { loadBoards, onAddBoard, onEditBoard, onRemoveBoard, addToCart } from '../store/board.actions.js'
 import { showSuccessMsg } from '../services/event-bus.service.js'
 import { BoardPreview } from '../cmps/board-preview.jsx'
-import {SideNav} from  '../cmps/sidenav.jsx';
+import { SideNav } from '../cmps/sidenav.jsx';
+import { WorkspaceHeader } from '../cmps/workspace-header.jsx'
+import { WorkspaceNavBar } from '../cmps/workspace-nav-bar.jsx'
 
 class _Workspace extends React.Component {
     state = {
@@ -23,20 +25,26 @@ class _Workspace extends React.Component {
         this.props.onAddBoard()
     }
     render() {
-        const { boards , onAddBoard} = this.props
-        const {isWorkSpace} =this.state; 
+        const { boards, onAddBoard } = this.props
+        const { isWorkSpace } = this.state;
 
         return (
             <section className="workspace-container">
-                
+
                 <div className="workspace-sticky-cotainter">
-                
+
                     <SideNav boards={boards} onAddBoard={onAddBoard} />
 
 
-                    <div className="all-boards-main"> 
+                    <div classname = "main-board-preview">
+                        <div className="workspace-header">
+                            <WorkspaceHeader />
+                            <WorkspaceNavBar />
+                        </div>
+                        <div className="all-boards-main">
 
-                    <BoardPreview boards={boards} />
+                            <BoardPreview boards={boards} />
+                        </div>
                     </div>
                 </div>
             </section>
