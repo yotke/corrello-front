@@ -41,7 +41,6 @@
 @import 'views/board-app';
 @import 'views/review-app';
 @import 'views/workspace';
-@import 'cmps/popovers/pop-over';
 // Components
 @import 'cmps/app-header';
 @import 'cmps/app-footer';
@@ -51,6 +50,14 @@
 @import 'cmps/side-nav';
 @import 'cmps/login-header';
 @import 'cmps/login_signup';
+@import 'cmps/popovers/pop-over';
+@import 'cmps/card';
+@import 'cmps/workspace-header';
+@import 'cmps/workspace-nav-bar';
+
+@import 'cmps/card-preview/card-preview';
+@import 'cmps/card-preview/card-preview-labels';
+
 //Components card-details-cmps
 @import 'cmps/card-details-cmps/card-details-activity-list';
 @import 'cmps/card-details-cmps/card-details-activity-preview';

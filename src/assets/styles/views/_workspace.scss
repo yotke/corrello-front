@@ -37,6 +37,9 @@
       flex-direction: column;
     }
   }
+  .main-board-preview{
+    min-width: 100%;
+  }
 }
 button {
   color: rgb(107, 119, 140);
@@ -49,3 +52,6 @@ button {
   min-width: 288px;
   width: 100%;
 }
+
+
+
