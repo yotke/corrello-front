@@ -6,7 +6,8 @@ import { ChatApp } from './pages/chat-app.jsx'
 import { AdminApp } from './pages/admin-app.jsx'
 import { CardDetails } from './pages/card-details.jsx'
 import { BoardApp } from './pages/board-app.jsx'
-import { LoginSignup } from './pages/login-signup.jsx'
+
+import { LoginSignupPage } from './pages/login-page.jsx'
 
 // Routes accesible from the main navigation (in AppHeader)
 const routes = [
@@ -27,7 +28,7 @@ const routes = [
     },
     {
         path: '/login',
-        component: LoginSignup,
+        component: LoginSignupPage,
         label: 'login'
     },
     {

@@ -11,7 +11,7 @@ class _HomePage extends React.Component {
         return (
             
             <section className="home-page-container">
-                <HomeHeader/>
+                <HomeHeader user={user}/>
                 <div className="first-home-page-container">
                     <div className="introduction-signup">
                         <p className="first-part-txt">

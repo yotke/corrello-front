@@ -7,6 +7,7 @@ import { onSaveBoard } from '../store/board.actions.js';
 import { openPopover, closePopover } from '../store/popover.actions.js';
 import { Loader } from '../cmps/Loader.jsx';
 import { CardDetailsLabels } from '../cmps/card-details-labels.jsx'
+import { DueDateDisplay } from '../cmps/card-details/card-details-dates';
 
 class _CardDetails extends React.Component {
   state = {
@@ -77,8 +78,7 @@ class _CardDetails extends React.Component {
               )}
 
               {
-                !!dueDate && <p>date cmp placeholder</p>
-                // <DueDateDisplay/>
+                dueDate && <DueDateDisplay card={card}   openPopover={openPopover}/>
               }
             </div>
 
