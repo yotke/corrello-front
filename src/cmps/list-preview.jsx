@@ -1,8 +1,9 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { CardPreview } from './card-preview.jsx';
+
 import { CardAdd } from './card-add.jsx';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { CardPreview } from './card-preview/card-preview.jsx';
 
 class _ListPreview extends Component {
   state = {

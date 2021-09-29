@@ -1,0 +1,40 @@
+[
+    {
+        "_id": "u101",
+        "fullname": "Koren Turgman",
+        "username": "koren",
+        "password": "1",
+        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512",
+        "mentions": [{
+            "id": "m101",
+            "boardId": "m101",
+            "taskId": "t101"
+        }]
+    },
+    {
+        "_id": "u102",
+        "fullname": "Yotam Elia",
+        "username": "yotam",
+        "password": "2",
+        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U0276DVNY2F-f2361f5e4429-512",
+        "mentions": [{
+            "id": "m102",
+            "boardId": "m102",
+            "taskId": "t102"
+        }]
+    },
+    {
+        "_id": "u103",
+        "fullname": "Pavel Kabakov",
+        "username": "pavel",
+        "password": "3",
+        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512",
+        "mentions": [{
+            "id": "m103",
+            "boardId": "m103",
+            "taskId": "t103"
+        }]
+    }
+
+]
+

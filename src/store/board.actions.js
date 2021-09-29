@@ -125,7 +125,16 @@ export function removeFromCart(boardId) {
     }
 }
 
-
+export function togglePreviewLabels() {
+    return dispatch => {
+        dispatch({ type: 'TOGGLE_LABELS' })
+    }
+}
+export function setPreviewLabelClassName(className) {
+    return dispatch => {
+        dispatch({ type: 'SET_LABELS_CLASSNAME', className })
+    }
+}
 
 // Demo for Optimistic Mutation (IOW - Assuming the server call will work, so updating the UI first)
 export function onRemoveBoardOptimistic(boardId) {

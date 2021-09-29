@@ -6,6 +6,7 @@ import { CardDetailsActions } from '../cmps/CardDetailsActions';
 import { onSaveBoard } from '../store/board.actions.js';
 import { openPopover, closePopover } from '../store/popover.actions.js';
 import { Loader } from '../cmps/Loader.jsx';
+<<<<<<< HEAD
 import { CardDetailsLabels } from '../cmps/card-details-labels.jsx';
 import { CardChecklists } from '../cmps/card-details/checklist/card-checklists.jsx';
 import { DueDateDisplay } from '../cmps/card-details/card-details-dates.jsx';
@@ -13,6 +14,12 @@ import { Description } from '../cmps/card-details/catd-details-discription.jsx';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { TextareaAutosize } from '@material-ui/core';
 import {ScreenOverlay} from '../cmps/ScreenOverlay.jsx';
+=======
+import { CardDetailsLabels } from '../cmps/card-details-labels.jsx'
+import { CardChecklists } from '../cmps/card-details/checklist/card-checklists.jsx'
+import { DueDateDisplay } from '../cmps/card-details/card-details-dates.jsx'
+import { Description } from '../cmps/card-details/catd-details-discription.jsx'
+>>>>>>> db9ada28d03581c7fde3d4e23cc3d2dcf0a2e8b4
 
 class _CardDetails extends React.Component {
   state = {
