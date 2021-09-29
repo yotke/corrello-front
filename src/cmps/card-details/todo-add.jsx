@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { TextareaAutosize } from '@material-ui/core';
 import { utilService } from '../../services/util.service.js';
 
-export class CardDetailsChecklistTodoAdd extends Component {
+export class TodoAdd extends Component {
 
     state = {
         isEditMode: false,
@@ -23,7 +23,7 @@ export class CardDetailsChecklistTodoAdd extends Component {
             this.onAddTodo()
             return;
         }
-        //debugger
+
         this.setState({ todo: { title: value } });
     }
 
@@ -34,7 +34,7 @@ export class CardDetailsChecklistTodoAdd extends Component {
         if (ev.type === 'keydown') ev.preventDefault()
         
         const { todo: { title } } = this.state;
-        const { checklistId, onCreateNewTodo } = this.props
+        const { checklistId, onCreateTodo } = this.props
         
         const todo = {
             id: utilService.makeId(),
@@ -42,7 +42,7 @@ export class CardDetailsChecklistTodoAdd extends Component {
             isDone: false
         }
 
-        onCreateNewTodo(checklistId, todo)
+        onCreateTodo(checklistId, todo)
         .then(() => {
             this.setState({ todo: { title: '' } })
         })

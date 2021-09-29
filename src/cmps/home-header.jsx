@@ -35,7 +35,7 @@ export class HomeHeader extends Component {
                         <HomepageLogo />
                         Corollo
                     </div>
-
+                
                     <div className="nav-btns ">
                         <Link to="/login" className="login-btn clean-link">
                             Log in

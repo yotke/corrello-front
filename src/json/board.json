@@ -31,11 +31,45 @@
             "cards": [
                 {
                     "id": "c101",
-                    "title": "Replace logo"
+                    "title": "Replace logo",
+                    "labelIds": [
+                        "l101",
+                        "l102"
+                    ],
+                    "checklists": [
+                        {
+                            "id": "YEhmF",
+                            "title": "Checklist",
+                            "todos": [
+                                {
+                                    "id": "212jX",
+                                    "title": "To Do 1",
+                                    "isDone": false
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "id": "c102",
-                    "title": "Add Samples"
+                    "title": "Add Samples",
+                    "labelIds": [
+                        "l101",
+                        "l102"
+                    ],
+                    "checklists": [
+                        {
+                            "id": "YEhmF",
+                            "title": "Checklist",
+                            "todos": [
+                                {
+                                    "id": "212jX",
+                                    "title": "To Do 1",
+                                    "isDone": false
+                                }
+                            ]
+                        }
+                    ]
                 }
             ],
             "style": {}
@@ -46,7 +80,20 @@
             "cards": [
                 {
                     "id": "c103",
-                    "title": "Do that"
+                    "title": "Do that",
+                    "checklists": [
+                        {
+                            "id": "YEhmF",
+                            "title": "Checklist",
+                            "todos": [
+                                {
+                                    "id": "212jX",
+                                    "title": "To Do 1",
+                                    "isDone": false
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "id": "c104",

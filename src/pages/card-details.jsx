@@ -6,7 +6,9 @@ import { CardDetailsActions } from '../cmps/CardDetailsActions';
 import { onSaveBoard } from '../store/board.actions.js';
 import { openPopover, closePopover } from '../store/popover.actions.js';
 import { Loader } from '../cmps/Loader.jsx';
-import {CardDetailsLabels} from '../cmps/card-details-labels.jsx'
+import { CardDetailsLabels } from '../cmps/card-details-labels.jsx'
+import { DueDateDisplay } from '../cmps/card-details/card-details-dates'
+import { CardChecklists } from '../cmps/card-details/card-checklists.jsx'
 
 class _CardDetails extends React.Component {
   state = {
@@ -43,17 +45,21 @@ class _CardDetails extends React.Component {
     this.setState({ card }, this.onSaveCard());
   };
 
-
   get cardLabels() {
     const { card: { labelIds } } = this.state
     const { board: { labels } } = this.props
     const cardLabels = labels.reduce((acc, label) => {
-        if (labelIds.some(labelId => labelId === label.id)) acc.push(label)
-        return acc
+      if (labelIds.some(labelId => labelId === label.id)) acc.push(label)
+      return acc
     }, [])
     return cardLabels
-}
+  }
 
+  onSaveCardChecklists = (checklists) => {
+    const { card } = this.state
+    card.checklists = checklists
+    this.setState({ card }, this.onSaveCard())
+  }
 
   render() {
     const { board, onSaveBoard, openPopover } = this.props;
@@ -64,56 +70,57 @@ class _CardDetails extends React.Component {
     return (
       <section className="card-details-container flex column">
         <div className="card-details-header">Card Details</div>
-<main className="card-details-content flex justify-space-between">
+        <main className="card-details-content flex justify-space-between">
 
-        <div className="card-details-main flex column">
-          <div className="card-details-items-container flex column">
-            {!!this.cardLabels.length && (
-              <CardDetailsLabels
-                labels={this.cardLabels}
-                openPopover={openPopover}
-                card={card}
-              />
-            )}
+          <div className="card-details-main flex column">
+            <div className="card-details-items-container flex column">
+              {!!this.cardLabels.length && (
+                <CardDetailsLabels
+                  labels={this.cardLabels}
+                  openPopover={openPopover}
+                  card={card}
+                />
+              )}
 
-            {
-              !!dueDate && <p>date cmp placeholder</p>
-              // <DueDateDisplay/>
-            }
-          </div>
+              {
+                dueDate && <DueDateDisplay card={card} openPopover={openPopover} />
+              }
+            </div>
 
-          {/* card description left menu side */}
+            {/* card description left menu side */}
+            {(description) && <p>{description}</p>}
 
-          {/* <CardDescription
+            {/* <CardDescription
             description={description}
             onSaveCardDescription={this.onSaveCardDescription}
           /> */}
 
-          {/* checkList left side section */}
+            {/* checkList left side section */}
 
-          {/* <CardChecklists
-            card={card}
-            checklists={checklists}
-            onSaveCardChecklists={this.onSaveCardChecklists}
-          /> */}
-
-          {/* activities left menu */}
-
-          {/* <CardActivities card={card} activities={activities} /> */}
-        </div>
-
-        <div className="card-details-action-container">
-          <div className="card-details-sidebar flex column">
-            <CardDetailsActions
-              board={board}
+            {(checklists && checklists.length > 0) && <CardChecklists
               card={card}
-              onSaveBoard={onSaveBoard}
-              onSaveCardFromActions={this.onSaveCardFromActions}
-            />
-          </div>
-        </div>
+              checklists={checklists}
+              onSaveCardChecklists={this.onSaveCardChecklists}
+            />}
 
-</main>
+
+            {/* activities left menu */}
+
+            {/* <CardActivities card={card} activities={activities} /> */}
+          </div>
+
+          <div className="card-details-action-container">
+            <div className="card-details-sidebar flex column">
+              <CardDetailsActions
+                board={board}
+                card={card}
+                onSaveBoard={onSaveBoard}
+                onSaveCardFromActions={this.onSaveCardFromActions}
+              />
+            </div>
+          </div>
+
+        </main>
       </section>
     );
   }
