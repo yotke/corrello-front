@@ -9,6 +9,7 @@ import { Loader } from '../cmps/Loader.jsx';
 import { CardDetailsLabels } from '../cmps/card-details-labels.jsx'
 import { DueDateDisplay } from '../cmps/card-details/card-details-dates'
 import { CardChecklists } from '../cmps/card-details/card-checklists.jsx'
+import { Description } from '../cmps/card-details/catd-details-discription';
 
 class _CardDetails extends React.Component {
   state = {
@@ -88,7 +89,7 @@ class _CardDetails extends React.Component {
             </div>
 
             {/* card description left menu side */}
-            {(description) && <p>{description}</p>}
+            <Description  card={card} board={board} onSaveBoard ={onSaveBoard}/>
 
             {/* <CardDescription
             description={description}
