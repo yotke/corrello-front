@@ -7,9 +7,9 @@ import { onSaveBoard } from '../store/board.actions.js';
 import { openPopover, closePopover } from '../store/popover.actions.js';
 import { Loader } from '../cmps/Loader.jsx';
 import { CardDetailsLabels } from '../cmps/card-details-labels.jsx'
-import { DueDateDisplay } from '../cmps/card-details/card-details-dates'
-import { CardChecklists } from '../cmps/card-details/card-checklists.jsx'
-import { Description } from '../cmps/card-details/catd-details-discription';
+import { CardChecklists } from '../cmps/card-details/checklist/card-checklists.jsx'
+import { DueDateDisplay } from '../cmps/card-details/card-details-dates.jsx'
+import { Description } from '../cmps/card-details/catd-details-discription.jsx'
 
 class _CardDetails extends React.Component {
   state = {
@@ -50,7 +50,7 @@ class _CardDetails extends React.Component {
     const { card: { labelIds } } = this.state
     const { board: { labels } } = this.props
     const cardLabels = labels.reduce((acc, label) => {
-      if (labelIds.some(labelId => labelId === label.id)) acc.push(label)
+      if (labelIds.find(labelId => labelId === label.id)) acc.push(label)
       return acc
     }, [])
     return cardLabels
@@ -75,7 +75,7 @@ class _CardDetails extends React.Component {
 
           <div className="card-details-main flex column">
             <div className="card-details-items-container flex column">
-              {!!this.cardLabels.length && (
+              {this.cardLabels.length && (
                 <CardDetailsLabels
                   labels={this.cardLabels}
                   openPopover={openPopover}
@@ -103,7 +103,6 @@ class _CardDetails extends React.Component {
               checklists={checklists}
               onSaveCardChecklists={this.onSaveCardChecklists}
             />}
-
 
             {/* activities left menu */}
 

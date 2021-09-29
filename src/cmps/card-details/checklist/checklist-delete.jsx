@@ -3,8 +3,9 @@ import React, { Component } from 'react'
 export class ChecklistDelete extends Component {
 
     onClick = () => {
+        console.log('onClick')
         const { checklist, onDeleteChecklist } = this.props
-        onDeleteChecklist(checklist.id)
+        onDeleteChecklist(checklist)
     }
 
     render() {

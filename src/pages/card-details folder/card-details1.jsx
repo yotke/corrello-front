@@ -276,4 +276,4 @@ const mapDispatchToProps = {
     onSaveBoard
 }
 
- const CardDetails1 = connect(mapStateToProps, mapDispatchToProps)(_CardDetails)
+ const CardDetails1 = connect(mapStateToProps, mapDispatchToProps)(_CardDetails1)

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { TextareaAutosize } from '@material-ui/core';
-import { utilService } from '../../services/util.service.js';
+import { utilService } from '../../../services/util.service.js';
 
 export class TodoAdd extends Component {
 
@@ -28,13 +28,12 @@ export class TodoAdd extends Component {
     }
 
     onAddTodo = (ev) => {
-        console.log('ev.type',ev.type,'ev.key', ev.key)
-
         if (ev.type === 'keydown' && ev.key !== 'Enter') return
         if (ev.type === 'keydown') ev.preventDefault()
         
+        //debugger
         const { todo: { title } } = this.state;
-        const { checklistId, onCreateTodo } = this.props
+        const { onCreateTodo } = this.props
         
         const todo = {
             id: utilService.makeId(),
@@ -42,10 +41,8 @@ export class TodoAdd extends Component {
             isDone: false
         }
 
-        onCreateTodo(checklistId, todo)
-        .then(() => {
-            this.setState({ todo: { title: '' } })
-        })
+        onCreateTodo(todo)
+        this.setState({ todo: { title: '' } }, this.onEditMode)
     }
 
     render() {
@@ -63,7 +60,7 @@ export class TodoAdd extends Component {
                         placeholder="Add an item"
                         autoCorrect="false"
                         aria-label="empty textarea" />
-                    <button className="btn-add-todo" onClick={this.onAddTodo}>Save</button>
+                    <button onMouseDown={this.onAddTodo}>Save</button>
                 </div>}
             </div>
         </section>

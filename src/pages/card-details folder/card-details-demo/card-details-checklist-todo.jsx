@@ -21,7 +21,7 @@ export class CardDetailsChecklistTodo extends Component {
         const id = ev.target.id;
         const { checklistId, onUpdateTodoStatus} = this.props
         //const defaultChecked = ev.target.defaultChecked
-        debugger
+        //debugger
         const { isChecked } = this.state
         const newIsChecked = !isChecked
 
