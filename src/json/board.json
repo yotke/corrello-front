@@ -35,6 +35,19 @@
                     "labelIds": [
                         "l101",
                         "l102"
+                    ],
+                    "checklists": [
+                        {
+                            "id": "YEhmF",
+                            "title": "Checklist",
+                            "todos": [
+                                {
+                                    "id": "212jX",
+                                    "title": "To Do 1",
+                                    "isDone": false
+                                }
+                            ]
+                        }
                     ]
                 },
                 {
@@ -43,6 +56,19 @@
                     "labelIds": [
                         "l101",
                         "l102"
+                    ],
+                    "checklists": [
+                        {
+                            "id": "YEhmF",
+                            "title": "Checklist",
+                            "todos": [
+                                {
+                                    "id": "212jX",
+                                    "title": "To Do 1",
+                                    "isDone": false
+                                }
+                            ]
+                        }
                     ]
                 }
             ],
@@ -54,7 +80,20 @@
             "cards": [
                 {
                     "id": "c103",
-                    "title": "Do that"
+                    "title": "Do that",
+                    "checklists": [
+                        {
+                            "id": "YEhmF",
+                            "title": "Checklist",
+                            "todos": [
+                                {
+                                    "id": "212jX",
+                                    "title": "To Do 1",
+                                    "isDone": false
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "id": "c104",

@@ -13,8 +13,8 @@ class _PopoverDate extends React.Component {
     }
 
     componentDidMount() {
-        const date = new Date()
-        // const date = this.props.card.dueDate ? new Date(this.props.card.dueDate).toLocaleString() : new Date()
+        // const date = new Date()
+        const date = this.props.card.dueDate ? new Date(this.props.card.dueDate).toLocaleString() : new Date()
         this.setState({ date })
     }
 
