@@ -40,10 +40,7 @@ export class ChecklistPreview extends Component {
     }
 
     onRemoveTodo = (todoId) => {
-<<<<<<< HEAD
-=======
         //debugger
->>>>>>> db9ada28d03581c7fde3d4e23cc3d2dcf0a2e8b4
         const { onSaveChecklist } = this.props
         let { checklist, checklist: { todos } } = this.state
         todos = todos.filter(currTodo => currTodo.id !== todoId)
