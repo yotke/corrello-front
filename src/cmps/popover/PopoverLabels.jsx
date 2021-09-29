@@ -9,11 +9,11 @@ import {utilService} from '../../services/util.service.js';
 class _PopoverLabels extends Component {
 
     state = {
-        presentedLabels: '',
+        currLabels: '',
     }
 
     componentDidMount() {
-        this.setState({ presentedLabels: this.props.board.labels })
+        this.setState({ currLabels: this.props.board.labels })
 
     }
 
@@ -31,14 +31,14 @@ class _PopoverLabels extends Component {
     }
 
     render() {
-        const { presentedLabels} = this.state
-        if (!presentedLabels) return '';
+        const { currLabels} = this.state
+        if (!currLabels) return '';
         return (<>
                 <Popover title={"Labels"} >
                     <div className="labels-pop-over">
                         <ul className="clean-list">
 
-                            {presentedLabels.map(label => <PopoverLabelPreview key={label.id} label={label}
+                            {currLabels.map(label => <PopoverLabelPreview key={label.id} label={label}
                        />)}
                         </ul>
                     </div>
