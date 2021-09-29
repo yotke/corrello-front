@@ -10,7 +10,6 @@ class _PopoverLabels extends Component {
 
     state = {
         presentedLabels: '',
-
     }
 
     componentDidMount() {
@@ -37,7 +36,6 @@ class _PopoverLabels extends Component {
         return (<>
                 <Popover title={"Labels"} >
                     <div className="labels-pop-over">
-                        <h4>LABELS</h4>
                         <ul className="clean-list">
 
                             {presentedLabels.map(label => <PopoverLabelPreview key={label.id} label={label}

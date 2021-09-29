@@ -3,7 +3,7 @@ import { openPopover, closePopover } from '../store/popover.actions.js'
 import { onSaveBoard } from '../store/board.actions.js';
 import { connect } from 'react-redux';
 import {Loader} from '../cmps/Loader.jsx'
-
+import { Button } from "@material-ui/core";
 
 class _CardDetailsActions extends Component {
 
