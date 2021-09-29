@@ -1,3 +1,16 @@
+.MuiPaper-root {
+  padding: 2rem;
+  width: 200px;
+  max-height: 100%;
+  position: relative;
+}
+.popover-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0.4rem;
+}
+
 .pop-over {
   background: #fff;
   border-radius: 3px;

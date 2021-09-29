@@ -50,7 +50,7 @@ class _CardDetails extends React.Component {
     const { card: { labelIds } } = this.state
     const { board: { labels } } = this.props
     const cardLabels = labels.reduce((acc, label) => {
-      if (labelIds.some(labelId => labelId === label.id)) acc.push(label)
+      if (labelIds.find(labelId => labelId === label.id)) acc.push(label)
       return acc
     }, [])
     return cardLabels
@@ -75,7 +75,7 @@ class _CardDetails extends React.Component {
 
           <div className="card-details-main flex column">
             <div className="card-details-items-container flex column">
-              {!!this.cardLabels.length && (
+              {this.cardLabels.length && (
                 <CardDetailsLabels
                   labels={this.cardLabels}
                   openPopover={openPopover}
