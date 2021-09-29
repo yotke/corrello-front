@@ -3,7 +3,7 @@
     const { card } = this.state;
     //card = {...card }
 
-    debugger;
+    //debugger;
     const member = {
       _id: utilService.makeId(),
       username: prompt('Write user name'),
@@ -26,7 +26,7 @@
     const { card } = this.state;
     //card = {...card }
 
-    debugger;
+    //debugger;
     const checklist = {
       id: utilService.makeId(),
       title: prompt('Write new checklist name'),
