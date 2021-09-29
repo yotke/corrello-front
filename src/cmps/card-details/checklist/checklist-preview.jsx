@@ -40,6 +40,7 @@ export class ChecklistPreview extends Component {
     }
 
     onRemoveTodo = (todoId) => {
+        debugger
         const { onSaveChecklist } = this.props
         let { checklist, checklist: { todos } } = this.state
         todos = todos.filter(currTodo => currTodo.id !== todoId)
@@ -48,8 +49,8 @@ export class ChecklistPreview extends Component {
     }
 
     render() {
-        const { checklist, onDeleteChecklist, checklistId } = this.props
-
+        const { checklist, onDeleteChecklist } = this.props
+        
         return (
             <div className="checklists-container" >
                 <div className="checklists-preview-container">
@@ -60,13 +61,12 @@ export class ChecklistPreview extends Component {
                     <ul className="checklist-checks">
                         {checklist.todos.map((todo, index) =>
                             <TodoPreview todo={todo} index={index} key={index}
-                                checklistId={checklistId}
                                 todoId={todo.id}
                                 onSaveTodo={this.onSaveTodo}
                                 onRemoveTodo={this.onRemoveTodo}
                             />)}
                     </ul>
-                    <TodoAdd checklistId={checklistId} onCreateTodo={this.onCreateTodo} />
+                    <TodoAdd checklist={checklist} onCreateTodo={this.onCreateTodo} />
                 </div>
 
             </div>

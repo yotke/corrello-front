@@ -7,7 +7,7 @@ import { onSaveBoard } from '../store/board.actions.js';
 import { openPopover, closePopover } from '../store/popover.actions.js';
 import { Loader } from '../cmps/Loader.jsx';
 import { CardDetailsLabels } from '../cmps/card-details-labels.jsx'
-import { CardChecklists } from '../cmps/card-details/card-checklists.jsx'
+import { CardChecklists } from '../cmps/card-details/checklist/card-checklists.jsx'
 
 class _CardDetails extends React.Component {
   state = {
@@ -88,7 +88,7 @@ class _CardDetails extends React.Component {
             </div>
 
             {/* card description left menu side */}
-            <p>{description}</p>
+            {(description) && <p>{description}</p>}
             {/* <CardDescription
             description={description}
             onSaveCardDescription={this.onSaveCardDescription}
@@ -96,11 +96,11 @@ class _CardDetails extends React.Component {
 
             {/* checkList left side section */}
 
-            <CardChecklists
+            {(checklists && checklists.length > 0) && <CardChecklists
               card={card}
               checklists={checklists}
               onSaveCardChecklists={this.onSaveCardChecklists}
-            />
+            />}
 
             {/* activities left menu */}
 

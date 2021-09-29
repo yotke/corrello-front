@@ -1,8 +1,4 @@
 import React, { Component } from "react"
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank'
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
-import DeleteIcon from '@material-ui/icons/Delete';
 import { TextareaAutosize } from '@material-ui/core';
 
 export class TodoPreview extends Component {
@@ -32,6 +28,7 @@ export class TodoPreview extends Component {
 
     onFinishEditing = (ev) => {
         if (ev.type === 'keydown' && ev.key !== 'Enter') return
+        
         const { onSaveTodo } = this.props
         const { todo } = this.state
         this.setState({ isInputSelected: false }, () => {
@@ -50,14 +47,14 @@ export class TodoPreview extends Component {
     render() {
         const { todo, isInputSelected } = this.state
         const { onRemoveTodo } = this.props
-        if (!todo) return '' //loader
+        if (!todo) return ''
         const { title, isDone } = todo
         return (
             <div className="todo-preview-container flex column">
                 <div className="todo-preview flex align-center">
                     {isDone ?
-                        <CheckBoxIcon className="checked" onClick={() => this.onToggleDone()} /> :
-                        <CheckBoxOutlineBlankIcon className="non-checked" onClick={() => this.onToggleDone()} />}
+                        <button className="checked" onClick={() => this.onToggleDone()}>+</button> :
+                        <button className="non-checked" onClick={() => this.onToggleDone()}>-</button>}
                     <TextareaAutosize className={isDone ? 'done' : ''}
                         onFocus={this.onEditClicked}
                         onBlur={(ev) => this.onFinishEditing(ev)}
@@ -68,11 +65,10 @@ export class TodoPreview extends Component {
                         autoComplete="false"
                         ref={(input) => { this.selectedInput = input }}
                         aria-label="empty textarea" />
-                    {!isInputSelected && <DeleteIcon className="delete-svg" onClick={() => onRemoveTodo(todo.id)} />}
+                    {!isInputSelected && <button className="delete-svg" onClick={() => onRemoveTodo(todo.id)}>Remove</button>}
                 </div>
                 <div className={`checklist-controllers flex align-center ${isInputSelected ? 'show' : 'hidden'}`}>
                     <button className="primary-btn" onClick={() => this.onFinishEditing()}>Save</button>
-                    <CloseRoundedIcon className="close-svg" />
                 </div >
             </div >
         )
