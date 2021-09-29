@@ -8,7 +8,7 @@
             "imgUrl": "http://some-img"
         },
         "style": {
-            "background":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1283x1920/5442c84e9d91238aeb465e80974294ff/photo-1536293182766-c9c0c4133b55.jpg"
+            "background": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1283x1920/5442c84e9d91238aeb465e80974294ff/photo-1536293182766-c9c0c4133b55.jpg"
         },
         "labels": [
             {
@@ -22,151 +22,150 @@
                 "_id": "u101",
                 "fullname": "Tal Tarablus",
                 "imgUrl": "https://www.google.com"
-      }
-    ],
-    "lists": [
-        {
-            "id": "g101",
-            "title": "Group 1",
-            "cards": [
-                {
-                    "id": "c101",
-                    "title": "Replace logo",
-                    "labelIds": [
-                        "l101",
-                        "l102"
-                    ],
-                    "checklists": [
-                        {
-                            "id": "YEhmF",
-                            "title": "Checklist",
-                            "todos": [
-                                {
-                                    "id": "212jX",
-                                    "title": "To Do 1",
-                                    "isDone": false
+            }
+        ],
+        "lists": [
+            {
+                "id": "g101",
+                "title": "Group 1",
+                "cards": [
+                    {
+                        "id": "c101",
+                        "title": "Replace logo",
+                        "labelIds": [
+                            "l101",
+                            "l102"
+                        ],
+                        "checklists": [
+                            {
+                                "id": "YEhmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "212jX",
+                                        "title": "To Do 1",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "c102",
+                        "title": "Add Samples",
+                        "labelIds": [
+                            "l101",
+                            "l102"
+                        ],
+                        "checklists": [
+                            {
+                                "id": "YEhmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "212jX",
+                                        "title": "To Do 1",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "style": {}
+            },
+            {
+                "id": "g102",
+                "title": "Group 2",
+                "cards": [
+                    {
+                        "id": "c103",
+                        "title": "Do that",
+                        "checklists": [
+                            {
+                                "id": "YEhmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "212jX",
+                                        "title": "To Do 1",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "c104",
+                        "title": "Help me",
+                        "description": "description",
+                        "comments": [
+                            {
+                                "id": "ZdPnm",
+                                "txt": "also @yaronb please CR this",
+                                "createdAt": 1590999817436.0,
+                                "byMember": {
+                                    "_id": "u101",
+                                    "fullname": "Tal Tarablus",
+                                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                                 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "id": "c102",
-                    "title": "Add Samples",
-                    "labelIds": [
-                        "l101",
-                        "l102"
-                    ],
-                    "checklists": [
-                        {
-                            "id": "YEhmF",
-                            "title": "Checklist",
-                            "todos": [
-                                {
-                                    "id": "212jX",
-                                    "title": "To Do 1",
-                                    "isDone": false
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "style": {}
-        },
-        {
-            "id": "g102",
-            "title": "Group 2",
-            "cards": [
-                {
-                    "id": "c103",
-                    "title": "Do that",
-                    "checklists": [
-                        {
-                            "id": "YEhmF",
-                            "title": "Checklist",
-                            "todos": [
-                                {
-                                    "id": "212jX",
-                                    "title": "To Do 1",
-                                    "isDone": false
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "id": "c104",
-                    "title": "Help me",
-                    "description": "description",
-                    "comments": [
-                        {
-                            "id": "ZdPnm",
-                            "txt": "also @yaronb please CR this",
-                            "createdAt": 1590999817436.0,
-                            "byMember": {
+                            }
+                        ],
+                        "checklists": [
+                            {
+                                "id": "YEhmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "212jX",
+                                        "title": "To Do 1",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ],
+                        "members": [
+                            {
                                 "_id": "u101",
+                                "username": "Tal",
                                 "fullname": "Tal Tarablus",
                                 "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                             }
-                        }
-                    ],
-                    "checklists": [
-                        {
-                            "id": "YEhmF",
-                            "title": "Checklist",
-                            "todos": [
-                                {
-                                    "id": "212jX",
-                                    "title": "To Do 1",
-                                    "isDone": false
-                                }
-                            ]
-                        }
-                    ],
-                    "members": [
-                        {
+                        ],
+                        "labelIds": [
+                            "l101",
+                            "l102"
+                        ],
+                        "createdAt": 1590999730348,
+                        "dueDate": 16156215211,
+                        "byMember": {
                             "_id": "u101",
                             "username": "Tal",
                             "fullname": "Tal Tarablus",
                             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        "style": {
+                            "bgColor": "#26de81"
                         }
-                    ],
-                    "labelIds": [
-                        "l101",
-                        "l102"
-                    ],
-                    "createdAt": 1590999730348,
-                    "dueDate": 16156215211,
-                    "byMember": {
-                        "_id": "u101",
-                        "username": "Tal",
-                        "fullname": "Tal Tarablus",
-                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                    },
-                    "style": {
-                        "bgColor": "#26de81"
                     }
+                ],
+                "style": {}
+            }
+        ],
+        "activities": [
+            {
+                "id": "a101",
+                "txt": "Changed Color",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u101",
+                    "fullname": "Abi Abambi",
+                    "imgUrl": "http://some-img"
+                },
+                "card": {
+                    "id": "c104",
+                    "title": "Replace Logo"
                 }
-            ],
-            "style": {
             }
-        }
-    ],
-    "activities": [
-        {
-            "id": "a101",
-            "txt": "Changed Color",
-            "createdAt": 154514,
-            "byMember": {
-                "_id": "u101",
-                "fullname": "Abi Abambi",
-                "imgUrl": "http://some-img"
-            },
-            "card": {
-                "id": "c104",
-                "title": "Replace Logo"
-            }
-        }
-    ]
-}
+        ]
+    }
