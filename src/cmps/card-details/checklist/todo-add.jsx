@@ -31,7 +31,7 @@ export class TodoAdd extends Component {
         if (ev.type === 'keydown' && ev.key !== 'Enter') return
         if (ev.type === 'keydown') ev.preventDefault()
         
-        debugger
+        //debugger
         const { todo: { title } } = this.state;
         const { onCreateTodo } = this.props
         
