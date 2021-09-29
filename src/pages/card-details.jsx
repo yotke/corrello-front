@@ -7,7 +7,13 @@ import { onSaveBoard } from '../store/board.actions.js';
 import { openPopover, closePopover } from '../store/popover.actions.js';
 import { Loader } from '../cmps/Loader.jsx';
 import { CardDetailsLabels } from '../cmps/card-details-labels.jsx'
+<<<<<<< HEAD
 import { CardChecklists } from '../cmps/card-details/checklist/card-checklists.jsx'
+=======
+import { DueDateDisplay } from '../cmps/card-details/card-details-dates'
+import { CardChecklists } from '../cmps/card-details/card-checklists.jsx'
+import { Description } from '../cmps/card-details/catd-details-discription';
+>>>>>>> bc8ca81839680fabfb8514aea010ded4f20f3f02
 
 class _CardDetails extends React.Component {
   state = {
@@ -82,13 +88,17 @@ class _CardDetails extends React.Component {
               )}
 
               {
-                !!dueDate && <p>date cmp placeholder</p>
-                // <DueDateDisplay/>
+                dueDate && <DueDateDisplay card={card} openPopover={openPopover} />
               }
             </div>
 
             {/* card description left menu side */}
+<<<<<<< HEAD
             {(description) && <p>{description}</p>}
+=======
+            <Description  card={card} board={board} onSaveBoard ={onSaveBoard}/>
+
+>>>>>>> bc8ca81839680fabfb8514aea010ded4f20f3f02
             {/* <CardDescription
             description={description}
             onSaveCardDescription={this.onSaveCardDescription}
@@ -101,6 +111,10 @@ class _CardDetails extends React.Component {
               checklists={checklists}
               onSaveCardChecklists={this.onSaveCardChecklists}
             />}
+<<<<<<< HEAD
+=======
+
+>>>>>>> bc8ca81839680fabfb8514aea010ded4f20f3f02
 
             {/* activities left menu */}
 

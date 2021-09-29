@@ -1,5 +1,7 @@
 import React from 'react'
-export class LoginSignup extends React.Component {
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+export class _LoginSignup extends React.Component {
     state = {
         credentials: {
             username: '',
@@ -19,6 +21,8 @@ export class LoginSignup extends React.Component {
             isSignup: false
         }
         this.setState({ clearTemplate })
+        const {user} =this.props
+        this.props.history.push('/')
     }
 
     handleChange = (ev) => {
@@ -29,9 +33,10 @@ export class LoginSignup extends React.Component {
 
     onLogin = (ev = null) => {
         if (!this.state.credentials.username || !this.state.credentials.password) return;
-        console.log('ev',ev)
+        console.log('ev', ev)
         if (ev) ev.preventDefault();
-        this.props.onLogin(this.state.credentials);
+        this.props.onLogin(this.state.credentials)
+
         this.clearState()
     }
 
@@ -52,7 +57,7 @@ export class LoginSignup extends React.Component {
         return (
             <div className="login-page">
                 <p>
-                    <a href="#" onClick={this.toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</a>
+                    <button href="#" onClick={this.toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button>
                 </p>
                 {!isSignup && <form className="login-form" onSubmit={this.onLogin}>
                     <input
@@ -104,8 +109,8 @@ export class LoginSignup extends React.Component {
                         <button >Signup!</button>
                     </form>}
                 </div>
-
             </div>
         )
     }
 }
+export const LoginSignup = withRouter(_LoginSignup)

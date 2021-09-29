@@ -28,6 +28,7 @@ class _Workspace extends React.Component {
 
         return (
             <section className="workspace-container">
+                
                 <div className="workspace-sticky-cotainter">
                 
                     <SideNav boards={boards} onAddBoard={onAddBoard} />
