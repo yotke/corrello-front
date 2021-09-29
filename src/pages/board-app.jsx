@@ -113,7 +113,7 @@ class _BoardApp extends React.Component {
                     <div className="layout-helper flex column">
                         <MainBoardHeader />
                         <div className="board-content">
-                            <Route path="/board/:boardId/:listId/:cardId" component={CardDetails} />
+                            <Route path="/board/:boardId/:listId/:cardId" exact component={CardDetails} />
                             <DragDropContext onDragEnd={this.handleOnDragEnd}>
                                 <Droppable droppableId="all-lists" direction="horizontal" type="list">
                                     {provided => (

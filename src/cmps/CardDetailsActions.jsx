@@ -35,7 +35,6 @@ class _CardDetailsActions extends Component {
             onClick={(ev) => this.onOpenPopover(ev, 'MEMBERS')}
           >
             <div className="actions-btn-content flex align-center">
-                <h1>member icon place holeder</h1>
               <span>Members</span>
             </div>
          
@@ -47,7 +46,6 @@ class _CardDetailsActions extends Component {
             onClick={(ev) => this.onOpenPopover(ev, 'LABELS')}
           >
             <div className="actions-btn-content flex align-center">
-              <h1>label icon placeholder</h1>
               <span>Labels</span>
             </div>
          
@@ -60,7 +58,6 @@ class _CardDetailsActions extends Component {
             onClick={(ev) => this.onOpenPopover(ev, 'CHECKLIST')}
           >
             <div className="actions-btn-content flex align-center">
-             <h1>chek icon place holder</h1>
               <span>Checklist</span>
             </div>
          
@@ -96,7 +93,6 @@ class _CardDetailsActions extends Component {
             onClick={(ev) => this.onOpenPopover(ev, 'COVER')}
           >
             <div className="actions-btn-content flex align-center">
-             <h1>cover icon place holder</h1>
               <span>Cover</span>
             </div>
          
@@ -121,7 +117,6 @@ class _CardDetailsActions extends Component {
             onClick={(ev) => this.onOpenPopover(ev, 'COPY')}
           >
             <div className="actions-btn-content flex align-center">
-              <h1>copy icon placeholer</h1>
               <span>Copy</span>
             </div>
          

@@ -6,8 +6,13 @@ import { CardDetailsActions } from '../cmps/CardDetailsActions';
 import { onSaveBoard } from '../store/board.actions.js';
 import { openPopover, closePopover } from '../store/popover.actions.js';
 import { Loader } from '../cmps/Loader.jsx';
-import { CardDetailsLabels } from '../cmps/card-details-labels.jsx'
-import { CardChecklists } from '../cmps/card-details/checklist/card-checklists.jsx'
+import { CardDetailsLabels } from '../cmps/card-details-labels.jsx';
+import { CardChecklists } from '../cmps/card-details/checklist/card-checklists.jsx';
+import { DueDateDisplay } from '../cmps/card-details/card-details-dates.jsx';
+import { Description } from '../cmps/card-details/catd-details-discription.jsx';
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
+import { TextareaAutosize } from '@material-ui/core';
+import {ScreenOverlay} from '../cmps/ScreenOverlay.jsx';
 
 class _CardDetails extends React.Component {
   state = {
@@ -45,20 +50,32 @@ class _CardDetails extends React.Component {
   };
 
   get cardLabels() {
-    const { card: { labelIds } } = this.state
-    const { board: { labels } } = this.props
+    const {
+      card: { labelIds },
+    } = this.state;
+    const {
+      board: { labels },
+    } = this.props;
     const cardLabels = labels.reduce((acc, label) => {
-      if (labelIds.find(labelId => labelId === label.id)) acc.push(label)
-      return acc
-    }, [])
-    return cardLabels
+      if (labelIds.find((labelId) => labelId === label.id)) acc.push(label);
+      return acc;
+    }, []);
+    return cardLabels;
   }
 
+
+  goBackToBoard = () => {
+    const { board } = this.props
+    this.props.closePopover()
+    this.props.history.push(`/board/${board._id}`)
+}
+
+
   onSaveCardChecklists = (checklists) => {
-    const { card } = this.state
-    card.checklists = checklists
-    this.setState({ card }, this.onSaveCard())
-  }
+    const { card } = this.state;
+    card.checklists = checklists;
+    this.setState({ card }, this.onSaveCard());
+  };
 
   render() {
     const { board, onSaveBoard, openPopover } = this.props;
@@ -67,48 +84,65 @@ class _CardDetails extends React.Component {
     const { title, members, description, checklists, dueDate, style } = card;
 
     return (
-      <section className="card-details-container flex column">
-        <div className="card-details-header">Card Details</div>
-        <main className="card-details-content flex justify-space-between">
+      <section className="card-details-container flex">
+                        <ScreenOverlay goBack={this.goBackToBoard} styleMode="darken" />
 
-          <div className="card-details-main flex column">
-            <div className="card-details-items-container flex column">
-              {this.cardLabels.length && (
-                <CardDetailsLabels
-                  labels={this.cardLabels}
-                  openPopover={openPopover}
-                  card={card}
-                />
-              )}
+        <div className="card-details  flex column">
+          <div className="header-content">
+          <button
+            onClick={() => this.goBackToBoard()}
+            className={`close-window-btn ${
+              style.coverMode ? 'cover-mode' : ''
+            } flex align-center justify-center`}
+          >
+            <CloseRoundedIcon />
+          </button>
+            <h1>{title}</h1>
+          </div>
+          <main className="card-details-main-container">
+            <div className="card-details-main flex column">
+              <div className="card-details-items flex">
+                {this.cardLabels.length && (
+                  <CardDetailsLabels
+                    labels={this.cardLabels}
+                    openPopover={openPopover}
+                    card={card}
+                  />
+                )}
 
-              {
-                dueDate && <DueDateDisplay card={card} openPopover={openPopover} />
-              }
-            </div>
+                {dueDate && (
+                  <DueDateDisplay card={card} openPopover={openPopover} />
+                )}
+              </div>
 
-            {/* card description left menu side */}
-            <Description  card={card} board={board} onSaveBoard ={onSaveBoard}/>
+              {/* card description left menu side */}
+              <Description
+                card={card}
+                board={board}
+                onSaveBoard={onSaveBoard}
+              />
 
-            {/* <CardDescription
+              {/* <CardDescription
             description={description}
             onSaveCardDescription={this.onSaveCardDescription}
           /> */}
 
-            {/* checkList left side section */}
+              {/* checkList left side section */}
 
-            {(checklists && checklists.length > 0) && <CardChecklists
-              card={card}
-              checklists={checklists}
-              onSaveCardChecklists={this.onSaveCardChecklists}
-            />}
+              {checklists && checklists.length > 0 && (
+                <CardChecklists
+                  card={card}
+                  checklists={checklists}
+                  onSaveCardChecklists={this.onSaveCardChecklists}
+                />
+              )}
 
-            {/* activities left menu */}
+              {/* activities left menu */}
 
-            {/* <CardActivities card={card} activities={activities} /> */}
-          </div>
+              {/* <CardActivities card={card} activities={activities} /> */}
+            </div>
 
-          <div className="card-details-action-container">
-            <div className="card-details-sidebar flex column">
+            <div className="card-details-sidebar flex column full">
               <CardDetailsActions
                 board={board}
                 card={card}
@@ -116,9 +150,8 @@ class _CardDetails extends React.Component {
                 onSaveCardFromActions={this.onSaveCardFromActions}
               />
             </div>
-          </div>
-
-        </main>
+          </main>
+        </div>
       </section>
     );
   }

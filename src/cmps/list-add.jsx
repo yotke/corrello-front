@@ -55,7 +55,7 @@ export class ListAdd extends Component {
               placeholder="list title"
             />
             <div>
-              <button onMouseDown={this.onAddList}>Add list</button>
+              <button className="add-list primary-btn" onMouseDown={this.onAddList}>Add list</button>
               <a onMouseDown={this.toggleListAdd}>x</a>
             </div>
           </div>

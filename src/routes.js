@@ -22,7 +22,7 @@ const routes = [
         label: 'Workspace'
     },
     {
-        path: '/board/:boardId',
+        path: '/board/:boardId/:listId?/:cardId?',
         component: BoardApp,
         label: 'board'
     },
@@ -45,11 +45,6 @@ const routes = [
         path: '/admin',
         component: AdminApp,
         label: 'Admin Only'
-    },
-    {
-        path: '/board/:boardId/:listId/:cardId',
-        component: CardDetails,
-        label: 'Card Details'
     }
 ]
 
