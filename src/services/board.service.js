@@ -31,10 +31,10 @@ _saveToLocalStorage();
 // save inital data(board) to local storage
 // todo
 function _saveToLocalStorage() {
-    console.log('DATA FROM STORAGAE', JSON.stringify(DATA))
-
+    //console.log('DATA FROM STORAGAE',DATA)
+    
     query().then((respone) => {
-        if (!respone.length) storageService.post(STORAGE_KEY, DATA);
+        if (!respone.length) storageService.postMany(STORAGE_KEY, DATA)
     })
 }
 
@@ -60,13 +60,6 @@ function save(board) {
         return storageService.post(STORAGE_KEY, { _id: utilService.makeId(), ...board })
     }
 }
-
-// function getEmptyBoard() {
-//     return {
-//         vendor: 'Susita-' + (Date.now() % 1000),
-//         price: utilService.getRandomIntInclusive(1000, 9000),
-//     }
-// }
 
 function subscribe(listener) {
     listeners.push(listener)
