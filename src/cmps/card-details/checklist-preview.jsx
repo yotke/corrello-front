@@ -48,8 +48,7 @@ export class ChecklistPreview extends Component {
     }
 
     render() {
-
-        const { checklist, onRemoveChecklist, checklistId } = this.props
+        const { checklist, onDeleteChecklist, checklistId } = this.props
 
         return (
             <div className="checklists-container" >
@@ -63,12 +62,11 @@ export class ChecklistPreview extends Component {
                             <TodoPreview todo={todo} index={index} key={index}
                                 checklistId={checklistId}
                                 todoId={todo.id}
-                                onSaveTodo={onSaveTodo}
-                                onRemoveTodo={onRemoveTodo}
-                                onCreateActivity={onCreateActivity}
+                                onSaveTodo={this.onSaveTodo}
+                                onRemoveTodo={this.onRemoveTodo}
                             />)}
                     </ul>
-                    <TodoAdd checklistId={checklistId} onCreateTodo={onCreateTodo} />
+                    <TodoAdd checklistId={checklistId} onCreateTodo={this.onCreateTodo} />
                 </div>
 
             </div>

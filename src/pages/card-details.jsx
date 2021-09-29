@@ -7,6 +7,7 @@ import { onSaveBoard } from '../store/board.actions.js';
 import { openPopover, closePopover } from '../store/popover.actions.js';
 import { Loader } from '../cmps/Loader.jsx';
 import { CardDetailsLabels } from '../cmps/card-details-labels.jsx'
+import { CardChecklists } from '../cmps/card-details/card-checklists.jsx'
 
 class _CardDetails extends React.Component {
   state = {
@@ -43,7 +44,6 @@ class _CardDetails extends React.Component {
     this.setState({ card }, this.onSaveCard());
   };
 
-
   get cardLabels() {
     const { card: { labelIds } } = this.state
     const { board: { labels } } = this.props
@@ -54,6 +54,11 @@ class _CardDetails extends React.Component {
     return cardLabels
   }
 
+  onSaveCardChecklists = (checklists) => {
+    const { card } = this.state
+    card.checklists = checklists
+    this.setState({ card }, this.onSaveCard())
+  }
 
   render() {
     const { board, onSaveBoard, openPopover } = this.props;
@@ -91,11 +96,11 @@ class _CardDetails extends React.Component {
 
             {/* checkList left side section */}
 
-            {/* <CardChecklists
-            card={card}
-            checklists={checklists}
-            onSaveCardChecklists={this.onSaveCardChecklists}
-          /> */}
+            <CardChecklists
+              card={card}
+              checklists={checklists}
+              onSaveCardChecklists={this.onSaveCardChecklists}
+            />
 
             {/* activities left menu */}
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { ChecklistPreview } from './checklist-preview'
+import { boardService } from '../../services/board.service';
 
 export class CardChecklists extends Component {
-
 
     onSaveChecklist = (checklist) => {
         if (!checklist.title) return
@@ -12,22 +12,12 @@ export class CardChecklists extends Component {
         onSaveCardChecklists(checklists)
     }
 
-    onRemoveChecklist = (checklist) => {
+    onDeleteChecklist = (checklist) => {
         let { onSaveCardChecklists, checklists } = this.props
         checklists = checklists.filter(currChecklist => currChecklist.id !== checklist.id)
-        this.onCreateActivity('removed', checklist.title)
         onSaveCardChecklists(checklists)
     }
 
-    onCreateActivity = (type, txt) => {
-        let { card, board, onSaveBoard } = this.props
-        const savedActivity = boardService.createActivity(type, txt, card)
-        socketService.emit('app newActivity',savedActivity)
-        board.activities.unshift(savedActivity)
-        onSaveBoard(board)
-    }
-
-  
     render() {
         const { checklists } = this.props
         return (
@@ -36,9 +26,8 @@ export class CardChecklists extends Component {
                     <ChecklistPreview checklist={checklist}
                         key={checklist.id}
                         checklist={checklist}
-                        onRemoveChecklist={this.onRemoveChecklist}
-                        onSaveChecklist={this.onSaveChecklist}
-                        onCreateActivity={this.onCreateActivity}/>)}
+                        onDeleteChecklist={this.onDeleteChecklist}
+                        onSaveChecklist={this.onSaveChecklist}/>)}
             </section>
         )
 
