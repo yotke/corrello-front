@@ -10,7 +10,11 @@ export class _LoginSignup extends React.Component {
         },
         isSignup: false
     }
-
+    componentDidMount() {
+        const { isSignup } = this.props
+  
+        this.setState({ isSignup })
+    }
     clearState = () => {
         const clearTemplate = {
             credentials: {
@@ -21,7 +25,7 @@ export class _LoginSignup extends React.Component {
             isSignup: false
         }
         this.setState({ clearTemplate })
-        const {user} =this.props
+        const { user } = this.props
         this.props.history.push('/')
     }
 

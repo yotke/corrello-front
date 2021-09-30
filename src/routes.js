@@ -27,7 +27,7 @@ const routes = [
         label: 'board'
     },
     {
-        path: '/login',
+        path: '/log/:loginSignup?/:email?/',
         component: LoginSignupPage,
         label: 'login'
     },

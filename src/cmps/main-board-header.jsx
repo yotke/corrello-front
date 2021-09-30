@@ -19,8 +19,8 @@ class _MainBoardHeader extends Component {
         const { title } = this.state
         return (
             <div className="main-board-header">
-                <div className="board-title" >       
-                        <h1>{title}</h1>
+                <div className="board-title" >
+                    <h1>{title}</h1>
                 </div>
                 <div className="flex header-section">
                 </div>
@@ -39,7 +39,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    
+
 }
 
 export const MainBoardHeader = connect(mapStateToProps, mapDispatchToProps)(_MainBoardHeader)
