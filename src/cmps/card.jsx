@@ -8,33 +8,33 @@ import { CardPreviewLabel } from './card-preview/card-preview-labels'
 class _Card extends Component {
 
     componentDidMount() {
+        
     }
+
+    
 
     render() {
         const { card, board } = this.props
         const mystyle = {
-            color: "white",
-            backgroundColor: "DodgerBlue",
-            padding: "10px",
-            fontFamily: "Arial"
+            backgroundColor: card.style.bgColor,
+            backgroundImage: "url(" + card.style.background + ")",
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+            backgroundPosition: 'center'
         };
         return (
 
             <div className="card-preview-container">
-                <header className="card-header" style={card.style&&{
-                    backgroundColor: card.style.bgColor,
-                    backgroundImage: "url(" + board.style.background + ")",
-                    backgroundRepeat: 'no-repeat',
-                    backgroundAttachment: 'fixed',
-                    backgroundPosition: 'center'
-                    }}>
+                <div className="card-preview">
+                <div className="card-preview-header" style={mystyle}>
+                </div>
+                    <div className="card-preview-labels">
 
-                </header>
-                <main>
                     {card.labelIds && card.labelIds.map(labelId => <CardPreviewLabel key={labelId} labelId={labelId} labels={board.labels} isArchived={card.isArchived} />)}
-                    <h4 className="card-title">{card.title}</h4>
+                    </div>
+                    <div className="card-preview-name clean-link">{card.title}</div>
                     {/* {card.description && <h5>{card.description}</h5>} */}
-                </main>
+                    </div>
             </div>
         )
     }
