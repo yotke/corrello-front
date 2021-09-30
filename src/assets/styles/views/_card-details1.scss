@@ -11,8 +11,11 @@
     color: $clr7;
     background-color: #f4f5f7;
     border-radius: 2px;
-    margin: 48px 0 80px;
-    position: relative;
+    position: fixed;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 97%;
     width: 768px;
     z-index: 25;
 

@@ -24,15 +24,31 @@ class _BoardApp extends React.Component {
 
     async componentDidMount() {
         try {
-            console.log('board componnet mounted')
             const { boardId } = this.props.match.params
             await this.props.loadBoard(boardId)
             await this.props.loadBoards()
-
         }
         catch (err) {
             console.log(err);
         }
+        
+        this.unlisten = this.props.history.listen((location) => {
+            const splittedPath = location.pathname.split('/');
+            
+            const boardId = splittedPath[2];
+            if (!boardId || boardId === this.props.match.params.boardId) return;
+            console.log('Loading board from URL watcher - need to be ONLY on BOARD change!!!');
+            this.onBoardChange(boardId)
+          });
+
+    }
+
+    componentWillUnmount() {
+        this.unlisten();
+    }
+
+    onBoardChange = (boardId) => {
+         this.props.loadBoard(boardId)
     }
 
     onRemoveBoard = (boardId) => {
