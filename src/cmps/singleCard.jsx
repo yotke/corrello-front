@@ -23,7 +23,7 @@ class _Card extends Component {
             <div className="card-preview-container">
                 <header className="card-header" style={card.style&&{
                     backgroundColor: card.style.bgColor,
-                    backgroundImage: "url(" + board.style.background + ")",
+                    backgroundImage: "url(" + card.style.background + ")",
                     backgroundRepeat: 'no-repeat',
                     backgroundAttachment: 'fixed',
                     backgroundPosition: 'center'

@@ -110,7 +110,7 @@ class _BoardApp extends React.Component {
             <>
                 <section className="main-board flex row">
                     <SideNav boards={boards} isMainBoard={isMainBoard} />
-                    <div className="layout-helper flex column">
+                    <div className="flex column">
                         <MainBoardHeader />
                         <div className="board-content">
                             <Route path="/board/:boardId/:listId/:cardId" exact component={CardDetails} />
