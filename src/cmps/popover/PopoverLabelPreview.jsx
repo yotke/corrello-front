@@ -13,10 +13,6 @@ export function PopoverLabelPreview({ label, toggleLabel, isSelected, toggleEdit
                         <CheckIcon style={{ width: '16px', height: '16px', color: 'white' }} />
                     </span>}
                 </div>
-                <div className="flex align-center justify-center">
-                    <EditIcon style={{ width: '16px', height: '16px', color: '#42526e' }}
-                        onClick={() => toggleEditMode(label)} />
-                </div>
             </>
             :
             <div className="filter-label-preview flex align-center"
