@@ -12,6 +12,7 @@ export class _LoginSignup extends React.Component {
     }
     componentDidMount() {
         const { isSignup } = this.props
+  
         this.setState({ isSignup })
     }
     clearState = () => {
