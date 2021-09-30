@@ -56,7 +56,7 @@ export class CardAdd extends Component {
         return (
             <div className="card-add">
                 <TextareaAutosize className="card-add-input" ref={(textArea) => this.textArea = textArea} value={titleTxt} autoFocus onChange={this.handleChange} onKeyDown={this.handleChange} placeholder="Enter a title for this card..." aria-label="empty textarea" />
-                <div>
+                <div className="card-add-active">
                     <button className="primary-btn" onMouseDown={this.onAddCard}>Add card</button>
                     <a className="clean-link" onMouseDown={() => toggleCardAdd()} > x </a>
                 </div>
