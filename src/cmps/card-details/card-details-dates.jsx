@@ -10,11 +10,14 @@ export class DueDateDisplay extends React.Component {
         const { card } = this.props
         const { isChecked } = this.state
         return (
-            <section className="date-card-details-container">
+            <section className="date-card-details-container ">
+                <h3>Due date</h3>
+
+                <div>
                 <input type="checkbox" onChange={() => {
                     this.setState({ isChecked: !isChecked })
                 }} />
-                <button className="due-date-change-btn" onClick={(ev) => {
+                <button className="due-date-change-btn secondary-btn" onClick={(ev) => {
 
                     const elPos = ev.target.getBoundingClientRect();
                     const props = {
@@ -28,6 +31,8 @@ export class DueDateDisplay extends React.Component {
                     {!isChecked && <span className="due-date-status-btn" >Due Soon</span>}
                     {isChecked && <span className="due-date-status-btn">Complete</span>}
                 </button>
+
+                </div>
             </section>
         )
     }

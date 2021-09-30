@@ -1,38 +1,15 @@
 .add-todo {
+  display: flex;
+  width: 100%;
+
+  .btn-add-todo {
     display: flex;
-    width: 100%;
 
-    .btn-add-todo  {
-        display: flex;
-
-        .activity-creator-member {
-            .activity-creator-member-avatar {
-                height: 30px;
-                width: 30px;
-            }
-        }
+    .activity-creator-member {
+      .activity-creator-member-avatar {
+        height: 30px;
+        width: 30px;
+      }
     }
-    .activity-desc {
-    }
+  }
 }
-
-
-
-
-
-// <div className="add-todo">
-// <button className={`btn-add-todo ${isEditMode ? 'hidden' : 'show'}`} onClick={this.addTodo}>Add an item</button>
-// {isEditMode && <div>
-//     <TextareaAutosize className="card-add-input"
-//         onBlur={() => this.onEditMode()}
-//         onChange={this.handleChange}
-//         onKeyDown={(ev) => this.onAddTodo(ev)}
-//         value={title}
-//         autoFocus
-//         placeholder="Add an item"
-//         autoCorrect="false"
-//         aria-label="empty textarea" />
-//     <button className="btn-add-todo" onClick={this.addTodo}>Save</button>
-// </div>
-// }
-// </div>
