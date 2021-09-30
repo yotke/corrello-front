@@ -15,9 +15,7 @@ class _Workspace extends React.Component {
     }
     componentDidMount() {
         this.props.loadBoards()
-
     }
-
     onRemoveBoard = (boardId) => {
         this.props.onRemoveBoard(boardId)
     }
@@ -34,15 +32,12 @@ class _Workspace extends React.Component {
                 <div className="workspace-sticky-cotainter">
 
                     <SideNav boards={boards} onAddBoard={onAddBoard} />
-
-
-                    <div classname = "main-board-preview">
+                    <div classname="main-board-preview">
                         <div className="workspace-header">
                             <WorkspaceHeader />
                             <WorkspaceNavBar />
                         </div>
                         <div className="all-boards-main">
-
                             <BoardPreview boards={boards} />
                         </div>
                     </div>
