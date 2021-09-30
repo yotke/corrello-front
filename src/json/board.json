@@ -1,4 +1,1095 @@
-[
+[	
+    {
+    "_id": "b104",
+    "title": "Page Workspace Create",
+    "createdAt": 1589983468418,
+    "createdBy": {
+        "_id": "u101",
+        "fullname": "Koren Turgman",
+        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+    },
+    "style": {
+        "background": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/4fce7c48d01c5fd72b9f51b8d03ab79d/photo-1505751172876-fa1923c5c528.jpg"
+    },
+    "labels": [
+        {
+            "id": "l201",
+            "title": "Green",
+            "color": "#61bd4f"
+        },
+        {
+            "id": "l202",
+            "title": "Yellow",
+            "color": "#f2d600"
+        },
+        {
+            "id": "l203",
+            "title": "Red",
+            "color": "#eb5a46"
+        },
+        {
+            "id": "l204",
+            "title": "v trending down",
+            "color": "#ff9f1a"
+        }	
+    ],
+    "members": [
+        {
+            "_id": "u101",
+            "fullname": "Koren Turgman",
+            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+        },
+        {
+            "_id": "u102",
+            "fullname": "Yotam Elia",
+            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U0276DVNY2F-f2361f5e4429-512"
+        },
+        {
+            "_id": "u103",
+            "fullname": "Pavel Kabakov",
+            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+        }
+    ],
+    "lists": [
+        {
+            "id": "g301",
+            "title": "Instructions for Facilitator",
+            "cards": [
+                {
+                    "id": "c2011",
+                    "title": "Preparation",
+                    "description": "This template may be used to run Health Monitors in person or remotely over video conferencing. To use this template: Copy the template Make the new board based on the template private Give the new board a name such as [Team Name] Health Monitor [dd-MMM-YYYY] (Private) Work with the person requesting th Health Monitor to order the attributes (lists) in the order in which they'd like to cover them in case there isn't time to go through all of the attributes Add the people who will participate in the Health Monitor (double-check with the person requesting the Health Monitor whether they would like to include the manager(s) of the team) Archive this list once you are done with preparing the board",
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                },
+                {
+                    "id": "c2012",
+                    "title": "Post-Meeting",
+                    "description": "After the meeting is over Tally the number of votes on each card and enter them into the # Votes field. Remove members from all cards. Double-checkthat your notes don't link opinions back to individuals. Copy the board Give the new board a name such as [Team Name] Health Monitor [dd-MMM-YYYY]Open the board up to the broader team",
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                },
+                {
+                    "id": "c2014",
+                    "title": "Tips",
+                    "description": "If the team is new to doing Health Monitors, take some time to explain what a Health Monitor is, why the team is doing one and how it works. Even if the team has done these for years, some reminders are still helpful to hear at the start of a Health Monitor. Here are a few suggestion: Individual names will be scrubbed before making the results of this Health Monitor public. Honesty is key. There are no right or wrong answers. Everyone's opinion is valid. Focus on observations and resist the temptation to solve problems while going through the attributes The purpose of the Health Monitor is to help the team, not to compare teams with one another. A lot of us belong to many different teams, for this exercise, focus on this team, the team doing the Health Monitor, when responding.If the team had follow-up items from a previous Health Monitor, review those first. Run a practice voting round to make sure that everyone understands how to vote by tapping the space bar while hovering over the card that they'd like to vote on. Save at least 10 minutes at the end to ensure that there is time to discuss next steps. Ask clarifying questions. When coming up with next steps, try to identify an owner and agree to a target date for the action items. If you're doing the Health Monitor in person in an office, make sure that you have a suitable space set up (e.g., consider size, privacy, and wi-fi). For more on the Atlassian Health Monitor: https://www.atlassian.com/team-playbook/health-monitor",
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "g302",
+            "title": "Meta",
+            "cards": [
+                {
+                    "id": "c202",
+                    "title": "How does this board work?",
+                    "description": "For each of the lists to the right: The facilitator will read each attribute's statements. When the facilitator indicates to do so, the participants will add their avatar to either the green, yellow, or red card for that statement to indicate their vote. For each card with votes, a participant will share why they voted for that color.",
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    },
+                    "style": {
+                        "background": "https://d2k1ftgv7pobq7.cloudfront.net/images/stickers/taco-confused.png"
+                       
+                    }
+                }
+            ]
+        },
+        {
+            "id": "g303",
+            "title": "Fun",
+            "cards": [
+                {
+                    "id": "c203432",
+                    "title": "Fun",
+                    "description": "We love going to work and have a great fun working together. ↔ Booooooooooring....",
+                    "labelIds": [
+                        "l201"
+                    ], 
+                    "attachments" :[{
+                        "id": "AtGamF2",
+                        "title": "Design",
+                        "imgUrl": "https://trello.com/1/cards/5d92883f9470d0881c3799a1/attachments/5d9288419470d0881c379aca/download/icons8-crazy-80.png"
+                    }
+                    ],
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    },
+                    "style": {
+                        "background": "https://trello.com/1/cards/5d92883f9470d0881c3799a1/attachments/5d9288419470d0881c379aca/download/icons8-crazy-80.png"
+                       
+                    }
+                },
+                {
+                    "id": "c20442",
+                    "title": "We love going to work and have great fun working together.",
+                    "labelIds": [
+                        "l201"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                },
+                {
+                    "id": "c2e442",
+                    "title": "Somewhere in between",
+                    "labelIds": [
+                        "l202"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                },
+                {
+                    "id": "c2e4g2",
+                    "title": "Booooooooooring....",
+                    "labelIds": [
+                        "l203"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "g304",
+            "title": "Teamwork",
+            "cards": [
+                {
+                    "id": "c20cs4",
+                    "title": "Teamwork",
+                    "description": "We are a totally gelled super-team with awesome collaboration! ↔ We are a bunch of individuals that neither know nor care about what the other people in the squad are doing.they should be pulled off Todo. When doing is done, cards move to Code Review.",
+                    "labelIds": [
+                        "l202",
+                        "l204"
+                    ], 
+                    "attachments" :[{
+                        "id": "AtGamF2",
+                        "title": "Design",
+                        "imgUrl": "https://trello.com/1/cards/5d92883f9470d0881c3799e5/attachments/5d9288419470d0881c379aee/download/icons8-people-80.png"
+                    }],
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    },
+                    "style": {
+                        "background": "https://trello.com/1/cards/5d92883f9470d0881c3799e5/attachments/5d9288419470d0881c379aee/download/icons8-people-80.png"
+                       
+                    }
+                },
+                {
+                    "id": "c2e442",
+                    "title": "Somewhere in between",
+                    "labelIds": [
+                        "l202"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                },
+                {
+                    "id": "c2e4g2",
+                    "title": "We have no idea why we are here, there's no high level picture or focus. Our so called mission is completely unclear and uninspiring.",
+                    "labelIds": [
+                        "l203"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "g305",
+            "title": "Shared mission",
+            "cards": [
+                {
+                    "id": "c20cs4",
+                    "title": "Shared mission",
+                    "description": "We know exactly why we are here and we're really excited about it! ↔ We have no idea why we are here, there's no high level picture or focus. Our so called mission is completely unclear and uninspiring.",
+                    "labelIds": [
+                        "l201"
+                    ], 
+                    "attachments" :[{
+                        "id": "AtGamF2",
+                        "title": "Design",
+                        "imgUrl": "https://trello.com/1/cards/5d92883f9470d0881c379987/attachments/5d9288419470d0881c379ab5/download/icons8-mission-80.png"
+                    }],
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    },
+                    "style": {
+                        "background": "https://trello.com/1/cards/5d92883f9470d0881c379987/attachments/5d9288419470d0881c379ab5/download/icons8-mission-80.png"
+                       
+                    }
+                },
+                {
+                    "id": "c2e442",
+                    "title": "Somewhere in between",
+                    "labelIds": [
+                        "l202"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                },
+                {
+                    "id": "c2e4g2",
+                    "title": "We deliver hogwash. We feel ashamed to deliver it. Our stakeholders hate us.",
+                    "labelIds": [
+                        "l203"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "g306",
+            "title": "Delivering value",
+            "cards": [
+                {
+                    "id": "c20c24",
+                    "title": "Delivering value",
+                    "description": "We deliver great stuff! We're proud of it and our stakeholders are really happy. ↔We deliver hogwash. We feel ashamed to deliver it. Our stakeholders hate us.",
+                    "labelIds": [
+                        "l204"
+                    ], 
+                    "attachments" :[{
+                        "id": "AtGamF2",
+                        "title": "Design",
+                        "imgUrl": "https://trello.com/1/cards/5d92883f9470d0881c3799a9/attachments/5d9288419470d0881c379acf/download/icons8-garden-gloves-80.png"
+                    }
+                    ],
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    },
+                    "style": {
+                        "background": "https://trello.com/1/cards/5d92883f9470d0881c3799a9/attachments/5d9288419470d0881c379acf/download/icons8-garden-gloves-80.png"
+                       
+                    }
+                },
+                {
+                    "id": "c2e4fd",
+                    "title": "We deliver great stuff! We're proud of it and our stakeholders are really happy.",
+                    "labelIds": [
+                        "l201"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }							
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                },
+                {
+                    "id": "c2e4s2",
+                    "title": "Somewhere in between",
+                    "labelIds": [
+                        "l202"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }							
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                },
+                {
+                    "id": "c2e422",
+                    "title": "We deliver hogwash. We feel ashamed to deliver it. Our stakeholders hate us.",
+                    "labelIds": [
+                        "l203"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }							
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "g307",
+            "title": "Suitable Process and Easy to Ship",
+            "cards": [
+                {
+                    "id": "c2te24",
+                    "title": "Suitable Process and Easy to Ship",
+                    "description": "Shipping is simple, safe, painless and mostly automated. Our way of working fits us perfectly! ↔ Shipping is risky, painful, lots of manual work and takes forever. Our way of working is miserable!",
+                    "labelIds": [
+                        "l204"
+                    ], 
+                    "attachments" :[{
+                        "id": "AtGamF2",
+                        "title": "Design",
+                        "imgUrl": "https://trello.com/1/cards/5d92883f9470d0881c3799f4/attachments/5d9288419470d0881c379af3/download/ship.png"
+                    }],
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }							
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    },
+                    "style": {
+                        "background": "https://trello.com/1/cards/5d92883f9470d0881c3799f4/attachments/5d9288419470d0881c379af3/download/ship.png"
+                       
+                    }
+                },
+                {
+                    "id": "c2etwqad",
+                    "title": "Shipping is simple, safe, painless and mostly automated. Our way of working fits us perfectly!",
+                    "labelIds": [
+                        "l201"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                },
+                {
+                    "id": "c2dsa2",
+                    "title": "Somewhere in between",
+                    "labelIds": [
+                        "l202"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                },
+                {
+                    "id": "c2esd2",
+                    "title": "Shipping is risky, painful, lots of manual work and takes forever. Our way of working is miserable!",
+                    "labelIds": [
+                        "l203"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "g308",
+            "title": "Velocity/Speed",
+            "cards": [
+                {
+                    "id": "c2ew24",
+                    "title": "Velocity/Speed",
+                    "description": "We get stuff done really quickly! No waiting and no delays. ↔ We never seem to get anything done. We keep getting stuck or interrupted. Stories keep getting stuck on dependencies.",
+                    "labelIds": [
+                        "l204"
+                    ], 
+                    "attachments" :[{
+                        "id": "AtGamF2",
+                        "title": "Design",
+                        "imgUrl": "https://trello.com/1/cards/5d92883f9470d0881c379991/attachments/5d9288419470d0881c379ac0/download/icons8-leopard-80.png"
+                    }],
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }							
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    },
+                    "style": {
+                        "background": "https://trello.com/1/cards/5d92883f9470d0881c3799f4/attachments/5d9288419470d0881c379af3/download/ship.png"
+                    }
+                },
+                {
+                    "id": "c2bdqad",
+                    "title": "We get stuff done really quickly! No waiting and no delays.",
+                    "labelIds": [
+                        "l201"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                },
+                {
+                    "id": "c2dfa2",
+                    "title": "Somewhere in between",
+                    "labelIds": [
+                        "l202"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                },
+                {
+                    "id": "c2ead2",
+                    "title": "We never seem to get anything done. We keep getting stuck or interrupted. Stories keep getting stuck on dependencies.",
+                    "labelIds": [
+                        "l203"
+                    ], 
+                    "members": [
+                        {
+                            "_id": "u101",
+                            "username": "koren",
+                            "fullname": "Koren Turgman",
+                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        },
+                        {
+                            "_id": "u102",
+                            "username": "yotam",
+                            "fullname": "Yotam Elia",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                        },
+                        {
+                            "_id": "u103",
+                            "username": "pavel",
+                            "fullname": "Pavel Kabakov",
+                            "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+                        }								
+                    ],
+                    "createdAt": 1590999730348,
+                    "dueDate": 16156215211,
+                    "byMember": {
+                        "_id": "u101",
+                        "username": "yotam",
+                        "fullname": "Yotam Elia",
+                        "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+                    }
+                }
+            ]
+        }				
+    ],
+    "activities": [
+        {
+            "id": "a101",
+            "txt": "Changed Color",
+            "createdAt": 154514,
+            "byMember": {
+                "_id": "u101",
+                "fullname": "Koren Turgman",
+                "imgUrl": "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+            },
+            "card": {
+                "id": "c205234",
+                "title": "Code Review"
+            }
+        }
+    ]
+}
+
+
+
+
+    ,
     {
         "_id": "b102",
         "title": "Simple Project Board",
@@ -62,8 +1153,8 @@
                 "cards": [
                     {
                         "id": "c201",
-                        "title": "✋🏿 Move anything 'ready' here",
-                        "description": "Sport pertains to any form of competitive physical activity or game that aims to use,maintain or improve physical ability and skills while providing enjoyment to participants and,in some cases, entertainment to spectators. Sports can, through casual or organized participation, improve one's physical health.",
+                        "title": "✋🏿 HomeWork and Workspace - layout",
+                        "description": "",
                         "labelIds": [
                             "l202",
                             "l203"
