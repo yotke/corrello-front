@@ -11,8 +11,6 @@ class _Card extends Component {
         
     }
 
-    
-
     render() {
         const { card, board } = this.props
         const mystyle = {
