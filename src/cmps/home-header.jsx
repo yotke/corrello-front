@@ -37,10 +37,10 @@ export class HomeHeader extends Component {
                     </div>
                 
                     <div className="nav-btns ">
-                        <Link to="/login" className="login-btn clean-link">
+                        <Link to="log/login" className="login-btn clean-link">
                             Log in
                         </Link>
-                        <Link to="/signup" className="signup-btn clean-link">
+                        <Link to="log/signup" className="signup-btn clean-link">
                             Sign up
                         </Link>
                     </div>

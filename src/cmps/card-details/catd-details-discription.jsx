@@ -9,21 +9,6 @@ export class Description extends React.Component {
     description: 'new description'
   }
 
-  // toggleEdit = () => {
-  //   const { description } = this.props
-  //   const { isOnEditState } = this.state;
-  //   if (description)
-  //     this.setState({ isOnEditState: !isOnEditState }, description: card.Description);
-  // };
-  // onSaveDescription = () => {
-  //   this.toggleEdit();
-  //   const { description } = this.state
-  //   card.Description =this.
-  //     const updatedBoard = boardService.updateCardInBoard(board, card)
-  //   onSaveBoard(updatedBoard)
-  //   onSaveBoard(board);
-  // };
-
 
   onSaveDescription = () => {
     const { description } = this.state

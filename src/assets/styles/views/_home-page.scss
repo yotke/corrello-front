@@ -84,13 +84,30 @@
     margin: auto;
   }
   button{
-    border-radius: 6px;
-    border: none;
-    outline: none;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
     font-size: 1.25rem;
-    line-height: 2.75rem;
-    letter-spacing: 1px;
-    color: #fff;
-    background-color: #0065ff;
-  }
+    line-height: 1.5;
+    border-radius: 6px;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    &:hover{
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      // font-size: 1.25rem;
+      // line-height: 2.75rem;
+      letter-spacing: 1px;
+      color: #fff;
+      background-color: #0065ff;
+    }
+    }
 }
