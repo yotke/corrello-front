@@ -32,7 +32,7 @@ class _Workspace extends React.Component {
                 <div className="workspace-sticky-cotainter">
 
                     <SideNav boards={boards} onAddBoard={onAddBoard} />
-                    <div classname="main-board-preview">
+                    <div className="main-board-preview">
                         <div className="workspace-header">
                             <WorkspaceHeader />
                             <WorkspaceNavBar />
