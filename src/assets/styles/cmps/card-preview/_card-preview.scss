@@ -1,11 +1,94 @@
-.card-preview{
-    .card-content{
-        overflow: hidden;
-        padding: 6px 8px 2px;
-        position: relative;
-        z-index: 10;
-        width: 100%;
-        height: 100%;
-        min-height: 100px;
+.card-preview-container {
+  position: relative;
+
+  @include for-wide-layout {
+    &:hover {
+      filter: brightness(95%);
+      .card-preview-edit-btn {
+        background-color: rgba(#f4f5f7, 0.8);
+        opacity: 1;
+      }
     }
+  }
+
+  .card-preview-header {
+    height: 32px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-bottom: 3px;
+  }
+
+  .card-preview-edit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    opacity: 0;
+
+    border-radius: $borderRad1;
+    width: 28px;
+    height: 28px;
+    z-index: 1;
+    top: 2px;
+    right: 2px;
+    bottom: 2x;
+
+    svg {
+      color: #6b778c;
+      height: 16px;
+      width: 16px;
+      line-height: 16px;
+      color: $clr3;
+    }
+    &:hover {
+      svg {
+        color: #172b4d;
+      }
+      filter: brightness(95%);
+      // background-color: #ebecf0;
+    }
+  }
+  .card-preview {
+    background-color: #fff;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    display: block;
+    max-width: 300px;
+    min-height: 20px;
+    position: relative;
+    text-decoration: none;
+    z-index: 0;
+
+    overflow: hidden;
+    box-shadow: 0px 1px 0 #c0c6d0;
+
+    .card-preview-labels {
+      display: flex;
+      flex-wrap: wrap;
+      > *:not(:last-child) {
+        margin-inline-end: 4px;
+      }
+    }
+
+    .card-preview-name {
+      word-break: break-word;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+}
+
+.card-content {
+  overflow: hidden;
+  padding: 6px 8px 2px;
+  position: relative;
+  z-index: 10;
 }

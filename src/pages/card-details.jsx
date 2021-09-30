@@ -88,6 +88,7 @@ class _CardDetails extends React.Component {
                         <ScreenOverlay goBack={this.goBackToBoard} styleMode="darken" />
 
         <div className="card-details  flex column">
+          <div className="card-details-header">
           <div className="header-content">
           <button
             onClick={() => this.goBackToBoard()}
@@ -97,10 +98,11 @@ class _CardDetails extends React.Component {
           >
             <CloseRoundedIcon />
           </button>
-            <h1>{title}</h1>
+          </div>
           </div>
           <main className="card-details-main-container">
             <div className="card-details-main flex column">
+           
               <div className="card-details-items flex">
                 {this.cardLabels.length && (
                   <CardDetailsLabels
