@@ -10,10 +10,12 @@ class _CardDetailsActions extends Component {
 
 
   onOpenPopover = (ev, PopoverName) => {
+    //debugger
     const elPos = ev.target.getBoundingClientRect();
     const props = {
       card: this.props.card,
     };
+    console.log("PROPS", props)
     this.props.openPopover(PopoverName, elPos, props);
   };
 
@@ -77,6 +79,7 @@ class _CardDetailsActions extends Component {
 
           {/* attach side button  */}
           <button
+          
             className="secondary-btn actions-btn"
             onClick={(ev) => this.onOpenPopover(ev, 'ATTACH')}
           >

@@ -20,11 +20,14 @@ class _HomePage extends React.Component {
                 <HomeHeader user={user} />
                 <div className="first-home-page-container">
                     <div className="introduction-signup">
-                        <p className="first-part-txt">
+                        <div className="first-part-txt">
                             <h1>Trello helps teams move work forward.</h1>
-                            Collaborate, manage projects, and reach new productivity peaks.
-                            From high rises to the home office, the way your team works is unique—accomplish it all with Trello.
-                        </p>
+                            <p>
+                                Collaborate, manage projects, and reach new productivity peaks.
+                                From high rises to the home office, the way your team works is unique—accomplish it all with Trello.
+                            </p>
+                        
+                        </div>
                         <div className="btn-homepage-signup">
                             <input name="email" className="form-control h-100" type="email" placeholder="Email" onChange={(ev) => { this.handleChange(ev) }} />
                             <button type="submit" data-analytics-button="greenSignupHeroButton" className="btn btn-home-page-submit" onClick={() => {
