@@ -78,6 +78,7 @@ class _CardDetailsActions extends Component {
 
           {/* attach side button  */}
           <button
+          
             className="secondary-btn actions-btn"
             onClick={(ev) => this.onOpenPopover(ev, 'ATTACH')}
           >
