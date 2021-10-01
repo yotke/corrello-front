@@ -13,6 +13,8 @@ import { Description } from '../cmps/card-details/card-details-discription.jsx';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { TextareaAutosize } from '@material-ui/core';
 import {ScreenOverlay} from '../cmps/ScreenOverlay.jsx';
+import { CardDetailsMembers } from '../cmps/card-details-members.jsx'
+
 
 class _CardDetails extends React.Component {
   state = {
@@ -82,7 +84,7 @@ class _CardDetails extends React.Component {
     const { card, list } = this.state;
     if (!card) return <Loader />;
     const { title, members, description, checklists, dueDate, style } = card;
-
+    //debugger
     return (
       <section className="card-details-container flex">
                         <ScreenOverlay goBack={this.goBackToBoard} styleMode="darken" />
@@ -105,6 +107,12 @@ class _CardDetails extends React.Component {
             <div className="card-details-main flex column">
            
               <div className="card-details-items flex">
+                
+              {(members && members.length) && <CardDetailsMembers
+                                    members={members}
+                                    openPopover={openPopover}
+                                    card={card} />}
+                
                 {this.cardLabels.length && (
                   <CardDetailsLabels
                     labels={this.cardLabels}

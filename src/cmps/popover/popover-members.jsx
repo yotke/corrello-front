@@ -5,7 +5,7 @@ import { PopoverMemberPreview } from './popover-member-preview'
 import { onSaveBoard } from '../../store/board.actions.js';
 import { connect } from 'react-redux'
 import { socketService } from '../../services/socket.service'
-
+import { onLogin, onSignup, onGoogleLogin } from '../../store/user.actions.js'
 
 
 class _PopoverMembers extends Component {
@@ -30,25 +30,11 @@ class _PopoverMembers extends Component {
     toggleMember = (member) => {
         const { card, board, loggedInUser } = this.props
         const idx = card.members.findIndex(cardMember => cardMember._id === member._id)
-        let savedActivity
         if (idx === -1) {
             card.members.push(member)
-            if (member._id === loggedInUser._id) {
-                savedActivity = boardService.createActivity('joined', '', card)
-            } else {
-                savedActivity = boardService.createActivity('added', member.fullname, card)
-            }
         } else {
             card.members.splice(idx, 1)
-            if (member._id === loggedInUser._id) {
-                savedActivity = boardService.createActivity('left', '', card)
-            } else {
-                savedActivity = boardService.createActivity('removed', member.fullname, card)
-            }
-
         }
-        //socketService.emit('app newActivity', savedActivity)
-        board.activities.unshift(savedActivity)
         const updatedBoard = boardService.updateCardInBoard(board, card)
         this.props.onSaveBoard(updatedBoard)
     }

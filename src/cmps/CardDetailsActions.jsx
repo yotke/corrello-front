@@ -15,6 +15,7 @@ class _CardDetailsActions extends Component {
     const props = {
       card: this.props.card,
     };
+    console.log("PROPS", props)
     this.props.openPopover(PopoverName, elPos, props);
   };
 
