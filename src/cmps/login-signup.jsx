@@ -1,6 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { onLogin, onSignup, onGoogleLogin } from '../store/user.actions.js'
+
+
 export class _LoginSignup extends React.Component {
     state = {
         credentials: {
@@ -117,4 +120,22 @@ export class _LoginSignup extends React.Component {
         )
     }
 }
-export const LoginSignup = withRouter(_LoginSignup)
+
+function mapStateToProps(state) {
+    return {
+        loggedInUser: state.appModule.loggedInUser,
+        loginErr: state.appModule.loginErr
+    }
+}
+
+
+const mapDispatchToProps = {
+    onLogin,
+    onSignup,
+    onGoogleLogin
+}
+
+export const LoginSignup = connect(mapStateToProps, mapDispatchToProps)(withRouter(_LoginSignup))
+
+
+//export const LoginSignup = withRouter(_LoginSignup)
