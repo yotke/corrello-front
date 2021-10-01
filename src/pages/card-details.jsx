@@ -9,7 +9,7 @@ import { Loader } from '../cmps/Loader.jsx';
 import { CardDetailsLabels } from '../cmps/card-details-labels.jsx';
 import { CardChecklists } from '../cmps/card-details/checklist/card-checklists.jsx';
 import { DueDateDisplay } from '../cmps/card-details/card-details-dates.jsx';
-import { Description } from '../cmps/card-details/catd-details-discription.jsx';
+import { Description } from '../cmps/card-details/card-details-discription.jsx';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { TextareaAutosize } from '@material-ui/core';
 import {ScreenOverlay} from '../cmps/ScreenOverlay.jsx';
