@@ -7,7 +7,7 @@ export class WorkspaceNavBar extends React.Component {
         return (
             <div className="nav-bar-workspace-container-horizontal">
                 <ul className="nav-bar-workspace-horizontal">
-                    <li class="tabbed-pane-nav-item clean-list">
+                    <li className="tabbed-pane-nav-item clean-list">
                         <button className="tabbed-pane-nav-item-button js-org-profile active">Boards</button>
                     </li>
                 </ul>
