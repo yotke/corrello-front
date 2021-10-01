@@ -34,8 +34,8 @@ class _Workspace extends React.Component {
                     <SideNav boards={boards} onAddBoard={onAddBoard} />
                     <div className="main-board-preview">
                         <div className="workspace-header">
-                            <WorkspaceHeader />
-                            <WorkspaceNavBar />
+                            {/* <WorkspaceHeader /> */}
+                            {/* <WorkspaceNavBar /> */}
                         </div>
                         <div className="all-boards-main">
                             <BoardPreview boards={boards} />

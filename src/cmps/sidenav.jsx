@@ -45,18 +45,22 @@ export class SideNav extends React.Component {
             </div>
           </div>
           <div className="all-boards">
-            <ul className="board-list">
+            <ul className="board-list-navbar">
               {boards.map((board) => {
                 return (
-                  <Link to={`/board/${board._id}`} key={board._id} >
-                    <li className="board-preview" key={board._id} style={board.style && {
+                  <Link to={`/board/${board._id}`} key={board._id} className="clean-link">
+                    <div className="nav-bar-btns flex row">
+                    <li className="board-preview-navbar" key={board._id} style={board.style && {
                       backgroundImage: "url(" + board.style.background + ")",
                       backgroundRepeat: 'no-repeat',
                       backgroundAttachment: 'fixed',
                       backgroundPosition: 'center'
                     }}>
-                      {board.title}
+    
                     </li>
+
+                      <h4 className="nav-bar-btns-name">{board.title}</h4>
+                    </div>
                   </Link>
                 );
               })}

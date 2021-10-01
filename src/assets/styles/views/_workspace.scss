@@ -2,10 +2,7 @@
   .workspace-sticky-cotainter {
     display: flex;
     flex-direction: row;
-    flex: 1 1 0%;
     position: relative;
-    overflow-y: auto;
-    height: 90vh;
   }
   .nav-bar-workspace-container {
     display: flex;
@@ -37,9 +34,6 @@
       flex-direction: column;
     }
   }
-  .main-board-preview {
-    min-width: 100%;
-  }
 }
 button {
   color: rgb(107, 119, 140);
@@ -50,5 +44,4 @@ button {
   // margin: 40px 16px 0;
   // max-width: 825px;
   min-width: 288px;
-  width: 100%;
 }

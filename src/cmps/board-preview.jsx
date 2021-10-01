@@ -13,20 +13,24 @@ export class BoardPreview extends React.Component {
             <section className="board-preview-container">
                 <ul className="board-list">
                     <li>
-                        <button className="board-preview-add-btn" onClick={() => {
+                        {/* <button className="board-preview-add-btn" onClick={() => {
                             this.setState({isNewBoard:true})
-                        }}>Create new board</button>
+                        }}>Create new board</button> */}
                     </li>
                     {boards.map(board =>
                         //<Filter/>
-                        <Link to={`/board/${board._id}`} key={board._id} >
-                            <li className="board-preview" key={board._id} style={board.style && {
+                        <Link to={`/board/${board._id}`} key={board._id} className="board-preview-wrapper clean-link" >
+                            <li className="board-preview clean-link" key={board._id} style={board.style && {
                                 backgroundImage: "url(" + board.style.background + ")",
                                 backgroundRepeat: 'no-repeat',
-                                backgroundAttachment: 'fixed',
-                                backgroundPosition: 'center'
+                                backgroundPosition: '50%',
+                                backgroundSize: 'cover',
+                                lineheight: '20px',
+                                padding: '8px',
+                                position: 'relative',
+                                textDecoration: 'none'
                             }}>
-                                {board.title}
+                                <h3 className="board-preview-name">{board.title}</h3>
 
                             </li>
                         </Link>

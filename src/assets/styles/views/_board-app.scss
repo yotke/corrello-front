@@ -5,12 +5,13 @@
 .board-list {
   list-style: none;
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
-
-.board-preview span {
-  color: pink;
+.board-preview {
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: 4px 8px;
+  position: relative;
 }
-
