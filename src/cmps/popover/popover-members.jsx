@@ -5,7 +5,7 @@ import { PopoverMemberPreview } from './popover-member-preview'
 import { onSaveBoard } from '../../store/board.actions.js';
 import { connect } from 'react-redux'
 import { socketService } from '../../services/socket.service'
-
+import { onLogin, onSignup, onGoogleLogin } from '../../store/user.actions.js'
 
 
 class _PopoverMembers extends Component {
