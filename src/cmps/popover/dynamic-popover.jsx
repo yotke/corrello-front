@@ -1,7 +1,7 @@
 
 import { PopoverLabels } from "../popover/PopoverLabels.jsx";
 import { PopoverDate } from "./PopoverDate.jsx";
-import { PopoverMembers } from "../popover/popover-members"
+import { PopoverMembers } from "../popover/popover-members.jsx";
 import { connect } from 'react-redux'
 
 

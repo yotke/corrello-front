@@ -88,7 +88,7 @@ function _ProfileAvatar({ member, size, onOpenPopover, showStatus = false, onlin
 
 function mapStateToProps(state) {
     return {
-        onlineUsers: state.appModule.onlineUsers
+        onlineUsers: state.userModule.onlineUsers
     }
 }
 

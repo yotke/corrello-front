@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { Popover } from './Popover';
 import { boardService } from '../../services/board.service'
 import { PopoverMemberPreview } from './popover-member-preview'
-import { onSaveBoard } from '../../store/actions/board.actions';
+import { onSaveBoard } from '../../store/board.actions.js';
 import { connect } from 'react-redux'
 import { socketService } from '../../services/socket.service'
 
@@ -79,7 +79,7 @@ class _PopoverMembers extends Component {
 function mapStateToProps(state) {
     return {
         board: state.boardModule.board,
-        loggedInUser: state.appModule.loggedInUser
+        loggedInUser: state.userModule.loggedInUser
     }
 }
 
