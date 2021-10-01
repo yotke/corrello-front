@@ -88,18 +88,19 @@ class _CardDetails extends React.Component {
                         <ScreenOverlay goBack={this.goBackToBoard} styleMode="darken" />
 
         <div className="card-details  flex column">
-          <div className="card-details-header">
-          <div className="header-content">
+          <div className={`card-details-header ${style.bgColor ? 'cover-mode' : ''}`} style={style.bgColor && {backgroundColor: style.bgColor}} >
+            <div clåassName="header-content flex justify-space-between">
           <button
             onClick={() => this.goBackToBoard()}
-            className={`close-window-btn ${
-              style.coverMode ? 'cover-mode' : ''
-            } flex align-center justify-center`}
+            className='close-window-btn'
+             
           >
             <CloseRoundedIcon />
           </button>
           </div>
+
           </div>
+          <h1 className="card-details-title">{title}</h1>
           <main className="card-details-main-container">
             <div className="card-details-main flex column">
            
@@ -119,6 +120,7 @@ class _CardDetails extends React.Component {
 
               {/* card description left menu side */}
               <Description
+              description={description}
                 card={card}
                 board={board}
                 onSaveBoard={onSaveBoard}
