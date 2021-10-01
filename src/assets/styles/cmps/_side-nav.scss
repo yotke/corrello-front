@@ -2,6 +2,7 @@
   height: calc(100vh - 44px);
   position: relative;
   left: 0;
+  padding: 6px 8px;
   min-width: 50px;
   overflow: hidden;
   padding-top: 0.5rem;
@@ -45,4 +46,24 @@
   transition: all ease 1s;
   overflow: hidden;
   transition: 0.5s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+}
+
+
+.nav-content{
+  width: 100%;
+}
+.small-nav-bar-workspace{
+  display: flex;
+  justify-content: space-between;
+  button{
+    border: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0px;
+  }
+  .small-nav-bar-btn-container{
+    display: flex;
+
+  }
 }

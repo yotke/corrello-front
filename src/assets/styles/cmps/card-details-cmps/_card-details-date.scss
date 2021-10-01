@@ -1,7 +1,23 @@
-.card-details-date {
+.date-card-details-container {
   margin: 0 8px 8px 0;
   max-width: 100%;
-
+  .due-soon {
+    margin-left: 2px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background-color: #eb5a46;
+  }
+  .due-complete {
+    margin-left: 2px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background-color: #61bd4f;
+  }
+  .due-date-change-btn {
+    .buttom-arrow {
+       margin-left: 3px;
+    }
+  }
   svg {
     cursor: pointer;
   }
