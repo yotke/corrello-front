@@ -1,6 +1,7 @@
 
 import { PopoverLabels } from "../popover/PopoverLabels.jsx";
 import { PopoverDate } from "./PopoverDate.jsx";
+import { PopoverMembers } from "../popover/popover-members"
 import { connect } from 'react-redux'
 
 
@@ -13,12 +14,9 @@ function _DynamicPopover({ currPopover }) {
   switch (name) {
     case 'LABELS': return <PopoverLabels {...props} />
     case 'DATE': return <PopoverDate {...props} />
+    case 'MEMBERS': return <PopoverMembers {...props} />
     default: return '';
-
   }
-
-
-
 }
 
 
