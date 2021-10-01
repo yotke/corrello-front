@@ -50,13 +50,15 @@ class _CardDetails extends React.Component {
   };
 
   get cardLabels() {
+    var cardLabels = []
     const {
       card: { labelIds },
     } = this.state;
+    if(!labelIds) return cardLabels;
     const {
       board: { labels },
     } = this.props;
-    const cardLabels = labels.reduce((acc, label) => {
+     cardLabels = labels.reduce((acc, label) => {
       if (labelIds.find((labelId) => labelId === label.id)) acc.push(label);
       return acc;
     }, []);
@@ -88,7 +90,7 @@ class _CardDetails extends React.Component {
                         <ScreenOverlay goBack={this.goBackToBoard} styleMode="darken" />
 
         <div className="card-details  flex column">
-          <div className={`card-details-header ${style.bgColor ? 'cover-mode' : ''}`} style={style.bgColor && {backgroundColor: style.bgColor}} >
+          <div className={`card-details-header ${(style && style.bgColor) ? 'cover-mode' : ''}`} style={(style && style.bgColor) ? {backgroundColor: style.bgColor} : {}} >
             <div clåassName="header-content flex justify-space-between">
           <button
             onClick={() => this.goBackToBoard()}

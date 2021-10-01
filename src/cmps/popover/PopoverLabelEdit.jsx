@@ -2,6 +2,7 @@ import { Component } from "react";
 
 
 import { Popover } from './Popover'
+import {ColorPalette}  from '../ColorPalette.jsx'
 export class PopoverLabelEdit extends Component {
 
     state = {
@@ -40,7 +41,7 @@ export class PopoverLabelEdit extends Component {
                 <input type="text" name="title" value={title} onChange={this.handleChange}
                     className="pop-over-input" />
                 <h4>Color</h4>
-                {/* <ColorPalette handleChange={this.handleChange} selectedColor={color} /> */}
+                <ColorPalette handleChange={this.handleChange} selectedColor={color} />
             </div>
             <div className="flex justify-space-between">
                 <button className="primary-btn" onClick={this.onSaveLabel} >

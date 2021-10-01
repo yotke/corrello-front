@@ -99,7 +99,6 @@ function mapStateToProps(state) {
         users: state.userModule.users,
         user: state.userModule.user,
         count: state.userModule.count,
-        isLoading: state.systemModule.isLoading
     }
 }
 const mapDispatchToProps = {
