@@ -84,7 +84,7 @@ class _CardDetails extends React.Component {
     const { card, list } = this.state;
     if (!card) return <Loader />;
     const { title, members, description, checklists, dueDate, style } = card;
-    debugger
+    //debugger
     return (
       <section className="card-details-container flex">
                         <ScreenOverlay goBack={this.goBackToBoard} styleMode="darken" />
