@@ -13,9 +13,9 @@ export class BoardPreview extends React.Component {
             <section className="board-preview-container">
                 <ul className="board-list">
                     <li>
-                        {/* <button className="board-preview-add-btn" onClick={() => {
+                        <button className="board-preview-add-btn" onClick={() => {
                             this.setState({isNewBoard:true})
-                        }}>Create new board</button> */}
+                        }}>Create new board</button>
                     </li>
                     {boards.map(board =>
                         //<Filter/>

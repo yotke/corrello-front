@@ -65,6 +65,9 @@
       flex-direction: row;
       justify-content: space-between;
       padding: 1rem;
+      .card-details-main{
+        width: 100%;
+      }
     }
   }
 }
