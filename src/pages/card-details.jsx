@@ -14,6 +14,7 @@ import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { TextareaAutosize } from '@material-ui/core';
 import {ScreenOverlay} from '../cmps/ScreenOverlay.jsx';
 import { CardDetailsMembers } from '../cmps/card-details-members.jsx'
+import {CardDetailsCover} from '../cmps/card-details-cover'
 
 
 class _CardDetails extends React.Component {
@@ -92,23 +93,22 @@ class _CardDetails extends React.Component {
                         <ScreenOverlay goBack={this.goBackToBoard} styleMode="darken" />
 
         <div className="card-details  flex column">
-          <div className={`card-details-header ${(style && style.bgColor) ? 'cover-mode' : ''}`} style={(style && style.bgColor) ? {backgroundColor: style.bgColor} : {}} >
-            <div clåassName="header-content flex justify-space-between">
+            {style.coverMode && <CardDetailsCover style={style} openPopover={openPopover} card={card} />}
           <button
             onClick={() => this.goBackToBoard()}
             className='close-window-btn'
-             
-          >
+            
+            >
             <CloseRoundedIcon />
           </button>
-          </div>
 
-          </div>
+
+      
           <h1 className="card-details-title">{title}</h1>
           <main className="card-details-main-container">
             <div className="card-details-main flex column">
            
-              <div className="card-details-items flex">
+              <div className="card-details-content flex">
                 
               {(members && members.length) && <CardDetailsMembers
                                     members={members}

@@ -9,27 +9,86 @@ import { CardPreviewLabel } from './card-preview/card-preview-labels'
 class _Card extends Component {
 
     componentDidMount() {
-        
+        const { card, isEditMode } = this.props
+
+    }
+
+    get cardStyles() {
+        const { isEditMode } = this.props
+        const { coverMode, bgColor, bgImgUrl } = this.props.card.style
+
+        if (coverMode === 'full' && bgImgUrl && !isEditMode) return {
+            color: '#fff',
+            backgroundImage: `url(${bgImgUrl})`,
+            borderTopLeftRadius: '3px',
+            borderTopRightRadius: '3px',
+            minHeight: '130px'
+        }
+        else if (coverMode === 'full' && !isEditMode) return {
+            backgroundColor: bgColor,
+            minHeight: '56px',
+            borderTopLeftRadius: '3px',
+            borderTopRightRadius: '3px'
+        }
+        if (coverMode === 'header' && bgImgUrl) return {};
+        if (coverMode === 'header' && !isEditMode) return {};
+        if (isEditMode && !coverMode) return { borderRadius: '3px' }
+        else if (isEditMode) return {};
+        else return { borderRadius: '3px' };
+    }
+
+    get getCardHeaderStyles() {
+        const { isEditMode } = this.props
+        const { coverMode, bgColor, bgImgUrl } = this.props.card.style
+        if (coverMode === 'full' && bgImgUrl && isEditMode) return {
+            backgroundImage: `url(${bgImgUrl})`,
+            minHeight: '130px'
+        }
+        if (coverMode === 'header' && bgImgUrl) return {
+            backgroundImage: `url(${bgImgUrl})`,
+            minHeight: '130px'
+        }
+        if (coverMode === 'full' || coverMode === 'header') return { backgroundColor: bgColor }
+        else return {}
+    }
+
+    get getCardHeaderStyles() {
+        const { isEditMode } = this.props
+        const { coverMode, bgColor, bgImgUrl } = this.props.card.style
+        if (coverMode === 'full' && bgImgUrl && isEditMode) return {
+            backgroundImage: `url(${bgImgUrl})`,
+            minHeight: '130px'
+        }
+        if (coverMode === 'header' && bgImgUrl) return {
+            backgroundImage: `url(${bgImgUrl})`,
+            minHeight: '130px'
+        }
+        if (coverMode === 'full' || coverMode === 'header') return { backgroundColor: bgColor }
+        else return {}
     }
 
     render() {
-        const { card, board } = this.props
-        let mystyle = {}
-        if(card.style) {
-         mystyle = {
-            backgroundColor: card.style.bgColor,
-            backgroundImage: "url(" + card.style.background + ")",
-            backgroundRepeat: 'no-repeat',
-            backgroundAttachment: 'fixed',
-            backgroundPosition: 'center', 
-        } 
-    } 
+        const { isEditMode, card, board, handleChange, cardTitle } = this.props;
+        const {coverMode} = card.style
+       
+        // let mystyle = {}
+    //     if(card.style) {
+    //      mystyle = {
+    //         backgroundColor: card.style.bgColor,
+    //         backgroundImage: "url(" + card.style.background + ")",
+    //         backgroundRepeat: 'no-repeat',
+    //         backgroundAttachment: 'fixed',
+    //         backgroundPosition: 'center', 
+    //     } 
+    // }
+    
+    
 
         return (
 
             <div className="card-preview-container">
-                <div className="card-preview">
-               {(card.style && card.style.bgColor) && <div className="card-preview-header" style={mystyle}>
+                <div className={`card-preview ${coverMode === 'full' && 'cover-full'}`} style={this.cardStyles}>
+                {(coverMode === 'header' || (coverMode === 'full' && isEditMode))  && <div className="card-preview-header" style={this.getCardHeaderStyles}>
                 </div>}
             <div className="card-content">
 

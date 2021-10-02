@@ -81,12 +81,22 @@
   background-color: rgba(0, 0, 0, 0.64);
 }
 
+.cover-menu-btn {
+  background-color: #00000014;
+  border-radius: 3px;
+  color: #172b4d;
+  margin: 6px 12px 6px 6px;
+}
+
 .card-details-header {
   margin: 8px 1px 8px 40px;
   min-height: 32px;
   position: relative;
   z-index: 1;
   &.cover-mode {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
     height: 116px;
     min-height: 116px;
     margin: 0;
@@ -117,4 +127,17 @@
   padding: 4px 8px;
   margin-left: 4px;
   resize: none;
+}
+
+.card-details-content {
+  flex-wrap: wrap;
+}
+
+.members-container {
+  margin: 0 8px 8px 0;
+  max-width: 100%;
+}
+
+.profile-avatar {
+  margin: 0 4px 4px 0;
 }

@@ -3,10 +3,12 @@ import { connect } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { ReactComponent as AddIcon } from '../assets/img/icons/add.svg'
 import { ReactComponent as BellIcon } from '../assets/img/icons/notific-bell.svg'
+import { openPopover } from '../store/popover.actions'
 
 
 import { onLogin, onLogout, onSignup, loadUsers, removeUser } from '../store/user.actions.js'
 import { LoginSignup } from './login-signup.jsx'
+
 
 class _AppHeader extends React.Component {
 
@@ -15,9 +17,11 @@ class _AppHeader extends React.Component {
         currOpenModal: '',
         isNewNotific: false,
     }
+
+
     render() {
         const { isNewNotific } = this.state
-        var { isBoardStyle } = this.props
+        var { isBoardStyle, openPopover } = this.props
         if (!isBoardStyle) {
             isBoardStyle = false;
         }
@@ -68,7 +72,8 @@ class _AppHeader extends React.Component {
                             </div>
                         </button>
                         <button className="btn-header create-btn flex" >
-                            <div className="txt-btn-wraper">
+                            <div className="txt-btn-wraper"  onClick={() =>{ 
+                                openPopover('CREATE_BOARD')}}>
                                 Create
                             </div>
                         </button>
@@ -106,7 +111,8 @@ const mapDispatchToProps = {
     onSignup,
     onLogout,
     loadUsers,
-    removeUser
+    removeUser,
+    openPopover
 }
 
 

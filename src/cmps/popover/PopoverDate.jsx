@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { onSaveBoard } from '../../store/board.actions';
 import React, { Component } from 'react';
 import { Popover } from './Popover';
+import { FileUpload } from '../FileUpload';
+
 class _PopoverDate extends React.Component {
 
     state = {
