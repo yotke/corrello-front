@@ -5,6 +5,7 @@ import { ColorPalette } from "../ColorPalette";
 import { closePopover } from "../../store/popover.actions";
 import { onSaveBoard } from "../../store/board.actions";
 import { withRouter } from 'react-router-dom';
+import {ImagePalette} from '../imagePalette.jsx';
 
 class _PopoverCreateBoard extends Component {
 
@@ -25,9 +26,26 @@ class _PopoverCreateBoard extends Component {
         const { title, color } = this.state
         const { loggedInUser, onSaveBoard, closePopover } = this.props
         const boardToSave = {
-            title,
-            background: color,
-            createdBy: loggedInUser
+            createdBy: loggedInUser,
+            title: "",
+            createdAt: Date.now(),
+            createdBy: {
+                _id: "",
+                fullname: "",
+                imgUrl: ""
+            },
+            style: {
+                background:color
+            },
+            labels: [
+            ],
+            members: [
+    
+            ],
+            lists: [
+            ],
+            activities: [
+            ]
         }
         try {
             await onSaveBoard(boardToSave)
@@ -44,12 +62,18 @@ class _PopoverCreateBoard extends Component {
         return <ScreenOverlay goBack={closePopover} styleMode="darken">
             <div className="create-board-popover">
                 <div className="flex">
-                    <div className="board-preview" style={{ background: color }}>
+                    <div className="board-preview" style={{ 
+                        backgroundImage:"url(" + color + ")",
+                        background: color,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center center'
+                        }}>
                         <input type="text" name="title" value={title}
                             onChange={this.handleChange} placeholder="Add board title" />
                     </div>
                     <div className="create-preview-colors">
-                        <ColorPalette count={6} isGradient={true} handleChange={this.handleChange} selectedColor={color} />
+                        <ImagePalette count={3} handleChange={this.handleChange} selectedColor={color} />
+                        
                         <ColorPalette count={3} isGradient={false} handleChange={this.handleChange} selectedColor={color} />
                     </div>
                 </div>
