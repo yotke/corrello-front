@@ -18,7 +18,16 @@ class _AppHeader extends React.Component {
         isNewNotific: false,
     }
 
-
+    onOpenPopover = (ev, PopoverName) => {
+        //debugger
+        const elPos = ev.target.getBoundingClientRect();
+        console.log('board',this.props.board);
+        const props = {
+            boards: this.props.boards,
+        };
+        console.log("PROPS", props)
+        this.props.openPopover(PopoverName, elPos, props);
+    };
     render() {
         const { isNewNotific } = this.state
         var { isBoardStyle, openPopover } = this.props
@@ -63,7 +72,7 @@ class _AppHeader extends React.Component {
                                 </span>
                             </div>
                         </button>
-                        <button className="btn-header flex" >
+                        <button className="btn-header flex"  onClick={(ev) => this.onOpenPopover(ev, 'STARRED')}>
                             <div className="txt-btn-wraper">
                                 Starred
                                 <span>
@@ -72,8 +81,9 @@ class _AppHeader extends React.Component {
                             </div>
                         </button>
                         <button className="btn-header create-btn flex" >
-                            <div className="txt-btn-wraper"  onClick={() =>{ 
-                                openPopover('CREATE_BOARD')}}>
+                            <div className="txt-btn-wraper" onClick={() => {
+                                openPopover('CREATE_BOARD')
+                            }}>
                                 Create
                             </div>
                         </button>
@@ -101,6 +111,7 @@ class _AppHeader extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        boards: state.boardModule.boards,
         users: state.userModule.users,
         user: state.userModule.user,
         count: state.userModule.count,
