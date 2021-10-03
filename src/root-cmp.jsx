@@ -23,6 +23,7 @@ import {DynamicPopover} from './cmps/popover/dynamic-popover.jsx'
     if (!location.pathname.includes('/board')) return {}
     const style = board ?  {
         backgroundImage:"url(" + board.style.background + ")",
+        backgroundColor: board.style.background,
         backgroundSize:'cover',
         height:'100vh',
         overflow: 'hidden',
