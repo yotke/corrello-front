@@ -1,16 +1,29 @@
 const initialState = {
     boards: [],
     board: null,
+    recentBoards: [],
     lastRemoveBoard: null
 }
 export function boardReducer(state = initialState, action) {
 
     var newState = state
     var boards
+    var recentBoards
     var cart
     switch (action.type) {
+
         case 'SET_BOARDS':
             newState = { ...state, boards: action.boards }
+            break
+        case 'SET_RECENT_BOARDS':
+            newState = { ...state, recentBoards: action.recentBoards }
+            break
+
+        case 'UPDATE_RECENT_BOARDS':
+            recentBoards = state.recentBoards.length >= 3 ? state.recentBoards.unshift() : state.recentBoards
+            console.log('recentBoards',recentBoards);
+            recentBoards.push(action.board)
+            newState = { ...state, recentBoards: recentBoards }
             break
         case 'SET_BOARD':
             newState = { ...state, board: action.board }

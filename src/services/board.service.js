@@ -8,11 +8,13 @@ import { useLocation } from 'react-router'
 import testUtils from 'react-dom/test-utils'
 
 const STORAGE_KEY = 'boardDB'
+const RECEBT_BOARDS_KEY = 'recentBoards'
 const listeners = []
 const DATA = data;
 
 export const boardService = {
     query,
+    queryRecentBoards,
     getById,
     save,
     remove,
@@ -41,6 +43,9 @@ function _saveToLocalStorage() {
 
 function query() {
     return storageService.query(STORAGE_KEY)
+}
+function queryRecentBoards() {
+    return storageService.query(RECEBT_BOARDS_KEY)
 }
 function getById(boardId) {
     return storageService.get(STORAGE_KEY, boardId)

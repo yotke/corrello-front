@@ -7,6 +7,7 @@ import { PopoverCover } from '../popover/PopoverCover.jsx'
 import { PopoverCreateBoard } from '../popover/PopoverCreateBoard.jsx'
 import { PopoverChecklist } from '../popover/PopoverChecklist.jsx'
 import { PopoverStarred } from "./PopoverStarred.jsx";
+import { PopoverRecentBoard } from "./PopoverRecentBoard.jsx";
 
 
 
@@ -25,6 +26,7 @@ function _DynamicPopover({ currPopover }) {
     case 'CHECKLIST': return <PopoverChecklist {...props} />; break;
     //this is headers popovers
     case 'STARRED': return <PopoverStarred {...props} />; break;
+    case 'RECENT_BOARDS': return <PopoverRecentBoard {...props} />; break;
     default: return '';
   }
 }

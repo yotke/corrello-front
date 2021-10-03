@@ -27,6 +27,31 @@ export function loadBoards() {
     }
 }
 
+
+export function loadRecentBoards() {
+    return (dispatch) => {
+        boardService.queryRecentBoards()
+            .then(recentBoards => {
+                console.log('Boards from DB:', recentBoards)
+                dispatch({
+                    type: 'SET_RECENT_BOARDS',
+                    recentBoards
+                })
+            })
+            .catch(err => {
+                showErrorMsg('Cannot load boards')
+                console.log('Cannot load boards', err)
+            })
+
+        boardService.subscribe((recentBoards) => {
+            console.log('Got notified');
+            dispatch({
+                type: 'SET_RECENT_BOARDS',
+                recentBoards
+            })
+        })
+    }
+}
 export function onSaveBoard(board) {
     return async dispatch => {
         try {
@@ -47,12 +72,28 @@ export function loadBoard(boardId) {
                 type: 'SET_BOARD',
                 board
             })
+            console.log('!!!!!!!!!!!!!!!!!!!!!!!!',board);
+            updateRecentBoard(board)
         } catch (err) {
             console.log('BoardActions: err in loadBoard', err)
         }
     }
 }
 
+export function updateRecentBoard(board) {
+    return async dispatch => {
+        console.log('!!!!!!!!!!!!!!!!!!!!!!!!',board);
+        try {
+            const savedBoard = await boardService.save(board)
+            dispatch({
+                type: 'UPDATE_RECENT_BOARDS',
+                savedBoard
+            })
+        } catch (err) {
+            console.log('BoardActions: err in loadBoard', err)
+        }
+    }
+}
 export function onRemoveBoard(boardId) {
     return (dispatch, getState) => {
         boardService.remove(boardId)

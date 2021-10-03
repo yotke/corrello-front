@@ -49,10 +49,10 @@ class _AppHeader extends React.Component {
                         </Link>
                     </div>
                     <div className="btn-header-container flex">
-                        <Link to="/workspace" className="btn-header">
+                        <Link to="/workspace" className="btn-header clean-list">
                             {/* <HomeIcon /> */}
                             <button className="btn-header flex" onClick={() => {
-                            }}>
+                           }}>
                                 {/* <BoardIcon /> */}
                                 <div className="txt-btn-wraper">
                                     Workspace
@@ -63,7 +63,7 @@ class _AppHeader extends React.Component {
                                 {/* <ElementOverlay /> */}
                             </button>
                         </Link>
-                        <button className="btn-header flex" >
+                        <button className="btn-header flex"  onClick={(ev) => this.onOpenPopover(ev, 'RECENT_BOARDS')}>
                             {/* <BoardIcon /> */}
                             <div className="txt-btn-wraper">
                                 Recent
