@@ -15,7 +15,6 @@ class _MainBoardHeader extends Component {
 
 
     render() {
-        const { board } = this.props
         const { title } = this.state
         return (
             <div className="main-board-header">

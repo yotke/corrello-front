@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { utilService } from '../services/util.service';
+import { CloseRounded } from '@material-ui/icons';
 
 export class ListAdd extends Component {
   state = {
@@ -54,9 +55,9 @@ export class ListAdd extends Component {
               onKeyDown={this.handleChange}
               placeholder="list title"
             />
-            <div>
+            <div className="flex row align-center">
               <button className="add-list primary-btn" onMouseDown={this.onAddList}>Add list</button>
-              <a onMouseDown={this.toggleListAdd}>x</a>
+              <a className="close-btn" onMouseDown={this.toggleListAdd}><CloseRounded/></a>
             </div>
           </div>
         ) : (

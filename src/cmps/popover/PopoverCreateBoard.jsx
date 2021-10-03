@@ -24,10 +24,11 @@ class _PopoverCreateBoard extends Component {
 
     onCreateBoard = async () => {
         const { title, color } = this.state
+        console.log('title±±±±±', title);
         const { loggedInUser, onSaveBoard, closePopover } = this.props
         const boardToSave = {
             createdBy: loggedInUser,
-            title: "",
+            title: title,
             createdAt: Date.now(),
             createdBy: {
                 _id: "",
@@ -61,10 +62,10 @@ class _PopoverCreateBoard extends Component {
         const { closePopover } = this.props
         return <ScreenOverlay goBack={closePopover} styleMode="darken">
             <div className="create-board-popover">
-                <div className="flex">
-                    <div className="board-preview" style={{ 
+                <div className="flex align-center">
+                    <div className="board-preview" style={{
+                        backgroundColor: color,
                         backgroundImage:"url(" + color + ")",
-                        background: color,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center center'
                         }}>
@@ -72,7 +73,7 @@ class _PopoverCreateBoard extends Component {
                             onChange={this.handleChange} placeholder="Add board title" />
                     </div>
                     <div className="create-preview-colors">
-                        <ImagePalette count={3} handleChange={this.handleChange} selectedColor={color} />
+                        <ImagePalette count={6} handleChange={this.handleChange} selectedColor={color} />
                         
                         <ColorPalette count={3} isGradient={false} handleChange={this.handleChange} selectedColor={color} />
                     </div>
