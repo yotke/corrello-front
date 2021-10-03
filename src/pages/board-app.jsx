@@ -127,7 +127,7 @@ class _BoardApp extends React.Component {
                 <section className="main-board flex row">
                     <SideNav boards={boards} isMainBoard={isMainBoard} />
                     <div className="layout-helper flex column">
-                        <MainBoardHeader />
+                        <MainBoardHeader title={board.title}/>
                         <div className="board-content">
                             <Route path="/board/:boardId/:listId/:cardId" exact component={CardDetails} />
                             <DragDropContext onDragEnd={this.handleOnDragEnd}>

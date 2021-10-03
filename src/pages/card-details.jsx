@@ -7,14 +7,14 @@ import { onSaveBoard } from '../store/board.actions.js';
 import { openPopover, closePopover } from '../store/popover.actions.js';
 import { Loader } from '../cmps/Loader.jsx';
 import { CardDetailsLabels } from '../cmps/card-details-labels.jsx';
-import { CardChecklists } from '../cmps/card-details/checklist/card-checklists.jsx';
 import { DueDateDisplay } from '../cmps/card-details/card-details-dates.jsx';
 import { Description } from '../cmps/card-details/card-details-discription.jsx';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { TextareaAutosize } from '@material-ui/core';
-import {ScreenOverlay} from '../cmps/ScreenOverlay.jsx';
+import { ScreenOverlay } from '../cmps/ScreenOverlay.jsx';
 import { CardDetailsMembers } from '../cmps/card-details-members.jsx'
-import {CardDetailsCover} from '../cmps/card-details-cover'
+import { CardDetailsCover } from '../cmps/card-details-cover'
+import { CardChecklists } from '../cmps/card-details/card-details-checklists';
 
 
 class _CardDetails extends React.Component {
@@ -57,11 +57,11 @@ class _CardDetails extends React.Component {
     const {
       card: { labelIds },
     } = this.state;
-    if(!labelIds) return cardLabels;
+    if (!labelIds) return cardLabels;
     const {
       board: { labels },
     } = this.props;
-     cardLabels = labels.reduce((acc, label) => {
+    cardLabels = labels.reduce((acc, label) => {
       if (labelIds.find((labelId) => labelId === label.id)) acc.push(label);
       return acc;
     }, []);
@@ -73,7 +73,7 @@ class _CardDetails extends React.Component {
     const { board } = this.props
     this.props.closePopover()
     this.props.history.push(`/board/${board._id}`)
-}
+  }
 
 
   onSaveCardChecklists = (checklists) => {
@@ -90,31 +90,31 @@ class _CardDetails extends React.Component {
     //debugger
     return (
       <section className="card-details-container flex">
-                        <ScreenOverlay goBack={this.goBackToBoard} styleMode="darken" />
+        <ScreenOverlay goBack={this.goBackToBoard} styleMode="darken" />
 
         <div className="card-details  flex column">
-            {style.coverMode && <CardDetailsCover style={style} openPopover={openPopover} card={card} />}
+          {style.coverMode && <CardDetailsCover style={style} openPopover={openPopover} card={card} />}
           <button
             onClick={() => this.goBackToBoard()}
             className='close-window-btn'
-            
-            >
+
+          >
             <CloseRoundedIcon />
           </button>
 
 
-      
+
           <h1 className="card-details-title">{title}</h1>
           <main className="card-details-main-container">
             <div className="card-details-main flex column">
-           
+
               <div className="card-details-content flex">
-                
-              {(members && members.length) && <CardDetailsMembers
-                                    members={members}
-                                    openPopover={openPopover}
-                                    card={card} />}
-                
+
+                {(members && members.length) && <CardDetailsMembers
+                  members={members}
+                  openPopover={openPopover}
+                  card={card} />}
+
                 {this.cardLabels.length && (
                   <CardDetailsLabels
                     labels={this.cardLabels}
@@ -130,7 +130,7 @@ class _CardDetails extends React.Component {
 
               {/* card description left menu side */}
               <Description
-              description={description}
+                description={description}
                 card={card}
                 board={board}
                 onSaveBoard={onSaveBoard}
@@ -143,13 +143,14 @@ class _CardDetails extends React.Component {
 
               {/* checkList left side section */}
 
-              {checklists && checklists.length > 0 && (
-                <CardChecklists
-                  card={card}
-                  checklists={checklists}
-                  onSaveCardChecklists={this.onSaveCardChecklists}
-                />
-              )}
+              {/* {checklists && checklists.length > 0 && ( */}
+              <CardChecklists
+                card={card}
+                board={board}
+                checklists={checklists}
+                onSaveBoard={onSaveBoard}
+              />
+              {/* )} */}
 
               {/* activities left menu */}
 

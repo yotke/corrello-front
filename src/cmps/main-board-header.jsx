@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
+import { NavBarBoard } from './nav-bar-board'
 
 
 
@@ -18,9 +19,10 @@ class _MainBoardHeader extends Component {
         const { title } = this.state
         return (
             <div className="main-board-header">
-                <div className="board-title" >
+                <NavBarBoard title={title}/>
+                {/* <div className="board-title" >
                     <h1>{title}</h1>
-                </div>
+                </div> */}
                 <div className="flex header-section">
                 </div>
             </div>

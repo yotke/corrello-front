@@ -81,16 +81,6 @@ class _Card extends Component {
       card.style = {};
     }
 
-    // let mystyle = {}
-    //     if(card.style) {
-    //      mystyle = {
-    //         backgroundColor: card.style.bgColor,
-    //         backgroundImage: "url(" + card.style.background + ")",
-    //         backgroundRepeat: 'no-repeat',
-    //         backgroundAttachment: 'fixed',
-    //         backgroundPosition: 'center',
-    //     }
-    // }
 
     return (
       <div className="card-preview-container">
