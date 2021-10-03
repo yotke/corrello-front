@@ -10,20 +10,30 @@ export class CardChecklistItem extends React.Component {
         isOnEditState: false
     }
     componentDidMount() {
-        const { checklistItem } = this.props
-        if (checklistItem) {
-            this.setState({ checklistItem })
-        }
-        else {
-            this.setState({ isOnEditState: true })
-        }
+        const { todo } = this.props
+        console.log('todo',todo);
+            if (todo) {
+                this.setState({ checklistItem:todo.title })
+            }
+            else {
+                this.setState({ isOnEditState: true })
+            }
     }
     onSaveChecklistItem = () => {
-        const { onAddingListItem } = this.props
+        const { onAddingListItem, todo } = this.props
         const { checklistItem } = this.state
-        onAddingListItem(checklistItem)
+        console.log('TODO',todo);
+        if (todo) {
+  
+            onAddingListItem(checklistItem, todo.id)
+        }
+        else{
+            onAddingListItem(checklistItem)
+        }
     }
+    goBackToCard = () => {
 
+    }
     handleChange = (ev) => {
         console.log(ev);
         if (ev.keyCode === 13) {
@@ -51,9 +61,9 @@ export class CardChecklistItem extends React.Component {
                                 this.onSaveChecklistItem()
                                 this.setState({ isOnEditState: !isOnEditState })
                             }} />
-                        <div className="checklist-item-textarea-btns">
+                        {/* <div className="checklist-item-textarea-btns">
                             <button className="save-checklist-item button--primary" onClick={() => {
-                                this.onSaveDescription()
+                                this.onSaveChecklistItem()
                             }}>Save</button>
                             <button
                                 onClick={() => this.goBackToCard()}
@@ -61,7 +71,7 @@ export class CardChecklistItem extends React.Component {
                             >
                                 <CloseRoundedIcon />
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                 )
                     : (

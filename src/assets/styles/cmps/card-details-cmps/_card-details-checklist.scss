@@ -4,7 +4,7 @@
         align-items: center;
         justify-content: space-between;
     }
-    .checklist-delete-btn {
+    .checklist-btn{
         background-color: #091e420a;
         font-size: 14px;
         font-weight: 400;
@@ -13,6 +13,9 @@
         padding: 6px 12px;
         margin-left: 8px;
         border: none;
+    }
+    .checklist-delete-btn {
+
     }
 }
 

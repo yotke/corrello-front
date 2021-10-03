@@ -31,15 +31,15 @@ class _BoardApp extends React.Component {
         catch (err) {
             console.log(err);
         }
-        
+
         this.unlisten = this.props.history.listen((location) => {
             const splittedPath = location.pathname.split('/');
-            
+
             const boardId = splittedPath[2];
             if (!boardId || boardId === this.props.match.params.boardId) return;
             console.log('Loading board from URL watcher - need to be ONLY on BOARD change!!!');
             this.onBoardChange(boardId)
-          });
+        });
 
     }
 
@@ -48,7 +48,7 @@ class _BoardApp extends React.Component {
     }
 
     onBoardChange = (boardId) => {
-         this.props.loadBoard(boardId)
+        this.props.loadBoard(boardId)
     }
 
     onRemoveBoard = (boardId) => {
@@ -65,7 +65,6 @@ class _BoardApp extends React.Component {
         console.log('destination.droppableId', destination.droppableId);
         const { lists } = this.props.board
         if (destination.droppableId != 'all-lists') {
-
             console.log('draggableId', draggableId);
             const start = lists[source.droppableId];
             const finish = lists[destination.droppableId];

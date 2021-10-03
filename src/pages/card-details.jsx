@@ -7,7 +7,6 @@ import { onSaveBoard } from '../store/board.actions.js';
 import { openPopover, closePopover } from '../store/popover.actions.js';
 import { Loader } from '../cmps/Loader.jsx';
 import { CardDetailsLabels } from '../cmps/card-details-labels.jsx';
-import { CardChecklists } from '../cmps/card-details/checklist/card-checklists.jsx';
 import { DueDateDisplay } from '../cmps/card-details/card-details-dates.jsx';
 import { Description } from '../cmps/card-details/card-details-discription.jsx';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
@@ -15,7 +14,7 @@ import { TextareaAutosize } from '@material-ui/core';
 import { ScreenOverlay } from '../cmps/ScreenOverlay.jsx';
 import { CardDetailsMembers } from '../cmps/card-details-members.jsx'
 import { CardDetailsCover } from '../cmps/card-details-cover'
-import { CardChecklist } from '../cmps/card-details/card-details-checklist';
+import { CardChecklists } from '../cmps/card-details/card-details-checklists';
 
 
 class _CardDetails extends React.Component {
@@ -145,7 +144,7 @@ class _CardDetails extends React.Component {
               {/* checkList left side section */}
 
               {/* {checklists && checklists.length > 0 && ( */}
-              <CardChecklist
+              <CardChecklists
                 card={card}
                 board={board}
                 checklists={checklists}

@@ -5,6 +5,7 @@ import { PopoverMembers } from "../popover/popover-members.jsx";
 import { connect } from 'react-redux'
 import {PopoverCover} from '../popover/PopoverCover.jsx'
 import {PopoverCreateBoard} from '../popover/PopoverCreateBoard.jsx'
+import {PopoverChecklist} from '../popover/PopoverChecklist.jsx'
 
 
 
@@ -14,11 +15,12 @@ function _DynamicPopover({ currPopover }) {
   const { name, props } = currPopover
 
   switch (name) {
-    case 'LABELS': return <PopoverLabels {...props} />
-    case 'DATE': return <PopoverDate {...props} />
-    case 'MEMBERS': return <PopoverMembers {...props} />
-    case 'COVER': return <PopoverCover {...props} />;
-    case 'CREATE_BOARD': return <PopoverCreateBoard {...props} />
+    case 'LABELS': return <PopoverLabels {...props} /> ;break;
+    case 'DATE': return <PopoverDate {...props} />;break;
+    case 'MEMBERS': return <PopoverMembers {...props} />;break;
+    case 'COVER': return <PopoverCover {...props} />;break;
+    case 'CREATE_BOARD': return <PopoverCreateBoard {...props} />;break;
+    case 'CHECKLIST': return <PopoverChecklist {...props} />;break;
     default: return '';
   }
 }

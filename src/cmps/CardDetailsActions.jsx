@@ -7,8 +7,6 @@ import { Button } from "@material-ui/core";
 
 class _CardDetailsActions extends Component {
 
-
-
   onOpenPopover = (ev, PopoverName) => {
     //debugger
     const elPos = ev.target.getBoundingClientRect();
