@@ -92,3 +92,39 @@
   position: relative;
   z-index: 10;
 }
+
+.card-preview-bagdes {
+  display: flex;
+  flex-wrap: wrap;
+
+  .card-preview-icons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    > * {
+      margin-bottom: 6px;
+    }
+
+    > *:not(:last-child) {
+      margin-inline-end: 5px;
+    }
+
+    svg {
+      display: flex;
+      justify-content: center;
+      color: #6b778c;
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .card-preview-members {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    margin-bottom: 4px;
+    > *:not(:last-child) {
+      margin-right: 4px;
+    }
+  }
+}

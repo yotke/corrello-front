@@ -29,7 +29,7 @@ class _PopoverMembers extends Component {
 
     toggleMember = (member) => {
         const { card, board, loggedInUser } = this.props
-        const idx = card.members.findIndex(cardMember => cardMember._id === member._id)
+        const idx = card.members.findIndex(cardMember => cardMember._id === member._id) 
         if (idx === -1) {
             card.members.push(member)
         } else {
@@ -40,7 +40,8 @@ class _PopoverMembers extends Component {
     }
 
     isMemberInCard = (member) => {
-        return this.props.card.members.some(cardMember => cardMember._id === member._id)
+        const {members} = this.props.card;
+        return (members) ?  members.some(cardMember => cardMember._id === member._id) : false
     }
     render() {
         const { presentedMembers, inputTxt } = this.state
@@ -51,7 +52,7 @@ class _PopoverMembers extends Component {
                     onChange={this.handleChange} placeholder={"Search members"} />
                 <h4>BOARD MEMBERS</h4>
                 <ul className="clean-list">
-                    {presentedMembers.map(member => <PopoverMemberPreview key={member._id} member={member}
+                    {presentedMembers && presentedMembers.map(member => <PopoverMemberPreview key={member._id} member={member}
                         toggleMember={this.toggleMember} isSelected={this.isMemberInCard(member)} />)}
                 </ul>
             </div>

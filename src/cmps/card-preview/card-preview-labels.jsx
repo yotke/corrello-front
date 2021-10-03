@@ -26,6 +26,8 @@ class _CardPreviewLabel extends Component {
         if (!this.props.isPreview) this.props.togglePreviewLabels()
     }
 
+    
+
     render() {
         const { previewLabelClassName } = this.props
         const label = this.label

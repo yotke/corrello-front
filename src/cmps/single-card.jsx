@@ -3,7 +3,10 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { onSaveBoard } from '../store/board.actions';
 import { CardPreviewLabel } from './card-preview/card-preview-labels';
-import {boardService} from '../services/board.service.js'
+import {boardService} from '../services/board.service.js';
+import {ProfileAvatar} from '../cmps/profile-avatar.jsx';
+import {DueDateDisplay} from  '../cmps/card-preview/DueDateDisplay.jsx';
+import {CardPreviewChecklist} from '../cmps/card-preview/CardPreviewChecklist';
 class _Card extends Component {
   componentDidMount() {
     const { card, isEditMode } = this.props;
@@ -71,6 +74,12 @@ class _Card extends Component {
     else return {};
   }
 
+
+  isChecklistsEmpty = ({ checklists }) => {
+    return checklists.every(checklist => !checklist.todos.length)
+}
+
+
   render() {
     const { isEditMode, card, board, handleChange, cardTitle } = this.props;
     // const {coverMode} = card.style
@@ -109,8 +118,23 @@ class _Card extends Component {
             <div className="card-preview-name clean-link">{card.title}</div>
           </div>
 
-          {/* {card.description && <h5>{card.description}</h5>} */}
-        </div>
+          {coverMode !== 'full' &&
+                        <div className="card-preview-bagdes">
+                            <div className="card-preview-icons">
+                                {!!card.dueDate && <DueDateDisplay card={card} toggleCardDone={this.toggleCardDone} displayType="preview" />}
+                                {/* {!this.isChecklistsEmpty(card) && <CardPreviewChecklist checklists={card.checklists} />} */}
+                            </div>
+                            {card.members &&  card.members.length && <div className="card-preview-members">
+                                {card.members.map(member => {
+                                    return isEditMode ?
+                                        <ProfileAvatar member={member} key={member._id} size={28} />
+                                        :
+                                        <ProfileAvatar member={member} key={member._id} size={28} onOpenPopover={this.onOpenPopover} />
+                                })}
+                            </div>
+                            }
+                        </div>
+                    }        </div>
       </div>
     );
   }
