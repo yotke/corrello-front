@@ -8,6 +8,7 @@ import { BoardPreview } from '../cmps/board-preview.jsx'
 import { SideNav } from '../cmps/sidenav.jsx';
 import { WorkspaceHeader } from '../cmps/workspace-header.jsx'
 import { WorkspaceNavBar } from '../cmps/workspace-nav-bar.jsx'
+import { SearchNavBar } from '../cmps/search-nav-bar.jsx'
 
 class _Workspace extends React.Component {
     state = {
@@ -23,7 +24,7 @@ class _Workspace extends React.Component {
         this.props.onAddBoard()
     }
     render() {
-        const { boards, onAddBoard,user } = this.props
+        const { boards, onAddBoard, user } = this.props
         const { isWorkSpace } = this.state;
 
         return (
@@ -34,10 +35,11 @@ class _Workspace extends React.Component {
                     <SideNav boards={boards} onAddBoard={onAddBoard} user={user} />
                     <div className="main-board-preview">
                         <div className="workspace-header">
-                            <WorkspaceHeader boards={boards} onAddBoard={onAddBoard} user={user}/>
+                            <WorkspaceHeader boards={boards} onAddBoard={onAddBoard} user={user} />
                             <WorkspaceNavBar />
                         </div>
                         <div className="all-boards-main">
+                            <SearchNavBar  />
                             <BoardPreview boards={boards} />
                         </div>
                     </div>
