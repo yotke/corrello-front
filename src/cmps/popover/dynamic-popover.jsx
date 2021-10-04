@@ -9,6 +9,7 @@ import { PopoverChecklist } from '../popover/PopoverChecklist.jsx'
 import { PopoverStarred } from "./PopoverStarred.jsx";
 import { PopoverRecentBoard } from "./PopoverRecentBoard.jsx";
 import { PopoverUser } from "./PopoverUser.jsx";
+import {PopoverAttachment} from './PopoverAttachment.jsx'
 
 
 
@@ -19,16 +20,18 @@ function _DynamicPopover({ currPopover }) {
 
   switch (name) {
     //card popovers
-    case 'LABELS': return <PopoverLabels {...props} />; break;
-    case 'DATE': return <PopoverDate {...props} />; break;
-    case 'MEMBERS': return <PopoverMembers {...props} />; break;
-    case 'COVER': return <PopoverCover {...props} />; break;
-    case 'CREATE_BOARD': return <PopoverCreateBoard {...props} />; break;
-    case 'CHECKLIST': return <PopoverChecklist {...props} />; break;
+    case 'LABELS': return <PopoverLabels {...props} />; 
+    case 'DATE': return <PopoverDate {...props} />;
+    case 'MEMBERS': return <PopoverMembers {...props} />; 
+    case 'COVER': return <PopoverCover {...props} />; 
+    case 'CREATE_BOARD': return <PopoverCreateBoard {...props} />; 
+    case 'CHECKLIST': return <PopoverChecklist {...props} />; 
     //this is headers popovers
-    case 'STARRED': return <PopoverStarred {...props} />; break;
-    case 'RECENT_BOARDS': return <PopoverRecentBoard {...props} />; break;
-    case 'USER': return <PopoverUser {...props} />; break;
+    case 'STARRED': return <PopoverStarred {...props} />; 
+    case 'RECENT_BOARDS': return <PopoverRecentBoard {...props} />;
+    case 'USER': return <PopoverUser {...props} />; 
+    case 'ATTACHMENT': return <PopoverAttachment {...props} />;
+
     default: return '';
   }
 }

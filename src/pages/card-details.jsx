@@ -116,12 +116,12 @@ class _CardDetails extends React.Component {
 
               <div className="card-details-content flex">
 
-                {(members && members.length) && <CardDetailsMembers
+                {!!(members && members.length) && <CardDetailsMembers
                   members={members}
                   openPopover={openPopover}
                   card={card} />}
 
-                {this.cardLabels.length && (
+                {!!this.cardLabels.length && (
                   <CardDetailsLabels
                     labels={this.cardLabels}
                     openPopover={openPopover}
@@ -129,7 +129,7 @@ class _CardDetails extends React.Component {
                   />
                 )}
 
-                {dueDate && ( 
+                {!!dueDate && ( 
                   <DueDateDisplay card={card} openPopover={openPopover}    board={board} onSaveBoard={onSaveBoard} />
                 )} 
                 {/* {!dueDate && <div>vdvdv</div>} */}

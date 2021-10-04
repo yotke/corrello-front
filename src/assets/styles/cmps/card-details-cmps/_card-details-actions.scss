@@ -1,6 +1,14 @@
 .actions-btn {
-  position: relative;
-  margin-bottom: 8px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  height: 32px;
+  margin-top: 8px;
+  max-width: 300px;
+  overflow: hidden;
 }
 .details-actions-wrapper {
   padding: 0 16px 8px 8px;
