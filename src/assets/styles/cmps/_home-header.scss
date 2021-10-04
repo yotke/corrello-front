@@ -9,6 +9,21 @@
     background-color: #fff;
     box-shadow: 0 0 10px rgba(black, 0.3);
   }
+  .user-details-header {
+    .user-logo-in-app-header{
+      border: none;
+      .letter-logo-workspace-header {
+        height: 32px;
+        background: linear-gradient(#d42405, #f03000);
+        width: 32px;
+        line-height: 32px;
+        border-radius: 3rem;
+        text-transform: uppercase;
+        color: white !important;
+      }
+    }
+  }
+
   nav {
     padding: 16px;
     display: flex;

@@ -41,6 +41,9 @@ export class HomeHeader extends Component {
     render() {
         const { isNavBgVisible } = this.state
         const { user, guest } = this.props
+        const [name, lastname] = user?user.fullname.split(' '):['','']
+        console.log(name[0])
+        console.log(lastname[0])
         console.log('user', user);
         return (
             <header className={`home-header ${isNavBgVisible ? 'visibleBg' : ''}`}>
@@ -59,9 +62,12 @@ export class HomeHeader extends Component {
                     </div>}
                     <div className="user-details-header">
 
-                        {(user && !guest) && <button className="user-logo-in" onClick={(ev) => {
+                        {user && <button className="user-logo-in-app-header " onClick={(ev) => {
                             this.onOpenPopover(ev, 'USER')
-                        }}>logo</button>}
+                        }}><div className="letter-logo-workspace-header">
+                                {name[0]}{lastname[0]}
+                            </div>
+                        </button>}
                     </div>
                 </nav>
             </header>

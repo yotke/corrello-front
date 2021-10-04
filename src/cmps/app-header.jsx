@@ -31,7 +31,8 @@ class _AppHeader extends React.Component {
     render() {
         const { isNewNotific } = this.state
         var { isBoardStyle, openPopover, user } = this.props
-        const [name, lastname] = user.fullname.split(' ')
+
+        const [name, lastname] = user ? user.fullname.split(' ') : ['', '']
         console.log(name[0])
         console.log(lastname[0])
         if (!isBoardStyle) {
@@ -52,7 +53,7 @@ class _AppHeader extends React.Component {
                         </Link>
                     </div>
                     <div className="btn-header-container flex">
-                        <Link to="/workspace" className="btn-header clean-list">
+                        <Link to="/workspace" className="btn-header clean-link">
                             {/* <HomeIcon /> */}
                             <button className="btn-header flex" onClick={() => {
                             }}>
@@ -92,11 +93,25 @@ class _AppHeader extends React.Component {
                         </button>
                     </div>
                     <div className="btn-header-container flex">
-                        <div>
+                        <div className="search-input-container">
+                            <span className="sc-bdVaJa kBFJig" role="img" aria-label="SearchIcon">
+                                <svg width="24" height="24" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5C18 12.2269 17.4164 13.8175 16.4356 15.0852L20.3769 19.0953C20.764 19.4892 20.7586 20.1223 20.3647 20.5095C19.9708 20.8966 19.3376 20.8911 18.9505 20.4972L15.0129 16.4909C13.7572 17.4383 12.1942 18 10.5 18ZM16 10.5C16 13.5376 13.5376 16 10.5 16C7.46243 16 5 13.5376 5 10.5C5 7.46243 7.46243 5 10.5 5C13.5376 5 16 7.46243 16 10.5Z" fill="currentColor">
+                                    </path>
+                                </svg>
+                            </span>
+                            <input autocomplete="off" autocorrect="off" spellcheck="false" className="search-input-header"
+                                data-test-id="header-search-input" id="9lkgOKT6X4ViGFKUiWS6OBVxAsVyJLk2" type="search" placeholder="Search" value="" />
+                        </div>
+                        {/* <svg width="24" height="24" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5C18 12.2269 17.4164 13.8175 16.4356 15.0852L20.3769 19.0953C20.764 19.4892 20.7586 20.1223 20.3647 20.5095C19.9708 20.8966 19.3376 20.8911 18.9505 20.4972L15.0129 16.4909C13.7572 17.4383 12.1942 18 10.5 18ZM16 10.5C16 13.5376 13.5376 16 10.5 16C7.46243 16 5 13.5376 5 10.5C5 7.46243 7.46243 5 10.5 5C13.5376 5 16 7.46243 16 10.5Z" fill="currentColor"></path></svg> */}
+
+
+
+                        {/* <div>
                             <button className="btn-header wide-layout" >
                                 <AddIcon />
                             </button>
-                        </div>
+                        </div> */}
                         <div>
                             <button className={`btn-header ${isNewNotific ? 'new-notific' : ''}`} >
                                 <BellIcon />
@@ -105,7 +120,7 @@ class _AppHeader extends React.Component {
                         {user && <button className="user-logo-in-app-header " onClick={(ev) => {
                             this.onOpenPopover(ev, 'USER')
                         }}><div className="letter-logo-workspace-header">
-                                {name[0]} {lastname[0]}
+                                {name[0]}{lastname[0]}
                             </div>
                         </button>}
                     </div>
