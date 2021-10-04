@@ -31,7 +31,8 @@ class _AppHeader extends React.Component {
     render() {
         const { isNewNotific } = this.state
         var { isBoardStyle, openPopover, user } = this.props
-        const [name, lastname] = user.fullname.split(' ')
+        
+        const [name, lastname] = user?user.fullname.split(' '):['','']
         console.log(name[0])
         console.log(lastname[0])
         if (!isBoardStyle) {
@@ -105,7 +106,7 @@ class _AppHeader extends React.Component {
                         {user && <button className="user-logo-in-app-header " onClick={(ev) => {
                             this.onOpenPopover(ev, 'USER')
                         }}><div className="letter-logo-workspace-header">
-                                {name[0]} {lastname[0]}
+                                {name[0]}{lastname[0]}
                             </div>
                         </button>}
                     </div>

@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom'
 export class WorkspaceHeader extends React.Component {
     render() {
         const { user } = this.props
-        const [name, lastname] = user.fullname.split(' ')
+        const [name, lastname] = user?user.fullname.split(' '):['','']
         console.log(name[0])
         console.log(lastname[0])
         return (
@@ -14,7 +14,7 @@ export class WorkspaceHeader extends React.Component {
                 </div>
                 <div class="workspace-header-container">
                     <div class="username-container">
-                        <h1 className="user-name-h1">{user.username}</h1>
+                        <h1 className="user-name-h1">{user?user.username:'guest'}</h1>
                         <span className="private-lock">
                             <span className="lock-style" role="img" aria-label="PrivateIcon">
                                 <svg width="24" height="24" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
