@@ -46,6 +46,44 @@
         color: white !important;
       }
     }
+    .search-input-container {
+      display: flex;
+      align-items: center;
+      ::placeholder {
+        color: white;
+        font-size: 1.2rem;
+        // margin: 5px;
+      }
+      input {
+        width: 250px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        padding-right: 8px;
+        padding-left: 30px;
+        margin-left: 4px;
+        margin-right: 4px;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 3px;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: rgba(255, 255, 255, 0.5);
+        float: left;
+        font-size: 14px;
+        height: 32px;
+        line-height: 19px;
+        margin: 0;
+        outline: none;
+        transition: width 150ms;
+      }
+      .kBFJig {
+        color: rgb(255, 255, 255);
+        display: inline-block;
+        margin: 3px;
+        fill: inherit;
+        flex-shrink: 0;
+        line-height: 1;
+        position: fixed;
+      }
+    }
   }
   // header buttons //
   .btn-header {
