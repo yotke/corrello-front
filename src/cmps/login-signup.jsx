@@ -123,8 +123,8 @@ export class _LoginSignup extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        loggedInUser: state.appModule.loggedInUser,
-        loginErr: state.appModule.loginErr
+        loggedInUser: state.userModule.loggedInUser,
+        loginErr: state.userModule.loginErr
     }
 }
 

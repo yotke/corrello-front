@@ -15,10 +15,10 @@ export class CardChecklist extends React.Component {
     onBoxChecked = (diff) => {
         const { checklist } = this.props
         const doneTodos = this.state.doneTodos + diff
-        console.log('doneTodos',doneTodos);
+        console.log('doneTodos', doneTodos);
         const totTodo = checklist.todos.length
         const complite = doneTodos / totTodo
-        console.log('complite',complite * 100);
+        console.log('complite', complite * 100);
         this.setState({ doneTodos })
         this.setState({ percentComplite: complite * 100 })
     }
@@ -52,8 +52,11 @@ export class CardChecklist extends React.Component {
         return (
             <section className="checklist-container" >
                 <div className="checklist-header">
-                    <h3>Checklist</h3>
-                    <button className="checklist-delete-btn checklist-btn">Delete</button>
+                    {checklist && <h3>{checklist.title}</h3>}
+                    {!checklist && <h3>checklist</h3>}
+                    <button className="checklist-delete-btn checklist-btn" onClick={() => {
+                        this.props.onDeleteChecklist(checklist)
+                    }}>Delete</button>
                 </div>
                 <div className="progress-bar-container">
                     <ProgressBar completed={percentComplite} />
