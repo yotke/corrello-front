@@ -23,7 +23,7 @@ class _Workspace extends React.Component {
         this.props.onAddBoard()
     }
     render() {
-        const { boards, onAddBoard } = this.props
+        const { boards, onAddBoard,user } = this.props
         const { isWorkSpace } = this.state;
 
         return (
@@ -34,7 +34,7 @@ class _Workspace extends React.Component {
                     <SideNav boards={boards} onAddBoard={onAddBoard} />
                     <div className="main-board-preview">
                         <div className="workspace-header">
-                            <WorkspaceHeader />
+                            <WorkspaceHeader boards={boards} onAddBoard={onAddBoard} user={user}/>
                             <WorkspaceNavBar />
                         </div>
                         <div className="all-boards-main">

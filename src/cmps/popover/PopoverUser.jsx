@@ -6,7 +6,7 @@ import { boardService } from '../../services/board.service';
 import { closePopover } from '../../store/popover.actions';
 import { onSaveBoard } from "../../store/board.actions";
 import { Popover } from './Popover';
-
+import { onLogin, onSignup, onGoogleLogin, onLogout } from '../../store/user.actions.js'
 class _PopoverUser extends Component {
 
     state = {
@@ -30,11 +30,15 @@ class _PopoverUser extends Component {
         const updatedBoard = boardService.updateCardInBoard(board, card)
         onSaveBoard(updatedBoard)
         this.props.closePopover()
-
     }
 
     render() {
         return <Popover title={"Account"}>
+            {/* <hr /> */}
+    
+            <button className="logout-btn-user-popover btn" onClick={() => {
+                this.props.onLogout()
+            }}>Log out</button>
         </Popover>
     }
 }
@@ -42,13 +46,18 @@ class _PopoverUser extends Component {
 function mapStateToProps(state) {
     return {
         board: state.boardModule.board,
-        loggedInUser: state.userModule.loggedInUser
+        loggedInUser: state.userModule.loggedInUser,
+        loginErr: state.userModule.loginErr
     }
 }
 
 const mapDispatchToProps = {
+    onLogin,
+    onSignup,
+    onGoogleLogin,
     onSaveBoard,
-    closePopover
+    closePopover,
+    onLogout
 }
 
 

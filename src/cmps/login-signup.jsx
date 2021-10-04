@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { onLogin, onSignup, onGoogleLogin } from '../store/user.actions.js'
+import { onLogin, onSignup, onGoogleLogin,onLogout } from '../store/user.actions.js'
 
 
 export class _LoginSignup extends React.Component {
