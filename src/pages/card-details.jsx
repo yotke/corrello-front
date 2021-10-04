@@ -15,6 +15,7 @@ import { ScreenOverlay } from '../cmps/ScreenOverlay.jsx';
 import { CardDetailsMembers } from '../cmps/card-details-members.jsx'
 import { CardDetailsCover } from '../cmps/card-details-cover'
 import { CardChecklists } from '../cmps/card-details/card-details-checklists';
+import { ReactComponent as HeaderIcon } from '../assets/img/cmps/card-details/icon-header.svg'
 
 
 class _CardDetails extends React.Component {
@@ -103,8 +104,13 @@ class _CardDetails extends React.Component {
           </button>
 
 
+<div className="title-section"> 
+<HeaderIcon className="title-svg-logo"/>
+  <h1 className="card-details-title">{title}</h1>
 
-          <h1 className="card-details-title">{title}</h1>
+</div>
+
+
           <main className="card-details-main-container">
             <div className="card-details-main flex column">
 

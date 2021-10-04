@@ -13,6 +13,7 @@
   align-items: flex-start;
   box-shadow: 1px 1px 11px 1px #0000005c;
   border-radius: 0;
+  z-index: 2;
   &:hover {
     background-color: rgb(255, 255, 255);
   }
@@ -48,20 +49,20 @@
   transition: 0.5s cubic-bezier(0.8, 0.5, 0.2, 1.4);
 }
 
-.nav-content{
+.nav-content {
   width: 100%;
-  hr{
+  hr {
     margin: 10px 0;
   }
 }
-.small-nav-bar-workspace{
+.small-nav-bar-workspace {
   color: #172b4d;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: -0.003em;
   line-height: 16px;
   margin-top: 16px;
-  color: #5E6C84;
+  color: #5e6c84;
   margin: 0;
   flex: 1;
   overflow: hidden;
@@ -69,7 +70,7 @@
   white-space: nowrap;
   display: flex;
   justify-content: space-between;
-  button{
+  button {
     border: none;
     display: flex;
     align-items: center;
@@ -77,8 +78,7 @@
     padding: 0px;
   }
 
-  .small-nav-bar-btn-container{
+  .small-nav-bar-btn-container {
     display: flex;
-
   }
 }

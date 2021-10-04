@@ -65,7 +65,7 @@
       flex-direction: row;
       justify-content: space-between;
       padding: 1rem;
-      .card-details-main{
+      .card-details-main {
         width: 100%;
       }
     }
@@ -143,4 +143,16 @@
 
 .profile-avatar {
   margin: 0 4px 4px 0;
+}
+
+.title-section {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+//logos
+.title-svg-logo {
+  width: 32px;
+  height: 32px;
 }
