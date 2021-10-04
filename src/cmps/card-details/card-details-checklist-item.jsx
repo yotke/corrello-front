@@ -44,13 +44,22 @@ export class CardChecklistItem extends React.Component {
         this.setState({ checklistItem: ev.target.value });
     };
     render() {
-        const { onBoxChecked } = this.props
+        const { onBoxChecked, todo } = this.props
         const { isOnEditState, checklistItem } = this.state
         return (
             <section className="checklist-item-container">
-                <input type="checkbox" className="checklist-item-checkbox" id="subscribeNews" name="subscribe" value="newsletter" onChange={(ev) => {
-                    console.log(' ev.target.checked ', ev.target.checked );
-                    ev.target.checked ? onBoxChecked(1) : onBoxChecked(-1)
+                <input type="checkbox" defaultChecked={todo.isChecked} className="checklist-item-checkbox" id="subscribeNews" name="subscribe" value="newsletter" onChange={(ev) => {
+                    console.log(' ev.target.checked ', ev.target.checked);
+
+                    if (ev.target.checked) {
+
+                        onBoxChecked(1)
+                        todo.isChecked = true
+                    }
+                    else {
+                        todo.isChecked = false
+                        onBoxChecked(-1)
+                    }
                 }} />
                 {isOnEditState ? (
                     <div className="checklist-item-input-container">

@@ -2,22 +2,24 @@ import React from 'react'
 import { connect } from 'react-redux'
 import logo from '../assets/img/logo.png'
 import { HomeHeader } from '../cmps/home-header'
-
+import { openPopover, closePopover } from '../store/popover.actions.js'
 class _HomePage extends React.Component {
     state = {
-        email: ''
+        email: '',
+        guest: false
     }
     handleChange = (ev) => {
         ev.preventDefault();
         this.setState({ email: ev.target.value })
     }
     render() {
-        const { email } = this.state
-        const { count, user } = this.props
+        const { email, guest } = this.state
+        const { count, user, openPopover, closePopover } = this.props
+        console.log('user', user);
         return (
 
             <section className="home-page-container">
-                <HomeHeader user={user} />
+                <HomeHeader user={user} guest={guest} openPopover={openPopover} closePopover={closePopover} />
                 <div className="first-home-page-container">
                     <div className="introduction-signup">
                         <div className="first-part-txt">
@@ -26,7 +28,7 @@ class _HomePage extends React.Component {
                                 Collaborate, manage projects, and reach new productivity peaks.
                                 From high rises to the home office, the way your team works is unique—accomplish it all with Trello.
                             </p>
-                        
+
                         </div>
                         <div className="btn-homepage-signup">
                             <input name="email" className="form-control h-100" type="email" placeholder="Email" onChange={(ev) => { this.handleChange(ev) }} />
@@ -44,7 +46,6 @@ class _HomePage extends React.Component {
                         It’s more than work. It’s a way of working together.
                     </h2>
                     <p className="first-part-txt">
-
                         Start with a Trello board, lists, and cards. Customize and expand with more features as your teamwork grows.
                         Manage projects, organize tasks, and build team spirit—all in one place.
                     </p>
@@ -60,9 +61,13 @@ class _HomePage extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.userModule.loggedInUser,
-        count: state.userModule.count
+        user: state.userModule.user,
+        count: state.userModule.count,
+        currPopoverName: state.popoverModule.currPopover.name,
     }
 }
-
-export const HomePage = connect(mapStateToProps)(_HomePage)
+const mapDispatchToProps = {
+    openPopover,
+    closePopover,
+}
+export const HomePage = connect(mapStateToProps, mapDispatchToProps)(_HomePage)

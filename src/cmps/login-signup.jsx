@@ -9,7 +9,7 @@ export class _LoginSignup extends React.Component {
         credentials: {
             username: '',
             password: '',
-            fullname: ''
+            fullname: '',
         },
         isSignup: false
     }

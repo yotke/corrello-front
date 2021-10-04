@@ -39,6 +39,7 @@ export class CardChecklist extends React.Component {
     onSaveChecklistItem = (checklistItem) => {
         const todo = {}
         todo.id = utilService.makeId()
+        todo.isChecked=false
         todo.title = checklistItem
         const { checklist, onSaveChecklist } = this.props
         checklist.todos.push(todo)

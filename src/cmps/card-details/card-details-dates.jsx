@@ -1,20 +1,32 @@
 import React from "react"
 import { Link, NavLink } from 'react-router-dom'
+import { boardService } from "../../services/board.service";
 import { PopoverDate } from "../popover/PopoverDate";
 
 export class DueDateDisplay extends React.Component {
     state = {
         isChecked: false,
     }
-    render() {
+
+    componentDidMount() {
         const { card } = this.props
+        if (card.dueDateDone) {
+            this.setState({ isChecked: true })
+        }
+    }
+    render() {
+        const { card, onSaveBoard, board } = this.props
         const { isChecked } = this.state
         return (
             <section className="date-card-details-container ">
                 <h3>Due date</h3>
 
                 <div>
-                    <input type="checkbox" onChange={() => {
+                    <input type="checkbox" defaultChecked={card.dueDateDone} onChange={(ev) => {
+                        card.dueDateDone = ev.target.checked ? true : false
+                        const updatedBoard = boardService.updateCardInBoard(board, card)
+                        onSaveBoard(updatedBoard)
+                        onSaveBoard(board);
                         this.setState({ isChecked: !isChecked })
                     }} />
                     <button className="due-date-change-btn secondary-btn" onClick={(ev) => {

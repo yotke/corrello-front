@@ -21,7 +21,7 @@ class _AppHeader extends React.Component {
     onOpenPopover = (ev, PopoverName) => {
         //debugger
         const elPos = ev.target.getBoundingClientRect();
-        console.log('board',this.props.board);
+        console.log('board', this.props.board);
         const props = {
             boards: this.props.boards,
         };
@@ -52,7 +52,7 @@ class _AppHeader extends React.Component {
                         <Link to="/workspace" className="btn-header clean-list">
                             {/* <HomeIcon /> */}
                             <button className="btn-header flex" onClick={() => {
-                           }}>
+                            }}>
                                 {/* <BoardIcon /> */}
                                 <div className="txt-btn-wraper">
                                     Workspace
@@ -63,7 +63,7 @@ class _AppHeader extends React.Component {
                                 {/* <ElementOverlay /> */}
                             </button>
                         </Link>
-                        <button className="btn-header flex"  onClick={(ev) => this.onOpenPopover(ev, 'RECENT_BOARDS')}>
+                        <button className="btn-header flex" onClick={(ev) => this.onOpenPopover(ev, 'RECENT_BOARDS')}>
                             {/* <BoardIcon /> */}
                             <div className="txt-btn-wraper">
                                 Recent
@@ -72,7 +72,7 @@ class _AppHeader extends React.Component {
                                 </span>
                             </div>
                         </button>
-                        <button className="btn-header flex"  onClick={(ev) => this.onOpenPopover(ev, 'STARRED')}>
+                        <button className="btn-header flex" onClick={(ev) => this.onOpenPopover(ev, 'STARRED')}>
                             <div className="txt-btn-wraper">
                                 Starred
                                 <span>

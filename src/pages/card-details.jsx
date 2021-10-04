@@ -124,7 +124,7 @@ class _CardDetails extends React.Component {
                 )}
 
                 {dueDate && (
-                  <DueDateDisplay card={card} openPopover={openPopover} />
+                  <DueDateDisplay card={card} openPopover={openPopover}    board={board} onSaveBoard={onSaveBoard} />
                 )}
               </div>
 
