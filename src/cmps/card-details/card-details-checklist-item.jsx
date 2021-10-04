@@ -11,23 +11,23 @@ export class CardChecklistItem extends React.Component {
     }
     componentDidMount() {
         const { todo } = this.props
-        console.log('todo',todo);
-            if (todo) {
-                this.setState({ checklistItem:todo.title })
-            }
-            else {
-                this.setState({ isOnEditState: true })
-            }
+        console.log('todo', todo);
+        if (todo) {
+            this.setState({ checklistItem: todo.title })
+        }
+        else {
+            this.setState({ isOnEditState: true })
+        }
     }
     onSaveChecklistItem = () => {
         const { onAddingListItem, todo } = this.props
         const { checklistItem } = this.state
-        console.log('TODO',todo);
+        console.log('TODO', todo);
         if (todo) {
-  
+
             onAddingListItem(checklistItem, todo.id)
         }
-        else{
+        else {
             onAddingListItem(checklistItem)
         }
     }
@@ -44,10 +44,14 @@ export class CardChecklistItem extends React.Component {
         this.setState({ checklistItem: ev.target.value });
     };
     render() {
+        const { onBoxChecked } = this.props
         const { isOnEditState, checklistItem } = this.state
         return (
             <section className="checklist-item-container">
-                <input type="checkbox" className="checklist-item-checkbox" id="subscribeNews" name="subscribe" value="newsletter" />
+                <input type="checkbox" className="checklist-item-checkbox" id="subscribeNews" name="subscribe" value="newsletter" onChange={(ev) => {
+                    console.log(' ev.target.checked ', ev.target.checked );
+                    ev.target.checked ? onBoxChecked(1) : onBoxChecked(-1)
+                }} />
                 {isOnEditState ? (
                     <div className="checklist-item-input-container">
                         <textarea
