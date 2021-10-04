@@ -42,7 +42,6 @@ import {DynamicPopover} from './cmps/popover/dynamic-popover.jsx'
 
     render() {
         const {board, location } = this.props
-        console.log('path name', location.pathname)
         return (
             <div style={this.style}>
   {this.isHeaderAppears && <header>

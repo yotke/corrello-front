@@ -23,10 +23,14 @@ export class SideNav extends React.Component {
         <div className="nav-logo active" onClick={this.toggleMenu}>
           C
         </div>
-        {isOpen && <section className="nav-content">
 
+        {isOpen && <section className="nav-content">
+          <hr />
           <div className="small-nav-bar-workspace">
-            Your boards
+            <div className="your-boards-container">
+              Your boards
+              {!isboardView && <span className="board-counter">({boards.length})</span>}
+            </div>
             <div className="small-nav-bar-btn-container">
               <button className="" onClick={onAddBoard}>
                 <svg

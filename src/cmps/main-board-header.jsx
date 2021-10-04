@@ -16,10 +16,11 @@ class _MainBoardHeader extends Component {
 
 
     render() {
+        const {board,onSaveBoard} = this.props
         const { title } = this.state
         return (
             <div className="main-board-header">
-                <NavBarBoard title={title}/>
+                <NavBarBoard board={board} onSaveBoard={onSaveBoard} title={title}/>
                 {/* <div className="board-title" >
                     <h1>{title}</h1>
                 </div> */}

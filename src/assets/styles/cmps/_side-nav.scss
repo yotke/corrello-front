@@ -48,11 +48,25 @@
   transition: 0.5s cubic-bezier(0.8, 0.5, 0.2, 1.4);
 }
 
-
 .nav-content{
   width: 100%;
+  hr{
+    margin: 10px 0;
+  }
 }
 .small-nav-bar-workspace{
+  color: #172b4d;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.003em;
+  line-height: 16px;
+  margin-top: 16px;
+  color: #5E6C84;
+  margin: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   display: flex;
   justify-content: space-between;
   button{
@@ -62,6 +76,7 @@
     margin: 0;
     padding: 0px;
   }
+
   .small-nav-bar-btn-container{
     display: flex;
 

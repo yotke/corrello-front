@@ -9,7 +9,7 @@ import { ListAdd } from '../cmps/list-add.jsx'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { SideNav } from '../cmps/sidenav.jsx'
 
-import { loadBoard, onAddBoard, onRemoveBoard, loadBoards, onSaveBoard, onEditBoard } from '../store/board.actions.js'
+import { loadBoard, onAddBoard, onRemoveBoard, loadBoards, onSaveBoard, onEditBoard ,updateRecentBoard} from '../store/board.actions.js'
 import { boardService } from '../services/board.service.js'
 import { LocalGroceryStoreTwoTone, TimerSharp } from '@material-ui/icons'
 // import { showSuccessMsg } from '../services/event-bus.service.js'
@@ -25,21 +25,26 @@ class _BoardApp extends React.Component {
     async componentDidMount() {
         try {
             const { boardId } = this.props.match.params
-            await this.props.loadBoard(boardId)
-            await this.props.loadBoards()
+            await Promise.all([
+                this.props.loadBoard(boardId),
+                this.props.updateRecentBoard(boardId),
+                 this.props.loadBoards(),
+            ]
+
+            )
         }
         catch (err) {
             console.log(err);
         }
-        
+
         this.unlisten = this.props.history.listen((location) => {
             const splittedPath = location.pathname.split('/');
-            
+
             const boardId = splittedPath[2];
             if (!boardId || boardId === this.props.match.params.boardId) return;
             console.log('Loading board from URL watcher - need to be ONLY on BOARD change!!!');
             this.onBoardChange(boardId)
-          });
+        });
 
     }
 
@@ -48,7 +53,7 @@ class _BoardApp extends React.Component {
     }
 
     onBoardChange = (boardId) => {
-         this.props.loadBoard(boardId)
+        this.props.loadBoard(boardId)
     }
 
     onRemoveBoard = (boardId) => {
@@ -116,9 +121,7 @@ class _BoardApp extends React.Component {
 
     render() {
 
-        const { board } = this.props
-        const { onSaveBoard } = this.props;
-        const { boards } = this.props;
+        const { board,onSaveBoard,boards } = this.props
         const { isMainBoard } = this.state
         if (!board) return <Loader />
 
@@ -127,7 +130,7 @@ class _BoardApp extends React.Component {
                 <section className="main-board flex row">
                     <SideNav boards={boards} isMainBoard={isMainBoard} />
                     <div className="layout-helper flex column">
-                        <MainBoardHeader title={board.title}/>
+                        <MainBoardHeader board={board} onSaveBoard={onSaveBoard} title={board.title} />
                         <div className="board-content">
                             <Route path="/board/:boardId/:listId/:cardId" exact component={CardDetails} />
                             <DragDropContext onDragEnd={this.handleOnDragEnd}>
@@ -171,7 +174,8 @@ const mapDispatchToProps = {
     onEditBoard,
     onAddBoard,
     loadBoards,
-    onSaveBoard
+    onSaveBoard,
+    updateRecentBoard
 
 }
 

@@ -20,8 +20,7 @@ export function boardReducer(state = initialState, action) {
             break
 
         case 'UPDATE_RECENT_BOARDS':
-            recentBoards = state.recentBoards.length >= 3 ? state.recentBoards.unshift() : state.recentBoards
-            console.log('recentBoards',recentBoards);
+            recentBoards = state.recentBoards
             recentBoards.push(action.board)
             newState = { ...state, recentBoards: recentBoards }
             break

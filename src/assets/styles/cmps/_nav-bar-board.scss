@@ -17,7 +17,9 @@
     .board-title {
         opacity: 0.5;
     }
-    button {
+
+    button,
+    p {
         color: #172b4d;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Noto Sans", "Ubuntu", "Droid Sans",
             "Helvetica Neue", sans-serif;
@@ -44,6 +46,16 @@
         transition-timing-function: ease;
         background-color: rgba(255, 255, 255, 0.2);
         color: #ffffff;
+        &:hover {
+        }
+    }
+    p {
+        font-weight: bold;
+    }
+    .star-board-btn {
+        &.active {
+            color: yellow;
+        }
     }
     .board-board-btn {
         -webkit-text-size-adjust: 100%;

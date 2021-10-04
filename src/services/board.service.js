@@ -8,13 +8,14 @@ import { useLocation } from 'react-router'
 import testUtils from 'react-dom/test-utils'
 
 const STORAGE_KEY = 'boardDB'
-const RECEBT_BOARDS_KEY = 'recentBoards'
+const RECEBT_BOARDS_KEY = 'recentBoardsDB'
 const listeners = []
 const DATA = data;
 
 export const boardService = {
     query,
     queryRecentBoards,
+    saveRecentBoards,
     getById,
     save,
     remove,
@@ -34,7 +35,7 @@ _saveToLocalStorage();
 // todo
 function _saveToLocalStorage() {
     //console.log('DATA FROM STORAGAE',DATA)
-    
+
     query().then((respone) => {
         if (!respone.length) storageService.postMany(STORAGE_KEY, DATA)
     })
@@ -44,8 +45,24 @@ function _saveToLocalStorage() {
 function query() {
     return storageService.query(STORAGE_KEY)
 }
+
 function queryRecentBoards() {
     return storageService.query(RECEBT_BOARDS_KEY)
+}
+
+async function saveRecentBoards(board) {
+    const getBoard = await getByIdRecentBoards(board._id)
+    if (getBoard) {
+        return
+    }
+    else {
+        //board.owner = userService.getLoggedinUser()
+        return storageService.post(RECEBT_BOARDS_KEY, board)
+    }
+}
+
+function getByIdRecentBoards(boardId) {
+    return storageService.get(RECEBT_BOARDS_KEY, boardId)
 }
 function getById(boardId) {
     return storageService.get(STORAGE_KEY, boardId)

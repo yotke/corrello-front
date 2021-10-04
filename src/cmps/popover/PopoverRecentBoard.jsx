@@ -8,28 +8,20 @@ import { onSaveBoard, loadRecentBoards } from "../../store/board.actions";
 import { Popover } from './Popover';
 import { Link, NavLink } from 'react-router-dom'
 class _PopoverRecentBoard extends Component {
-    state = {
-        recentBoards: []
-    }
-    async componentDidMount() {
-        try {
-            const { boardId } = this.props.match.params
-            const recentBoards = await this.props.loadBoards()
-            this.setState(recentBoards)
-        }
-        catch (err) {
-            console.log(err);
-        }
+
+
+    componentDidMount() {
+        this.props.loadRecentBoards()
     }
     render() {
-        const { recentBoards } = this.state
-        console.log('recentBoards in popover starred', recentBoards);
+        const { recentBoards } = this.props
+        console.log('recentBoards in popover', recentBoards);
         return <Popover title={"Recent boards"}>
             <div className="recent-pop-over-content">
                 <ul className="board-list-navbar">
-                    {recentBoards && recentBoards.map((board) => {
+                    {recentBoards && recentBoards.length > 0 && recentBoards.map((board) => {
                         return (
-                            <Link to={`/board/${board._id}`} key={board._id} className="clean-link">
+                            board && <Link to={`/board/${board._id}`} key={board._id} className="clean-link">
                                 <div className="nav-bar-btns flex row">
                                     <li className="board-preview-navbar" key={board._id} style={board.style && {
                                         backgroundImage: "url(" + board.style.background + ")",
@@ -51,13 +43,11 @@ class _PopoverRecentBoard extends Component {
 
 function mapStateToProps(state) {
     return {
-        boards: state.boardModule.boards,
-        loggedInUser: state.userModule.loggedInUser
+        recentBoards: state.boardModule.recentBoards,
     }
 }
 
 const mapDispatchToProps = {
-    onSaveBoard,
     closePopover,
     loadRecentBoards
 }

@@ -32,7 +32,7 @@ export function loadRecentBoards() {
     return (dispatch) => {
         boardService.queryRecentBoards()
             .then(recentBoards => {
-                console.log('Boards from DB:', recentBoards)
+                console.log('Recent Boards from DB:', recentBoards)
                 dispatch({
                     type: 'SET_RECENT_BOARDS',
                     recentBoards
@@ -72,22 +72,20 @@ export function loadBoard(boardId) {
                 type: 'SET_BOARD',
                 board
             })
-            console.log('!!!!!!!!!!!!!!!!!!!!!!!!',board);
-            updateRecentBoard(board)
         } catch (err) {
             console.log('BoardActions: err in loadBoard', err)
         }
     }
 }
 
-export function updateRecentBoard(board) {
+export function updateRecentBoard(boardId) {
     return async dispatch => {
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!',board);
         try {
-            const savedBoard = await boardService.save(board)
+            let board = await boardService.getById(boardId)
+            board = await boardService.saveRecentBoards(board)
             dispatch({
                 type: 'UPDATE_RECENT_BOARDS',
-                savedBoard
+                board
             })
         } catch (err) {
             console.log('BoardActions: err in loadBoard', err)

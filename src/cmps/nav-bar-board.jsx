@@ -1,7 +1,42 @@
 import React from 'react'
+import { boardService } from '../services/board.service'
 export class NavBarBoard extends React.Component {
+    state = {
+        title: 'Board Name',
+        isOnEditState: false,
+        star: false
+    }
+    componentDidMount() {
+        const { board } = this.props
+        if (board) {
+            this.setState({ title: board.title })
+            this.setState({ star: board.star })
+        }
+    }
+
+    onSaveBoardName = () => {
+        const { title } = this.state
+        const { board, onSaveBoard } = this.props
+        if (board) {
+            board.title = title
+            onSaveBoard(board);
+        }
+    }
+    goBackToCard = () => {
+
+    }
+    handleChange = (ev) => {
+        console.log(ev);
+        if (ev.keyCode === 13) {
+            ev.preventDefault();
+            this.onSaveBoardName();
+            return;
+        }
+        this.setState({ title: ev.target.value });
+    }
     render() {
-        const { title } = this.props
+        const { isOnEditState, title, star } = this.state
+        const { board, onSaveBoard } = this.props
         return (
             <section className="board-nav-bar-container flex">
                 <div className="first-board-part">
@@ -35,14 +70,42 @@ export class NavBarBoard extends React.Component {
                             Board
                         </span>
                     </button> */}
-                    <button className="new-board-board-btn">New</button>
-                    <button className="star-board-btn">Star</button>
+                    {isOnEditState ? (<input className="name-board-board-btn"
+                        type="text"
+                        className="card-list-header-input"
+                        value={title}
+                        autoFocus
+                        onChange={this.handleChange}
+                        onKeyDown={this.handleChange}
+                        onBlur={() => {
+                            this.onSaveBoardName()
+                            this.setState({ isOnEditState: !isOnEditState })
+                        }}
+
+                    />) : (
+                        <p onClick={() => {
+                            this.setState({ isOnEditState: !isOnEditState })
+                        }}>{title}</p>
+                    )}
+                    <button className={star ? " active star-board-btn" : "star-board-btn"} onClick={() => {
+                        this.setState({ star: !star }, () => {
+                            console.log(star);
+                            board.star = star
+                            onSaveBoard(board);
+
+                        })
+
+                    }}>
+                        <svg width="15" height="15" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.49495 20.995L11.9999 18.6266L16.5049 20.995C16.8059 21.1533 17.1507 21.2079 17.4859 21.1504C18.3276 21.006 18.893 20.2066 18.7486 19.3649L17.8882 14.3485L21.5328 10.7959C21.7763 10.5585 21.9348 10.2475 21.9837 9.91094C22.1065 9.06576 21.5209 8.28106 20.6758 8.15825L15.6391 7.42637L13.3866 2.86236C13.2361 2.55739 12.9892 2.31054 12.6843 2.16003C11.9184 1.78206 10.9912 2.0965 10.6132 2.86236L8.36072 7.42637L3.32403 8.15825C2.98747 8.20715 2.67643 8.36564 2.43904 8.60917C1.84291 9.22074 1.85542 10.1998 2.46699 10.7959L6.11158 14.3485L5.25121 19.3649C5.19372 19.7 5.24833 20.0448 5.40658 20.3459C5.80401 21.1018 6.739 21.3924 7.49495 20.995ZM19.3457 10.0485L15.6728 13.6287L16.5398 18.684L11.9999 16.2972L7.45995 18.684L8.327 13.6287L4.65411 10.0485L9.72993 9.31093L11.9999 4.71146L14.2699 9.31093L19.3457 10.0485Z" fill="currentColor">
+                        </path>
+                        </svg>
+                    </button>
                     <span className="sperator-nav-board">|</span>
                     <button className="workspace-board-btn">View workspace</button>
                     <span className="sperator-nav-board">|</span>
                 </div>
-                       <div className="board-title" >
-                    <h1>{title}</h1>
+                <div className="board-title" >
+
                 </div>
                 <div className="second-board-part">
                     <button className="invite-member-board-btn">Invite</button>
