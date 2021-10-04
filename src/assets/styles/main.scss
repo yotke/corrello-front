@@ -41,13 +41,13 @@
 @import 'views/board-app';
 @import 'views/review-app';
 @import 'views/workspace';
-@import 'cmps/popovers/pop-over';
 @import 'cmps/card-details-cmps/card-details-date';
 @import 'cmps/card-details-cmps/card-details-actions';
 @import 'cmps/popovers/label-popover-preview';
+@import 'cmps/popovers/pop-over';
 @import 'cmps/popovers/cover-pop-over';
-@import 'cmps/card-details-cmps/card-details-cover';
 @import 'cmps/popovers/create-board-pop-over';
+@import 'cmps/popovers/popover-user';
 
 // Components
 @import 'cmps/app-header';
