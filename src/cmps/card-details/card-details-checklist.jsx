@@ -4,6 +4,7 @@ import { boardService } from "../../services/board.service"
 import { utilService } from "../../services/util.service"
 import { CardChecklistItem } from "./card-details-checklist-item"
 import { ProgressBar } from "./progress-bar"
+import { ReactComponent as CheckIcon } from '../../assets/img/cmps/card-details/icon-checklist.svg'
 
 export class CardChecklist extends React.Component {
     state = {
@@ -53,12 +54,15 @@ export class CardChecklist extends React.Component {
         return (
             <section className="checklist-container" >
                 <div className="checklist-header">
+                <CheckIcon className="checklist-logo"/>
                     {checklist && <h3>{checklist.title}</h3>}
                     {!checklist && <h3>checklist</h3>}
                     <button className="checklist-delete-btn checklist-btn" onClick={() => {
                         this.props.onDeleteChecklist(checklist)
                     }}>Delete</button>
                 </div>
+                <div className="checklist-wrapper">
+
                 <div className="progress-bar-container">
                     <ProgressBar completed={percentComplite} />
                 </div>
@@ -86,6 +90,8 @@ export class CardChecklist extends React.Component {
                     }
                 </div>
 
+
+</div>
             </section>
 
         )

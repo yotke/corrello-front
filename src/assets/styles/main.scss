@@ -43,8 +43,6 @@
 @import 'views/workspace';
 @import 'cmps/card-details-cmps/card-details-date';
 @import 'cmps/card-details-cmps/card-details-actions';
-@import 'cmps/card-details-cmps/card-details-labels';
-@import 'cmps/card-details-cmps/card-details-cover';
 @import 'cmps/popovers/label-popover-preview';
 @import 'cmps/popovers/pop-over';
 @import 'cmps/popovers/cover-pop-over';
@@ -69,7 +67,7 @@
 @import 'cmps/card-preview/card-preview-date';
 @import 'cmps/card-preview/card-preview';
 @import 'cmps/card-preview/card-preview-labels';
-
+@import 'cmps/card-details-cmps/card-labels';
 //Components card-details-cmps
 @import 'cmps/card-details-cmps/card-details-activity-list';
 @import 'cmps/card-details-cmps/card-details-activity-preview';

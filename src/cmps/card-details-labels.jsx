@@ -11,7 +11,7 @@ export function CardDetailsLabels({ labels, openPopover, card }) {
     return (
         <div className="card-details-labels item-container flex column align-flex-end">
             <h3 className="card-details-item-header">Labels</h3>
-            <div className="labels-container flex wrap">
+            <div className="flex wrap">
                 {labels.map(label => {
                     return <span
                         onClick={(ev) => onOpenPopover(ev, 'LABELS')} key={label.id} className="label" style={{ backgroundColor: label.color }}>

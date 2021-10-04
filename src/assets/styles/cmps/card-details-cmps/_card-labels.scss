@@ -1,24 +1,5 @@
 .card-details-labels {
-  margin: 0 8px 8px 0;
   .labels-container {
-    .label {
-      cursor: pointer;
-      color: $clr2;
-      border-radius: 3px;
-      box-sizing: border-box;
-      display: block;
-      float: left;
-      font-weight: 600;
-      height: 32px;
-      line-height: 32px;
-      margin: 0 4px 4px 0;
-      min-width: 40px;
-      padding: 0 12px;
-      width: auto;
-      &:hover {
-        opacity: 0.8;
-      }
-    }
     .secondary-btn {
       display: flex;
       border-radius: $borderRad1;
@@ -62,5 +43,23 @@
   }
   svg {
     z-index: 2;
+  }
+}
+.label {
+  cursor: pointer;
+  color: $clr2;
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  font-weight: 600;
+  height: 32px;
+  line-height: 32px;
+  margin: 0 4px 4px 0;
+  min-width: 40px;
+  padding: 0 12px;
+  width: auto;
+  &:hover {
+    opacity: 0.8;
   }
 }

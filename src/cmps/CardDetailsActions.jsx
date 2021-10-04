@@ -35,6 +35,7 @@ class _CardDetailsActions extends Component {
             onClick={(ev) => this.onOpenPopover(ev, 'MEMBERS')}
           >
             <div className="actions-btn-content flex align-center">
+              <span class="icon-sm icon-member"></span>
               <span>Members</span>
             </div>
          
