@@ -1,17 +1,21 @@
 .activity-preview {
+  display: flex;
+  width: 100%;
+
+  .activity-creator {
     display: flex;
-    width: 100%;
 
-    .activity-creator {
-        display: flex;
+    .activity-creator-member {
+      .activity-creator-member-avatar {
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
+  .activity-desc {
+  }
+}
 
-        .activity-creator-member {
-            .activity-creator-member-avatar {
-                height: 30px;
-                width: 30px;
-            }
-        }
-    }
-    .activity-desc {
-    }
+.icon-check {
+  margin-left: auto;
 }

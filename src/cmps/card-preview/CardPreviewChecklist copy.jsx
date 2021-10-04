@@ -17,7 +17,7 @@ export class CardPreviewChecklist extends Component {
         const {doneTodosCount, todosCount} = this.todosMap
         return (
             <div className={`card-preview-checklist ${doneTodosCount === todosCount && 'done'}`}>
-                <div className="check-icon"></div>
+                {/* <div className="check-icon"></div> */}
                 <span>{`${doneTodosCount}/${todosCount}`}</span>
             </div>
         )

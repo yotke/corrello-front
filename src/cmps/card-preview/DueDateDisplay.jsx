@@ -52,7 +52,6 @@ class _DueDateDisplay extends Component {
     }
 
     render() {
-        // TODO: IMPLEMENT TIME TRACKING
         const { card, toggleCardDone, displayType } = this.props
         const dueStatus = this.getDueStatus();
         return <> { displayType === 'preview' ?

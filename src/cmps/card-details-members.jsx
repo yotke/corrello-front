@@ -1,6 +1,6 @@
 //import { ReactComponent as AddIcon } from '../../assets/img/icons/add.svg'
 import { ProfileAvatar } from '../cmps/profile-avatar.jsx'
-
+import { ReactComponent as AddIcon } from '../assets/img/icons/add.svg'
 
 export function CardDetailsMembers({ members, card, openPopover }) {
 
@@ -21,9 +21,9 @@ export function CardDetailsMembers({ members, card, openPopover }) {
                     return <ProfileAvatar key={member._id} member={member} size={32}
                         onOpenPopover={onOpenPopover} />
                 })}
-                <button className="secondary-btn"
+                <button className="add-member secondary-btn"
                     onClick={(ev) => onOpenPopover(ev, 'MEMBERS')} >
-                    {/* <AddIcon /> */}
+                    <AddIcon />
                 </button>
             </div>
         </div>
