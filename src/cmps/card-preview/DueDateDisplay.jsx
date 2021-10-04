@@ -20,7 +20,7 @@ class _DueDateDisplay extends Component {
         const now = Date.now()
         const { card } = this.props
         let dueStatus = '';
-        if (card.isDone) dueStatus = 'done';
+        if (card.dueDateDone) dueStatus = 'done';
         else if (now > card.dueDate) dueStatus = 'overdue';
         else {
             const timeDiff = card.dueDate - now;
@@ -66,7 +66,7 @@ class _DueDateDisplay extends Component {
                 <h3 className="card-details-item-header">DUE DATE</h3>
                 <div className="flex align-center">
 
-                    {card.isDone ?
+                    {card.dueDateDone ?
                         <CheckBoxIcon className="checked" onClick={this.onToggleCardDone} /> :
                         <CheckBoxOutlineBlankIcon className="non-checked" onClick={this.onToggleCardDone} />}
                     <button className="secondary-btn" onClick={(ev) => this.onOpenPopover(ev, 'DATE')}>

@@ -6,7 +6,7 @@ export class CardPreviewChecklist extends Component {
         const todosMap = checklists.reduce((acc, checklist) => {
             acc['todosCount'] += checklist.todos.length
             checklist.todos.forEach(todo => {
-                if (todo.isDone) acc['doneTodosCount']++
+                if (todo.isChecked) acc['doneTodosCount']++
             })
             return acc;
         }, { todosCount: 0, doneTodosCount: 0 })
