@@ -48,7 +48,7 @@ export class CardChecklistItem extends React.Component {
         const { isOnEditState, checklistItem } = this.state
         return (
             <section className="checklist-item-container">
-                <input type="checkbox" defaultChecked={todo.isChecked} className="checklist-item-checkbox" id="subscribeNews" name="subscribe" value="newsletter" onChange={(ev) => {
+                <input type="checkbox" defaultChecked={todo && todo.isChecked} className="checklist-item-checkbox" id="subscribeNews" name="subscribe" value="newsletter" onChange={(ev) => {
                     console.log(' ev.target.checked ', ev.target.checked);
 
                     if (ev.target.checked) {
