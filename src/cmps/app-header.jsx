@@ -30,7 +30,10 @@ class _AppHeader extends React.Component {
     };
     render() {
         const { isNewNotific } = this.state
-        var { isBoardStyle, openPopover ,user} = this.props
+        var { isBoardStyle, openPopover, user } = this.props
+        const [name, lastname] = user.fullname.split(' ')
+        console.log(name[0])
+        console.log(lastname[0])
         if (!isBoardStyle) {
             isBoardStyle = false;
         }
@@ -99,9 +102,12 @@ class _AppHeader extends React.Component {
                                 <BellIcon />
                             </button>
                         </div>
-                        {user && <button className="user-logo-in" onClick={(ev) => {
+                        {user && <button className="user-logo-in-app-header " onClick={(ev) => {
                             this.onOpenPopover(ev, 'USER')
-                        }}>logo</button>}
+                        }}><div className="letter-logo-workspace-header">
+                                {name[0]} {lastname[0]}
+                            </div>
+                        </button>}
                     </div>
                 </div>
             </section>

@@ -34,6 +34,18 @@
     &:last-of-type {
       justify-content: flex-end;
     }
+    .user-logo-in-app-header {
+      border: none;
+      .letter-logo-workspace-header {
+        height: 32px;
+        background: linear-gradient(#d42405, #f03000);
+        width: 32px;
+        line-height: 32px;
+        border-radius: 3rem;
+        text-transform: uppercase;
+        color: white !important;
+      }
+    }
   }
   // header buttons //
   .btn-header {

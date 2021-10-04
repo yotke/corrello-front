@@ -121,14 +121,14 @@ class _BoardApp extends React.Component {
 
     render() {
 
-        const { board,onSaveBoard,boards } = this.props
+        const { board,onSaveBoard,boards ,user} = this.props
         const { isMainBoard } = this.state
         if (!board) return <Loader />
 
         return (
             <>
                 <section className="main-board flex row">
-                    <SideNav boards={boards} isMainBoard={isMainBoard} />
+                    <SideNav boards={boards} isMainBoard={isMainBoard} user={user} />
                     <div className="layout-helper flex column">
                         <MainBoardHeader board={board} onSaveBoard={onSaveBoard} title={board.title} />
                         <div className="board-content">
@@ -165,7 +165,8 @@ class _BoardApp extends React.Component {
 function mapStateToProps(state) {
     return {
         board: state.boardModule.board,
-        boards: state.boardModule.boards
+        boards: state.boardModule.boards,
+        user: state.userModule.user
     }
 }
 const mapDispatchToProps = {

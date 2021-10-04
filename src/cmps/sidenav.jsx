@@ -16,12 +16,15 @@ export class SideNav extends React.Component {
   };
 
   render() {
-    const { boards, isMainBoard, onAddBoard } = this.props
+    const { boards, isMainBoard, onAddBoard,user } = this.props
     const { isOpen, isboardView } = this.state
+    const [name, lastname] = user.fullname.split(' ')
+    console.log(name[0])
+    console.log(lastname[0])
     return (
       <div className={`leftMenu ${isMainBoard ? 'main' : 'workspace'}`}>
         <div className="nav-logo active" onClick={this.toggleMenu}>
-          C
+          {name[0]}
         </div>
 
         {isOpen && <section className="nav-content">
