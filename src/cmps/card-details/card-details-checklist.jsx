@@ -24,6 +24,18 @@ export class CardChecklist extends React.Component {
         this.setState({ percentComplite: complite * 100 })
     }
 
+
+    updateTodoCheckedBox = (todo) => {
+        const { checklist,onSaveChecklist } = this.props
+        const todoId = todo.id
+        const todoIdx = checklist.todos.findIndex(todo => {
+            return todo.id === todoId
+        })
+        checklist.todos[todoIdx] = todo
+        onSaveChecklist(checklist)
+
+    }
+
     onEditlistItem = (checklistItem, todoId) => {
         console.log('todoId', todoId);
         const { checklist, onSaveChecklist } = this.props
@@ -40,7 +52,7 @@ export class CardChecklist extends React.Component {
     onSaveChecklistItem = (checklistItem) => {
         const todo = {}
         todo.id = utilService.makeId()
-        todo.isChecked=false
+        todo.isChecked = false
         todo.title = checklistItem
         const { checklist, onSaveChecklist } = this.props
         checklist.todos.push(todo)
@@ -54,7 +66,7 @@ export class CardChecklist extends React.Component {
         return (
             <section className="checklist-container" >
                 <div className="checklist-header">
-                <CheckIcon className="checklist-logo"/>
+                    <CheckIcon className="checklist-logo" />
                     {checklist && <h3>{checklist.title}</h3>}
                     {!checklist && <h3>checklist</h3>}
                     <button className="checklist-delete-btn checklist-btn" onClick={() => {
@@ -63,35 +75,37 @@ export class CardChecklist extends React.Component {
                 </div>
                 <div className="checklist-wrapper">
 
-                <div className="progress-bar-container">
-                    <ProgressBar completed={percentComplite} />
-                </div>
-                <div className="checklist-list-container">
-                    {checklist && checklist.todos.map((todo, itemIdx) =>
-                        <div className="card-checklist-item-div" key={itemIdx}>
+                    <div className="progress-bar-container">
+                        <ProgressBar completed={percentComplite} />
+                    </div>
+                    <div className="checklist-list-container">
+                        {checklist && checklist.todos.map((todo, itemIdx) =>
+                            <div className="card-checklist-item-div" key={itemIdx}>
+                                <CardChecklistItem
+                                    onBoxChecked={this.onBoxChecked}
+                                    todo={todo}
+                                    updateTodoCheckedBox={this.updateTodoCheckedBox}
+                                    onAddingListItem={this.onEditlistItem} />
+                                    
+                            </div>
+                        )}
+                    </div>
+                    <div className="add-checklist-item-container">
+                        {isOnEditState ? (
                             <CardChecklistItem
                                 onBoxChecked={this.onBoxChecked}
-                                todo={todo}
-                                onAddingListItem={this.onEditlistItem} />
-                        </div>
-                    )}
-                </div>
-                <div className="add-checklist-item-container">
-                    {isOnEditState ? (
-                        <CardChecklistItem
-                            onBoxChecked={this.onBoxChecked}
-                            onAddingListItem={this.onSaveChecklistItem} />
-                    ) :
-                        (
-                            <button className="checklist-add-item checklist-btn" onClick={() => {
-                                this.setState({ isOnEditState: true })
-                            }}>Add an item</button>
-                        )
-                    }
-                </div>
+                                onAddingListItem={this.onSaveChecklistItem} />
+                        ) :
+                            (
+                                <button className="checklist-add-item checklist-btn" onClick={() => {
+                                    this.setState({ isOnEditState: true })
+                                }}>Add an item</button>
+                            )
+                        }
+                    </div>
 
 
-</div>
+                </div>
             </section>
 
         )
