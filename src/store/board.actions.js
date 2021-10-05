@@ -1,6 +1,7 @@
 import { boardService } from "../services/board.service.js";
 import { userService } from "../services/user.service.js";
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
+import { socketService } from "../services/socket.service.js";
 
 export function loadBoards() {
     return (dispatch) => {
@@ -55,6 +56,7 @@ export function loadRecentBoards() {
 export function onSaveBoard(board) {
     return async dispatch => {
         try {
+            socketService.emit('SOCKET_EVENT_ON_BOARD_SAVED', board._id)
             const savedBoard = await boardService.save(board)
             dispatch({ type: 'SAVE_BOARD', board: savedBoard })
         } catch (err) {
