@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { boardService } from "../../services/board.service"
 import { ReactComponent as IconDescription } from '../../assets/img/cmps/card-details/icon-description.svg'
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
-
+import { onSaveBoard } from "../../store/board.actions";
 export class CardChecklistItem extends React.Component {
     state = {
         checklistItem: 'new',
@@ -44,7 +44,11 @@ export class CardChecklistItem extends React.Component {
         this.setState({ checklistItem: ev.target.value });
     };
     render() {
+<<<<<<< HEAD
+        const { onBoxChecked, todo, board, card } = this.props
+=======
         const { onBoxChecked, todo,updateTodoCheckedBox } = this.props
+>>>>>>> d86089fd1fc8bf73a04efaf4d3bd0ed6ebdfef48
         const { isOnEditState, checklistItem } = this.state
         return (
             <section className="checklist-item-container">
@@ -62,6 +66,7 @@ export class CardChecklistItem extends React.Component {
                         updateTodoCheckedBox(todo)
                         onBoxChecked(-1)
                     }
+                   
                 }} />
                 {isOnEditState ? (
                     <div className="checklist-item-input-container">
@@ -75,7 +80,10 @@ export class CardChecklistItem extends React.Component {
                             onBlur={() => {
                                 this.onSaveChecklistItem()
                                 this.setState({ isOnEditState: !isOnEditState })
-                            }} />
+                        
+                            }
+                            
+                            } />
                         {/* <div className="checklist-item-textarea-btns">
                             <button className="save-checklist-item button--primary" onClick={() => {
                                 this.onSaveChecklistItem()
