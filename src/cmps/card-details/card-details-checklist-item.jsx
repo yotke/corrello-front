@@ -44,7 +44,11 @@ export class CardChecklistItem extends React.Component {
         this.setState({ checklistItem: ev.target.value });
     };
     render() {
+<<<<<<< HEAD
         const { onBoxChecked, todo, board, card } = this.props
+=======
+        const { onBoxChecked, todo,updateTodoCheckedBox } = this.props
+>>>>>>> d86089fd1fc8bf73a04efaf4d3bd0ed6ebdfef48
         const { isOnEditState, checklistItem } = this.state
         return (
             <section className="checklist-item-container">
@@ -55,9 +59,11 @@ export class CardChecklistItem extends React.Component {
 
                         onBoxChecked(1)
                         todo.isChecked = true
+                        updateTodoCheckedBox(todo)
                     }
                     else {
                         todo.isChecked = false
+                        updateTodoCheckedBox(todo)
                         onBoxChecked(-1)
                     }
                    

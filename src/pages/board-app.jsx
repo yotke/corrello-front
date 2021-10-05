@@ -8,8 +8,8 @@ import { MainBoardHeader } from '../cmps/main-board-header.jsx'
 import { ListAdd } from '../cmps/list-add.jsx'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { SideNav } from '../cmps/sidenav.jsx'
-
-import { loadBoard, onAddBoard, onRemoveBoard, loadBoards, onSaveBoard, onEditBoard ,updateRecentBoard} from '../store/board.actions.js'
+import { socketService } from '../services/socket.service.js'
+import { loadBoard, onAddBoard, onRemoveBoard, loadBoards, onSaveBoard, onEditBoard, updateRecentBoard } from '../store/board.actions.js'
 import { boardService } from '../services/board.service.js'
 import { LocalGroceryStoreTwoTone, TimerSharp } from '@material-ui/icons'
 // import { showSuccessMsg } from '../services/event-bus.service.js'
@@ -28,13 +28,13 @@ class _BoardApp extends React.Component {
     async componentDidMount() {
         try {
             const { boardId } = this.props.match.params
-            await Promise.all([
-                this.props.loadBoard(boardId),
-                this.props.updateRecentBoard(boardId),
-                 this.props.loadBoards(),
-            ]
 
-            )
+            await this.loadBoard(boardId)
+
+            socketService.setup()
+            socketService.emit('SOCKET_EVENT_START_BOARD', boardId)
+            socketService.on('SOCKET_EVENT_ON_RELOAD_BOARD', this.props.loadBoard)
+            // socketService.emit(socketService.SOCKET_EVENT_ON_BOARD_SAVED, boardId)
         }
         catch (err) {
             console.log(err);
@@ -48,9 +48,16 @@ class _BoardApp extends React.Component {
             console.log('Loading board from URL watcher - need to be ONLY on BOARD change!!!');
             this.onBoardChange(boardId)
         });
-
     }
 
+    loadBoard = async (boardId) => {
+        console.log('loadBoard = async (boardId) => ', boardId)
+        await Promise.all([
+            this.props.loadBoard(boardId),
+            this.props.updateRecentBoard(boardId),
+            this.props.loadBoards(),
+        ])
+    }
 
     componentWillUnmount() {
         this.unlisten();
@@ -125,9 +132,9 @@ class _BoardApp extends React.Component {
 
     render() {
 
-        const { board,onSaveBoard,boards ,user} = this.props
+        const { board, onSaveBoard, boards, user } = this.props
         const { isMainBoard } = this.state
-        if (!board) return <Loader/>
+        if (!board) return <Loader />
 
         return (
             <>
@@ -145,7 +152,7 @@ class _BoardApp extends React.Component {
                                                 <Draggable key={currList.id} draggableId={currList.id} index={listIdx}>
                                                     {(provided) => (
                                                         <li className="list-wrapper" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                            <ListPreview className={this.state.isDragged && 'list-dragged'}  board={board} key={listIdx} listIdx={listIdx} currList={currList} onSaveBoard={onSaveBoard} handleOnDragEndCards={this.handleOnDragEndCards} onCardClicked={this.onCardClicked} />
+                                                            <ListPreview className={this.state.isDragged && 'list-dragged'} board={board} key={listIdx} listIdx={listIdx} currList={currList} onSaveBoard={onSaveBoard} handleOnDragEndCards={this.handleOnDragEndCards} onCardClicked={this.onCardClicked} />
                                                         </li>
                                                     )}
                                                 </Draggable>
@@ -158,7 +165,7 @@ class _BoardApp extends React.Component {
                             </DragDropContext>
                         </div>
                     </div>
-                    <SideNavRight/>
+                    <SideNavRight />
                 </section>
             </>
         )

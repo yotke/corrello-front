@@ -10,6 +10,7 @@ import { PopoverStarred } from "./PopoverStarred.jsx";
 import { PopoverRecentBoard } from "./PopoverRecentBoard.jsx";
 import { PopoverUser } from "./PopoverUser.jsx";
 import {PopoverAttachment} from './PopoverAttachment.jsx'
+import { PopoverSearchAppheader } from "./popover-search-appheader.jsx";
 
 
 
@@ -31,6 +32,7 @@ function _DynamicPopover({ currPopover }) {
     case 'RECENT_BOARDS': return <PopoverRecentBoard {...props} />;
     case 'USER': return <PopoverUser {...props} />; 
     case 'ATTACHMENT': return <PopoverAttachment {...props} />;
+    case 'SEARCH_HEADER': return <PopoverSearchAppheader {...props} />;
 
     default: return '';
   }
