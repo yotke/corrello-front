@@ -39,7 +39,7 @@ class _Workspace extends React.Component {
                             <WorkspaceNavBar />
                         </div>
                         <div className="all-boards-main">
-                            <SearchNavBar  />
+                            <SearchNavBar />
                             <BoardPreview boards={boards} />
                         </div>
                     </div>
