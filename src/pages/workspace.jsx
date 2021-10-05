@@ -13,7 +13,7 @@ import { SearchNavBar } from '../cmps/search-nav-bar.jsx'
 class _Workspace extends React.Component {
     state = {
         isMainBoard: false,
-        boards:[]
+        boardsToShow: []
     }
     componentDidMount() {
         this.props.loadBoards()
@@ -24,20 +24,28 @@ class _Workspace extends React.Component {
     onAddBoard = () => {
         this.props.onAddBoard()
     }
-
+    ה
 
     onSelectSort = (boards) => {
         this.setState(boards)
     }
     onSetFilter = (filterBy) => {
-        console.log('filter filter all the way',filterBy)
-        
+        const { boards } = this.props
+        console.log('filter filter all the way', filterBy)
+        if (filterBy) {
+            let { title } = filterBy
+            const boardsToShow = boards.filter(board => {
+                console.log('board.title', board.title)
+                return board.title.toUpperCase().includes(title.toUpperCase())
+            })
+            this.setState({ boardsToShow })
+        }
     }
 
     render() {
         const { boards, onAddBoard, user } = this.props
         const { isWorkSpace } = this.state;
-
+        const boardsToShow = this.state.boardsToShow.length ? this.state.boardsToShow : boards
         return (
             <section className="workspace-container">
 
@@ -51,7 +59,7 @@ class _Workspace extends React.Component {
                         </div>
                         <div className="all-boards-main">
                             <SearchNavBar boards={boards} onSelectSort={this.onSelectSort} onSetFilter={this.onSetFilter} />
-                            <BoardPreview boards={boards} />
+                            <BoardPreview boards={boardsToShow} />
                         </div>
                     </div>
                 </div>

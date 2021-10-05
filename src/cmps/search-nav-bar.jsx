@@ -3,7 +3,7 @@ import React from 'react'
 export class SearchNavBar extends React.Component {
     state = {
         filterBy: {
-            name: '',
+            title: '',
         },
         field: ''
     };
@@ -27,7 +27,7 @@ export class SearchNavBar extends React.Component {
     }
 
     sortByRecentlyUsed = () => {
-        
+
     }
     sortByLeastRecentlyUsed = () => {
     }
@@ -105,7 +105,7 @@ export class SearchNavBar extends React.Component {
                             this.onSelect(ev)
                         }}>
                             <option value="empty">Choose Collection...</option>
-                            <option value="name">Name</option>
+                            <option value="title">Name</option>
                         </select>
                     </div>
                 </div>
