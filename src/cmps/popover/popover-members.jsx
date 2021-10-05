@@ -29,7 +29,10 @@ class _PopoverMembers extends Component {
 
     toggleMember = (member) => {
         const { card, board, loggedInUser } = this.props
-        const idx = card.members.findIndex(cardMember => cardMember._id === member._id) 
+        if(!card.members) {
+            card.members = [];
+        }
+        const idx = card.members.findIndex(cardMember => cardMember._id === member._id)  
         if (idx === -1) {
             card.members.push(member)
         } else {

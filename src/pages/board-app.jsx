@@ -14,6 +14,8 @@ import { boardService } from '../services/board.service.js'
 import { LocalGroceryStoreTwoTone, TimerSharp } from '@material-ui/icons'
 // import { showSuccessMsg } from '../services/event-bus.service.js'
 import { isEmpty } from "lodash";
+import { SideNavRight } from '../cmps/sidenav-right.jsx';
+
 
 
 class _BoardApp extends React.Component {
@@ -123,7 +125,7 @@ class _BoardApp extends React.Component {
 
         const { board,onSaveBoard,boards ,user} = this.props
         const { isMainBoard } = this.state
-        if (!board) return <Loader />
+        if (!board) return <Loader/>
 
         return (
             <>
@@ -154,7 +156,7 @@ class _BoardApp extends React.Component {
                             </DragDropContext>
                         </div>
                     </div>
-
+                    <SideNavRight/>
                 </section>
             </>
         )

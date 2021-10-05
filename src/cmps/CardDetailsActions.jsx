@@ -8,8 +8,8 @@ import {ReactComponent as MemberIcon} from '../assets/img/cmps/card-details/icon
 import {ReactComponent as CheckListIcon} from '../assets/img/cmps/card-details/icon-checklists.svg'
 import {ReactComponent as LabelIcon} from '../assets/img/cmps/card-details/icon-labels.svg'
 import {ReactComponent as CoverIcon} from '../assets/img/cmps/card-details/icon-cover.svg'
-// import {ReactComponent as AttachmentIcon} from '../assets/img/cmps/card-details/icon-attachment.png'
-// import {ReactComponent as DateIcon} from '../assets/img/cmps/card-details/icon-dates.svg'
+import {ReactComponent as AttachmentIcon} from '../assets/img/cmps/card-details/icon-attachment.svg'
+import {ReactComponent as DateIcon} from '../assets/img/cmps/card-details/icon-dates.svg'
 // import {ReactComponent as LocationIcon} from '../assets/img/cmps/card-details/icon-loaction.svg'
 
 class _CardDetailsActions extends Component {
@@ -79,7 +79,7 @@ class _CardDetailsActions extends Component {
             onClick={(ev) => this.onOpenPopover(ev, 'DATE')}
           >
             <div className="actions-btn-content flex align-center">
-              {/* <DateIcon/> */}
+              <DateIcon className="action-logo"/>
               <span>Date</span>
             </div>
          
@@ -92,7 +92,7 @@ class _CardDetailsActions extends Component {
             onClick={(ev) => this.onOpenPopover(ev, 'ATTACHMENT')}
           >
             <div className="actions-btn-content flex align-center">
-              {/* <AttachmentIcon/> */}
+              <AttachmentIcon className="action-logo"/> 
               <span>Attachment</span>
             </div>
          

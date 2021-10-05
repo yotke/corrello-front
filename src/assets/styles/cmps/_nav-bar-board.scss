@@ -1,6 +1,6 @@
 .board-nav-bar-container {
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   .sperator-nav-board {
     border-left: 1px solid #ffffff3d;
     // float: left;
@@ -74,4 +74,9 @@
 .second-board-part {
   display: flex;
   gap: 6px;
+}
+
+._2w6KZMbwKqxZVN {
+  display: flex;
+  gap: 5px;
 }
