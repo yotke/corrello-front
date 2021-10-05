@@ -97,10 +97,7 @@
     white-space: nowrap;
     transition: 0.15s;
     cursor: pointer;
-    .txt-btn-wraper {
-      display: inline-block;
-      align-items: center;
-    }
+
     span {
       padding: 0 2px 0 8px;
       // display: inline-block;
@@ -114,4 +111,10 @@
   .logo {
     align-items: center;
   }
+}
+
+.txt-btn-wraper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
