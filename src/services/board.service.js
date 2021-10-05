@@ -6,6 +6,7 @@ import { userService } from './user.service.js'
 import data from '../json/board.json'
 import { useLocation } from 'react-router'
 import testUtils from 'react-dom/test-utils'
+import { httpService } from './http.service'
 
 const STORAGE_KEY = 'boardDB'
 const RECEBT_BOARDS_KEY = 'recentBoardsDB'
@@ -24,30 +25,44 @@ export const boardService = {
     getEmptyBoard,
     updateCardInBoard,
     addCardToBoard,
-    updateListInBoard,
+    //updateListInBoard,
     setPopoverPos
 }
 window.cs = boardService;
-_saveToLocalStorage();
+//_saveToLocalStorage();
 
+//save inital data(board) to local storage
+//todo
+// function _saveToLocalStorage() {
+//     //console.log('DATA FROM STORAGAE',DATA)
 
-// save inital data(board) to local storage
-// todo
-function _saveToLocalStorage() {
-    //console.log('DATA FROM STORAGAE',DATA)
+//     query().then((respone) => {
+//         if (!respone.length) storageService.postMany(STORAGE_KEY, DATA)
+//     })
+// }
 
-    query().then((respone) => {
-        if (!respone.length) storageService.postMany(STORAGE_KEY, DATA)
-    })
+async function query(filterBy = {}) {
+    try {
+        return await httpService.get('board', filterBy)
+    } catch (err) {
+        throw err
+    }
 }
 
-
-function query() {
-    return storageService.query(STORAGE_KEY)
-}
+// function query() {
+//     return storageService.query(STORAGE_KEY)
+// }
 
 function queryRecentBoards() {
     return storageService.query(RECEBT_BOARDS_KEY)
+}
+
+async function getById(boardId) {
+    try {
+        return await httpService.get(`board/${boardId}`)
+    } catch (err) {
+        throw err
+    }
 }
 
 async function saveRecentBoards(board) {
@@ -64,24 +79,66 @@ async function saveRecentBoards(board) {
 function getByIdRecentBoards(boardId) {
     return storageService.get(RECEBT_BOARDS_KEY, boardId)
 }
-function getById(boardId) {
-    return storageService.get(STORAGE_KEY, boardId)
-}
-function remove(boardId) {
-    // return new Promise((resolve, reject) => {
-    //     setTimeout(reject, 2000)
-    // })
-    // return Promise.reject('Not now!');
-    return storageService.remove(STORAGE_KEY, boardId)
-}
-function save(board) {
-    if (board._id) {
-        return storageService.put(STORAGE_KEY, board)
-    } else {
-        //board.owner = userService.getLoggedinUser()
-        return storageService.post(STORAGE_KEY, { _id: utilService.makeId(), ...board })
+
+// function getById(boardId) {
+//     return storageService.get(STORAGE_KEY, boardId)
+// }
+
+async function remove(boardId) {
+    try {
+        await httpService.delete(`board/${boardId}`)
+    } catch (err) {
+        throw err
     }
 }
+
+// function updateListInBoard(board, updateList) {
+//     board = { ...board }
+
+//     board.lists.forEach((list, idx) => {
+//         if (list.id === updateList.id) board.lists[idx] = updateList
+//     })
+
+//     return board
+// }
+
+
+// function remove(boardId) {
+//     // return new Promise((resolve, reject) => {
+//     //     setTimeout(reject, 2000)
+//     // })
+//     // return Promise.reject('Not now!');
+//     return storageService.remove(STORAGE_KEY, boardId)
+// }
+
+async function save(board) {
+    if (board._id) {
+        try {
+            console.log('saved-put-board', board);
+
+            return await httpService.put(`board/${board._id}`, board)
+        } catch (err) {
+            throw err
+        }
+    } else {
+        try {
+            console.log('saved-post-board', board);
+            return await httpService.post('board', board)
+        } catch (err) {
+            throw err
+        }
+    }
+}
+
+
+// function save(board) {
+//     if (board._id) {
+//         return storageService.put(STORAGE_KEY, board)
+//     } else {
+//         //board.owner = userService.getLoggedinUser()
+//         return storageService.post(STORAGE_KEY, { _id: utilService.makeId(), ...board })
+//     }
+// }
 
 function subscribe(listener) {
     listeners.push(listener)
@@ -89,12 +146,12 @@ function subscribe(listener) {
 
 
 function _notifySubscribersBoardsChanged(boards) {
-    console.log('Notifying Listeners');
+    //console.log('Notifying Listeners');
     listeners.forEach(listener => listener(boards))
 }
 
 window.addEventListener('storage', () => {
-    console.log('Storage Changed from another Browser!');
+    //console.log('Storage Changed from another Browser!');
     query()
         .then(boards => {
             _notifySubscribersBoardsChanged(boards)
@@ -127,16 +184,6 @@ function addCardToBoard(board, listId, addCard) {
     return board
 }
 
-function updateListInBoard(board, updateList) {
-    board = { ...board }
-
-    board.lists.forEach((list, idx) => {
-        if (list.id === updateList.id) board.lists[idx] = updateList
-    })
-
-    return board
-}
-
 function removeCard(board, card) {
     board = { ...board }
 
@@ -146,7 +193,6 @@ function removeCard(board, card) {
     })
     return board
 }
-
 
 function setPopoverPos(pos, elRect, diff = 38) {
     let { left, top } = pos
@@ -180,8 +226,6 @@ function getEmptyBoard() {
         activities: [
         ]
     }
-
-
 
     return board;
 }

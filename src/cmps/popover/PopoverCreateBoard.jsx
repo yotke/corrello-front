@@ -48,6 +48,7 @@ class _PopoverCreateBoard extends Component {
             activities: [
             ]
         }
+        console.log('board to save',boardToSave)
         try {
             await onSaveBoard(boardToSave)
             if (this.props.board) this.props.history.push(`/board/${this.props.board._id}`)

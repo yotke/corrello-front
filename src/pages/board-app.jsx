@@ -21,7 +21,8 @@ import { SideNavRight } from '../cmps/sidenav-right.jsx';
 class _BoardApp extends React.Component {
     state = {
         isMainBoard: true,
-        isCardClicked: false
+        isCardClicked: false,
+        isDragged: false
     }
 
     async componentDidMount() {
@@ -49,6 +50,7 @@ class _BoardApp extends React.Component {
         });
 
     }
+
 
     componentWillUnmount() {
         this.unlisten();
@@ -143,7 +145,7 @@ class _BoardApp extends React.Component {
                                                 <Draggable key={currList.id} draggableId={currList.id} index={listIdx}>
                                                     {(provided) => (
                                                         <li className="list-wrapper" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                            <ListPreview board={board} key={listIdx} listIdx={listIdx} currList={currList} onSaveBoard={onSaveBoard} handleOnDragEndCards={this.handleOnDragEndCards} onCardClicked={this.onCardClicked} />
+                                                            <ListPreview className={this.state.isDragged && 'list-dragged'}  board={board} key={listIdx} listIdx={listIdx} currList={currList} onSaveBoard={onSaveBoard} handleOnDragEndCards={this.handleOnDragEndCards} onCardClicked={this.onCardClicked} />
                                                         </li>
                                                     )}
                                                 </Draggable>

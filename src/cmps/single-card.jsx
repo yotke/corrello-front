@@ -122,9 +122,9 @@ class _Card extends Component {
                         <div className="card-preview-bagdes">
                             <div className="card-preview-icons">
                                 {!!card.dueDate && <DueDateDisplay card={card} toggleCardDone={this.toggleCardDone} displayType="preview" />}
-                                {card.checklists && !this.isChecklistsEmpty(card) && <CardPreviewChecklist checklists={card.checklists} />}
+                                {!!card.checklists && !this.isChecklistsEmpty(card) && <CardPreviewChecklist checklists={card.checklists} />}
                             </div>
-                            {card.members &&  card.members.length && <div className="card-preview-members">
+                            {!!card.members &&  !!card.members.length && <div className="card-preview-members">
                                 {card.members.map(member => {
                                     return isEditMode ?
                                         <ProfileAvatar member={member} key={member._id} size={28} />
