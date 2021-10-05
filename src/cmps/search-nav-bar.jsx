@@ -4,14 +4,53 @@ export class SearchNavBar extends React.Component {
     state = {
         filterBy: {
             name: '',
-            emailAddress: '',
-
         },
         field: ''
     };
 
+    onSelectSort = (ev) => {
+        let { boards } = this.props
+        const sortBy = ev.target.value
+        switch (sortBy) {
+            case 'recently':
+                boards = this.sortByRecentlyUsed(boards); break;
+            case 'leastRecently':
+                boards = this.sortByLeastRecentlyUsed(boards); break;
+            case 'alphabetUp':
+                boards = this.sortByAlfaBet_A_Z(boards); break;
+            case 'alphabetDown':
+                boards = this.sortByAlfaBet_Z_A(boards); break;
+            default:
+                boards = boards
+        }
+        this.props.onSelectSort(boards)
+    }
+
+    sortByRecentlyUsed = () => {
+        
+    }
+    sortByLeastRecentlyUsed = () => {
+    }
+    sortByAlfaBet_A_Z = (boards) => {
+        boards.sort(function (a, b) {
+            if (a.title < b.title) { return -1; }
+            if (a.title > b.title) { return 1; }
+            return 0;
+        })
+        return boards
+    }
+    sortByAlfaBet_Z_A = (boards) => {
+        boards.sort(function (a, b) {
+            if (a.title > b.title) { return -1; }
+            if (a.title < b.title) { return 1; }
+            return 0;
+        })
+        return boards
+    }
+
 
     handleChange = (ev) => {
+
         const field = ev.target.name;
         const value =
             ev.target.type === 'number' ? +ev.target.value : ev.target.value;
@@ -20,9 +59,20 @@ export class SearchNavBar extends React.Component {
             this.props.onSetFilter(this.state.filterBy)
         });
     };
-    onSelectSort = (ev) => {
-        console.log(ev.target.value)
+
+
+
+    onSelect = (ev) => {
+        const { filterBy } = this.state
+        for (const key in filterBy) {
+            filterBy[key] = ''
+        };
+
+        this.setState({ field: ev.target.value, filterBy })
+        this.props.onSetFilter(this.state.filterBy)
     }
+
+
 
     onFilter = (ev) => {
         ev.preventDefault();
@@ -30,30 +80,47 @@ export class SearchNavBar extends React.Component {
     };
 
     render() {
+        const { filterBy, field } = this.state
+        const { name } = filterBy;
         return (
             <section className="search-bar-container flex">
                 <div className="left-search-bar-container flex">
                     <div className="sort-by-container">
-                        Sort by
-                        <div className="input-sort-by">
-                            <select name="field" id="field" onChange={(ev) => {
+                        <label htmlFor="sort">Sort by</label>
+                        <div className="select-sort-by-workspace">
+                            <select className="_3TTqkG5muwOzqZ css-ufz0vj-control _1Dp3s5P2VP237V _2RUB_6xy0LOMWG" name="field" id="field" onChange={(ev) => {
                                 this.onSelectSort(ev)
                             }}>
-                                <option value="empty"></option>
                                 <option value="recently">Most recently active</option>
                                 <option value="leastRecently">Least recently active</option>
                                 <option value="alphabetUp">Alphabetically A-Z</option>
                                 <option value="alphabetDown">Alphabetically Z-A</option>
                             </select>
-                            <button>Filter</button>
+                            {/* <button>Filter</button> */}
                         </div>
                     </div>
                     <div className="filter-by-container">
-                        Filter by
+                        <label htmlFor="filter">Filter by</label>
+                        <select className="select-filter-by-workspace _3TTqkG5muwOzqZ css-ufz0vj-control _1Dp3s5P2VP237V _2RUB_6xy0LOMWG" name="field" id="field" onChange={(ev) => {
+                            this.onSelect(ev)
+                        }}>
+                            <option value="empty">Choose Collection...</option>
+                            <option value="name">Name</option>
+                        </select>
                     </div>
                 </div>
                 <div className="search-all-work-space">
-                    Search
+                    <form className='search-all-work-space-form ' onSubmit={this.onFilter}>
+                        <label htmlFor="by-name">Search</label>
+                        <input className="search-all-work-filter-input _3TTqkG5muwOzqZ css-ufz0vj-control _1Dp3s5P2VP237V _2RUB_6xy0LOMWG"
+                            name={field}
+                            id='by-name'
+                            type='text'
+                            placeholder="Search all workspace boards"
+                            value={filterBy[field]}
+                            onChange={this.handleChange}
+                        />
+                    </form>
                 </div>
 
             </section>
