@@ -1,0 +1,34 @@
+.search-bar-container {
+    color: #172b4d;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
+        sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px 0 8px;
+    margin: 0 auto;
+    max-width: 1250px;
+    .left-search-bar-container {
+        flex-wrap: wrap;
+        display: flex;
+        flex-direction: row;
+        .sort-by-container {
+            display: flex;
+            margin-right: 4px;
+            flex-direction: column;
+        }
+        .filter-by-container {
+            display: flex;
+            margin-right: 4px;
+            flex-direction: column;
+        }
+    }
+    .search-all-work-space {
+        display: flex;
+        flex-direction: column;
+    }
+}
