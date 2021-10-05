@@ -30,11 +30,11 @@ class _BoardApp extends React.Component {
             const { boardId } = this.props.match.params
 
             await this.loadBoard(boardId)
-            
+
             socketService.setup()
             socketService.emit(socketService.SOCKET_EVENT_START_BOARD, boardId)
             socketService.on(socketService.SOCKET_EVENT_ON_RELOAD_BOARD, this.props.loadBoard)
-            //socketService.emit(socketService.SOCKET_EVENT_ON_BOARD_SAVED, boardId)
+            socketService.emit(socketService.SOCKET_EVENT_ON_BOARD_SAVED, boardId)
         }
         catch (err) {
             console.log(err);
