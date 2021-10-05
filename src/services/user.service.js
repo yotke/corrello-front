@@ -18,56 +18,93 @@ export const userService = {
 
 window.userService = userService
 
-
-function getUsers() {
-    return storageService.query('user')
-    // return httpService.get(`user`)
+async function getUsers() {
+    try {
+        return await httpService.get('user')
+    } catch (err) {
+        throw err
+    }
 }
+
+// function getUsers() {
+//     return storageService.query('user')
+//     // return httpService.get(`user`)
+// }
 
 async function getById(userId) {
-    const user = await storageService.get('user', userId)
-    // const user = await httpService.get(`user/${userId}`)
-    gWatchedUser = user;
-    return user;
+    try {
+        return await httpService.get(`board/${userId}`)
+    } catch (err) {
+        throw err
+    }
 }
-function remove(userId) {
-    return storageService.remove('user', userId)
-    // return httpService.delete(`user/${userId}`)
+
+// async function getById(userId) {
+//     const user = await storageService.get('user', userId)
+//     // const user = await httpService.get(`user/${userId}`)
+//     gWatchedUser = user;
+//     return user;
+// }
+
+async function remove(userId) {
+    try {
+        return await httpService.delete(`user/${userId}`)
+    } catch (err) {
+        throw err
+    }
 }
+
+// function remove(userId) {
+//     return storageService.remove('user', userId)
+//     // return httpService.delete(`user/${userId}`)
+// }
 
 async function update(user) {
-    await storageService.put('user', user)
-    // user = await httpService.put(`user/${user._id}`, user)
-    // Handle case in which admin updates other user's details
-    if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
-    return user;
+    if (user._id) {
+        try {
+            return await httpService.put(`user/${user._id}`, user) 
+        } catch (err) {
+            throw err
+        }
+    }
 }
+
+// async function update(user) {
+//     await storageService.put('user', user)
+//     // user = await httpService.put(`user/${user._id}`, user)
+//     // Handle case in which admin updates other user's details
+//     if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
+//     return user;
+// }
+
 
 async function login(userCred) {
-    const users = await storageService.query('user')
-    console.log('users in login',users);
-    if(users===[]){
-        const user = {username:'Guest',password:''}
-        return _saveLocalUser(user)
-    }
-    const user = users.find(user => user.username === userCred.username)
-    return _saveLocalUser(user)
+    //const users = await httpService.get('user')
+    //const users = await storageService.query('user')
+    //console.log('users in login',users);
+    //if(users===[]){
+    //    const user = {username:'Guest',password:''}
+    //    return _saveLocalUser(user)
+    //}
+    //const user = users.find(user => user.username === userCred.username)
+    //return _saveLocalUser(user)
 
-    // const user = await httpService.post('auth/login', userCred)
-    // socketService.emit('set-user-socket', user._id);
-    // if (user) return _saveLocalUser(user)
+    const user = await httpService.post('auth/login', userCred)
+    socketService.emit('set-user-socket', user._id);
+    if (user) return _saveLocalUser(user)
 }
+
 async function signup(userCred) {
     userCred.score = 10000;
-    const user = await storageService.post('user', userCred)
-    // const user = await httpService.post('auth/signup', userCred)
-    // socketService.emit('set-user-socket', user._id);
+    //const user = await storageService.post('user', userCred)
+    const user = await httpService.post('auth/signup', userCred)
+    socketService.emit('set-user-socket', user._id);
     return _saveLocalUser(user)
 }
 async function logout() {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-    // socketService.emit('unset-user-socket');
-    // return await httpService.post('auth/logout')
+    socketService.emit('unset-user-socket');
+    return await httpService.post('auth/logout')
 }
 
 async function changeScore(by) {
@@ -110,7 +147,7 @@ function getLoggedinUser() {
         const watchedUser = freshUsers.find(u => u._id === gWatchedUser._id)
         if (!watchedUser) return;
         if (gWatchedUser.score !== watchedUser.score) {
-            console.log('Watched user score changed - localStorage updated from another browser')
+            //console.log('Watched user score changed - localStorage updated from another browser')
             socketService.emit(SOCKET_EVENT_USER_UPDATED, watchedUser)
         }
         gWatchedUser = watchedUser
@@ -118,8 +155,8 @@ function getLoggedinUser() {
 })();
 
 // This is relevant when backend is connected
-// (async () => {
-//     var user = getLoggedinUser()
-//     if (user) socketService.emit('set-user-socket', user._id)
-// })();
+ (async () => {
+     var user = getLoggedinUser()
+     if (user) socketService.emit('set-user-socket', user._id)
+ })();
 

@@ -21,19 +21,20 @@ import { SideNavRight } from '../cmps/sidenav-right.jsx';
 class _BoardApp extends React.Component {
     state = {
         isMainBoard: true,
-        isCardClicked: false
+        isCardClicked: false,
+        isDragged: false
     }
 
     async componentDidMount() {
         try {
             const { boardId } = this.props.match.params
-            await Promise.all([
-                this.props.loadBoard(boardId),
-                this.props.updateRecentBoard(boardId),
-                 this.props.loadBoards(),
-            ]
 
-            )
+            await this.loadBoard(boardId)
+
+            socketService.setup()
+            socketService.emit(socketService.SOCKET_EVENT_START_BOARD, boardId)
+            socketService.on(socketService.SOCKET_EVENT_ON_RELOAD_BOARD, this.props.loadBoard)
+            socketService.emit(socketService.SOCKET_EVENT_ON_BOARD_SAVED, boardId)
         }
         catch (err) {
             console.log(err);
@@ -47,7 +48,15 @@ class _BoardApp extends React.Component {
             console.log('Loading board from URL watcher - need to be ONLY on BOARD change!!!');
             this.onBoardChange(boardId)
         });
+    }
 
+    loadBoard = async (boardId) => {
+        console.log('loadBoard = async (boardId) => ',boardId)
+        await Promise.all([
+            this.props.loadBoard(boardId),
+            this.props.updateRecentBoard(boardId),
+            this.props.loadBoards(),
+        ])
     }
 
     componentWillUnmount() {
@@ -143,7 +152,7 @@ class _BoardApp extends React.Component {
                                                 <Draggable key={currList.id} draggableId={currList.id} index={listIdx}>
                                                     {(provided) => (
                                                         <li className="list-wrapper" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                            <ListPreview board={board} key={listIdx} listIdx={listIdx} currList={currList} onSaveBoard={onSaveBoard} handleOnDragEndCards={this.handleOnDragEndCards} onCardClicked={this.onCardClicked} />
+                                                            <ListPreview className={this.state.isDragged && 'list-dragged'}  board={board} key={listIdx} listIdx={listIdx} currList={currList} onSaveBoard={onSaveBoard} handleOnDragEndCards={this.handleOnDragEndCards} onCardClicked={this.onCardClicked} />
                                                         </li>
                                                     )}
                                                 </Draggable>
