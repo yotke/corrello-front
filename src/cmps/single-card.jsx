@@ -22,7 +22,7 @@ class _Card extends Component {
         backgroundImage: `url(${bgImgUrl})`,
         borderTopLeftRadius: '3px',
         borderTopRightRadius: '3px',
-        minHeight: '130px',
+        minHeight: '260px',
       };
     else if (coverMode === 'full' && !isEditMode)
       return {
@@ -44,12 +44,12 @@ class _Card extends Component {
     if (coverMode === 'full' && bgImgUrl && isEditMode)
       return {
         backgroundImage: `url(${bgImgUrl})`,
-        minHeight: '130px',
+        minHeight: '260px',
       };
     if (coverMode === 'header' && bgImgUrl)
       return {
         backgroundImage: `url(${bgImgUrl})`,
-        minHeight: '130px',
+        minHeight: '260px',
       };
     if (coverMode === 'full' || coverMode === 'header')
       return { backgroundColor: bgColor };
@@ -62,7 +62,7 @@ class _Card extends Component {
     if (coverMode === 'full' && bgImgUrl && isEditMode)
       return {
         backgroundImage: `url(${bgImgUrl})`,
-        minHeight: '130px',
+        minHeight: '260px',
       };
     if (coverMode === 'header' && bgImgUrl)
       return {
@@ -94,7 +94,7 @@ class _Card extends Component {
     return (
       <div className="card-preview-container">
         <div
-          className={`card-preview ${coverMode === 'full' && 'cover-full'}`}
+          className={`card-preview  ${card.style.bgImgUrl && 'is-imaged'} ${coverMode === 'full' && 'cover-full'}` }
           style={this.cardStyles}
         >
           {(coverMode === 'header' || (coverMode === 'full' && isEditMode)) && (
