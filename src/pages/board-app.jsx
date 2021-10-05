@@ -15,7 +15,7 @@ import { LocalGroceryStoreTwoTone, TimerSharp } from '@material-ui/icons'
 // import { showSuccessMsg } from '../services/event-bus.service.js'
 import { isEmpty } from "lodash";
 import { SideNavRight } from '../cmps/sidenav-right.jsx';
-
+import { socketService } from '../services/socket.service'
 
 
 class _BoardApp extends React.Component {
@@ -34,7 +34,7 @@ class _BoardApp extends React.Component {
             socketService.setup()
             socketService.emit(socketService.SOCKET_EVENT_START_BOARD, boardId)
             socketService.on(socketService.SOCKET_EVENT_ON_RELOAD_BOARD, this.props.loadBoard)
-            socketService.emit(socketService.SOCKET_EVENT_ON_BOARD_SAVED, boardId)
+            //socketService.emit(socketService.SOCKET_EVENT_ON_BOARD_SAVED, boardId)
         }
         catch (err) {
             console.log(err);
