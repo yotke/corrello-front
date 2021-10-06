@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import logo from '../assets/img/logo.png'
+import board from '../assets/img/board.png'
 import { HomeHeader } from '../cmps/home-header'
 import { openPopover, closePopover } from '../store/popover.actions.js'
 class _HomePage extends React.Component {
@@ -52,7 +53,8 @@ class _HomePage extends React.Component {
                     <button type="submit" data-analytics-button="greenSignupHeroButton" className="btn btn-home-page-submit " onClick={() => {
                         this.props.history.push('/workspace')
                     }}>Start doing →</button>
-                    <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/spirit/product/89d378b845766a8f0c48e955336266f8/board.png" alt="" />
+                    {/* <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/spirit/product/89d378b845766a8f0c48e955336266f8/board.png" alt="" /> */}
+                    <img src={board} alt="" />
                 </div>
             </section >
         )
