@@ -12,19 +12,16 @@ export class CardPreview extends Component {
         return (
 
             <>
-                     <Draggable draggableId={card.id} index={key}>
-                    {(provided, snapshot) => (
 
-                        <div className="" {...provided.droppableProps} ref={provided.innerRef}>
+                        <div>
                             <Link className="clean-link" to={`/board/${board._id}/${currList?.id}/${card.id}`}>
                                 <Card className="clean-link" card={card} board={board} />
                             </Link>
-                            {provided.placeholder}
                         </div>
 
-                    )}
-                </Draggable>
+                
+            
             </>
-        )
-    }
-}
+        )}}
+        
+
