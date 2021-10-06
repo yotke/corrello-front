@@ -78,7 +78,6 @@ class _ListPreview extends Component {
         <div className="card-container">
           {/* <DragDropContext onDragEnd={this.handleOnDragEnd}> */}
           <Droppable droppableId={listIdx}>
-            
             {(provided) => (
               <ul
                 className="card-list-element clean-list"
@@ -101,7 +100,7 @@ class _ListPreview extends Component {
                           {
                             console.log('ev', ev);
                           }
-                          this.props.onCardClicked();
+                          // this.props.onCardClicked();
                         }}
                       >
                         <CardPreview
@@ -112,7 +111,6 @@ class _ListPreview extends Component {
                           board={board}
                           onSaveBoard={onSaveBoard}
                         />
-                        {provided.placeholder}
                       </li>
                     )}
                   </Draggable>
