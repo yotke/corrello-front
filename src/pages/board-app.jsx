@@ -186,7 +186,6 @@ class _BoardApp extends React.Component {
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
                                   style={style}
-
                                 >
                                   <ListPreview
                                     style={style}

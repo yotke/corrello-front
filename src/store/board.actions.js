@@ -136,6 +136,7 @@ export function onEditBoard(boardToSave) {
         boardService.save(boardToSave)
             .then(savedBoard => {
                 console.log('Updated Board:', savedBoard);
+                socketService.emit('SOCKET_EVENT_ON_BOARD_SAVED', boardToSave._id)
                 dispatch({
                     type: 'UPDATE_BOARD',
                     board: savedBoard
