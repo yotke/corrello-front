@@ -84,9 +84,9 @@ export class NavBarBoard extends React.Component {
                             this.setState({ isOnEditState: !isOnEditState })
                         }}>{title}</p>
                     )}
-                    <button className={star ? " active star-board-btn" : "star-board-btn"} onClick={() => {
-                        this.setState({ star: !star }, () => {
-                            console.log(star);
+                    <button className={star ? " active star-board-btn" : "star-board-btn"} onClick={async () => {
+                         await this.setState({ star: !star }, () => {
+                            console.log(star,'star');
                             board.star = star
                             onSaveBoard(board);
 
