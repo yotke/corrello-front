@@ -78,7 +78,7 @@ class _ListPreview extends Component {
         </div>
         <div className="card-container">
           {/* <DragDropContext onDragEnd={this.handleOnDragEnd}> */}
-          <Droppable droppableId={`${listIdx}`}>
+          <Droppable droppableId={listIdx} >
             {(provided) => (
               <ul
                 className="card-list-element clean-list"
@@ -92,35 +92,38 @@ class _ListPreview extends Component {
                     draggableId={currCard.id}
                     index={cardIdx}
                   >
-                    {(provided , snapshot) => (
-                        <NaturalDragAnimation
+                    {(provided, snapshot) => (
+                      <NaturalDragAnimation
                         style={provided.draggableProps.style}
                         snapshot={snapshot}
                       >
-                         {(style) => (
-                      <li
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        style={style}
-                        onDrag={(ev) => {
-                          {
-                            console.log('ev', ev);
-                          }
-                          this.props.onCardClicked();
-                        }}
-                      >
-                        <CardPreview
-                          key={currCard.id}
-                          card={currCard}
-                          cardIdx={cardIdx}
-                          currList={currList}
-                          board={board}
-                          onSaveBoard={onSaveBoard}
-                        />
-                      </li>
-                               )}
-                               </NaturalDragAnimation>
+                        {(style) => (
+
+                          <li
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            style={style}
+                            onDrag={(ev) => {
+                              {
+                                console.log('ev', ev);
+                              }
+                              this.props.onCardClicked();
+                            }}
+                          >
+                            <CardPreview
+                              key={currCard.id}
+                              card={currCard}
+                              cardIdx={cardIdx}
+                              currList={currList}
+                              board={board}
+                              onSaveBoard={onSaveBoard}
+                            />
+                            {provided.placeholder}
+
+                          </li>
+                        )}
+                      </NaturalDragAnimation>
                     )}
                   </Draggable>
                 ))}
