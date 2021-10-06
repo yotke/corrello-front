@@ -19,7 +19,7 @@ export class SideNav extends React.Component {
     const { boards, isMainBoard, onAddBoard, user } = this.props
     const { isOpen, isboardView } = this.state
     const [name, lastname] = user ? user.fullname.split(' ') : ['', '']
-    const { username } = user
+    const  username  = user?user.username:'guest'
     console.log(name[0])
     console.log(lastname[0])
     return (
