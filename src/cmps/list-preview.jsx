@@ -77,7 +77,7 @@ class _ListPreview extends Component {
         </div>
         <div className="card-container">
           {/* <DragDropContext onDragEnd={this.handleOnDragEnd}> */}
-          <Droppable droppableId={listIdx} direction="horizontal">
+          <Droppable droppableId={listIdx}>
             
             {(provided) => (
               <ul
