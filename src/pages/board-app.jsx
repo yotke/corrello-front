@@ -174,21 +174,16 @@ class _BoardApp extends React.Component {
                           draggableId={currList.id}
                           index={listIdx}
                         >
-                          {(provided, snapshot) => (
-                            <NaturalDragAnimation
-                              style={provided.draggableProps.style}
-                              snapshot={snapshot}
-                            >
-                              {(style) => (
+                          {(provided) => (
+                       
+
                                 <li
                                   className="list-wrapper"
                                   ref={provided.innerRef}
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
-                                  style={style}
                                 >
                                   <ListPreview
-                                    style={style}
                                     className={
                                       this.state.isDragged && 'list-dragged'
                                     }
@@ -204,8 +199,8 @@ class _BoardApp extends React.Component {
                                   />
                                 </li>
                               )}
-                            </NaturalDragAnimation>
-                          )}
+                          
+                  
                         </Draggable>
                       ))}
                       {provided.placeholder}
