@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { CardAdd } from './card-add.jsx';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { CardPreview } from './card-preview/card-preview.jsx';
-import NaturalDragAnimation from 'natural-drag-animation-rbdnd';
 
 class _ListPreview extends Component {
   state = {
@@ -72,12 +71,13 @@ class _ListPreview extends Component {
             <h2 onClick={this.toggleEdit}>{currList.title}</h2>
           )}{' '}
           <a className="exta-menu-list">
+
             {/* <h1 className="extra-content">&#x2026;</h1> */}
           </a>
         </div>
         <div className="card-container">
           {/* <DragDropContext onDragEnd={this.handleOnDragEnd}> */}
-          <Droppable droppableId={listIdx}>
+          <Droppable droppableId={`${listIdx}`}>
             {(provided) => (
               <ul
                 className="card-list-element clean-list"
@@ -100,7 +100,7 @@ class _ListPreview extends Component {
                           {
                             console.log('ev', ev);
                           }
-                          // this.props.onCardClicked();
+                          this.props.onCardClicked();
                         }}
                       >
                         <CardPreview
