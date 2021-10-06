@@ -56,8 +56,12 @@ export function loadRecentBoards() {
 export function onSaveBoard(board) {
     return async dispatch => {
         try {
-            socketService.emit('SOCKET_EVENT_ON_BOARD_SAVED', board._id)
             const savedBoard = await boardService.save(board)
+            .then((board) => {
+                console.log('savedBoard  board._id', board._id)
+                socketService.emit('SOCKET_EVENT_ON_BOARD_SAVED', board._id)
+                return board
+            })
             dispatch({ type: 'SAVE_BOARD', board: savedBoard })
         } catch (err) {
             console.log('BoardActions: err in onSaveBoard', err)
@@ -136,7 +140,7 @@ export function onEditBoard(boardToSave) {
         boardService.save(boardToSave)
             .then(savedBoard => {
                 console.log('Updated Board:', savedBoard);
-                socketService.emit('SOCKET_EVENT_ON_BOARD_SAVED', boardToSave._id)
+                socketService.emit('SOCKET_EVENT_ON_BOARD_SAVED', savedBoard._id)
                 dispatch({
                     type: 'UPDATE_BOARD',
                     board: savedBoard

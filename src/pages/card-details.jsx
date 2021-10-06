@@ -16,7 +16,7 @@ import { CardDetailsMembers } from '../cmps/card-details-members.jsx'
 import { CardDetailsCover } from '../cmps/card-details-cover'
 import { CardChecklists } from '../cmps/card-details/card-details-checklists';
 import { ReactComponent as HeaderIcon } from '../assets/img/cmps/card-details/icon-header.svg'
-
+import { socketService } from '../services/socket.service.js';
 
 class _CardDetails extends React.Component {
   state = {
@@ -26,8 +26,22 @@ class _CardDetails extends React.Component {
 
   componentDidMount() {
     const { listId, cardId } = this.props.match.params;
+    const { board } = this.props;
+
+
+    //socketService.setup();
+    //socketService.emit('SOCKET_EVENT_START_BOARD', board._id);
+    //socketService.on('SOCKET_EVENT_ON_RELOAD_BOARD', (boardId) => {
+    //  console.log('SOCKET_EVENT_ON_RELOAD_BOARD boardId',boardId)
+    //  this.setLocalState(listId, cardId);
+    //});
 
     this.setLocalState(listId, cardId);
+  }
+
+  componentWillUnmount() {
+    //socketService.off('SOCKET_EVENT_ON_RELOAD_BOARD')
+    //socketService.terminate()
   }
 
   setLocalState = (listId, cardId) => {
@@ -104,11 +118,11 @@ class _CardDetails extends React.Component {
           </button>
 
 
-<div className="title-section"> 
-<HeaderIcon className="title-svg-logo"/>
-  <h1 className="card-details-title">{title}</h1>
+          <div className="title-section">
+            <HeaderIcon className="title-svg-logo" />
+            <h1 className="card-details-title">{title}</h1>
 
-</div>
+          </div>
 
 
           <main className="card-details-main-container">
@@ -129,9 +143,9 @@ class _CardDetails extends React.Component {
                   />
                 )}
 
-                {!!dueDate && ( 
-                  <DueDateDisplay card={card} openPopover={openPopover}    board={board} onSaveBoard={onSaveBoard} />
-                )} 
+                {!!dueDate && (
+                  <DueDateDisplay card={card} openPopover={openPopover} board={board} onSaveBoard={onSaveBoard} />
+                )}
                 {/* {!dueDate && <div>vdvdv</div>} */}
               </div>
 

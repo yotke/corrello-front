@@ -36,7 +36,7 @@ export class Description extends React.Component {
     return (
       <section className="desctiption-container">
         <div className="description-header flex">
-          <span class="icon-description icon-lg window-module-title-icon"><IconDescription /></span>
+          <span className="icon-description icon-lg window-module-title-icon"><IconDescription /></span>
           <h3 className="description-headline">Description</h3>
           <button className="description-edit-btn" onClick={() => {
             this.setState({ isOnEditState: true })
