@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { CardAdd } from './card-add.jsx';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { CardPreview } from './card-preview/card-preview.jsx';
+import NaturalDragAnimation from "natural-drag-animation-rbdnd";
 
 class _ListPreview extends Component {
   state = {
@@ -91,11 +92,17 @@ class _ListPreview extends Component {
                     draggableId={currCard.id}
                     index={cardIdx}
                   >
-                    {(provided) => (
+                    {(provided , snapshot) => (
+                        <NaturalDragAnimation
+                        style={provided.draggableProps.style}
+                        snapshot={snapshot}
+                      >
+                         {(style) => (
                       <li
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
+                        style={style}
                         onDrag={(ev) => {
                           {
                             console.log('ev', ev);
@@ -112,6 +119,8 @@ class _ListPreview extends Component {
                           onSaveBoard={onSaveBoard}
                         />
                       </li>
+                               )}
+                               </NaturalDragAnimation>
                     )}
                   </Draggable>
                 ))}
