@@ -7,6 +7,7 @@ import data from '../json/board.json'
 import { useLocation } from 'react-router'
 import testUtils from 'react-dom/test-utils'
 import { httpService } from './http.service'
+import { noConflict } from 'lodash'
 
 const STORAGE_KEY = 'boardDB'
 const RECEBT_BOARDS_KEY = 'recentBoardsDB'
@@ -228,4 +229,34 @@ function getEmptyBoard() {
     }
 
     return board;
+}
+
+export function createActivity(activityType, txt='', card = null) {
+    
+    const loggedInUser = userService.getLoggedinUser();
+    const byMember = {
+        id: loggedInUser._id,
+        fullname: loggedInUser.fullname,
+        imgUrl: loggedInUser.imgUrl
+    }
+
+    let cardData
+    if(card) {
+        cardData = {
+            id: card.id,
+            title: card.title,
+            members: card.members
+        }
+    }
+
+    const activityToCreate = {
+        id: utilService.makeId(),
+        txt,
+        createdAt: Date.now(),
+        byMember,
+        activityType,
+        card: cardData || null
+    }
+
+    return activityToCreate
 }

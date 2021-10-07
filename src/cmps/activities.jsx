@@ -4,10 +4,6 @@ import { ReactComponent as ActivitiesIcon } from '../assets/img/icons/icon-activ
 
 export class Activities extends Component {
 
-    componentDidMount() {
-
-    }
-
     get suitedActivities() {
         const { card, activities, isInCardLocation } = this.props
         console.log('ACTIVITIES: ', activities);
