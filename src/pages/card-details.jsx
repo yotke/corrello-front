@@ -17,6 +17,8 @@ import { CardDetailsCover } from '../cmps/card-details-cover'
 import { CardChecklists } from '../cmps/card-details/card-details-checklists';
 import { ReactComponent as HeaderIcon } from '../assets/img/cmps/card-details/icon-header.svg'
 import { socketService } from '../services/socket.service.js';
+import { CardActivities } from '../cmps/card-details/card-activities.jsx'
+
 
 class _CardDetails extends React.Component {
   state = {
@@ -98,7 +100,7 @@ class _CardDetails extends React.Component {
   };
 
   render() {
-    const { board, onSaveBoard, openPopover } = this.props;
+    const { board, board: { activities }, onSaveBoard, openPopover } = this.props;
     const { card, list } = this.state;
     if (!card) return <Loader />;
     const { title, members, description, checklists, dueDate, style } = card;
@@ -175,7 +177,7 @@ class _CardDetails extends React.Component {
 
               {/* activities left menu */}
 
-              {/* <CardActivities card={card} activities={activities} /> */}
+              {!!(activities && activities.length) && (<CardActivities card={card} activities={activities} />)}
             </div>
 
             <div className="card-details-sidebar flex column full">
