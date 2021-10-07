@@ -1,3 +1,5 @@
+import { ReactComponent as AddIcon } from '../assets/img/icons/add.svg'
+
 
 export function CardDetailsLabels({ labels, openPopover, card }) {
 
@@ -19,7 +21,7 @@ export function CardDetailsLabels({ labels, openPopover, card }) {
                     </span>
                 })}
                 <button className="secondary-btn"
-                    onClick={(ev) => onOpenPopover(ev, 'LABELS')} > + </button>
+                    onClick={(ev) => onOpenPopover(ev, 'LABELS')} > <AddIcon className="add-icon-svg"/> </button>
             </div>
         </div>
     )

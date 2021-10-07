@@ -23,7 +23,7 @@ export function CardDetailsMembers({ members, card, openPopover }) {
                 })}
                 <button className="add-member secondary-btn"
                     onClick={(ev) => onOpenPopover(ev, 'MEMBERS')} >
-                    <AddIcon />
+                    <AddIcon className="add-icon-svg" />
                 </button>
             </div>
         </div>
