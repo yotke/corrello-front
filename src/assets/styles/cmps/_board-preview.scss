@@ -24,7 +24,75 @@
   border-radius: 3px;
   padding: 8px;
   position: relative;
+  z-index: 0;
   height: 80px;
+  &:hover {
+    background-color: #0006;
+  }
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.content .content-overlay {
+  background: rgba(29, 29, 29, 0.24);
+  position: absolute;
+  height: 99%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 3px;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  -moz-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+
+.starred {
+  filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg)
+    saturate(600%) contrast(0.8);
+}
+
+.icon-star:before {
+  content: '\e966';
+}
+
+.content-details {
+  position: absolute;
+  padding-left: 1em;
+  padding-right: 1em;
+  text-align: center;
+  width: 100%;
+  top: 73%;
+  left: 50%;
+  opacity: 0;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -moz-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.content:hover .content-details {
+  left: 95%;
+  opacity: 1;
+  z-index: 2;
+  color: white;
+}
+.content:hover .content-overlay {
+  opacity: 1;
+  z-index: 1;
+}
+
+.fadeIn-right {
+  bottom: 100%;
+  left: 100%;
 }
 
 .board-preview-name {
@@ -37,6 +105,7 @@
   overflow: hidden;
   width: 100%;
   margin: 0;
+  z-index: 3;
 }
 
 .board-preview-name h4 {
@@ -75,11 +144,9 @@
   }
 }
 
-.close-nav-bar-workspace{
-background:none !important;
-align-items: center !important;
-
-
+.close-nav-bar-workspace {
+  background: none !important;
+  align-items: center !important;
 }
 .nav-bar-btns-name {
   flex: 1;
@@ -103,7 +170,8 @@ align-items: center !important;
 }
 .small-btn-open-nav-bar {
   color: #172b4d;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
@@ -115,7 +183,7 @@ align-items: center !important;
   }
   svg:not(:root) {
     overflow: hidden;
-}
+  }
 }
 .header-nav-bar-container {
   display: flex;
@@ -133,7 +201,6 @@ align-items: center !important;
     display: flex;
     align-items: center;
     justify-content: center;
-
   }
 }
 // // HELPERS TO BOARDS
@@ -152,8 +219,8 @@ align-items: center !important;
 
 ._3TTqkG5muwOzqZ {
   color: #172b4d;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Noto Sans", "Ubuntu", "Droid Sans",
-    "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;

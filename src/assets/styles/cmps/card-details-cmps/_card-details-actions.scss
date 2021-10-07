@@ -9,7 +9,48 @@
   margin-top: 8px;
   max-width: 300px;
   overflow: hidden;
+  padding: 6px 12px;
 }
 .details-actions-wrapper {
-  padding: 0 16px 8px 8px;
+  min-width: 170px;
+}
+
+.action-logo {
+  width: 14px;
+  height: 14px;
+  margin: 0 6px 0 -6px;
+  filter: invert(31%) sepia(37%) saturate(567%) hue-rotate(179deg)
+    brightness(81%) contrast(80%);
+}
+
+.actions-btn-content span {
+  color: #172b4d;
+}
+
+.add-section h4 {
+  color: #5e6c84;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 16px;
+  line-height: 20px;
+  margin-bottom: -4px;
+  margin-top: 16px;
+  text-transform: uppercase;
+}
+.actions-section h4 {
+  color: #5e6c84;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 16px;
+  line-height: 20px;
+  margin-bottom: -4px;
+  margin-top: 16px;
+  text-transform: uppercase;
+}
+
+.add-icon-svg {
+  width: 16px;
+  height: 16px;
 }

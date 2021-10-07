@@ -7,7 +7,13 @@ import { closePopover } from '../../store/popover.actions';
 import { onSaveBoard } from "../../store/board.actions";
 import { Popover } from './Popover';
 import { Link, NavLink } from 'react-router-dom'
+import {loadBoard} from '../../store/board.actions'
+
 class _PopoverStarred extends Component {
+
+    componentDidMount() {
+        this.props.loadBoard()
+    }
 
     render() {
         const { boards } = this.props
@@ -45,13 +51,16 @@ class _PopoverStarred extends Component {
 
 function mapStateToProps(state) {
     return {
+
         boards: state.boardModule.boards,
+        board: state.boardModule.board,
         loggedInUser: state.userModule.loggedInUser
     }
 }
 
 const mapDispatchToProps = {
     onSaveBoard,
+    loadBoard,
     closePopover
 }
 

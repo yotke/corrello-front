@@ -1,62 +1,94 @@
 .desctiption-container {
-    .description-header {
-        align-items: center;
-        .icon-description {
-            margin-right: 8px;
-        }
-        .description-edit-btn {
-            background-color: #091e420a;
-            font-size: 14px;
-            font-weight: 400;
-            justify-content: center;
-            line-height: 20px;
-            padding: 6px 12px;
-            margin-left: 8px;
-            border: none;
-        }
+  .description-header {
+    align-items: center;
+    padding: 8px 0;
+    .icon-description {
+      margin-right: 14px;
+      padding-top: 5px;
     }
-    .description-main {
-        margin-left: 50px;
-        textarea {
-            overflow: hidden;
-            overflow-wrap: break-word;
-            resize: none;
-            height: 108px;
-            width: 100%;
-            outline: none !important;
-            box-shadow: inset 0 0 0 2px #0079bf;
-        }
-        .description-textarea-btns {
-            display: flex;
-            align-items: center;
-            .save-description {
-                border-radius: 3px;
-                font-size: 14px;
-                font-weight: 400;
-                justify-content: center;
-                line-height: 20px;
-                padding: 6px 12px;
-            }
-            .close-window-btn-textarea {
-                cursor: pointer;
-                color: $clr7;
-                background-color: transparent;
-                border-radius: 50%;
-                border: none;
-                // position: absolute;
-                width: 40px;
-                height: 40px;
-                font-size: 14px;
-                font-weight: 400;
-                justify-content: center;
-                line-height: 20px;
-                padding: 6px 12px;
-                z-index: 10;
-                transition: background-color 85ms, color 85ms;
-            }
-        }
+    .description-edit-btn {
+      background-color: #091e420a;
+      font-size: 14px;
+      font-weight: 400;
+      justify-content: center;
+      line-height: 20px;
+      padding: 6px 12px;
+      margin-left: 11px;
+      border: none;
     }
-    p {
-        margin: 0 0 8px;
+  }
+  .description-main {
+    margin-left: 50px;
+    textarea {
+      overflow: hidden;
+      overflow-wrap: break-word;
+      resize: none;
+      height: 108px;
+      width: 100%;
+      outline: none !important;
+      box-shadow: inset 0 0 0 2px #0079bf;
     }
+    .description-textarea-btns {
+      display: flex;
+      align-items: center;
+      .save-description {
+        border-radius: 3px;
+        font-size: 14px;
+        font-weight: 400;
+        justify-content: center;
+        line-height: 20px;
+        padding: 6px 12px;
+      }
+      .close-window-btn-textarea {
+        cursor: pointer;
+        color: $clr7;
+        background-color: transparent;
+        border-radius: 50%;
+        border: none;
+        // position: absolute;
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+        font-weight: 400;
+        justify-content: center;
+        line-height: 20px;
+        padding: 6px 12px;
+        z-index: 10;
+        transition: background-color 85ms, color 85ms;
+      }
+    }
+  }
+  p {
+    margin: 0 0 8px;
+  }
+}
+
+.card-details-item-header {
+  color: #5e6c84;
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 16px;
+  line-height: 20px;
+  margin: 0 8px 4px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.date-card-details-container h3 {
+  color: #5e6c84;
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 16px;
+  line-height: 20px;
+  margin: 0 8px 4px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
 }

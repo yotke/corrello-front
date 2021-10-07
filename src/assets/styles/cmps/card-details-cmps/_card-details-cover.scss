@@ -12,22 +12,23 @@
     right: 8px;
     bottom: 8px;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.08);
-    color: $clr4;
     border: none;
     border-radius: $borderRad1;
-    padding: 6px 12px 6px 6px;
-
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.16);
-      color: #091e42;
-    }
+    margin: 6px 12px 6px 6px;
+    background-color: #00000014;
+    border-radius: 3px;
+    color: #172b4d;
+    text-decoration: none;
 
     svg {
-      width: 16px;
-      height: 16px;
+      filter: invert(31%) sepia(37%) saturate(567%) hue-rotate(179deg)
+        brightness(81%) contrast(80%);
+
       margin-inline-end: 8px;
     }
+  }
+  .cover-menu-btn:hover {
+    background-color: #00000029;
   }
 
   &.img {
