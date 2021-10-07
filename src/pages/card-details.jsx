@@ -56,6 +56,16 @@ class _CardDetails extends React.Component {
     this.setState({ card, list });
   };
 
+
+  onDeleteCardAttachment = (ev, attachId) => {
+    ev.preventDefault()
+    let { card, card: { attachs } } = this.state
+    attachs = attachs.filter(currAttach => currAttach.id !== attachId)
+    card.attachs = attachs
+    this.setState({ card }, this.onSaveCard())
+}
+
+
   onSaveCard = () => {
     const { card } = this.state;
     const { board } = this.props;
@@ -101,7 +111,7 @@ class _CardDetails extends React.Component {
     const { board, onSaveBoard, openPopover } = this.props;
     const { card, list } = this.state;
     if (!card) return <Loader />;
-    const { title, members, description, checklists, dueDate, style } = card;
+    const { title, members, description, checklists, dueDate, style, attachs} = card;
     //debugger
     return (
       <section className="card-details-container flex">
@@ -146,36 +156,28 @@ class _CardDetails extends React.Component {
                 {!!dueDate && (
                   <DueDateDisplay card={card} openPopover={openPopover} board={board} onSaveBoard={onSaveBoard} />
                 )}
-                {/* {!dueDate && <div>vdvdv</div>} */}
               </div>
 
-              {/* card description left menu side */}
               <Description
                 description={description}
                 card={card}
                 board={board}
                 onSaveBoard={onSaveBoard}
-              />
+                />
+{!!attachs.length &&
+             <CardAttachments
+                 attachs={attachs}
+                 onDeleteCardAttachment={this.onDeleteCardAttachment}
+                 openPopover={openPopover}
+                 card={card}
+             />}
 
-              {/* <CardDescription
-            description={description}
-            onSaveCardDescription={this.onSaveCardDescription}
-          /> */}
-
-              {/* checkList left side section */}
-
-              {/* {checklists && checklists.length > 0 && ( */}
               <CardChecklists
                 card={card}
                 board={board}
                 checklists={checklists}
                 onSaveBoard={onSaveBoard}
               />
-              {/* )} */}
-
-              {/* activities left menu */}
-
-              {/* <CardActivities card={card} activities={activities} /> */}
             </div>
 
             <div className="card-details-sidebar flex column full">

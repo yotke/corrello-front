@@ -57,11 +57,13 @@ export function onSaveBoard(board) {
     return async dispatch => {
         try {
             const savedBoard = await boardService.save(board)
-            .then((board) => {
-                console.log('savedBoard  board._id', board._id)
-                socketService.emit('SOCKET_EVENT_ON_BOARD_SAVED', board._id)
-                return board
-            })
+                .then((board) => {
+                    console.log('saved board : ', board);
+                    console.log('savedBoard  board._id', board._id)
+                    socketService.emit('SOCKET_EVENT_ON_BOARD_SAVED', board._id)
+                    return board
+                })
+            console.log('dispached board ', savedBoard);
             dispatch({ type: 'SAVE_BOARD', board: savedBoard })
         } catch (err) {
             console.log('BoardActions: err in onSaveBoard', err)

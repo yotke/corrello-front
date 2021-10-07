@@ -84,7 +84,7 @@ class _ListPreview extends Component {
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
-                {/* {console.log('curr list', currList)} */}
+                {(!currList.cards.length) && <li className="dragged"></li>}
                 {currList.cards.map((currCard, cardIdx) => (
                   <Draggable
                     key={currCard.id}

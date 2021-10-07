@@ -1,5 +1,5 @@
 import VideoLabelIcon from '@material-ui/icons/VideoLabel'
-
+import {ReactComponent as CoverIcon} from '../assets/img/cmps/card-details/icon-cover.svg'
 export function CardDetailsCover({ style, openPopover, card }) {
 
     const onOpenPopover = (ev, type) => {
@@ -17,8 +17,9 @@ export function CardDetailsCover({ style, openPopover, card }) {
 
     return (
         <div className={`card-details-cover ${style.bgImgUrl ? 'img' : ''}`} style={getBackground()}>
-            < button className="cover-menu-btn secondary-btn" onClick={(ev) => onOpenPopover(ev, 'COVER')
-            }>Cover</button >
+            < button className="secondary-btn cover-menu-btn " onClick={(ev) => onOpenPopover(ev, 'COVER')
+            }><CoverIcon className="action-logo"/> 
+            Cover</button >
         </div >
     )
 }

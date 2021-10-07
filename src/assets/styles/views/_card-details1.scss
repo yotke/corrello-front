@@ -64,7 +64,7 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      padding: 1rem;
+      padding: 0 8px 8px 16px;
       .card-details-main {
         width: 100%;
       }
@@ -82,13 +82,6 @@
   width: 100%;
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.64);
-}
-
-.cover-menu-btn {
-  background-color: #00000014;
-  border-radius: 3px;
-  color: #172b4d;
-  margin: 6px 12px 6px 6px;
 }
 
 .card-details-header {
@@ -147,6 +140,8 @@
 
 .title-section {
   display: flex;
+  flex-wrap: wrap;
+  width: calc(100% - 200px);
   align-items: center;
   padding-left: 1rem;
 }
@@ -155,4 +150,12 @@
 .title-svg-logo {
   width: 32px;
   height: 32px;
+}
+
+.card-details-members {
+  margin: 0 8px 8px 0;
+}
+
+.card-details-sidebar {
+  padding: 0 8px 8px 16px;
 }
