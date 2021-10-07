@@ -17,11 +17,7 @@ import { CardDetailsCover } from '../cmps/card-details-cover'
 import { CardChecklists } from '../cmps/card-details/card-details-checklists';
 import { ReactComponent as HeaderIcon } from '../assets/img/cmps/card-details/icon-header.svg'
 import { socketService } from '../services/socket.service.js';
-<<<<<<< HEAD
-import { CardAttachments } from '../cmps/card-details/CardAttachments.jsx';
-=======
 import {CardAttachments} from '../cmps/card-details/CardAttachments.jsx'
->>>>>>> 75af71303988d2b446d88bdcd9b23d8d43542d93
 
 class _CardDetails extends React.Component {
   state = {
