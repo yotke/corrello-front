@@ -8,14 +8,14 @@ import { Card } from '../single-card';
 export class CardPreview extends Component {
 
     render() {
-        const { board, card, currList, key } = this.props;
+        const { board, card, currList, key ,isDragged} = this.props;
         return (
 
             <>
 
-                        <div>
+                        <div className="card-preview-container">
                             <Link className="clean-link" to={`/board/${board._id}/${currList?.id}/${card.id}`}>
-                                <Card className="clean-link" card={card} board={board} />
+                                <Card className={isDragged?"clean-link on-grab-drag-drop":'clean-link'} card={card} board={board} />
                             </Link>
                         </div>
 

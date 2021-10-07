@@ -22,7 +22,6 @@
 @import 'views/review-app';
 @import 'views/about-us';
 @import 'views/home-page';
-@import 'views/board-app';
 @import 'views/review-app';
 @import 'views/workspace';
 @import 'views/card-details1';
@@ -70,6 +69,7 @@
 @import 'cmps/card-preview/card-preview-labels';
 @import 'cmps/card-details-cmps/card-labels';
 @import 'cmps/sidenav-right';
+@import 'cmps/card-preview';
 //Components card-details-cmps
 @import 'cmps/card-details-cmps/card-details-activity-list';
 @import 'cmps/card-details-cmps/card-details-activity-preview';

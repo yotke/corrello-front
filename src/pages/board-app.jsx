@@ -31,8 +31,21 @@ class _BoardApp extends React.Component {
     isCardClicked: false,
     isDragged: false,
   };
+  componentWillUnmount() {
+    window.removeEventListener('mouseup', this.HandleDrop)
+    this.unlisten();
+  }
+
+
+
+  HandleDrop = () => {
+    this.setState({ isDragged: false })
+    console.log('this.setState.isDragged', this.state.isDragged);
+  }
+
 
   async componentDidMount() {
+    window.addEventListener('mouseup', this.HandleDrop)
     try {
       const { boardId } = this.props.match.params;
 
@@ -58,6 +71,9 @@ class _BoardApp extends React.Component {
     });
   }
 
+
+
+
   loadBoard = async (boardId) => {
     console.log('loadBoard = async (boardId) => ', boardId);
     await Promise.all([
@@ -67,9 +83,7 @@ class _BoardApp extends React.Component {
     ]);
   };
 
-  componentWillUnmount() {
-    this.unlisten();
-  }
+
 
   onBoardChange = (boardId) => {
     this.props.loadBoard(boardId);
@@ -137,7 +151,7 @@ class _BoardApp extends React.Component {
 
   render() {
     const { board, onSaveBoard, boards, user } = this.props;
-    const { isMainBoard } = this.state;
+    const { isMainBoard, isDragged } = this.state;
     if (!board) return <Loader />;
 
     return (
@@ -175,32 +189,39 @@ class _BoardApp extends React.Component {
                           index={listIdx}
                         >
                           {(provided) => (
-                       
+                            <li onMouseDown={async () => {
+                              await this.setState({ isDragged: true })
+                              console.log('this.setState.isDragged', this.state.isDragged);
+                            }}
 
-                                <li
-                                  className="list-wrapper"
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                >
-                                  <ListPreview
-                                    className={
-                                      this.state.isDragged && 'list-dragged'
-                                    }
-                                    board={board}
-                                    key={listIdx}
-                                    listIdx={listIdx}
-                                    currList={currList}
-                                    onSaveBoard={onSaveBoard}
-                                    handleOnDragEndCards={
-                                      this.handleOnDragEndCards
-                                    }
-                                    onCardClicked={this.onCardClicked}
-                                  />
-                                </li>
-                              )}
-                          
-                  
+                              className="list-wrapper"
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            // onMouse={async () => {
+                            //   await this.setState({ isDragged: false })
+                            //   console.log('this.setState.isDragged', this.state.isDragged);
+                            // }}
+                            >
+                              <ListPreview
+                                className={
+                                  isDragged ? 'list-dragged' : ''
+                                }
+                                isDragged={isDragged}
+                                board={board}
+                                key={listIdx}
+                                listIdx={listIdx}
+                                currList={currList}
+                                onSaveBoard={onSaveBoard}
+                                handleOnDragEndCards={
+                                  this.handleOnDragEndCards
+                                }
+                                onCardClicked={this.onCardClicked}
+                              />
+                            </li>
+                          )}
+
+
                         </Draggable>
                       ))}
                       {provided.placeholder}

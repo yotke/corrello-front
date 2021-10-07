@@ -104,6 +104,7 @@ class _ListPreview extends Component {
                         }}
                       >
                         <CardPreview
+                          isDragged={this.props.isDragged}
                           key={currCard.id}
                           card={currCard}
                           cardIdx={cardIdx}
