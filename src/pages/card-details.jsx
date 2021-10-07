@@ -17,7 +17,7 @@ import { CardDetailsCover } from '../cmps/card-details-cover'
 import { CardChecklists } from '../cmps/card-details/card-details-checklists';
 import { ReactComponent as HeaderIcon } from '../assets/img/cmps/card-details/icon-header.svg'
 import { socketService } from '../services/socket.service.js';
-import { CardActivities } from '../cmps/card-details/card-activities.jsx'
+import { Activities } from '../cmps/activities.jsx'
 
 import {CardAttachments} from '../cmps/card-details/CardAttachments.jsx'
 
@@ -183,9 +183,10 @@ class _CardDetails extends React.Component {
               />
 
               {!!(activities && activities.length) &&
-                <CardActivities 
+                <Activities 
                   card={card} 
-                  activities={activities} 
+                  activities={activities}
+                  isInCardLocation={true} 
                />}
             </div>
 

@@ -168,59 +168,59 @@
             ]
         }
     ],
-	"activities": [
+    "activities" : [ 
         {
-            "id": "a101",
-            "txt": "add card",
-            "createdAt": 154514,
-			"activityType": "add",
-			"card": {
-				"id": "posNSd"
-			},
-            "byMember": {
-				"_id" : "61597f73b9f74406f8931ee1",
-				"fullname" : "Koren Turgman",
-				"imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+            "id" : "a101",
+            "txt" : "add card",
+            "createdAt" : 154514,
+            "activityType" : "add",
+            "card" : {
+                "id" : "posNSd"
             },
-            "task": {
-                "id": "c101",
-                "title": "add card"
+            "byMember" : {
+                "_id" : "61597f73b9f74406f8931ee1",
+                "fullname" : "Koren Turgman",
+                "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+            },
+            "task" : {
+                "id" : "c101",
+                "title" : "add card"
             }
-        },
-		{
-            "id": "a102",
-            "txt": "update card title",
-            "createdAt": 154514,
-			"activityType": "update",
-			"card": {
-				"id": "posNSd"
-			},
-            "byMember": {
-				"_id" : "61597f7fb9f74406f8931ee5",
-				"fullname" : "Yotam Elia",
-				"imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U0276DVNY2F-f2361f5e4429-512"
+        }, 
+        {
+            "id" : "a102",
+            "txt" : "update card title",
+            "createdAt" : 154514,
+            "activityType" : "update",
+            "card" : {
+                "id" : "posNSd"
             },
-            "task": {
-                "id": "c101",
-                "title": "update card title"
+            "byMember" : {
+                "_id" : "61597f7fb9f74406f8931ee5",
+                "fullname" : "Yotam Elia",
+                "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U0276DVNY2F-f2361f5e4429-512"
+            },
+            "task" : {
+                "id" : "c101",
+                "title" : "update card title"
             }
-        },
-		{
-            "id": "a103",
-            "txt": "update card logo",
-            "createdAt": 154514,
-			"activityType": "update",
-			"card": {
-				"id": "posNSd"
-			},
-            "byMember": {
-				"_id" : "61597f8bb9f74406f8931eeb",
-				"fullname" : "Pavel Kabakov",
-				"imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+        }, 
+        {
+            "id" : "a103",
+            "txt" : "update card logo",
+            "createdAt" : 154514,
+            "activityType" : "update",
+            "card" : {
+                "id" : "posNSd"
             },
-            "task": {
-                "id": "c101",
-                "title": "update card logo"
+            "byMember" : {
+                "_id" : "61597f8bb9f74406f8931eeb",
+                "fullname" : "Pavel Kabakov",
+                "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+            },
+            "task" : {
+                "id" : "c101",
+                "title" : "update card logo"
             }
         }
     ]

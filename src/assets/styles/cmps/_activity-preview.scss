@@ -1,0 +1,17 @@
+.activity-preview {
+    word-break: break-word;
+    > *:first-child {
+        margin-inline-end: 10px;
+    }
+
+    .member-name{
+        font-weight: bold;
+        margin-inline-end: 6px;
+    }
+
+    .created-at-time{
+        font-size: 12px;
+        color: $clr3;
+        white-space: nowrap;
+    }
+}

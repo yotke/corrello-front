@@ -2,6 +2,26 @@ import React, { Component } from "react"
 
 export class ActivityPreview extends Component {
 
+    get activityShowMsg() {
+        const { activity: { activityType, txt, card }, isInCardLocation } = this.props
+        const activityLocation = isInCardLocation ? 'this card' : card?.title
+        switch (activityType) {
+            case 'attached': return `attached ${txt} to ${activityLocation}`
+            case 'added': return `added ${txt} to ${activityLocation}`
+            case 'archived': return `archived ${activityLocation}`
+            case 'changed': return `changed ${txt}`
+            case 'changed-date': return `changed the due date of ${activityLocation} to ${txt}`
+            case 'completed': return `completed ${txt} on ${activityLocation}`
+            case 'joined': return `joined ${activityLocation}`
+            case 'left': return `left ${activityLocation}`
+            case 'marked': return `marked ${txt} on ${activityLocation}`
+            case 'moved': return `moved ${activityLocation} from ${txt}`
+            case 'removed': return `removed ${txt} from ${activityLocation}`
+            case 'renamed': return `renamed this board to ${txt}`
+            default: return ''
+        }
+    }
+
     render() {
         const { activity: { txt, createdAt, byMember, card }, } = this.props
 
@@ -10,13 +30,12 @@ export class ActivityPreview extends Component {
                 <div className="activity-content flex column">
                     <div className="main flex row">
                         <span className="member-name">{byMember.fullname}</span>
-                        <span>{txt}</span>
-                        
+                        <span>{this.activityShowMsg}</span>
                     </div>
-                    <span>{new Date(createdAt).toLocaleString()}</span>
+                    <span className="created-at-time">{new Date(createdAt).toLocaleString()}</span>
                 </div>
             </div>
         </section>)
     }
 
-}   
+}
