@@ -83,7 +83,15 @@ class _BoardApp extends React.Component {
     ]);
   };
 
+<<<<<<< HEAD
 
+=======
+  componentWillUnmount() {
+    socketService.off('SOCKET_EVENT_ON_RELOAD_BOARD')
+    socketService.terminate()
+    this.unlisten();
+  }
+>>>>>>> d794fd0739a4c037c3b055080b51a6744cd76334
 
   onBoardChange = (boardId) => {
     this.props.loadBoard(boardId);
