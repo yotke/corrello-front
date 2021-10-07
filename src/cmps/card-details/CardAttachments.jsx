@@ -1,5 +1,4 @@
 import React from 'react';
-import Moment from 'react-moment';
 import { ReactComponent as PaperClipIcon } from '../../assets/img/icons/paperclip-solid.svg'
 
 
@@ -31,7 +30,6 @@ export function CardAttachments({ attachs, onDeleteCardAttachment, card, openPop
                             <div className="attach-content flex column full">
                                 <span className="file-name">{attach.fileName} </span>
                                 <div className="time-n-actions flex wrap align-center ">
-                                    <Moment fromNow>{attach.createdAt}</Moment>
                                     <span>-</span>
                                     <button
                                         onClick={(ev) => onDeleteCardAttachment(ev, attach.id)}>Delete</button>

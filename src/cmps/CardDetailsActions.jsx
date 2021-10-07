@@ -11,6 +11,8 @@ import {ReactComponent as CoverIcon} from '../assets/img/cmps/card-details/icon-
 import {ReactComponent as AttachmentIcon} from '../assets/img/cmps/card-details/icon-attachment.svg'
 import {ReactComponent as DateIcon} from '../assets/img/cmps/card-details/icon-dates.svg'
 // import {ReactComponent as LocationIcon} from '../assets/img/cmps/card-details/icon-loaction.svg'
+import {utilService} from '../services/util.service.js'
+import {boardService} from '../services/board.service.js'
 
 class _CardDetailsActions extends Component {
 
@@ -19,10 +21,27 @@ class _CardDetailsActions extends Component {
     const elPos = ev.target.getBoundingClientRect();
     const props = {
       card: this.props.card,
+      addFile: this.addFile
     };
     console.log("PROPS", props)
     this.props.openPopover(PopoverName, elPos, props);
   };
+
+  addFile = (fileUrl) => {
+    const { card, onSaveBoard, closePopover, board } = this.props
+    if (!card.attachs) card.attachs = []
+    const attach = {
+        id: utilService.makeId(),
+        fileName: `${utilService.makeId(12)}.jpg`,
+        url: fileUrl,
+        createdAt: Date.now()
+    }
+
+    card.attachs.push(attach)
+    const updatedBoard = boardService.updateCardInBoard(board, card)
+    onSaveBoard(updatedBoard)
+    closePopover()
+}
 
 
 

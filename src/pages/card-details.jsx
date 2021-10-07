@@ -17,6 +17,7 @@ import { CardDetailsCover } from '../cmps/card-details-cover'
 import { CardChecklists } from '../cmps/card-details/card-details-checklists';
 import { ReactComponent as HeaderIcon } from '../assets/img/cmps/card-details/icon-header.svg'
 import { socketService } from '../services/socket.service.js';
+import {CardAttachments} from '../cmps/card-details/CardAttachments.jsx'
 
 class _CardDetails extends React.Component {
   state = {
@@ -164,7 +165,7 @@ class _CardDetails extends React.Component {
                 board={board}
                 onSaveBoard={onSaveBoard}
                 />
-{!!attachs.length &&
+{attachs && !!attachs.length &&
              <CardAttachments
                  attachs={attachs}
                  onDeleteCardAttachment={this.onDeleteCardAttachment}
