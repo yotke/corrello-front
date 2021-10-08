@@ -4,7 +4,12 @@ import { CardChecklist } from './card-details-checklist';
 
 export class CardChecklists extends React.Component {
 
+<<<<<<< HEAD
     onSaveCardChecklists(checklists) {
+=======
+    onSaveCardChecklists(checklists, activityType, txt) {
+        console.log('enter your check list :',checklists);
+>>>>>>> f7452d21a2cf5d6c747dfa2187fda8babb19796a
         const { board, card, onSaveBoard } = this.props
         card.checklists = checklists;
         const updatedBoard = boardService.updateCardInBoard(board, card)
