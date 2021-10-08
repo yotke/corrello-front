@@ -23,7 +23,6 @@ export class Description extends React.Component {
 
   }
   handleChange = (ev) => {
-    console.log(ev);
     if (ev.keyCode === 13) {
       ev.preventDefault();
       this.onSaveDescription();

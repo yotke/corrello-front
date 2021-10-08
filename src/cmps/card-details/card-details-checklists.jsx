@@ -4,8 +4,12 @@ import { CardChecklist } from './card-details-checklist';
 
 export class CardChecklists extends React.Component {
 
+<<<<<<< HEAD
     onSaveCardChecklists(checklists, activityType, txt) {
         console.log('enter your check list :',checklists);
+=======
+    onSaveCardChecklists(checklists) {
+>>>>>>> 8f346e11202c3e5eec5a6fd01487d70b24ef6794
         const { board, card, onSaveBoard } = this.props
         card.checklists = checklists;
         const updatedBoard = boardService.updateCardInBoard(board, card)
@@ -34,7 +38,6 @@ export class CardChecklists extends React.Component {
         const { checklists,board, card, onSaveBoard } = this.props
         return (
             <section className="card-checklists-container_new">
-                {console.log('checklists',checklists)}
                 {checklists && checklists.map(checklist =>
                     <CardChecklist
                         card={card}

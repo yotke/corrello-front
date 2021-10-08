@@ -35,7 +35,6 @@ class _CardDetails extends React.Component {
     //socketService.setup();
     //socketService.emit('SOCKET_EVENT_START_BOARD', board._id);
     //socketService.on('SOCKET_EVENT_ON_RELOAD_BOARD', (boardId) => {
-    //  console.log('SOCKET_EVENT_ON_RELOAD_BOARD boardId',boardId)
     //  this.setLocalState(listId, cardId);
     //});
 
@@ -49,7 +48,6 @@ class _CardDetails extends React.Component {
 
   setLocalState = (listId, cardId) => {
     //debugger
-    console.log('this.props', this.props);
 
     const { board } = this.props;
 

@@ -21,7 +21,6 @@ class _ListPreview extends Component {
   handleOnDragEnd = (result) => {
     const { listIdx } = this.props;
     const { cards } = this.props.currList;
-    console.log(cards);
     this.props.handleOnDragEndCards(result, listIdx, cards);
   };
 
@@ -41,7 +40,6 @@ class _ListPreview extends Component {
   };
 
   handleChange = (ev) => {
-    console.log(ev);
     if (ev.keyCode === 13) {
       ev.preventDefault();
       this.onSaveTitle();
@@ -104,6 +102,7 @@ class _ListPreview extends Component {
                         }}
                       >
                         <CardPreview
+                          isDragged={this.props.isDragged}
                           key={currCard.id}
                           card={currCard}
                           cardIdx={cardIdx}

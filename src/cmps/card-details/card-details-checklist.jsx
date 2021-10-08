@@ -16,10 +16,8 @@ export class CardChecklist extends React.Component {
     onBoxChecked = (diff) => {
         const { checklist } = this.props
         const doneTodos = this.state.doneTodos + diff
-        console.log('doneTodos', doneTodos);
         const totTodo = checklist.todos.length
         const complite = doneTodos / totTodo
-        console.log('complite', complite * 100);
         this.setState({ doneTodos })
         this.setState({ percentComplite: complite * 100 })
     }
@@ -37,12 +35,10 @@ export class CardChecklist extends React.Component {
     }
 
     onEditlistItem = (checklistItem, todoId) => {
-        console.log('todoId', todoId);
         const { checklist, onSaveChecklist } = this.props
         const todoIdx = checklist.todos.findIndex(todo => {
             return todo.id === todoId
         })
-        console.log('todoIdx', todoIdx);
         checklist.todos[todoIdx].title = checklistItem
 
         onSaveChecklist(checklist)

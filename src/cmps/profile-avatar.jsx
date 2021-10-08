@@ -66,7 +66,7 @@ function _ProfileAvatar({ member, size, onOpenPopover, showStatus = false, onlin
     return (
         <div className="profile-avatar" onClick={(ev) => onClickAvatar(ev)}>
             <StyledBadge
-                overlap="circle"
+                overlap="circular"
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'right',

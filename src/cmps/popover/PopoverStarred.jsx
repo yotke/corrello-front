@@ -4,24 +4,22 @@ import { utilService } from '../../services/util.service';
 import { Component } from 'react';
 import { boardService } from '../../services/board.service';
 import { closePopover } from '../../store/popover.actions';
-import { onSaveBoard } from "../../store/board.actions";
+import { onSaveBoard,loadBoard,loadBoards } from "../../store/board.actions";
 import { Popover } from './Popover';
 import { Link, NavLink } from 'react-router-dom'
-import {loadBoard} from '../../store/board.actions'
+import {} from '../../store/board.actions'
 
 class _PopoverStarred extends Component {
 
     componentDidMount() {
-        this.props.loadBoard()
+        this.props.loadBoards()
     }
 
     render() {
         const { boards } = this.props
-        console.log('boards in popover starred', boards);
         const starredBoards = boards.filter((board) => {
             return board.star === true
         })
-        console.log('starredBoards in popover starred', starredBoards);
         return <Popover title={"Starred boards"}>
             <div className="Starred-pop-over-content">
                 <ul className="board-list-navbar">
@@ -61,6 +59,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     onSaveBoard,
     loadBoard,
+    loadBoards,
     closePopover
 }
 

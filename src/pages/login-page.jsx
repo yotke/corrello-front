@@ -13,7 +13,6 @@ class _LoginSignupPage extends React.Component {
         const { loginSignup, email } = this.props.match.params;
         this.setState({ email })
         if (loginSignup === 'sign-up') {
-            console.log('loginSignup', loginSignup);
             this.setState({ isSignup: true })
         }
     }

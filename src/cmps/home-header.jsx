@@ -23,7 +23,6 @@ export class HomeHeader extends Component {
         const props = {
             user: this.props.user,
         };
-        console.log("PROPS", props)
         this.props.openPopover(PopoverName, elPos, props);
     };
 
@@ -42,9 +41,7 @@ export class HomeHeader extends Component {
         const { isNavBgVisible } = this.state
         const { user, guest } = this.props
         const [name, lastname] = user?user.fullname.split(' '):['','']
-        console.log(name[0])
-        console.log(lastname[0])
-        console.log('user', user);
+ 
         return (
             <header className={`home-header ${isNavBgVisible ? 'visibleBg' : ''}`}>
                 <nav className="flex justify-space-between">
