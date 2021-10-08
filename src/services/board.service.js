@@ -8,7 +8,6 @@ import { useLocation } from 'react-router'
 import testUtils from 'react-dom/test-utils'
 import { httpService } from './http.service'
 import { noConflict } from 'lodash'
-import { socketService } from "../services/socket.service";
 
 const STORAGE_KEY = 'boardDB'
 const RECEBT_BOARDS_KEY = 'recentBoardsDB'
@@ -28,8 +27,7 @@ export const boardService = {
     updateCardInBoard,
     addCardToBoard,
     //updateListInBoard,
-    setPopoverPos,
-    addActivityToBoard
+    setPopoverPos
 }
 window.cs = boardService;
 //_saveToLocalStorage();
@@ -225,41 +223,4 @@ function getEmptyBoard() {
     }
 
     return board;
-}
-
-export function addActivityToBoard(board, activityType, txt, card) {
-    const savedActivity = createActivity(activityType, txt, card)
-    socketService.emit('SOCKET_EVENT_ON_NEW_ACTIVITY',savedActivity)
-    board.activities.unshift(savedActivity)
-    return board
-}
-
-export function createActivity(activityType, txt='', card = null) {
-    
-    const loggedInUser = userService.getLoggedinUser();
-    const byMember = {
-        id: loggedInUser._id,
-        fullname: loggedInUser.fullname,
-        imgUrl: loggedInUser.imgUrl
-    }
-
-    let cardData
-    if(card) {
-        cardData = {
-            id: card.id,
-            title: card.title,
-            members: card.members
-        }
-    }
-
-    const activityToCreate = {
-        id: utilService.makeId(),
-        txt,
-        createdAt: Date.now(),
-        byMember,
-        activityType,
-        card: cardData || null
-    }
-
-    return activityToCreate
 }
