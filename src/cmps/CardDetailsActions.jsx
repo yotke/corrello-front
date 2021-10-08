@@ -13,6 +13,7 @@ import {ReactComponent as DateIcon} from '../assets/img/cmps/card-details/icon-d
 // import {ReactComponent as LocationIcon} from '../assets/img/cmps/card-details/icon-loaction.svg'
 import {utilService} from '../services/util.service.js'
 import {boardService} from '../services/board.service.js'
+import { activityService } from '../services/activity.service';
 
 class _CardDetailsActions extends Component {
 
@@ -37,8 +38,8 @@ class _CardDetailsActions extends Component {
     }
 
     card.attachs.push(attach)
-    const updatedBoard = boardService.updateCardInBoard(board, card)
-    updatedBoard = boardService.addActivityToBoard(updatedBoard, 'attached', attach.fileName, card)
+    let updatedBoard = boardService.updateCardInBoard(board, card)
+    updatedBoard = activityService.addActivityToBoard(updatedBoard, 'attached', attach.fileName, card)
     onSaveBoard(updatedBoard)
     closePopover()
 }

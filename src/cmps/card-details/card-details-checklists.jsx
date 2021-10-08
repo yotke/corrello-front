@@ -1,6 +1,7 @@
 import React from 'react'
 import { boardService } from '../../services/board.service';
 import { CardChecklist } from './card-details-checklist';
+import { activityService } from '../../services/activity.service';
 
 export class CardChecklists extends React.Component {
 
@@ -8,11 +9,8 @@ export class CardChecklists extends React.Component {
         console.log('enter your check list :',checklists);
         const { board, card, onSaveBoard } = this.props
         card.checklists = checklists;
-        const updatedBoard = boardService.updateCardInBoard(board, card)
-        debugger
-        console.log('updatedBoard',updatedBoard)
-        updatedBoard = boardService.addActivityToBoard(updatedBoard, activityType, txt, card)
-        console.log('updatedBoard',updatedBoard)
+        let updatedBoard = boardService.updateCardInBoard(board, card)
+        updatedBoard = activityService.addActivityToBoard(updatedBoard, activityType, txt, card)
         onSaveBoard(updatedBoard)   
         // onSaveBoard(board)
     }
