@@ -228,7 +228,7 @@ function getEmptyBoard() {
 }
 
 export function addActivityToBoard(board, activityType, txt, card) {
-    const savedActivity = boardService.createActivity(activityType, txt, card)
+    const savedActivity = createActivity(activityType, txt, card)
     socketService.emit('SOCKET_EVENT_ON_NEW_ACTIVITY',savedActivity)
     board.activities.unshift(savedActivity)
     return board

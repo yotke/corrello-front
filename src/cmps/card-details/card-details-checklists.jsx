@@ -9,11 +9,12 @@ export class CardChecklists extends React.Component {
         const { board, card, onSaveBoard } = this.props
         card.checklists = checklists;
         const updatedBoard = boardService.updateCardInBoard(board, card)
+        debugger
         console.log('updatedBoard',updatedBoard)
         updatedBoard = boardService.addActivityToBoard(updatedBoard, activityType, txt, card)
         console.log('updatedBoard',updatedBoard)
         onSaveBoard(updatedBoard)   
-        onSaveBoard(board);
+        // onSaveBoard(board)
     }
 
     onSaveChecklist = (checklist) => {
