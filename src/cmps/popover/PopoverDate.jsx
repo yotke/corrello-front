@@ -36,6 +36,8 @@ class _PopoverDate extends React.Component {
         // board.activities.unshift(savedActivity)
 
         const updatedBoard = boardService.updateCardInBoard(board, card)
+
+        //todo
         onSaveBoard(updatedBoard)
         closePopover()
     }

@@ -28,6 +28,8 @@ class _PopoverCover extends Component {
             bgColor,
         }
         const updatedBoard = boardService.updateCardInBoard(board, card)
+
+        //todo
         onSaveBoard(updatedBoard)
     }
 

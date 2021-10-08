@@ -16,6 +16,8 @@ export class Description extends React.Component {
     const { board, card, onSaveBoard } = this.props
     card.description = description
     const updatedBoard = boardService.updateCardInBoard(board, card)
+
+    //todo
     onSaveBoard(updatedBoard)
     //onSaveBoard(board);
   }

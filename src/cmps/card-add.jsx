@@ -44,6 +44,9 @@ export class CardAdd extends Component {
         }
 
         board.lists[listIdx].cards.push(card)
+
+        
+
         onSaveBoard(board)
         this.setState({ titleTxt: '' }, () => {
             this.textArea.focus()

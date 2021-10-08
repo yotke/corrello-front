@@ -2,6 +2,7 @@ import React from "react"
 import { Link, NavLink } from 'react-router-dom'
 import { boardService } from "../../services/board.service";
 import { PopoverDate } from "../popover/PopoverDate";
+import { activityService } from '../../services/activity.service';
 
 export class DueDateDisplay extends React.Component {
     state = {
@@ -24,7 +25,9 @@ export class DueDateDisplay extends React.Component {
                 <div>
                     <input type="checkbox" defaultChecked={card.dueDateDone} onChange={(ev) => {
                         card.dueDateDone = ev.target.checked ? true : false
-                        const updatedBoard = boardService.updateCardInBoard(board, card)
+                        let updatedBoard = boardService.updateCardInBoard(board, card)
+                        updatedBoard = activityService.addActivityToBoard(updatedBoard, 'marked-duedate', (card.dueDateDone) ? 'complete' : 'incomplete', card)
+                        //todo
                         onSaveBoard(updatedBoard)
                         //onSaveBoard(board);
                         this.setState({ isChecked: !isChecked })

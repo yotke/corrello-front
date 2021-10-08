@@ -28,6 +28,8 @@ class _PopoverChecklist extends Component {
         }
         card.checklists.push(checklist)
         const updatedBoard = boardService.updateCardInBoard(board, card)
+
+        //todo
         onSaveBoard(updatedBoard)
         this.props.closePopover()
 

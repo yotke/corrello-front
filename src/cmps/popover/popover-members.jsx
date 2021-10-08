@@ -39,6 +39,8 @@ class _PopoverMembers extends Component {
             card.members.splice(idx, 1)
         }
         const updatedBoard = boardService.updateCardInBoard(board, card)
+
+        //todo
         this.props.onSaveBoard(updatedBoard)
     }
 
