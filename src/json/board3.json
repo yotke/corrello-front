@@ -1,0 +1,227 @@
+{
+    "_id" : ObjectId("615c9da56edbd65ea360ab28"),
+    "createdAt" : ISODate("2021-10-05T18:47:01.000Z"),
+    "title" : "Programming Project",
+    "createdBy" : {
+        "_id" : "",
+        "fullname" : "",
+        "imgUrl" : ""
+    },
+    "style" : {
+        "background" : "https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.6435-9/67239247_10158920349049569_6949057463438016512_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=973b4a&_nc_ohc=3UfEs8XGMqgAX_00iDD&_nc_ht=scontent.fsdv3-1.fna&oh=4d5e7773f3c476f9d2c4e479c2bde5ef&oe=6182F234"
+    },
+    "labels" : [ 
+        {
+            "title" : "code review",
+            "color" : "#f2d600",
+            "id" : "paATFW"
+        }, 
+        {
+            "title" : "css",
+            "color" : "#0279bf",
+            "id" : "naMRO5"
+        }, 
+        {
+            "title" : "sass",
+            "color" : "#ff78cb",
+            "id" : "Nld9Sg"
+        }, 
+        {
+            "title" : "javascript",
+            "color" : "#eb5a46",
+            "id" : "gnpxIf"
+        }, 
+        {
+            "title" : "react",
+            "color" : "#0279bf",
+            "id" : "bUev9r"
+        }, 
+        {
+            "title" : "urgent",
+            "color" : "#eb5a46",
+            "id" : "qSgORC"
+        }, 
+        {
+            "title" : "vactions ",
+            "color" : "#ff9e1a",
+            "id" : "RJUhkV"
+        }, 
+        {
+            "title" : "server",
+            "color" : "#52e898",
+            "id" : "3AAuyP"
+        }, 
+        {
+            "title" : "MongoDB",
+            "color" : "#60bd4f",
+            "id" : "UDarCz"
+        }
+    ],
+    "members" : [ 
+        {
+            "_id" : "61597f73b9f74406f8931ee1",
+            "fullname" : "Koren Turgman",
+            "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+        }, 
+        {
+            "_id" : "61597f7fb9f74406f8931ee5",
+            "fullname" : "Yotam Elia",
+            "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U0276DVNY2F-f2361f5e4429-512"
+        }, 
+        {
+            "_id" : "61597f8bb9f74406f8931eeb",
+            "fullname" : "Pavel Kabakov",
+            "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+        }, 
+        {
+            "_id" : "u104",
+            "fullname" : "Alon Dai",
+            "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U024HLL8UQZ-caf8640ec902-512"
+        }, 
+        {
+            "_id" : "u105",
+            "fullname" : "Guy Kaplan",
+            "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U0272BRG9BJ-2ff996f89cf8-512"
+        }, 
+        {
+            "_id" : "u106",
+            "fullname" : "Tair Bitan",
+            "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U025XUZN079-fed75155207b-512"
+        }, 
+        {
+            "_id" : "u107",
+            "fullname" : "Ilai Greco",
+            "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U0272BRCN2C-be252634f803-512"
+        }, 
+        {
+            "_id" : "u108",
+            "fullname" : "Asaf Cohen",
+            "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U0272BRF2SU-c70584123c20-512"
+        }, 
+        {
+            "_id" : "u109",
+            "fullname" : "Eli Moyal",
+            "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U026CLU22UA-2135fd88b5e7-512"
+        }, 
+        {
+            "_id" : "u110",
+            "fullname" : "Yoni Segev",
+            "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U0242A6R49K-20666a5e47dc-512"
+        }, 
+        {
+            "_id" : "u111",
+            "fullname" : "Or Tabin",
+            "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U022CHACNDD-708baea58457-512"
+        }
+    ],
+    "lists" : [ 
+        {
+            "id" : "92HH0b",
+            "title" : "Important!",
+            "cards" : [ 
+                {
+                    "id" : "posNSd",
+                    "title" : "Mr.toy finishes",
+                    "description" : "",
+                    "comments" : [],
+                    "checklists" : [ 
+                        {
+                            "id" : "tzEffG",
+                            "title" : "finish",
+                            "todos" : [ 
+                                {
+                                    "id" : "hlJjso",
+                                    "isChecked" : false,
+                                    "title" : "frontend"
+                                }, 
+                                {
+                                    "id" : "A7oZyJ",
+                                    "isChecked" : false,
+                                    "title" : "backend"
+                                }, 
+                                {
+                                    "id" : "a3u1z8",
+                                    "isChecked" : false,
+                                    "title" : "sockets"
+                                }, 
+                                {
+                                    "id" : "jgQBKy",
+                                    "isChecked" : false,
+                                    "title" : "express"
+                                }
+                            ]
+                        }
+                    ],
+                    "members" : [],
+                    "byMember" : "loggedinUser",
+                    "labelIds" : [ 
+                        "qSgORC", 
+                        "gnpxIf"
+                    ],
+                    "createdAt" : 1633466232362.0,
+                    "style" : {
+                        "coverMode" : "header",
+                        "bgImgUrl" : "https://res.cloudinary.com/plcrased/image/upload/v1633466288/rbe62fr2zfscivk3hch7.png",
+                        "bgColor" : ""
+                    }
+                }
+            ]
+        }
+    ],
+    "activities" : [ 
+        {
+            "id" : "a101",
+            "txt" : "add card",
+            "createdAt" : 154514,
+            "activityType" : "add",
+            "card" : {
+                "id" : "posNSd"
+            },
+            "byMember" : {
+                "_id" : "61597f73b9f74406f8931ee1",
+                "fullname" : "Koren Turgman",
+                "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U025LJVAX42-ea2f51e8112f-512"
+            },
+            "task" : {
+                "id" : "c101",
+                "title" : "add card"
+            }
+        }, 
+        {
+            "id" : "a102",
+            "txt" : "update card title",
+            "createdAt" : 154514,
+            "activityType" : "update",
+            "card" : {
+                "id" : "posNSd"
+            },
+            "byMember" : {
+                "_id" : "61597f7fb9f74406f8931ee5",
+                "fullname" : "Yotam Elia",
+                "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U0276DVNY2F-f2361f5e4429-512"
+            },
+            "task" : {
+                "id" : "c101",
+                "title" : "update card title"
+            }
+        }, 
+        {
+            "id" : "a103",
+            "txt" : "update card logo",
+            "createdAt" : 154514,
+            "activityType" : "update",
+            "card" : {
+                "id" : "posNSd"
+            },
+            "byMember" : {
+                "_id" : "61597f8bb9f74406f8931eeb",
+                "fullname" : "Pavel Kabakov",
+                "imgUrl" : "https://ca.slack-edge.com/T021743D5T8-U026R43NXV4-70208c38d594-512"
+            },
+            "task" : {
+                "id" : "c101",
+                "title" : "update card logo"
+            }
+        }
+    ]
+}
