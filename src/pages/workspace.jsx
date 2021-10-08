@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 
-import { loadBoards, onAddBoard, onEditBoard, onRemoveBoard,onSaveBoard,updateRecentBoard } from '../store/board.actions.js'
+import { loadBoards, onAddBoard, onEditBoard, onRemoveBoard, onSaveBoard, updateRecentBoard } from '../store/board.actions.js'
 import { showSuccessMsg } from '../services/event-bus.service.js'
 import { BoardPreview } from '../cmps/board-preview.jsx'
 import { SideNav } from '../cmps/sidenav.jsx';
@@ -17,6 +17,7 @@ class _Workspace extends React.Component {
     }
     componentDidMount() {
         this.props.loadBoards()
+        const { boards } = this.props
     }
     onRemoveBoard = (boardId) => {
         this.props.onRemoveBoard(boardId)
@@ -57,7 +58,7 @@ class _Workspace extends React.Component {
                         </div>
                         <div className="all-boards-main">
                             <SearchNavBar boards={boards} onSelectSort={this.onSelectSort} onSetFilter={this.onSetFilter} />
-                            <BoardPreview boards={boardsToShow} onSaveBoard={this.props.onSaveBoard} updateRecentBoard={this.props.updateRecentBoard}  />
+                            <BoardPreview boards={boardsToShow} onSaveBoard={this.props.onSaveBoard} updateRecentBoard={this.props.updateRecentBoard} />
                         </div>
                     </div>
                 </div>
@@ -80,7 +81,7 @@ const mapDispatchToProps = {
     onAddBoard,
     onEditBoard,
     updateRecentBoard,
-    
+
 }
 
 
