@@ -15,7 +15,6 @@ class _PopoverRecentBoard extends Component {
     }
     render() {
         const { recentBoards } = this.props
-        console.log('recentBoards in popover', recentBoards);
         return <Popover title={"Recent boards"}>
             <div className="recent-pop-over-content">
                 <ul className="board-list-navbar">

@@ -24,7 +24,6 @@ class _PopoverCreateBoard extends Component {
 
     onCreateBoard = async () => {
         const { title, color } = this.state
-        console.log('title±±±±±', title);
         const { loggedInUser, onSaveBoard, closePopover } = this.props
         const boardToSave = {
             createdBy: loggedInUser,
@@ -48,13 +47,11 @@ class _PopoverCreateBoard extends Component {
             activities: [
             ]
         }
-        console.log('board to save',boardToSave)
         try {
             await onSaveBoard(boardToSave)
             if (this.props.board) this.props.history.push(`/board/${this.props.board._id}`)
             closePopover()
         } catch (err) {
-            console.log('could Not Load Board')
         }
     }
 

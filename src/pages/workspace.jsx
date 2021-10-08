@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 
-import { loadBoards, onAddBoard, onEditBoard, onRemoveBoard, addToCart } from '../store/board.actions.js'
+import { loadBoards, onAddBoard, onEditBoard, onRemoveBoard,onSaveBoard,updateRecentBoard } from '../store/board.actions.js'
 import { showSuccessMsg } from '../services/event-bus.service.js'
 import { BoardPreview } from '../cmps/board-preview.jsx'
 import { SideNav } from '../cmps/sidenav.jsx';
@@ -31,11 +31,9 @@ class _Workspace extends React.Component {
     }
     onSetFilter = (filterBy) => {
         const { boards } = this.props
-        console.log('filter filter all the way', filterBy)
         if (filterBy) {
             let { title } = filterBy
             const boardsToShow = boards.filter(board => {
-                console.log('board.title', board.title)
                 return board.title.toUpperCase().includes(title.toUpperCase())
             })
             this.setState({ boardsToShow })
@@ -59,7 +57,7 @@ class _Workspace extends React.Component {
                         </div>
                         <div className="all-boards-main">
                             <SearchNavBar boards={boards} onSelectSort={this.onSelectSort} onSetFilter={this.onSetFilter} />
-                            <BoardPreview boards={boardsToShow} />
+                            <BoardPreview boards={boardsToShow} onSaveBoard={this.props.onSaveBoard} updateRecentBoard={this.props.updateRecentBoard}  />
                         </div>
                     </div>
                 </div>
@@ -76,11 +74,13 @@ function mapStateToProps(state) {
     }
 }
 const mapDispatchToProps = {
+    onSaveBoard,
     loadBoards,
     onRemoveBoard,
     onAddBoard,
     onEditBoard,
-    addToCart
+    updateRecentBoard,
+    
 }
 
 

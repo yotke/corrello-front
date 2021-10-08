@@ -52,7 +52,6 @@ export class _Popover extends Component {
     render() {
         const { children, title, closePopover, isOverlayOpen, overlay, displayMode } = this.props
         const { top, left ,isOpen} = this.state
-        console.log('top left', top, left);
 
         return <>
             {overlay !== 'none' && isOverlayOpen && <div className="overlay" onClick={closePopover} />}

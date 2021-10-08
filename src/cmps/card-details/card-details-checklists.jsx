@@ -5,7 +5,6 @@ import { CardChecklist } from './card-details-checklist';
 export class CardChecklists extends React.Component {
 
     onSaveCardChecklists(checklists) {
-        console.log('enter your check list :',checklists);
         const { board, card, onSaveBoard } = this.props
         card.checklists = checklists;
         const updatedBoard = boardService.updateCardInBoard(board, card)
@@ -31,7 +30,6 @@ export class CardChecklists extends React.Component {
         const { checklists,board, card, onSaveBoard } = this.props
         return (
             <section className="card-checklists-container_new">
-                {console.log('checklists',checklists)}
                 {checklists && checklists.map(checklist =>
                     <CardChecklist
                         card={card}

@@ -40,14 +40,19 @@ class _BoardApp extends React.Component {
 
   HandleDrop = () => {
     this.setState({ isDragged: false })
-    console.log('this.setState.isDragged', this.state.isDragged);
   }
 
 
   async componentDidMount() {
+
     window.addEventListener('mouseup', this.HandleDrop)
     try {
       const { boardId } = this.props.match.params;
+      window.addEventListener('popstate', function() {
+        console.log('updateRecentBoard as changed')
+        this.props.updateRecentBoard(boardId)
+
+      });
 
       await this.loadBoard(boardId);
 
@@ -56,17 +61,15 @@ class _BoardApp extends React.Component {
       socketService.on('SOCKET_EVENT_ON_RELOAD_BOARD', this.props.loadBoard);
       // socketService.emit(socketService.SOCKET_EVENT_ON_BOARD_SAVED, boardId)
     } catch (err) {
-      console.log(err);
     }
 
     this.unlisten = this.props.history.listen((location) => {
-      const splittedPath = location.pathname.split('/');
 
+      const splittedPath = location.pathname.split('/');
+    
       const boardId = splittedPath[2];
       if (!boardId || boardId === this.props.match.params.boardId) return;
-      console.log(
-        'Loading board from URL watcher - need to be ONLY on BOARD change!!!'
-      );
+      this.props.updateRecentBoard(boardId)
       this.onBoardChange(boardId);
     });
   }
@@ -75,7 +78,6 @@ class _BoardApp extends React.Component {
 
 
   loadBoard = async (boardId) => {
-    console.log('loadBoard = async (boardId) => ', boardId);
     await Promise.all([
       this.props.loadBoard(boardId),
       this.props.updateRecentBoard(boardId),
@@ -104,10 +106,8 @@ class _BoardApp extends React.Component {
   handleOnDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     if (!result.destination) return;
-    console.log('destination.droppableId', destination.droppableId);
     const { lists } = this.props.board;
     if (destination.droppableId != 'all-lists') {
-      console.log('draggableId', draggableId);
       const start = lists[source.droppableId];
       const finish = lists[destination.droppableId];
 
@@ -115,7 +115,6 @@ class _BoardApp extends React.Component {
         const cards = Array.from(start.cards);
         const [reorderedItem] = cards.splice(source.index, 1);
         cards.splice(destination.index, 0, reorderedItem);
-        console.log('cards', cards);
         this.props.board.lists[source.droppableId].cards = cards;
       } else {
         var itemsArr = this.updateElemDND(
@@ -151,7 +150,6 @@ class _BoardApp extends React.Component {
 
   onCardClicked = () => {
     this.setState({ isCardClicked: true });
-    console.log('isCardClicked', this.state.isCardClicked);
   };
 
   render() {
@@ -170,6 +168,7 @@ class _BoardApp extends React.Component {
               title={board.title}
             />
             <div className="board-content">
+
               <Route
                 path="/board/:boardId/:listId/:cardId"
                 exact
@@ -196,7 +195,6 @@ class _BoardApp extends React.Component {
                           {(provided) => (
                             <li onMouseDown={async () => {
                               await this.setState({ isDragged: true })
-                              console.log('this.setState.isDragged', this.state.isDragged);
                             }}
 
                               className="list-wrapper"
@@ -205,7 +203,6 @@ class _BoardApp extends React.Component {
                               {...provided.dragHandleProps}
                             // onMouse={async () => {
                             //   await this.setState({ isDragged: false })
-                            //   console.log('this.setState.isDragged', this.state.isDragged);
                             // }}
                             >
                               <ListPreview

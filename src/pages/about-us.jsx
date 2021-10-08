@@ -87,7 +87,6 @@ export class AboutUs extends React.Component {
     }
     
     onTellMeMore = () =>{
-        console.log('Telling you more');
     }
     render() {
         const {count} = this.state
@@ -106,7 +105,7 @@ export class AboutUs extends React.Component {
 
                 </MyErrorBoundary>
 
-                <FancyBox onClose={() => console.log('ok, closing')}>
+                <FancyBox onClose={() =>{}}>
                     <h3>{count.toLocaleString()} Followers</h3>
                     <button onClick={this.onTellMeMore}>Tell me More</button>
                 </FancyBox>

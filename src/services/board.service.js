@@ -35,7 +35,6 @@ window.cs = boardService;
 //save inital data(board) to local storage
 //todo
 // function _saveToLocalStorage() {
-//     //console.log('DATA FROM STORAGAE',DATA)
 
 //     query().then((respone) => {
 //         if (!respone.length) storageService.postMany(STORAGE_KEY, DATA)
@@ -115,7 +114,6 @@ async function remove(boardId) {
 async function save(board) {
     if (board._id) {
         try {
-            console.log('saved-put-board', board);
 
             return await httpService.put(`board/${board._id}`, board)
         } catch (err) {
@@ -123,7 +121,6 @@ async function save(board) {
         }
     } else {
         try {
-            console.log('saved-post-board', board);
             return await httpService.post('board', board)
         } catch (err) {
             throw err
@@ -147,12 +144,10 @@ function subscribe(listener) {
 
 
 function _notifySubscribersBoardsChanged(boards) {
-    //console.log('Notifying Listeners');
     listeners.forEach(listener => listener(boards))
 }
 
 window.addEventListener('storage', () => {
-    //console.log('Storage Changed from another Browser!');
     query()
         .then(boards => {
             _notifySubscribersBoardsChanged(boards)
@@ -160,7 +155,6 @@ window.addEventListener('storage', () => {
 })
 
 // TEST DATA
-// storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
 
 function updateCardInBoard(board, updateCard) {
     board = { ...board }

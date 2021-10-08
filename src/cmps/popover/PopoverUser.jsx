@@ -38,6 +38,7 @@ class _PopoverUser extends Component {
     
             <button className="logout-btn-user-popover btn" onClick={() => {
                 this.props.onLogout()
+                this.props.closePopover()
             }}>Log out</button>
         </Popover>
     }

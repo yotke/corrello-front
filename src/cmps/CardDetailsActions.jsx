@@ -23,7 +23,6 @@ class _CardDetailsActions extends Component {
       card: this.props.card,
       addFile: this.addFile
     };
-    console.log("PROPS", props)
     this.props.openPopover(PopoverName, elPos, props);
   };
 

@@ -8,7 +8,7 @@ import { Card } from '../single-card';
 export class CardPreview extends Component {
 
     render() {
-        const { board, card, currList, key ,isDragged} = this.props;
+        const { board, card, currList ,isDragged} = this.props;
         return (
 
             <>

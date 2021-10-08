@@ -45,7 +45,6 @@ async function update(user) {
 
 async function login(userCred) {
     const users = await storageService.query('user')
-    console.log('users in login',users);
     if(users===[]){
         const user = {username:'Guest',password:''}
         return _saveLocalUser(user)
@@ -110,7 +109,6 @@ function getLoggedinUser() {
         const watchedUser = freshUsers.find(u => u._id === gWatchedUser._id)
         if (!watchedUser) return;
         if (gWatchedUser.score !== watchedUser.score) {
-            console.log('Watched user score changed - localStorage updated from another browser')
             socketService.emit(SOCKET_EVENT_USER_UPDATED, watchedUser)
         }
         gWatchedUser = watchedUser

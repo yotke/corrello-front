@@ -14,7 +14,6 @@ class _PopoverSearchAppheader extends Component {
     render() {
         const { boards } = this.props
         const { recentBoards } = this.props
-        console.log('recentBoards in popover', recentBoards);
         return <Popover>
             <div className="recent-pop-over-content">
                 <ul className="board-list-navbar">

@@ -40,7 +40,7 @@ export class _LoginSignup extends React.Component {
 
     onLogin = (ev = null) => {
         if (!this.state.credentials.username || !this.state.credentials.password) return;
-        console.log('ev', ev)
+
         if (ev) ev.preventDefault();
         this.props.onLogin(this.state.credentials)
 

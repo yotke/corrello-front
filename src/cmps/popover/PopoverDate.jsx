@@ -27,11 +27,7 @@ class _PopoverDate extends React.Component {
 
     saveDueDate = (date) => {
         const { card, onSaveBoard, closePopover, board } = this.props
-        console.log('card',card);
-        console.log('onSaveBoard',onSaveBoard);
-        console.log('board',board);
-        console.log('Date',date);
-        console.log('Date parse',Date.parse(date));
+
         // card.dueDate = 1;
         card.dueDate = date ? Date.parse(date) : 0;
         

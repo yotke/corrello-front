@@ -16,7 +16,6 @@ class _HomePage extends React.Component {
     render() {
         const { email, guest } = this.state
         const { count, user, openPopover, closePopover } = this.props
-        console.log('user', user);
         return (
 
             <section className="home-page-container">
