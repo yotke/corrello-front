@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router'
 import { boardService } from '../services/board.service'
 import { loadBoards, loadBoard, loadRecentBoards } from "../store/board.actions";
+import {MoreHoriz} from '@material-ui/icons';
 export class _NavBarBoard extends React.Component {
     state = {
         title: 'Board Name',

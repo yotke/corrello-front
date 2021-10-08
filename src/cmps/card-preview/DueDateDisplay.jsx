@@ -4,6 +4,8 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import { openPopover } from '../../store/popover.actions';
 import { connect } from 'react-redux';
 import { onSaveBoard } from '../../store/board.actions'
+import {ReactComponent as DateIcon} from '../../assets/img/cmps/card-details/icon-dates.svg'
+
 
 class _DueDateDisplay extends Component {
 
@@ -56,7 +58,9 @@ class _DueDateDisplay extends Component {
         const dueStatus = this.getDueStatus();
         return <> { displayType === 'preview' ?
             <div className={`card-preview-date ${dueStatus}`} onClick={toggleCardDone}>
-                <div className="card-preview-date-icon"></div>
+                <div className="card-preview-icon-date">
+                <DateIcon/>
+                </div>
                 <div>
                     {this.dueDateFormat(card.dueDate)}
                 </div>
