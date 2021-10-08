@@ -1,3 +1,5 @@
+import { act } from "react-dom/test-utils"
+
 const initialState = {
     boards: [],
     board: null,
@@ -41,7 +43,7 @@ export function boardReducer(state = initialState, action) {
             newState = { ...state, boards }
             break
         case 'SET_LABELS_MODE':
-            newState = { ...state, isLabelesOpend: { ...state, isLabelesOpend: action.labelsMode } }
+            newState = { ...state, isLabelesOpend: action.labelsMode }
             break;
         case 'UNDO_REMOVE_BOARD':
             if (state.lastRemoveBoard) {

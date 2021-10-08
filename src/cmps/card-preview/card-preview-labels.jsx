@@ -28,7 +28,7 @@ import {setLabelsMode} from '../../store/board.actions.js'
 
     render() {
         const label = this.label
-        const {isLabelesOpend}= this.state
+        const {isLabelesOpend}= this.props
         return (
             <div className={`card-preview-label card-label ${isLabelesOpend ? 'open' : 'close'} `} style={{ backgroundColor: label.color }}
                 onClick={this.toggleLabelsMode}>

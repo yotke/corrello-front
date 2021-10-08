@@ -9,17 +9,17 @@ export const activityService = {
 
 export function addActivityToBoard(board, activityType, txt, card) {
     const savedActivity = createActivity(activityType, txt, card)
-    socketService.emit('SOCKET_EVENT_ON_NEW_ACTIVITY',savedActivity)
+    socketService.emit('SOCKET_EVENT_ON_NEW_ACTIVITY', savedActivity)
     board.activities.unshift(savedActivity)
     return board
 }
 
-export function createActivity(activityType, txt='', card = null) {
-    debugger
+export function createActivity(activityType, txt = '', card = null) {
+    // debugger
     const loggedInUser = userService.getLoggedinUser();
-    
+
     let byMember
-    if(loggedInUser) {
+    if (loggedInUser) {
         byMember = {
             id: loggedInUser._id,
             fullname: loggedInUser.fullname,
@@ -35,7 +35,7 @@ export function createActivity(activityType, txt='', card = null) {
 
 
     let cardData
-    if(card) {
+    if (card) {
         cardData = {
             id: card.id,
             title: card.title,
