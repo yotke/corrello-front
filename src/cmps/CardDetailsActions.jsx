@@ -39,6 +39,7 @@ class _CardDetailsActions extends Component {
 
     card.attachs.push(attach)
     const updatedBoard = boardService.updateCardInBoard(board, card)
+    updatedBoard = boardService.addActivityToBoard(updatedBoard, 'attached', attach.fileName, card)
     onSaveBoard(updatedBoard)
     closePopover()
 }

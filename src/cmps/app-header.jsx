@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { ReactComponent as AddIcon } from '../assets/img/icons/add.svg'
 import { ReactComponent as BellIcon } from '../assets/img/icons/notific-bell.svg'
 import { openPopover } from '../store/popover.actions'
-
+import { socketService } from "../services/socket.service";
 
 import { onLogin, onLogout, onSignup, loadUsers, removeUser } from '../store/user.actions.js'
 import { LoginSignup } from './login-signup.jsx'
@@ -22,6 +22,9 @@ class _AppHeader extends React.Component {
 
 componentDidMount(){
     this.searchInput = React.createRef();
+    socketService.on('SOCKET_EVENT_ON_ADD_ACTIVITY', activity => {
+        this.setState({ isNewNotific: true })
+    })
 }
 
 

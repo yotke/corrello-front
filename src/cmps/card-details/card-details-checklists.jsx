@@ -4,11 +4,14 @@ import { CardChecklist } from './card-details-checklist';
 
 export class CardChecklists extends React.Component {
 
-    onSaveCardChecklists(checklists) {
+    onSaveCardChecklists(checklists, activityType, txt) {
         console.log('enter your check list :',checklists);
         const { board, card, onSaveBoard } = this.props
         card.checklists = checklists;
         const updatedBoard = boardService.updateCardInBoard(board, card)
+        console.log('updatedBoard',updatedBoard)
+        updatedBoard = boardService.addActivityToBoard(updatedBoard, activityType, txt, card)
+        console.log('updatedBoard',updatedBoard)
         onSaveBoard(updatedBoard)   
         onSaveBoard(board);
     }
@@ -18,13 +21,13 @@ export class CardChecklists extends React.Component {
         const { checklists } = this.props
         const checklistIdx = checklists.findIndex(currChecklist => currChecklist.id === checklist.id)
         checklists[checklistIdx] = checklist
-        this.onSaveCardChecklists(checklists)
+        this.onSaveCardChecklists(checklists, 'added', checklist.title)
     }
 
     onDeleteChecklist = (checklist) => {
         let { checklists } = this.props
         checklists = checklists.filter(currChecklist => currChecklist.id !== checklist.id)
-        this.onSaveCardChecklists(checklists)
+        this.onSaveCardChecklists(checklists, 'removed', checklist.title)
     }
 
     render() {
