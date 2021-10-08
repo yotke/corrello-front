@@ -104,14 +104,13 @@ class _Card extends Component {
             ></div>
           )}
           <div className="card-content">
-            <div className="card-preview-labels">
+            <div className="card-preview-labels open">
               {card.labelIds &&
                 card.labelIds.map((labelId) => (
-                  <CardPreviewLabel
+                  <CardPreviewLabel 
                     key={labelId}
                     labelId={labelId}
                     labels={board.labels}
-                    isArchived={card.isArchived}
                   />
                 ))}
             </div>

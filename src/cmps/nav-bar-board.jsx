@@ -51,6 +51,13 @@ export class _NavBarBoard extends React.Component {
     goBackToCard = () => {
 
     }
+
+    onOpenPopover = (ev, PopoverName, props) => {
+        //debugger
+        const elPos = ev.target.getBoundingClientRect();
+   
+        this.props.openPopover(PopoverName, elPos, props);
+    };
     handleChange = (ev) => {
         if (ev.keyCode === 13) {
             ev.preventDefault();
@@ -122,8 +129,9 @@ export class _NavBarBoard extends React.Component {
 
                 </div>
                 <div className="second-board-part">
-                    <button className="invite-member-board-btn">Invite</button>
-                    <button onClick={this.openNav} className="show-more-activity"><span>...</span> Show Menu</button>
+                    {/* <InvitedMembers InvitedMembers={}/> */}
+                    <button className="invite-member-board-btn" onClick={(ev) => this.onOpenPopover(ev, 'INVITE')}>Invite</button>
+                    <button onClick={this.openNav} className="show-more-activity"><span><MoreHoriz/></span> Show Menu</button>
 
                 </div>
             </section>
