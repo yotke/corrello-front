@@ -31,10 +31,28 @@ class _BoardApp extends React.Component {
     isCardClicked: false,
     isDragged: false,
   };
+  componentWillUnmount() {
+    window.removeEventListener('mouseup', this.HandleDrop)
+    this.unlisten();
+  }
+
+
+
+  HandleDrop = () => {
+    this.setState({ isDragged: false })
+  }
+
 
   async componentDidMount() {
+
+    window.addEventListener('mouseup', this.HandleDrop)
     try {
       const { boardId } = this.props.match.params;
+      window.addEventListener('popstate', function() {
+        console.log('updateRecentBoard as changed')
+        this.props.updateRecentBoard(boardId)
+
+      });
 
       await this.loadBoard(boardId);
 
@@ -43,29 +61,30 @@ class _BoardApp extends React.Component {
       socketService.on('SOCKET_EVENT_ON_RELOAD_BOARD', this.props.loadBoard);
       // socketService.emit(socketService.SOCKET_EVENT_ON_BOARD_SAVED, boardId)
     } catch (err) {
-      console.log(err);
     }
 
     this.unlisten = this.props.history.listen((location) => {
-      const splittedPath = location.pathname.split('/');
 
+      const splittedPath = location.pathname.split('/');
+    
       const boardId = splittedPath[2];
       if (!boardId || boardId === this.props.match.params.boardId) return;
-      console.log(
-        'Loading board from URL watcher - need to be ONLY on BOARD change!!!'
-      );
+      this.props.updateRecentBoard(boardId)
       this.onBoardChange(boardId);
     });
   }
 
+
+
+
   loadBoard = async (boardId) => {
-    console.log('loadBoard = async (boardId) => ', boardId);
     await Promise.all([
       this.props.loadBoard(boardId),
       this.props.updateRecentBoard(boardId),
       this.props.loadBoards(),
     ]);
   };
+
 
   componentWillUnmount() {
     socketService.off('SOCKET_EVENT_ON_RELOAD_BOARD')
@@ -87,10 +106,8 @@ class _BoardApp extends React.Component {
   handleOnDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     if (!result.destination) return;
-    console.log('destination.droppableId', destination.droppableId);
     const { lists } = this.props.board;
     if (destination.droppableId != 'all-lists') {
-      console.log('draggableId', draggableId);
       const start = lists[source.droppableId];
       const finish = lists[destination.droppableId];
 
@@ -98,7 +115,6 @@ class _BoardApp extends React.Component {
         const cards = Array.from(start.cards);
         const [reorderedItem] = cards.splice(source.index, 1);
         cards.splice(destination.index, 0, reorderedItem);
-        console.log('cards', cards);
         this.props.board.lists[source.droppableId].cards = cards;
       } else {
         var itemsArr = this.updateElemDND(
@@ -134,12 +150,11 @@ class _BoardApp extends React.Component {
 
   onCardClicked = () => {
     this.setState({ isCardClicked: true });
-    console.log('isCardClicked', this.state.isCardClicked);
   };
 
   render() {
     const { board, onSaveBoard, boards, user } = this.props;
-    const { isMainBoard } = this.state;
+    const { isMainBoard, isDragged } = this.state;
     if (!board) return <Loader />;
 
     return (
@@ -153,6 +168,7 @@ class _BoardApp extends React.Component {
               title={board.title}
             />
             <div className="board-content">
+
               <Route
                 path="/board/:boardId/:listId/:cardId"
                 exact
@@ -177,32 +193,37 @@ class _BoardApp extends React.Component {
                           index={listIdx}
                         >
                           {(provided) => (
-                       
+                            <li onMouseDown={async () => {
+                              await this.setState({ isDragged: true })
+                            }}
 
-                                <li
-                                  className="list-wrapper"
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                >
-                                  <ListPreview
-                                    className={
-                                      this.state.isDragged && 'list-dragged'
-                                    }
-                                    board={board}
-                                    key={listIdx}
-                                    listIdx={listIdx}
-                                    currList={currList}
-                                    onSaveBoard={onSaveBoard}
-                                    handleOnDragEndCards={
-                                      this.handleOnDragEndCards
-                                    }
-                                    onCardClicked={this.onCardClicked}
-                                  />
-                                </li>
-                              )}
-                          
-                  
+                              className="list-wrapper"
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            // onMouse={async () => {
+                            //   await this.setState({ isDragged: false })
+                            // }}
+                            >
+                              <ListPreview
+                                className={
+                                  isDragged ? 'list-dragged' : ''
+                                }
+                                isDragged={isDragged}
+                                board={board}
+                                key={listIdx}
+                                listIdx={listIdx}
+                                currList={currList}
+                                onSaveBoard={onSaveBoard}
+                                handleOnDragEndCards={
+                                  this.handleOnDragEndCards
+                                }
+                                onCardClicked={this.onCardClicked}
+                              />
+                            </li>
+                          )}
+
+
                         </Draggable>
                       ))}
                       {provided.placeholder}

@@ -16,7 +16,8 @@ export class ProgressBar extends Component {
 
     componentDidMount() {
         const { completed } = this.props;
-        console.log('completed',completed);
+        this.setState({completed})
+        console.log(completed);
         this.setState({ completed, fillerStyles: { width: `${completed}%` } });
     }
 

@@ -8,6 +8,12 @@ export class SearchNavBar extends React.Component {
         field: ''
     };
 
+
+    componentDidMount() {
+        const boards = this.sortByRecentlyUsed(this.props.boards)
+        this.props.onSelectSort(boards)
+
+    }
     onSelectSort = (ev) => {
         let { boards } = this.props
         const sortBy = ev.target.value
@@ -26,10 +32,19 @@ export class SearchNavBar extends React.Component {
         this.props.onSelectSort(boards)
     }
 
-    sortByRecentlyUsed = () => {
-
+    sortByRecentlyUsed = (boards) => {
+        boards.sort(function (a, b) {
+            return b.recentBoardInsert - a.recentBoardInsert;
+        });
+        console.log('boards', boards);
+        return boards
     }
-    sortByLeastRecentlyUsed = () => {
+    sortByLeastRecentlyUsed = (boards) => {
+        boards.sort(function (a, b) {
+            return a.recentBoardInsert - b.recentBoardInsert;
+        });
+        console.log('boards', boards);
+        return boards
     }
     sortByAlfaBet_A_Z = (boards) => {
         boards.sort(function (a, b) {
@@ -91,6 +106,7 @@ export class SearchNavBar extends React.Component {
                             <select className="_3TTqkG5muwOzqZ css-ufz0vj-control _1Dp3s5P2VP237V _2RUB_6xy0LOMWG" name="field" id="field" onChange={(ev) => {
                                 this.onSelectSort(ev)
                             }}>
+                                <option value="empty"></option>
                                 <option value="recently">Most recently active</option>
                                 <option value="leastRecently">Least recently active</option>
                                 <option value="alphabetUp">Alphabetically A-Z</option>

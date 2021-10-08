@@ -11,7 +11,6 @@ export class CardChecklistItem extends React.Component {
     }
     componentDidMount() {
         const { todo } = this.props
-        console.log('todo', todo);
         if (todo) {
             this.setState({ checklistItem: todo.title })
         }
@@ -22,7 +21,6 @@ export class CardChecklistItem extends React.Component {
     onSaveChecklistItem = () => {
         const { onAddingListItem, todo } = this.props
         const { checklistItem } = this.state
-        console.log('TODO', todo);
         if (todo) {
 
             onAddingListItem(checklistItem, todo.id)
@@ -35,7 +33,6 @@ export class CardChecklistItem extends React.Component {
 
     }
     handleChange = (ev) => {
-        console.log(ev);
         if (ev.keyCode === 13) {
             ev.preventDefault();
             this.onSaveChecklistItem();
@@ -49,7 +46,6 @@ export class CardChecklistItem extends React.Component {
         return (
             <section className="checklist-item-container">
                 <input type="checkbox" defaultChecked={todo && todo.isChecked} className="checklist-item-checkbox" id="subscribeNews" name="subscribe" value="newsletter" onChange={(ev) => {
-                    console.log(' ev.target.checked ', ev.target.checked);
 
                     if (ev.target.checked) {
 

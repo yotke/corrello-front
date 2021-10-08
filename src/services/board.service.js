@@ -7,6 +7,8 @@ import data from '../json/board.json'
 import { useLocation } from 'react-router'
 import testUtils from 'react-dom/test-utils'
 import { httpService } from './http.service'
+import { noConflict } from 'lodash'
+import { socketService } from "../services/socket.service";
 
 const STORAGE_KEY = 'boardDB'
 const RECEBT_BOARDS_KEY = 'recentBoardsDB'
@@ -26,7 +28,8 @@ export const boardService = {
     updateCardInBoard,
     addCardToBoard,
     //updateListInBoard,
-    setPopoverPos
+    setPopoverPos,
+    addActivityToBoard
 }
 window.cs = boardService;
 //_saveToLocalStorage();
@@ -34,7 +37,6 @@ window.cs = boardService;
 //save inital data(board) to local storage
 //todo
 // function _saveToLocalStorage() {
-//     //console.log('DATA FROM STORAGAE',DATA)
 
 //     query().then((respone) => {
 //         if (!respone.length) storageService.postMany(STORAGE_KEY, DATA)
@@ -114,7 +116,6 @@ async function remove(boardId) {
 async function save(board) {
     if (board._id) {
         try {
-            console.log('saved-put-board', board);
 
             return await httpService.put(`board/${board._id}`, board)
         } catch (err) {
@@ -122,7 +123,6 @@ async function save(board) {
         }
     } else {
         try {
-            console.log('saved-post-board', board);
             return await httpService.post('board', board)
         } catch (err) {
             throw err
@@ -146,12 +146,10 @@ function subscribe(listener) {
 
 
 function _notifySubscribersBoardsChanged(boards) {
-    //console.log('Notifying Listeners');
     listeners.forEach(listener => listener(boards))
 }
 
 window.addEventListener('storage', () => {
-    //console.log('Storage Changed from another Browser!');
     query()
         .then(boards => {
             _notifySubscribersBoardsChanged(boards)
@@ -159,7 +157,6 @@ window.addEventListener('storage', () => {
 })
 
 // TEST DATA
-// storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
 
 function updateCardInBoard(board, updateCard) {
     board = { ...board }
@@ -228,4 +225,41 @@ function getEmptyBoard() {
     }
 
     return board;
+}
+
+export function addActivityToBoard(board, activityType, txt, card) {
+    const savedActivity = createActivity(activityType, txt, card)
+    socketService.emit('SOCKET_EVENT_ON_NEW_ACTIVITY',savedActivity)
+    board.activities.unshift(savedActivity)
+    return board
+}
+
+export function createActivity(activityType, txt='', card = null) {
+    
+    const loggedInUser = userService.getLoggedinUser();
+    const byMember = {
+        id: loggedInUser._id,
+        fullname: loggedInUser.fullname,
+        imgUrl: loggedInUser.imgUrl
+    }
+
+    let cardData
+    if(card) {
+        cardData = {
+            id: card.id,
+            title: card.title,
+            members: card.members
+        }
+    }
+
+    const activityToCreate = {
+        id: utilService.makeId(),
+        txt,
+        createdAt: Date.now(),
+        byMember,
+        activityType,
+        card: cardData || null
+    }
+
+    return activityToCreate
 }

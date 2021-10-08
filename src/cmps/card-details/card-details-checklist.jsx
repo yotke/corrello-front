@@ -5,6 +5,7 @@ import { utilService } from "../../services/util.service"
 import { CardChecklistItem } from "./card-details-checklist-item"
 import { ProgressBar } from "./progress-bar"
 import { ReactComponent as CheckIcon } from '../../assets/img/cmps/card-details/icon-checklist.svg'
+import { ThreeSixty } from "@material-ui/icons"
 
 export class CardChecklist extends React.Component {
     state = {
@@ -12,21 +13,33 @@ export class CardChecklist extends React.Component {
         doneTodos: 0,
         percentComplite: 0
     }
+    componentDidMount() {
+        const { checklist } = this.props
+        let counter = 0;
+        checklist.todos.forEach(todo => {
+            counter = todo.isChecked ? counter + 1 : counter
+        })
+        console.log(counter);
+        this.setState({doneTodos:counter})
+        const totTodo = checklist.todos.length
+        const complite = counter / totTodo
+        console.log('complite',complite);
+        this.setState({ percentComplite: complite * 100 })
+    }
+
 
     onBoxChecked = (diff) => {
         const { checklist } = this.props
         const doneTodos = this.state.doneTodos + diff
-        console.log('doneTodos', doneTodos);
         const totTodo = checklist.todos.length
         const complite = doneTodos / totTodo
-        console.log('complite', complite * 100);
         this.setState({ doneTodos })
         this.setState({ percentComplite: complite * 100 })
     }
 
 
     updateTodoCheckedBox = (todo) => {
-        const { checklist,onSaveChecklist } = this.props
+        const { checklist, onSaveChecklist } = this.props
         const todoId = todo.id
         const todoIdx = checklist.todos.findIndex(todo => {
             return todo.id === todoId
@@ -37,12 +50,10 @@ export class CardChecklist extends React.Component {
     }
 
     onEditlistItem = (checklistItem, todoId) => {
-        console.log('todoId', todoId);
         const { checklist, onSaveChecklist } = this.props
         const todoIdx = checklist.todos.findIndex(todo => {
             return todo.id === todoId
         })
-        console.log('todoIdx', todoIdx);
         checklist.todos[todoIdx].title = checklistItem
 
         onSaveChecklist(checklist)
@@ -76,6 +87,7 @@ export class CardChecklist extends React.Component {
                 <div className="checklist-wrapper">
 
                     <div className="progress-bar-container">
+                        {console.log('percentComplite',percentComplite)}
                         <ProgressBar completed={percentComplite} />
                     </div>
                     <div className="checklist-list-container">
@@ -86,7 +98,7 @@ export class CardChecklist extends React.Component {
                                     todo={todo}
                                     updateTodoCheckedBox={this.updateTodoCheckedBox}
                                     onAddingListItem={this.onEditlistItem} />
-                                    
+
                             </div>
                         )}
                     </div>

@@ -10,7 +10,7 @@ export class BoardPreview extends React.Component {
     activeIndex: ''
   };
 
-  handleStarred = () => {};
+  handleStarred = () => { };
   render() {
     const { isNewBoard } = this.state;
     const { boards } = this.props;
@@ -23,15 +23,19 @@ export class BoardPreview extends React.Component {
                         }}>Create new board</button> */}
           </li>
           {boards.map((board, index) => (
-              
+
             //<Filter/>
-            <Link
+            <Link onClick={() => {
+              board.recentBoardInsert = new Date().getTime()
+              console.log(' board.recentBoardInsert', board.recentBoardInsert);
+              this.props.onSaveBoard(board)
+            }}
               to={`/board/${board._id}`}
               key={board._id}
               className="board-preview-wrapper clean-link"
             >
-              <div class="content">
-                <div class="content-overlay"></div>
+              <div className="content">
+                <div className="content-overlay"></div>
 
                 <li
                   className="board-preview clean-link content-image"
@@ -54,13 +58,12 @@ export class BoardPreview extends React.Component {
                 <div
                   className="content-details fadeIn-right"
                   onClick={(ev) => {
-                    console.log(ev);
                     ev.stopPropagation();
                     ev.preventDefault();
                   }}
                 >
-                    <Star board={board}/>
-  
+                  <Star board={board} />
+
                 </div>
               </div>
             </Link>

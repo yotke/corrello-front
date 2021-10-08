@@ -5,7 +5,6 @@ export class SideNavRight extends React.Component {
 
 
   componentDidMount = () => {
-    console.log('activites', this.activities);
   }
 
 	 openNav = () => {

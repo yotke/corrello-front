@@ -8,7 +8,6 @@ export function loadBoards() {
     return (dispatch) => {
         boardService.query()
             .then(boards => {
-                console.log('Boards from DB:', boards)
                 dispatch({
                     type: 'SET_BOARDS',
                     boards
@@ -16,11 +15,9 @@ export function loadBoards() {
             })
             .catch(err => {
                 showErrorMsg('Cannot load boards')
-                console.log('Cannot load boards', err)
             })
 
         boardService.subscribe((boards) => {
-            console.log('Got notified');
             dispatch({
                 type: 'SET_BOARDS',
                 boards
@@ -34,7 +31,6 @@ export function loadRecentBoards() {
     return (dispatch) => {
         boardService.queryRecentBoards()
             .then(recentBoards => {
-                console.log('Recent Boards from DB:', recentBoards)
                 dispatch({
                     type: 'SET_RECENT_BOARDS',
                     recentBoards
@@ -42,11 +38,9 @@ export function loadRecentBoards() {
             })
             .catch(err => {
                 showErrorMsg('Cannot load boards')
-                console.log('Cannot load boards', err)
             })
 
         boardService.subscribe((recentBoards) => {
-            console.log('Got notified');
             dispatch({
                 type: 'SET_RECENT_BOARDS',
                 recentBoards
@@ -59,15 +53,11 @@ export function onSaveBoard(board) {
         try {
             const savedBoard = await boardService.save(board)
                 .then((board) => {
-                    console.log('saved board : ', board);
-                    console.log('savedBoard  board._id', board._id)
                     socketService.emit('SOCKET_EVENT_ON_BOARD_SAVED', board._id)
                     return board
                 })
-            console.log('dispached board ', savedBoard);
             dispatch({ type: 'SAVE_BOARD', board: savedBoard })
         } catch (err) {
-            console.log('BoardActions: err in onSaveBoard', err)
         }
     }
 }
@@ -76,7 +66,6 @@ export function loadBoard(boardId) {
     return async dispatch => {
         try {
             const board = await boardService.getById(boardId)
-            console.log('board from get id', board)
             dispatch({
                 type: 'SET_BOARD',
                 board

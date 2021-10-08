@@ -17,13 +17,12 @@ export class Description extends React.Component {
     card.description = description
     const updatedBoard = boardService.updateCardInBoard(board, card)
     onSaveBoard(updatedBoard)
-    onSaveBoard(board);
+    //onSaveBoard(board);
   }
   goBackToCard = () => {
 
   }
   handleChange = (ev) => {
-    console.log(ev);
     if (ev.keyCode === 13) {
       ev.preventDefault();
       this.onSaveDescription();

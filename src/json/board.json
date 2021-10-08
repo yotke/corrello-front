@@ -1952,6 +1952,7 @@
         "activities": [
             {
                 "id": "a101",
+                "activityType":"",
                 "txt": "Changed Color",
                 "createdAt": 154514,
                 "byMember": {

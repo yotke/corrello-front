@@ -5,8 +5,6 @@ export class WorkspaceHeader extends React.Component {
     render() {
         const { user } = this.props
         const [name, lastname] = user?user.fullname.split(' '):['','']
-        console.log(name[0])
-        console.log(lastname[0])
         return (
             <section className="tabbed-pane-header-wrapper">
                 <div className="first-letter-logo-workspace-header">

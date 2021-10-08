@@ -81,7 +81,6 @@ async function update(user) {
 async function login(userCred) {
     //const users = await httpService.get('user')
     //const users = await storageService.query('user')
-    //console.log('users in login',users);
     //if(users===[]){
     //    const user = {username:'Guest',password:''}
     //    return _saveLocalUser(user)

@@ -17,6 +17,8 @@ import { CardDetailsCover } from '../cmps/card-details-cover'
 import { CardChecklists } from '../cmps/card-details/card-details-checklists';
 import { ReactComponent as HeaderIcon } from '../assets/img/cmps/card-details/icon-header.svg'
 import { socketService } from '../services/socket.service.js';
+import { Activities } from '../cmps/activities.jsx'
+
 import {CardAttachments} from '../cmps/card-details/CardAttachments.jsx'
 
 class _CardDetails extends React.Component {
@@ -33,7 +35,6 @@ class _CardDetails extends React.Component {
     //socketService.setup();
     //socketService.emit('SOCKET_EVENT_START_BOARD', board._id);
     //socketService.on('SOCKET_EVENT_ON_RELOAD_BOARD', (boardId) => {
-    //  console.log('SOCKET_EVENT_ON_RELOAD_BOARD boardId',boardId)
     //  this.setLocalState(listId, cardId);
     //});
 
@@ -47,7 +48,6 @@ class _CardDetails extends React.Component {
 
   setLocalState = (listId, cardId) => {
     //debugger
-    console.log('this.props', this.props);
 
     const { board } = this.props;
 
@@ -109,7 +109,7 @@ class _CardDetails extends React.Component {
   };
 
   render() {
-    const { board, onSaveBoard, openPopover } = this.props;
+    const { board, board: { activities }, onSaveBoard, openPopover } = this.props;
     const { card, list } = this.state;
     if (!card) return <Loader />;
     const { title, members, description, checklists, dueDate, style, attachs} = card;
@@ -179,6 +179,13 @@ class _CardDetails extends React.Component {
                 checklists={checklists}
                 onSaveBoard={onSaveBoard}
               />
+
+              {!!(activities && activities.length) &&
+                <Activities 
+                  card={card} 
+                  activities={activities}
+                  isInCardLocation={true} 
+               />}
             </div>
 
             <div className="card-details-sidebar flex column full">
