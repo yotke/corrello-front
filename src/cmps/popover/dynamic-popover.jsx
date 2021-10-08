@@ -11,6 +11,8 @@ import { PopoverRecentBoard } from "./PopoverRecentBoard.jsx";
 import { PopoverUser } from "./PopoverUser.jsx";
 import {PopoverAttachment} from './PopoverAttachment.jsx'
 import { PopoverSearchAppheader } from "./popover-search-appheader.jsx";
+import {PopoverList} from './PopoverList.jsx'
+import {PopoverImagePicker} from './PopoverImagePicker.jsx'
 
 
 
@@ -27,6 +29,8 @@ function _DynamicPopover({ currPopover }) {
     case 'COVER': return <PopoverCover {...props} />; 
     case 'CREATE_BOARD': return <PopoverCreateBoard {...props} />; 
     case 'CHECKLIST': return <PopoverChecklist {...props} />; 
+    case 'LIST_OPTIONS': return <PopoverList {...props} />; 
+    case 'IMAGE_PICKER': return <PopoverImagePicker {...props}/>
     //this is headers popovers
     case 'STARRED': return <PopoverStarred {...props} />; 
     case 'RECENT_BOARDS': return <PopoverRecentBoard {...props} />;

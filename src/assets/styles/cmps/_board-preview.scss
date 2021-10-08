@@ -143,7 +143,14 @@
     background-color: rgba(9, 30, 66, 0.08);
   }
 }
+.show-more-activity {
+  align-items: center;
+  gap: 3px;
+}
 
+.board-nav-bar-container .show-more-activity {
+  align-items: unset;
+}
 .close-nav-bar-workspace {
   background: none !important;
   align-items: center !important;

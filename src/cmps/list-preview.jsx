@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { CardAdd } from './card-add.jsx';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { CardPreview } from './card-preview/card-preview.jsx';
-
+import {MoreHoriz} from '@material-ui/icons';
+import {onSaveBoard} from '../store/board.actions.js'
+import {closePopover, openPopover} from '../store/popover.actions.js'
 class _ListPreview extends Component {
   state = {
     isAddToggeld: false,
@@ -12,6 +14,19 @@ class _ListPreview extends Component {
     titleTxt: '',
     isOnEditState: false,
   };
+
+  onOpenPopover = (ev, PopoverName) => {
+    const elPos = ev.target.getBoundingClientRect()
+    const { board, currList, onSaveBoard, closePopover } = this.props
+    const props = {
+        currList,
+        board,
+        onSaveBoard,
+        closePopover
+    }
+    this.props.openPopover(PopoverName, elPos, props)
+}
+
 
   toggleCardAdd = () => {
     const { isAddToggeld } = this.state;
@@ -70,10 +85,10 @@ class _ListPreview extends Component {
           ) : (
             <h2 onClick={this.toggleEdit}>{currList.title}</h2>
           )}{' '}
-          <a className="exta-menu-list">
 
-            {/* <h1 className="extra-content">&#x2026;</h1> */}
-          </a>
+          <div onClick={(ev) => this.onOpenPopover(ev, 'LIST_OPTIONS')} className="card-list-btn-menu">
+            <MoreHoriz className="list-menu"/>
+                                        </div>
         </div>
         <div className="card-container">
           {/* <DragDropContext onDragEnd={this.handleOnDragEnd}> */}
@@ -140,6 +155,10 @@ class _ListPreview extends Component {
   }
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  closePopover,
+  onSaveBoard,
+  openPopover
+};
 
 export const ListPreview = connect(null, mapDispatchToProps)(_ListPreview);

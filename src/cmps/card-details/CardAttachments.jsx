@@ -4,14 +4,6 @@ import { ReactComponent as PaperClipIcon } from '../../assets/img/icons/papercli
 
 export function CardAttachments({ attachs, onDeleteCardAttachment, card, openPopover }) {
 
-    const onOpenPopover = (ev, type) => {
-        ev.preventDefault();
-        let elPos;
-        let props;
-        elPos = ev.target.getBoundingClientRect()
-        props = { card }
-        openPopover(type, elPos, props)
-    }
 
     return (
         <div className="card-attachments">
@@ -24,9 +16,7 @@ export function CardAttachments({ attachs, onDeleteCardAttachment, card, openPop
                     return <a key={attach.id} target="_blank"
                         rel="noreferrer" href={attach.url} className="clean-link">
                         <div className="attach-preview flex">
-                            <div className="img-container">
-                                <img src={attach.url} alt="" />
-                            </div>
+            
                             <div className="attach-content flex column full">
                                 <span className="file-name">{attach.fileName} </span>
                                 <div className="time-n-actions flex wrap align-center ">
@@ -39,8 +29,8 @@ export function CardAttachments({ attachs, onDeleteCardAttachment, card, openPop
                     </a>
                 })}
             </div>
-            <button className="secondary-btn"
-                onClick={(ev) => onOpenPopover(ev, 'ATTACH')}>Add an attachment</button>
+
+
         </div>
     )
 }

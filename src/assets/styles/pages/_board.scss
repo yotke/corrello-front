@@ -9,6 +9,14 @@
   white-space: normal;
   margin: 2px 0 8px 8px;
 }
+.list-actions {
+  cursor: pointer;
+  display: block;
+  padding: 0 0.4rem;
+}
+.list-actions:hover {
+  background-color: #091e420a;
+}
 
 .list-wrapper {
   padding-bottom: 3.4rem;
@@ -20,13 +28,19 @@
 }
 
 .list-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   font-size: 0.8rem;
   flex: 0 0 auto;
   min-height: 20px;
   padding: 10px 8px;
   position: relative;
 }
-
+.MuiSvgIcon-root.list-menu {
+  color: #6b778c;
+  width: 18px;
+}
 .lists-container {
   list-style-type: none;
   position: relative;
@@ -153,4 +167,21 @@
 
 .list-header h2 {
   margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.add-image-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  background-color: #fff;
+  border-radius: 3px;
+  .MuiSvgIcon-root {
+    width: unset;
+    height: unset;
+  }
 }

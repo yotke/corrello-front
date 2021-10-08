@@ -2,12 +2,9 @@
   border-radius: 3rem;
   text-align: center;
 
-  float: left;
   font-size: 12px;
   font-weight: 700;
   height: 8px;
-  line-height: 100px;
-  margin: 0 4px 4px 0;
   max-width: 40px;
   min-width: 40px;
   padding: 0;
@@ -41,5 +38,36 @@
   &.done {
     background-color: #61bd4f;
     color: #fff;
+  }
+}
+
+.card-preview-label {
+  display: flex;
+  width: 40px;
+  border-radius: 4px;
+  height: 8px;
+  margin-bottom: 4px;
+  color: transparent;
+
+  &:hover {
+    filter: brightness(95%);
+  }
+
+  &.close {
+    color: rgba(255, 255, 255, 0);
+    height: 8px;
+    min-width: 20px;
+    width: 40px;
+    transition: height 0.2s, min-width 0.2s linear 0.2s;
+  }
+  &.open {
+    display: flex;
+    justify-content: center;
+    color: white;
+    height: 20px;
+    min-width: 60px;
+    width: fit-content;
+    text-align: center;
+    transition: color 0.2s linear 0.4s, min-width 0.2s, height 0.2s linear 0.2s;
   }
 }

@@ -3,6 +3,7 @@ import { userService } from "../services/user.service.js";
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { socketService } from "../services/socket.service.js";
 
+
 export function loadBoards() {
     return (dispatch) => {
         boardService.query()
@@ -85,6 +86,21 @@ export function loadBoard(boardId) {
         }
     }
 }
+
+
+
+
+export function setLabelsMode(labelsMode) {
+
+    return async dispatch => {
+        try {
+            dispatch({ type: 'SET_LABELS_MODE', labelsMode })
+        } catch (err) {
+            console.log('BoardActions: err in loadBoard', err)
+        }
+    }
+}
+
 
 export function updateRecentBoard(boardId) {
     return async dispatch => {
@@ -173,16 +189,7 @@ export function removeFromCart(boardId) {
     }
 }
 
-export function togglePreviewLabels() {
-    return dispatch => {
-        dispatch({ type: 'TOGGLE_LABELS' })
-    }
-}
-export function setPreviewLabelClassName(className) {
-    return dispatch => {
-        dispatch({ type: 'SET_LABELS_CLASSNAME', className })
-    }
-}
+
 
 // Demo for Optimistic Mutation (IOW - Assuming the server call will work, so updating the UI first)
 export function onRemoveBoardOptimistic(boardId) {

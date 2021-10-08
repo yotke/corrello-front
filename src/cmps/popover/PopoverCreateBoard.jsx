@@ -6,6 +6,8 @@ import { closePopover } from "../../store/popover.actions";
 import { onSaveBoard } from "../../store/board.actions";
 import { withRouter } from 'react-router-dom';
 import {ImagePalette} from '../imagePalette.jsx';
+import {openPopover} from '../../store/popover.actions.js';
+import {MoreHoriz} from '@material-ui/icons';
 
 class _PopoverCreateBoard extends Component {
 
@@ -21,7 +23,14 @@ class _PopoverCreateBoard extends Component {
         const { name, value } = target
         this.setState({ [name]: value })
     }
-
+    
+    onOpenPopover = (ev, PopoverName) => {
+       
+        const elPos = ev.target.getBoundingClientRect();
+        console.log('board', this.props.board);
+      
+        this.props.openPopover(PopoverName, elPos, this.handleChange);
+    };
     onCreateBoard = async () => {
         const { title, color } = this.state
         console.log('title±±±±±', title);
@@ -76,8 +85,18 @@ class _PopoverCreateBoard extends Component {
                     <div className="create-preview-colors">
                         <ImagePalette count={6} handleChange={this.handleChange} selectedColor={color} />
                         
-                        <ColorPalette count={3} isGradient={false} handleChange={this.handleChange} selectedColor={color} />
+
+                        <ColorPalette count={3} onOpenPopover={this.onOpenPopover} isGradient={false} handleChange={this.handleChange} selectedColor={color} />
+                        {/* <div  className="add-image-box" onClick={(ev) => {
+                            this.onOpenPopover(ev, 'IMAGE_PICKER')
+                            ev.preventDefault()
+                            ev.stopPropagation()
+                    
+                    }}>
+                        <MoreHoriz/>
+                    </div> */}
                     </div>
+
                 </div>
                 <button className={`primary-btn ${title ? '' : 'disabled'}`} onClick={this.onCreateBoard}>Create board</button>
             </div>
@@ -95,7 +114,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     closePopover,
-    onSaveBoard
+    onSaveBoard, 
+    openPopover
 }
 
 export const PopoverCreateBoard = connect(mapStateToProps, mapDispatchToProps)(withRouter(_PopoverCreateBoard))

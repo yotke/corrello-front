@@ -1,7 +1,11 @@
 import React from 'react'
 import { boardService } from '../services/board.service'
+import {openPopover} from '../store/popover.actions'
+import {MoreHoriz} from '@material-ui/icons';
+import { connect } from 'react-redux';
 
-export class NavBarBoard extends React.Component {
+
+ class _NavBarBoard extends React.Component {
     state = {
         title: 'Board Name',
         isOnEditState: false,
@@ -31,6 +35,13 @@ export class NavBarBoard extends React.Component {
     goBackToCard = () => {
 
     }
+
+    onOpenPopover = (ev, PopoverName, props) => {
+        //debugger
+        const elPos = ev.target.getBoundingClientRect();
+   
+        this.props.openPopover(PopoverName, elPos, props);
+    };
     handleChange = (ev) => {
         console.log(ev);
         if (ev.keyCode === 13) {
@@ -107,11 +118,26 @@ export class NavBarBoard extends React.Component {
 
                 </div>
                 <div className="second-board-part">
-                    <button className="invite-member-board-btn">Invite</button>
-                    <button onClick={this.openNav} className="show-more-activity"><span>...</span> Show Menu</button>
+                    {/* <InvitedMembers InvitedMembers={}/> */}
+                    <button className="invite-member-board-btn" onClick={(ev) => this.onOpenPopover(ev, 'INVITE')}>Invite</button>
+                    <button onClick={this.openNav} className="show-more-activity"><span><MoreHoriz/></span> Show Menu</button>
 
                 </div>
             </section>
         )
     }
 }
+
+
+function mapStateToProps(state) {
+    return {
+      board: state.boardModule.board,
+    };
+  }
+const mapDispatchToProps = {
+    openPopover
+}
+
+
+
+export const NavBarBoard = connect(mapStateToProps, mapDispatchToProps)(_NavBarBoard)
