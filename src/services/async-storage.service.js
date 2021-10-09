@@ -12,12 +12,9 @@ function query(entityType, delay = 1200) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            // reject('OOOOPs')
             resolve(entities)
         }, delay)
     })
-
-    // return Promise.resolve(entities)
 }
 
 
@@ -30,7 +27,6 @@ function get(entityType, entityId) {
         })
 }
 function post(entityType, newEntity) {
-    // newEntity._id = _makeId()
     return query(entityType)
         .then(entities => {
             entities.push(newEntity)
@@ -57,7 +53,6 @@ function remove(entityType, entityId) {
             _save(entityType, entities)
         })
 }
-
 
 function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))

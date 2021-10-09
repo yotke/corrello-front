@@ -1,6 +1,6 @@
 import { Component } from "react"
-import { FileUpload } from "../FileUpload"
-import { Popover } from "./Popover"
+import { FileUpload } from "../file-upload"
+import { Popover } from "./popover"
 import { utilService } from '../../services/util.service'
 
 export class PopoverAttachment extends Component {

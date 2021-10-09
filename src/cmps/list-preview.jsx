@@ -1,12 +1,12 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { CardAdd } from './card-add.jsx';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { CardPreview } from './card-preview/card-preview.jsx';
 import {MoreHoriz} from '@material-ui/icons';
 import {onSaveBoard} from '../store/board.actions.js'
 import {closePopover, openPopover} from '../store/popover.actions.js'
+
 class _ListPreview extends Component {
   state = {
     isAddToggeld: false,

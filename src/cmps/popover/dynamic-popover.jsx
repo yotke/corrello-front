@@ -1,18 +1,18 @@
 
-import { PopoverLabels } from "../popover/PopoverLabels.jsx";
-import { PopoverDate } from "./PopoverDate.jsx";
+import { PopoverLabels } from "../popover/popover-labels.jsx";
+import { PopoverDate } from "./popover-date.jsx";
 import { PopoverMembers } from "../popover/popover-members.jsx";
 import { connect } from 'react-redux'
-import { PopoverCover } from '../popover/PopoverCover.jsx'
-import { PopoverCreateBoard } from '../popover/PopoverCreateBoard.jsx'
-import { PopoverChecklist } from '../popover/PopoverChecklist.jsx'
-import { PopoverStarred } from "./PopoverStarred.jsx";
-import { PopoverRecentBoard } from "./PopoverRecentBoard.jsx";
-import { PopoverUser } from "./PopoverUser.jsx";
-import {PopoverAttachment} from './PopoverAttachment.jsx'
+import { PopoverCover } from '../popover/popover-cover.jsx'
+import { PopoverCreateBoard } from '../popover/popover-create-board.jsx'
+import { PopoverChecklist } from '../popover/popover-checklist.jsx'
+import { PopoverStarred } from "./popover-starred.jsx";
+import { PopoverRecentBoard } from "./popover-recent-board.jsx";
+import { PopoverUser } from "./popover-user.jsx";
+import {PopoverAttachment} from './popover-attachment.jsx'
 import { PopoverSearchAppheader } from "./popover-search-appheader.jsx";
-import {PopoverList} from './PopoverList.jsx'
-import {PopoverImagePicker} from './PopoverImagePicker.jsx'
+import {PopoverList} from './popover-list.jsx'
+import {PopoverImagePicker} from './popover-image-picker.jsx'
 
 
 

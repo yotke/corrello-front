@@ -1,4 +1,3 @@
-import VideoLabelIcon from '@material-ui/icons/VideoLabel'
 import {ReactComponent as CoverIcon} from '../assets/img/cmps/card-details/icon-cover.svg'
 export function CardDetailsCover({ style, openPopover, card }) {
 

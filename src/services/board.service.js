@@ -26,20 +26,9 @@ export const boardService = {
     getEmptyBoard,
     updateCardInBoard,
     addCardToBoard,
-    //updateListInBoard,
     setPopoverPos
 }
 window.cs = boardService;
-//_saveToLocalStorage();
-
-//save inital data(board) to local storage
-//todo
-// function _saveToLocalStorage() {
-
-//     query().then((respone) => {
-//         if (!respone.length) storageService.postMany(STORAGE_KEY, DATA)
-//     })
-// }
 
 async function query(filterBy = {}) {
     try {
@@ -48,10 +37,6 @@ async function query(filterBy = {}) {
         throw err
     }
 }
-
-// function query() {
-//     return storageService.query(STORAGE_KEY)
-// }
 
 function queryRecentBoards() {
     return storageService.query(RECEBT_BOARDS_KEY)
@@ -71,7 +56,6 @@ async function saveRecentBoards(board) {
         return
     }
     else {
-        //board.owner = userService.getLoggedinUser()
         return storageService.post(RECEBT_BOARDS_KEY, board)
     }
 }
@@ -80,10 +64,6 @@ function getByIdRecentBoards(boardId) {
     return storageService.get(RECEBT_BOARDS_KEY, boardId)
 }
 
-// function getById(boardId) {
-//     return storageService.get(STORAGE_KEY, boardId)
-// }
-
 async function remove(boardId) {
     try {
         await httpService.delete(`board/${boardId}`)
@@ -91,25 +71,6 @@ async function remove(boardId) {
         throw err
     }
 }
-
-// function updateListInBoard(board, updateList) {
-//     board = { ...board }
-
-//     board.lists.forEach((list, idx) => {
-//         if (list.id === updateList.id) board.lists[idx] = updateList
-//     })
-
-//     return board
-// }
-
-
-// function remove(boardId) {
-//     // return new Promise((resolve, reject) => {
-//     //     setTimeout(reject, 2000)
-//     // })
-//     // return Promise.reject('Not now!');
-//     return storageService.remove(STORAGE_KEY, boardId)
-// }
 
 async function save(board) {
     if (board._id) {
@@ -128,20 +89,9 @@ async function save(board) {
     }
 }
 
-
-// function save(board) {
-//     if (board._id) {
-//         return storageService.put(STORAGE_KEY, board)
-//     } else {
-//         //board.owner = userService.getLoggedinUser()
-//         return storageService.post(STORAGE_KEY, { _id: utilService.makeId(), ...board })
-//     }
-// }
-
 function subscribe(listener) {
     listeners.push(listener)
 }
-
 
 function _notifySubscribersBoardsChanged(boards) {
     listeners.forEach(listener => listener(boards))
@@ -155,7 +105,6 @@ window.addEventListener('storage', () => {
 })
 
 // TEST DATA
-
 function updateCardInBoard(board, updateCard) {
     board = { ...board }
 
@@ -199,7 +148,6 @@ function setPopoverPos(pos, elRect, diff = 38) {
     if (top + height > viewportHeight) top = viewportHeight - height - 10
     return { left, top, width }
 }
-
 
 function getEmptyBoard() {
     const board = {

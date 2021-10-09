@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { openPopover, closePopover } from '../store/popover.actions.js'
 import { onSaveBoard } from '../store/board.actions.js';
 import { connect } from 'react-redux';
-import {Loader} from '../cmps/Loader.jsx'
+import {Loader} from '../cmps/loader.jsx'
 import { Button } from "@material-ui/core";
 import {ReactComponent as MemberIcon} from '../assets/img/cmps/card-details/icon-members.svg'
 import {ReactComponent as CheckListIcon} from '../assets/img/cmps/card-details/icon-checklists.svg'
@@ -10,7 +10,6 @@ import {ReactComponent as LabelIcon} from '../assets/img/cmps/card-details/icon-
 import {ReactComponent as CoverIcon} from '../assets/img/cmps/card-details/icon-cover.svg'
 import {ReactComponent as AttachmentIcon} from '../assets/img/cmps/card-details/icon-attachment.svg'
 import {ReactComponent as DateIcon} from '../assets/img/cmps/card-details/icon-dates.svg'
-// import {ReactComponent as LocationIcon} from '../assets/img/cmps/card-details/icon-loaction.svg'
 import {utilService} from '../services/util.service.js'
 import {boardService} from '../services/board.service.js'
 import { activityService } from '../services/activity.service';

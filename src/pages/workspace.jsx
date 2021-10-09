@@ -19,14 +19,15 @@ class _Workspace extends React.Component {
         this.props.loadBoards()
         const { boards } = this.props
     }
+
     onRemoveBoard = (boardId) => {
         this.props.onRemoveBoard(boardId)
     }
+
     onAddBoard = () => {
         this.props.onAddBoard()
     }
-    ה
-
+    
     onSelectSort = (boards) => {
         this.setState(boards)
     }
@@ -47,9 +48,7 @@ class _Workspace extends React.Component {
         const boardsToShow = this.state.boardsToShow.length ? this.state.boardsToShow : boards
         return (
             <section className="workspace-container">
-
                 <div className="workspace-sticky-cotainter">
-
                     <SideNav boards={boards} onAddBoard={onAddBoard} user={user} />
                     <div className="main-board-preview">
                         <div className="workspace-header">
@@ -67,7 +66,6 @@ class _Workspace extends React.Component {
     }
 }
 
-
 function mapStateToProps(state) {
     return {
         boards: state.boardModule.boards,
@@ -80,9 +78,7 @@ const mapDispatchToProps = {
     onRemoveBoard,
     onAddBoard,
     onEditBoard,
-    updateRecentBoard,
-
+    updateRecentBoard
 }
-
 
 export const Workspace = connect(mapStateToProps, mapDispatchToProps)(_Workspace)

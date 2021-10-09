@@ -1,11 +1,11 @@
 import { Component } from 'react';
 import { utilService } from '../../services/util.service';
-import { ColorPalette } from '../ColorPalette';
-import { Popover } from './Popover';
+import { ColorPalette } from '../color-palette';
+import { Popover } from './popover';
 import { boardService } from '../../services/board.service'
 import { onSaveBoard } from '../../store/board.actions'
 import { connect } from 'react-redux';
-import { FileUpload } from '../FileUpload';
+import { FileUpload } from '../file-upload';
 
 
 

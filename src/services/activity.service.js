@@ -6,7 +6,6 @@ export const activityService = {
     addActivityToBoard
 }
 
-
 export function addActivityToBoard(board, activityType, txt, card) {
     const savedActivity = createActivity(activityType, txt, card)
     socketService.emit('SOCKET_EVENT_ON_NEW_ACTIVITY', savedActivity)
@@ -15,7 +14,7 @@ export function addActivityToBoard(board, activityType, txt, card) {
 }
 
 export function createActivity(activityType, txt = '', card = null) {
-    // debugger
+
     const loggedInUser = userService.getLoggedinUser();
 
     let byMember
