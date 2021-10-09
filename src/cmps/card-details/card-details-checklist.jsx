@@ -38,14 +38,14 @@ export class CardChecklist extends React.Component {
     }
 
 
-    updateTodoCheckedBox = (todo) => {
+    updateTodoCheckedBox = (todo, activityType, ) => {
         const { checklist, onSaveChecklist } = this.props
         const todoId = todo.id
         const todoIdx = checklist.todos.findIndex(todo => {
             return todo.id === todoId
         })
         checklist.todos[todoIdx] = todo
-        onSaveChecklist(checklist)
+        onSaveChecklist(checklist, activityType)
 
     }
 
@@ -55,8 +55,8 @@ export class CardChecklist extends React.Component {
             return todo.id === todoId
         })
         checklist.todos[todoIdx].title = checklistItem
-
-        onSaveChecklist(checklist)
+        const activityType = 'onEditlistItem'
+        onSaveChecklist(checklist, activityType)
         this.setState({ isOnEditState: false })
     }
 
@@ -67,7 +67,8 @@ export class CardChecklist extends React.Component {
         todo.title = checklistItem
         const { checklist, onSaveChecklist } = this.props
         checklist.todos.push(todo)
-        onSaveChecklist(checklist)
+        const activityType = 'onSaveChecklistItem'
+        onSaveChecklist(checklist, activityType)
         this.setState({ isOnEditState: false })
     }
 

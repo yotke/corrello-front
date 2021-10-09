@@ -9,12 +9,14 @@ export class ActivityPreview extends Component {
             case 'attached': return `attached ${txt} to ${activityLocation}`
             case 'added': return `added ${txt} to ${activityLocation}`
             //case 'archived': return `archived ${activityLocation}`
-            //case 'changed': return `changed ${txt}`
+            case 'changed': return `changed ${txt}`
+            case 'changed_with_loc': return `changed ${txt} on ${activityLocation}`
             case 'changed-duedate': return `changed the due date of ${activityLocation} to ${txt}`
-            //case 'completed': return `completed ${txt} on ${activityLocation}`
+            case 'completed': return `completed ${txt} on ${activityLocation}`
+            case 'incomplete': return `marked ${txt} incomplete on ${activityLocation}`
             //case 'joined': return `joined ${activityLocation}`
             //case 'left': return `left ${activityLocation}`
-            //case 'marked': return `marked ${txt} on ${activityLocation}`
+            case 'marked': return `marked ${txt} on ${activityLocation}`
             //case 'moved': return `moved ${activityLocation} from ${txt}`
             case 'removed': return `removed ${txt} from ${activityLocation}`
             //case 'renamed': return `renamed this board to ${txt}`

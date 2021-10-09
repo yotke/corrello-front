@@ -7,6 +7,7 @@ import { onSaveBoard } from '../../store/board.actions';
 import React, { Component } from 'react';
 import { Popover } from './Popover';
 import { FileUpload } from '../FileUpload';
+import { activityService } from '../../services/activity.service';
 
 class _PopoverDate extends React.Component {
 
@@ -27,17 +28,15 @@ class _PopoverDate extends React.Component {
 
     saveDueDate = (date) => {
         const { card, onSaveBoard, closePopover, board } = this.props
-
+        const dueDateBefore = card.dueDate
         // card.dueDate = 1;
         card.dueDate = date ? Date.parse(date) : 0;
         
-        // const txt = new Date(date).toLocaleString('en-GB', { month: 'short', day: 'numeric' })
-        // const savedActivity = boardService.createActivity('changed-date', txt, card)
-        // board.activities.unshift(savedActivity)
-
-        const updatedBoard = boardService.updateCardInBoard(board, card)
-
-        //todo
+        let updatedBoard = boardService.updateCardInBoard(board, card)
+        if(dueDateBefore) {
+            if(card.dueDate) { updatedBoard = activityService.addActivityToBoard(updatedBoard, 'changed-duedate', new Date(card.dueDate).toLocaleString(), card) }
+            else { updatedBoard = activityService.addActivityToBoard(updatedBoard, 'removed', 'due date', card) }
+        }
         onSaveBoard(updatedBoard)
         closePopover()
     }

@@ -27,9 +27,7 @@ export class DueDateDisplay extends React.Component {
                         card.dueDateDone = ev.target.checked ? true : false
                         let updatedBoard = boardService.updateCardInBoard(board, card)
                         updatedBoard = activityService.addActivityToBoard(updatedBoard, 'marked-duedate', (card.dueDateDone) ? 'complete' : 'incomplete', card)
-                        //todo
                         onSaveBoard(updatedBoard)
-                        //onSaveBoard(board);
                         this.setState({ isChecked: !isChecked })
                     }} />
                     <button className="due-date-change-btn secondary-btn" onClick={(ev) => {
