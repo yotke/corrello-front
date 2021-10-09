@@ -9,6 +9,7 @@ import { ListAdd } from '../cmps/list-add.jsx';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { SideNav } from '../cmps/sidenav.jsx';
 import { socketService } from '../services/socket.service.js';
+
 import {
   loadBoard,
   onAddBoard,
@@ -64,13 +65,16 @@ class _BoardApp extends React.Component {
       const { boardId } = this.props.match.params;
       window.addEventListener('popstate', function () {
         console.log('updateRecentBoard as changed')
-        this.props.updateRecentBoard(boardId)
+        console.log('this.props', this.props);
+        if (this.props) {
+          const { updateRecentBoard } = this.props
+          if (updateRecentBoard) updateRecentBoard(boardId)
+        }
 
       });
 
       await this.loadBoard(boardId);
 
-      socketService.setup();
       socketService.emit('SOCKET_EVENT_START_BOARD', boardId);
       socketService.on('SOCKET_EVENT_ON_RELOAD_BOARD', this.props.loadBoard);
       // socketService.emit(socketService.SOCKET_EVENT_ON_BOARD_SAVED, boardId)
@@ -159,9 +163,11 @@ class _BoardApp extends React.Component {
   };
 
   render() {
+    // console.log(this.props.board.activities);
     const { board, onSaveBoard, boards, user } = this.props;
     const { isMainBoard, isDragged } = this.state;
     if (!board) return <Loader />;
+    const { board: { activities }} = this.props
 
     return (
       <>
@@ -240,7 +246,8 @@ class _BoardApp extends React.Component {
               </DragDropContext>
             </div>
           </div>
-          <SideNavRight />
+          <SideNavRight activities={activities} isInCardLocation={false} 
+/>
         </section>
       </>
     );

@@ -6,6 +6,7 @@ import { onSaveBoard } from '../../store/board.actions.js';
 import { connect } from 'react-redux'
 import { socketService } from '../../services/socket.service'
 import { onLogin, onSignup, onGoogleLogin } from '../../store/user.actions.js'
+import { ColorPalette } from "../ColorPalette";
 
 
 class _PopoverImagePicker extends Component {
@@ -13,7 +14,10 @@ class _PopoverImagePicker extends Component {
 
     render() {
   
+      const {handleChange, color} = this.props;
         return <Popover title={"image picker"} >
+   <ColorPalette count={12} isGradient={false} handleChange={handleChange} selectedColor={color} />
+
    
         </Popover>
 

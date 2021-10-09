@@ -7,7 +7,7 @@ import { onSaveBoard } from "../../store/board.actions";
 import { withRouter } from 'react-router-dom';
 import {ImagePalette} from '../imagePalette.jsx';
 import {openPopover} from '../../store/popover.actions.js';
-import {MoreHoriz} from '@material-ui/icons';
+import {MoreHoriz, ThreeSixtyOutlined} from '@material-ui/icons';
 
 class _PopoverCreateBoard extends Component {
 
@@ -28,7 +28,11 @@ class _PopoverCreateBoard extends Component {
        
         const elPos = ev.target.getBoundingClientRect();
         console.log('board', this.props.board);
-        this.props.openPopover(PopoverName, elPos, this.handleChange, true );
+        const props = {
+            handleChange : this.handleChange,
+            color: this.state.color,
+        }
+        this.props.openPopover(PopoverName, elPos,props,  true );
     };
     onCreateBoard = async () => {
         const { title, color } = this.state
