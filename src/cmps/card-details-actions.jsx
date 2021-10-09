@@ -10,7 +10,6 @@ import {ReactComponent as LabelIcon} from '../assets/img/cmps/card-details/icon-
 import {ReactComponent as CoverIcon} from '../assets/img/cmps/card-details/icon-cover.svg'
 import {ReactComponent as AttachmentIcon} from '../assets/img/cmps/card-details/icon-attachment.svg'
 import {ReactComponent as DateIcon} from '../assets/img/cmps/card-details/icon-dates.svg'
-// import {ReactComponent as LocationIcon} from '../assets/img/cmps/card-details/icon-loaction.svg'
 import {utilService} from '../services/util.service.js'
 import {boardService} from '../services/board.service.js'
 import { activityService } from '../services/activity.service';

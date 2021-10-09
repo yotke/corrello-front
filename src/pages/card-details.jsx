@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { boardService } from '../services/board.service';
 import { utilService } from '../services/util.service';
-import { CardDetailsActions } from '../cmps/CardDetailsActions';
+import { CardDetailsActions } from '../cmps/card-details-actions';
 import { onSaveBoard } from '../store/board.actions.js';
 import { openPopover, closePopover } from '../store/popover.actions.js';
 import { Loader } from '../cmps/Loader.jsx';
