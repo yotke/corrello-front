@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { openPopover, closePopover } from '../store/popover.actions.js'
 import { onSaveBoard } from '../store/board.actions.js';
 import { connect } from 'react-redux';
-import {Loader} from '../cmps/Loader.jsx'
+import {Loader} from '../cmps/loader.jsx'
 import { Button } from "@material-ui/core";
 import {ReactComponent as MemberIcon} from '../assets/img/cmps/card-details/icon-members.svg'
 import {ReactComponent as CheckListIcon} from '../assets/img/cmps/card-details/icon-checklists.svg'

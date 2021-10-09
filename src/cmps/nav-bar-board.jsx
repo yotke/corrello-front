@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Switch, Route, withRouter } from 'react-router'
-import { boardService } from '../services/board.service'
+import { withRouter } from 'react-router'
 import { loadBoards, loadBoard, loadRecentBoards } from "../store/board.actions";
 import {MoreHoriz} from '@material-ui/icons';
+
 export class _NavBarBoard extends React.Component {
     state = {
         title: 'Board Name',
@@ -32,6 +32,7 @@ export class _NavBarBoard extends React.Component {
             })
         });
     }
+
     componentDidMount() {
         const boardId = this.props.match.params.boardId
         this.props.loadBoard(boardId).then(() => {
@@ -49,12 +50,8 @@ export class _NavBarBoard extends React.Component {
             onSaveBoard(board);
         }
     }
-    goBackToCard = () => {
-
-    }
 
     onOpenPopover = (ev, PopoverName, props) => {
-        //debugger
         const elPos = ev.target.getBoundingClientRect();
    
         this.props.openPopover(PopoverName, elPos, props);
@@ -130,7 +127,7 @@ export class _NavBarBoard extends React.Component {
 
                 </div>
                 <div className="second-board-part">
-                    {/* <InvitedMembers InvitedMembers={}/> */}
+                    {/* todo <InvitedMembers InvitedMembers={}/> */}
                     <button className="invite-member-board-btn" onClick={(ev) => this.onOpenPopover(ev, 'INVITE')}>Invite</button>
                     <button onClick={this.openNav} className="show-more-activity"><span><MoreHoriz/></span> Show Menu</button>
 
@@ -153,8 +150,6 @@ const mapDispatchToProps = {
     loadRecentBoards,
     loadBoards,
     loadBoard
-
 }
-
 
 export const NavBarBoard = connect(mapStateToProps, mapDispatchToProps)(withRouter(_NavBarBoard))

@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { ScreenOverlay } from "../ScreenOverlay";
-import { ColorPalette } from "../ColorPalette";
+import { ScreenOverlay } from "../screen-overlay";
+import { ColorPalette } from "../color-palette";
 import { closePopover } from "../../store/popover.actions";
 import { onSaveBoard } from "../../store/board.actions";
 import { withRouter } from 'react-router-dom';

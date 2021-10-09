@@ -1,6 +1,6 @@
 import { Component } from "react"
-import { PopoverLabelPreview } from "./PopoverLabelPreview"
-import { Popover } from './Popover'
+import { PopoverLabelPreview } from "./popover-label-preview"
+import { Popover } from './popover'
 import { PopoverLabelEdit } from "./popover-label-edit"
 import { onSaveBoard } from '../../store/board.actions.js'
 import { connect } from 'react-redux'

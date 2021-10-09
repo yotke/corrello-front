@@ -3,8 +3,6 @@ import { ActivityPreview } from './activity-preview.jsx'
 
 export function ActivitiesList({activities, isInCardLocation}) {
 
-    console.log('activities: --------', activities)
-    
     return (
     <div className="activities-list">
             {activities.map(activity => {

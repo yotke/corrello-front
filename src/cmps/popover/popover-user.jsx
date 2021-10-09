@@ -5,7 +5,7 @@ import { Component } from 'react';
 import { boardService } from '../../services/board.service';
 import { closePopover } from '../../store/popover.actions';
 import { onSaveBoard } from "../../store/board.actions";
-import { Popover } from './Popover';
+import { Popover } from './popover';
 import { onLogin, onSignup, onGoogleLogin, onLogout } from '../../store/user.actions.js'
 class _PopoverUser extends Component {
 

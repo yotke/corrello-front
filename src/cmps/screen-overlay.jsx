@@ -1,6 +1,3 @@
-
-
-
 export function ScreenOverlay({ goBack = null, styleMode, children }) {
 
     return (

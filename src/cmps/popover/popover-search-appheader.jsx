@@ -5,7 +5,7 @@ import { Component } from 'react';
 import { boardService } from '../../services/board.service';
 import { closePopover } from '../../store/popover.actions';
 import { onSaveBoard, loadRecentBoards } from "../../store/board.actions";
-import { Popover } from './Popover';
+import { Popover } from './popover';
 import { Link, NavLink } from 'react-router-dom'
 class _PopoverSearchAppheader extends Component {
     componentDidMount() {

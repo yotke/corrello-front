@@ -5,8 +5,8 @@ import { closePopover } from '../../store/popover.actions';
 import { connect } from 'react-redux';
 import { onSaveBoard } from '../../store/board.actions';
 import React, { Component } from 'react';
-import { Popover } from './Popover';
-import { FileUpload } from '../FileUpload';
+import { Popover } from './popover';
+import { FileUpload } from '../file-upload';
 import { activityService } from '../../services/activity.service';
 
 class _PopoverDate extends React.Component {

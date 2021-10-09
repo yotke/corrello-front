@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import { NavBarBoard } from './nav-bar-board'
 import { loadBoard, loadRecentBoards,loadBoards } from "../store/board.actions";
 
-
-
 class _MainBoardHeader extends Component {
 
     state = {
@@ -16,7 +14,6 @@ class _MainBoardHeader extends Component {
 
         this.setState({ title: this.props.board.title })
     }
-
 
     render() {
         const { board, onSaveBoard } = this.props
@@ -33,9 +30,6 @@ class _MainBoardHeader extends Component {
         )
     }
 }
-
-
-
 
 function mapStateToProps(state) {
     return {

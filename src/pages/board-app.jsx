@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { CardDetails } from '../pages/card-details.jsx';
 import { Route } from 'react-router';
-import { Loader } from '../cmps/Loader.jsx';
+import { Loader } from '../cmps/loader.jsx';
 import { ListPreview } from '../cmps/list-preview.jsx';
 import { MainBoardHeader } from '../cmps/main-board-header.jsx';
 import { ListAdd } from '../cmps/list-add.jsx';

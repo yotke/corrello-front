@@ -4,28 +4,23 @@ import { utilService } from '../../services/util.service';
 import { Component } from 'react';
 import { boardService } from '../../services/board.service';
 import { closePopover } from '../../store/popover.actions';
-import { onSaveBoard,loadBoard,loadBoards } from "../../store/board.actions";
-import { Popover } from './Popover';
+import { onSaveBoard, loadRecentBoards } from "../../store/board.actions";
+import { Popover } from './popover';
 import { Link, NavLink } from 'react-router-dom'
-import {} from '../../store/board.actions'
+class _PopoverRecentBoard extends Component {
 
-class _PopoverStarred extends Component {
 
     componentDidMount() {
-        this.props.loadBoards()
+        this.props.loadRecentBoards()
     }
-
     render() {
-        const { boards } = this.props
-        const starredBoards = boards.filter((board) => {
-            return board.star === true
-        })
-        return <Popover title={"Starred boards"}>
-            <div className="Starred-pop-over-content">
+        const { recentBoards } = this.props
+        return <Popover title={"Recent boards"}>
+            <div className="recent-pop-over-content">
                 <ul className="board-list-navbar">
-                    {starredBoards.map((board) => {
+                    {recentBoards && recentBoards.length > 0 && recentBoards.map((board) => {
                         return (
-                            <Link to={`/board/${board._id}`} key={board._id} className="clean-link">
+                            board && <Link to={`/board/${board._id}`} key={board._id} className="clean-link">
                                 <div className="nav-bar-btns flex row">
                                     <li className="board-preview-navbar" key={board._id} style={board.style && {
                                         backgroundImage: "url(" + board.style.background + ")",
@@ -33,9 +28,7 @@ class _PopoverStarred extends Component {
                                         backgroundAttachment: 'fixed',
                                         backgroundPosition: 'center'
                                     }}>
-
                                     </li>
-
                                     <h4 className="nav-bar-btns-name">{board.title}</h4>
                                 </div>
                             </Link>
@@ -49,20 +42,15 @@ class _PopoverStarred extends Component {
 
 function mapStateToProps(state) {
     return {
-
-        boards: state.boardModule.boards,
-        board: state.boardModule.board,
-        loggedInUser: state.userModule.loggedInUser
+        recentBoards: state.boardModule.recentBoards,
     }
 }
 
 const mapDispatchToProps = {
-    onSaveBoard,
-    loadBoard,
-    loadBoards,
-    closePopover
+    closePopover,
+    loadRecentBoards
 }
 
 
-export const PopoverStarred = connect(mapStateToProps, mapDispatchToProps)(_PopoverStarred)
+export const PopoverRecentBoard = connect(mapStateToProps, mapDispatchToProps)(_PopoverRecentBoard)
 

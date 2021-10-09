@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Popover } from "./Popover";
+import { Popover } from "./popover";
 
 export class PopoverList extends Component{
 

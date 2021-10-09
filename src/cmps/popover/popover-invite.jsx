@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Popover } from './Popover';
+import { Popover } from './popover';
 import { boardService } from '../../services/board.service'
 import { PopoverMemberPreview } from './popover-member-preview'
 import { onSaveBoard } from '../../store/board.actions.js';

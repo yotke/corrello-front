@@ -1,12 +1,12 @@
 import { Component } from 'react';
-import { Popover } from './Popover';
+import { Popover } from './popover';
 import { boardService } from '../../services/board.service'
 import { PopoverMemberPreview } from './popover-member-preview'
 import { onSaveBoard } from '../../store/board.actions.js';
 import { connect } from 'react-redux'
 import { socketService } from '../../services/socket.service'
 import { onLogin, onSignup, onGoogleLogin } from '../../store/user.actions.js'
-import { ColorPalette } from "../ColorPalette";
+import { ColorPalette } from "../color-palette";
 
 
 class _PopoverImagePicker extends Component {
