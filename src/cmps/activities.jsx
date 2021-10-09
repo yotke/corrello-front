@@ -28,8 +28,8 @@ export class Activities extends Component {
         return (<section>
             <div className="activities-container flex column">
                 <div className="activities-title flex">
-                    <div className="flex align-center">
-                        <ActivitiesIcon className="checklist-logo" />
+                    <div className="activity-section flex align-center">
+                        <ActivitiesIcon className="activity-logo" />
                         <h3>Activities</h3>
                     </div>
                 </div>
