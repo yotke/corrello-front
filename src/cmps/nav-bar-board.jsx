@@ -12,7 +12,7 @@ export class _NavBarBoard extends React.Component {
     }
 
     openNav = () => {
-        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("mySidenav").style.width = "339px";
     }
 
     componentWillUnmount() {

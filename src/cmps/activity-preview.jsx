@@ -27,12 +27,11 @@ export class ActivityPreview extends Component {
 
     render() {
         const { activity: { txt, createdAt, byMember, card }, } = this.props
-
         return (<section>
             <div className="activity-preview flex">
                 <div className="activity-content flex column">
                     <div className="main flex row">
-                        <span className="member-name">{byMember.fullname}</span>
+                        <span className="MuiAvatar-root MuiAvatar-circular avatar"> <img src={byMember.imgUrl}/></span>
                         <span>{this.activityShowMsg}</span>
                     </div>
                     <span className="created-at-time">{new Date(createdAt).toLocaleString()}</span>
