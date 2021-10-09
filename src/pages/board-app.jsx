@@ -43,12 +43,26 @@ class _BoardApp extends React.Component {
   }
 
 
+
+
+  componentWillMount() {
+    this.unlisten = this.props.history.listen((location) => {
+
+      const splittedPath = location.pathname.split('/');
+
+      const boardId = splittedPath[2];
+      if (!boardId || boardId === this.props.match.params.boardId) return;
+      this.props.updateRecentBoard(boardId)
+      this.onBoardChange(boardId);
+    });
+  }
+
   async componentDidMount() {
 
     window.addEventListener('mouseup', this.HandleDrop)
     try {
       const { boardId } = this.props.match.params;
-      window.addEventListener('popstate', function() {
+      window.addEventListener('popstate', function () {
         console.log('updateRecentBoard as changed')
         this.props.updateRecentBoard(boardId)
 
@@ -63,15 +77,7 @@ class _BoardApp extends React.Component {
     } catch (err) {
     }
 
-    this.unlisten = this.props.history.listen((location) => {
 
-      const splittedPath = location.pathname.split('/');
-    
-      const boardId = splittedPath[2];
-      if (!boardId || boardId === this.props.match.params.boardId) return;
-      this.props.updateRecentBoard(boardId)
-      this.onBoardChange(boardId);
-    });
   }
 
 
