@@ -63,6 +63,7 @@ class _CardDetails extends React.Component {
     let { card, card: { attachs } } = this.state
     attachs = attachs.filter(currAttach => currAttach.id !== attachId)
     card.attachs = attachs
+    
     this.setState({ card }, this.onSaveCard())
 }
 
@@ -71,6 +72,7 @@ class _CardDetails extends React.Component {
     const { card } = this.state;
     const { board } = this.props;
     const updatedBoard = boardService.updateCardInBoard(board, card);
+    //todo
     this.props.onSaveBoard(updatedBoard);
   };
 

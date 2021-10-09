@@ -14,6 +14,8 @@ export class ProgressBar extends Component {
         completed: 0
     }
 
+
+    
     componentDidMount() {
         const { completed } = this.props;
         this.setState({completed})
@@ -21,12 +23,12 @@ export class ProgressBar extends Component {
         this.setState({ completed, fillerStyles: { width: `${completed}%` } });
     }
 
-    // componentDidUpdate(prevProps) {
-    //     if (prevProps.completed !== this.props.completed) {
-    //         const { completed } = this.props;
-    //         this.setState({ completed, fillerStyles: { width: `${completed}%` } });
-    //     }
-    // }
+    componentDidUpdate(prevProps) {
+        if (prevProps.completed !== this.props.completed) {
+            const { completed } = this.props;
+            this.setState({ completed, fillerStyles: { width: `${completed}%` } });
+        }
+    }
 
     get bgColor() {
         const { completed, bgColor } = this.state;

@@ -10,17 +10,18 @@ export class CardChecklists extends React.Component {
         const { board, card, onSaveBoard } = this.props
         card.checklists = checklists;
         let updatedBoard = boardService.updateCardInBoard(board, card)
+        
         updatedBoard = activityService.addActivityToBoard(updatedBoard, activityType, txt, card)
         onSaveBoard(updatedBoard)   
         // onSaveBoard(board)
     }
 
-    onSaveChecklist = (checklist) => {
+    onSaveChecklist = (checklist, activityType) => {
         if (!checklist.title) return
         const { checklists } = this.props
         const checklistIdx = checklists.findIndex(currChecklist => currChecklist.id === checklist.id)
         checklists[checklistIdx] = checklist
-        this.onSaveCardChecklists(checklists, 'added', checklist.title)
+        this.onSaveCardChecklists(checklists, activityType, checklist.title)
     }
 
     onDeleteChecklist = (checklist) => {

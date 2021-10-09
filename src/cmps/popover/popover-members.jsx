@@ -6,7 +6,7 @@ import { onSaveBoard } from '../../store/board.actions.js';
 import { connect } from 'react-redux'
 import { socketService } from '../../services/socket.service'
 import { onLogin, onSignup, onGoogleLogin } from '../../store/user.actions.js'
-
+import { activityService } from '../../services/activity.service';
 
 class _PopoverMembers extends Component {
 
@@ -32,13 +32,15 @@ class _PopoverMembers extends Component {
         if(!card.members) {
             card.members = [];
         }
-        const idx = card.members.findIndex(cardMember => cardMember._id === member._id)  
+        const idx = card.members.findIndex(cardMember => cardMember._id === member._id)
+        
         if (idx === -1) {
             card.members.push(member)
         } else {
             card.members.splice(idx, 1)
         }
-        const updatedBoard = boardService.updateCardInBoard(board, card)
+        let updatedBoard = boardService.updateCardInBoard(board, card)
+        updatedBoard = activityService.addActivityToBoard(updatedBoard, (idx === -1) ? 'added' : 'removed', member.fullname, card)
         this.props.onSaveBoard(updatedBoard)
     }
 

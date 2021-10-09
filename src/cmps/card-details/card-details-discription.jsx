@@ -4,6 +4,8 @@ import { boardService } from "../../services/board.service";
 import { PopoverDate } from "../popover/PopoverDate";
 import { ReactComponent as IconDescription } from '../../assets/img/cmps/card-details/icon-description.svg'
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
+import { activityService } from '../../services/activity.service';
+
 export class Description extends React.Component {
   state = {
     isOnEditState: false,
@@ -15,9 +17,10 @@ export class Description extends React.Component {
     const { description } = this.state
     const { board, card, onSaveBoard } = this.props
     card.description = description
-    const updatedBoard = boardService.updateCardInBoard(board, card)
+    let updatedBoard = boardService.updateCardInBoard(board, card)
+    updatedBoard = activityService.addActivityToBoard(updatedBoard, 'changed_with_loc', 'description', card)
+    //todo
     onSaveBoard(updatedBoard)
-    //onSaveBoard(board);
   }
   goBackToCard = () => {
 
