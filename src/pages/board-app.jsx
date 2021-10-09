@@ -9,6 +9,7 @@ import { ListAdd } from '../cmps/list-add.jsx';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { SideNav } from '../cmps/sidenav.jsx';
 import { socketService } from '../services/socket.service.js';
+
 import {
   loadBoard,
   onAddBoard,
@@ -56,7 +57,6 @@ class _BoardApp extends React.Component {
 
       await this.loadBoard(boardId);
 
-      socketService.setup();
       socketService.emit('SOCKET_EVENT_START_BOARD', boardId);
       socketService.on('SOCKET_EVENT_ON_RELOAD_BOARD', this.props.loadBoard);
       // socketService.emit(socketService.SOCKET_EVENT_ON_BOARD_SAVED, boardId)
