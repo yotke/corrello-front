@@ -163,9 +163,11 @@ class _BoardApp extends React.Component {
   };
 
   render() {
+    // console.log(this.props.board.activities);
     const { board, onSaveBoard, boards, user } = this.props;
     const { isMainBoard, isDragged } = this.state;
     if (!board) return <Loader />;
+    const { board: { activities }} = this.props
 
     return (
       <>
@@ -244,7 +246,8 @@ class _BoardApp extends React.Component {
               </DragDropContext>
             </div>
           </div>
-          <SideNavRight />
+          <SideNavRight activities={activities} isInCardLocation={false} 
+/>
         </section>
       </>
     );

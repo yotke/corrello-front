@@ -6,7 +6,7 @@ import { CardPreviewLabel } from './card-preview/card-preview-labels';
 import {boardService} from '../services/board.service.js';
 import {ProfileAvatar} from '../cmps/profile-avatar.jsx';
 import {DueDateDisplay} from  '../cmps/card-preview/DueDateDisplay.jsx';
-import {CardPreviewChecklist} from '../cmps/card-preview/CardPreviewChecklist';
+import {CardPreviewChecklist} from '../cmps/card-preview/card-preview-checklist';
 class _Card extends Component {
   componentDidMount() {
     const { card, isEditMode } = this.props;

@@ -1,7 +1,7 @@
 import { Component } from "react"
 import { PopoverLabelPreview } from "./PopoverLabelPreview"
 import { Popover } from './Popover'
-import { PopoverLabelEdit } from "./PopoverLabelEdit"
+import { PopoverLabelEdit } from "./popover-label-edit"
 import { onSaveBoard } from '../../store/board.actions.js'
 import { connect } from 'react-redux'
 import { boardService } from '../../services/board.service'

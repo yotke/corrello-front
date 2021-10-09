@@ -15,7 +15,7 @@ export class Star extends React.Component {
         <svg
         onClick={(ev) => {
             this.setState({isStarred: !this.state.isStarred})
-          
+            board.star = this.state.isStarred
  
             ev.stopPropagation();
             ev.preventDefault();

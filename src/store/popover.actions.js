@@ -1,10 +1,11 @@
-export function openPopover(popoverName, elPos, props) {
+export function openPopover(popoverName, elPos, props, isNewPop = false) {
   return dispatch => {
     const action = {
       type: 'SET_POPOVER',
       popoverName,
       elPos,
-      props
+      props,
+      isNewPop
     }
     dispatch(action)
   }
