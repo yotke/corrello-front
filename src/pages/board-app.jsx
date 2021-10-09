@@ -64,7 +64,11 @@ class _BoardApp extends React.Component {
       const { boardId } = this.props.match.params;
       window.addEventListener('popstate', function () {
         console.log('updateRecentBoard as changed')
-        this.props.updateRecentBoard(boardId)
+        console.log('this.props', this.props);
+        if (this.props) {
+          const { updateRecentBoard } = this.props
+          if (updateRecentBoard) updateRecentBoard(boardId)
+        }
 
       });
 
