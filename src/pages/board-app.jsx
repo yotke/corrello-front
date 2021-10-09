@@ -62,12 +62,7 @@ class _BoardApp extends React.Component {
     window.addEventListener('mouseup', this.HandleDrop)
     try {
       const { boardId } = this.props.match.params;
-<<<<<<< HEAD
-      console.log('board ID ::',boardId);
-      window.addEventListener('popstate', function() {
-=======
       window.addEventListener('popstate', function () {
->>>>>>> ed89e44186a8b2a58652b3aa82cb0ec5b86f0f56
         console.log('updateRecentBoard as changed')
         this.props.updateRecentBoard(boardId)
 

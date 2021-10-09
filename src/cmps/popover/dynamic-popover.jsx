@@ -19,7 +19,11 @@ import {PopoverImagePicker} from './PopoverImagePicker.jsx'
 
 function _DynamicPopover({ currPopover }) {
 
-  const { name, props } = currPopover
+  const { name, props, isNewPop } = currPopover
+
+  if(isNewPop) {
+    console.log('is new pop!!!!');
+    return <PopoverImagePicker {...props}/>}
 
   switch (name) {
     //card popovers
@@ -30,7 +34,7 @@ function _DynamicPopover({ currPopover }) {
     case 'CREATE_BOARD': return <PopoverCreateBoard {...props} />; 
     case 'CHECKLIST': return <PopoverChecklist {...props} />; 
     case 'LIST_OPTIONS': return <PopoverList {...props} />; 
-    case 'IMAGE_PICKER': return <PopoverImagePicker {...props}/>
+    // case 'IMAGE_PICKER': return <PopoverImagePicker {...props}/>
     //this is headers popovers
     case 'STARRED': return <PopoverStarred {...props} />; 
     case 'RECENT_BOARDS': return <PopoverRecentBoard {...props} />;

@@ -13,7 +13,7 @@ class _PopoverImagePicker extends Component {
 
     render() {
   
-        return <Popover title={"Members"} >
+        return <Popover title={"image picker"} >
    
         </Popover>
 

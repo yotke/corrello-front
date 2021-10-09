@@ -28,8 +28,7 @@ class _PopoverCreateBoard extends Component {
        
         const elPos = ev.target.getBoundingClientRect();
         console.log('board', this.props.board);
-      
-        this.props.openPopover(PopoverName, elPos, this.handleChange);
+        this.props.openPopover(PopoverName, elPos, this.handleChange, true );
     };
     onCreateBoard = async () => {
         const { title, color } = this.state
@@ -84,14 +83,14 @@ class _PopoverCreateBoard extends Component {
                         
 
                         <ColorPalette count={3} onOpenPopover={this.onOpenPopover} isGradient={false} handleChange={this.handleChange} selectedColor={color} />
-                        {/* <div  className="add-image-box" onClick={(ev) => {
+                        <div  className="add-image-box" onClick={(ev) => {
                             this.onOpenPopover(ev, 'IMAGE_PICKER')
                             ev.preventDefault()
                             ev.stopPropagation()
                     
                     }}>
                         <MoreHoriz/>
-                    </div> */}
+                    </div>
                     </div>
 
                 </div>
