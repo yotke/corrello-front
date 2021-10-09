@@ -14,6 +14,8 @@ export class ProgressBar extends Component {
         completed: 0
     }
 
+
+    
     componentDidMount() {
         const { completed } = this.props;
         this.setState({completed})

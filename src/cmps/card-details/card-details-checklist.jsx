@@ -15,16 +15,23 @@ export class CardChecklist extends React.Component {
     }
     componentDidMount() {
         const { checklist } = this.props
-        let counter = 0;
-        checklist.todos.forEach(todo => {
-            counter = todo.isChecked ? counter + 1 : counter
-        })
-        console.log(counter);
-        this.setState({doneTodos:counter})
-        const totTodo = checklist.todos.length
-        const complite = counter / totTodo
-        console.log('complite',complite);
-        this.setState({ percentComplite: complite * 100 })
+        if (!checklist.todos || !checklist.todos.length) {
+            this.setState({ percentComplite: 0 })
+            console.log('after update this state to zero');
+        }
+        else {
+            console.log('checklist.todos', checklist.todos);
+            let counter = 0;
+            checklist.todos.forEach(todo => {
+                counter = todo.isChecked ? counter + 1 : counter
+            })
+            console.log(counter);
+            this.setState({ doneTodos: counter })
+            const totTodo = checklist.todos.length
+            const complite = counter / totTodo
+            console.log('complite', complite);
+            this.setState({ percentComplite: complite * 100 })
+        }
     }
 
 
@@ -38,7 +45,7 @@ export class CardChecklist extends React.Component {
     }
 
 
-    updateTodoCheckedBox = (todo, activityType, ) => {
+    updateTodoCheckedBox = (todo, activityType,) => {
         const { checklist, onSaveChecklist } = this.props
         const todoId = todo.id
         const todoIdx = checklist.todos.findIndex(todo => {
@@ -88,7 +95,6 @@ export class CardChecklist extends React.Component {
                 <div className="checklist-wrapper">
 
                     <div className="progress-bar-container">
-                        {console.log('percentComplite',percentComplite)}
                         <ProgressBar completed={percentComplite} />
                     </div>
                     <div className="checklist-list-container">
