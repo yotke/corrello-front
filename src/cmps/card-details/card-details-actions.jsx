@@ -1,18 +1,17 @@
 import { Component } from 'react';
-import { openPopover, closePopover } from '../store/popover.actions.js'
-import { onSaveBoard } from '../store/board.actions.js';
+import { openPopover, closePopover } from '../../store/popover.actions.js'
+import { onSaveBoard } from '../../store/board.actions.js';
 import { connect } from 'react-redux';
-import {Loader} from '../cmps/loader.jsx'
-import { Button } from "@material-ui/core";
-import {ReactComponent as MemberIcon} from '../assets/img/cmps/card-details/icon-members.svg'
-import {ReactComponent as CheckListIcon} from '../assets/img/cmps/card-details/icon-checklists.svg'
-import {ReactComponent as LabelIcon} from '../assets/img/cmps/card-details/icon-labels.svg'
-import {ReactComponent as CoverIcon} from '../assets/img/cmps/card-details/icon-cover.svg'
-import {ReactComponent as AttachmentIcon} from '../assets/img/cmps/card-details/icon-attachment.svg'
-import {ReactComponent as DateIcon} from '../assets/img/cmps/card-details/icon-dates.svg'
-import {utilService} from '../services/util.service.js'
-import {boardService} from '../services/board.service.js'
-import { activityService } from '../services/activity.service';
+import { Loader } from '../../cmps/loader.jsx'
+import { ReactComponent as MemberIcon } from '../../assets/img/cmps/card-details/icon-members.svg'
+import { ReactComponent as CheckListIcon } from '../../assets/img/cmps/card-details/icon-checklists.svg'
+import { ReactComponent as LabelIcon } from '../../assets/img/cmps/card-details/icon-labels.svg'
+import { ReactComponent as CoverIcon } from '../../assets/img/cmps/card-details/icon-cover.svg'
+import { ReactComponent as AttachmentIcon } from '../../assets/img/cmps/card-details/icon-attachment.svg'
+import { ReactComponent as DateIcon } from '../../assets/img/cmps/card-details/icon-dates.svg'
+import { utilService } from '../../services/util.service.js'
+import { boardService } from '../../services/board.service.js'
+import { activityService } from '../../services/activity.service';
 
 class _CardDetailsActions extends Component {
 
@@ -30,10 +29,10 @@ class _CardDetailsActions extends Component {
     const { card, onSaveBoard, closePopover, board } = this.props
     if (!card.attachs) card.attachs = []
     const attach = {
-        id: utilService.makeId(),
-        fileName: `${utilService.makeId(12)}.jpg`,
-        url: fileUrl,
-        createdAt: Date.now()
+      id: utilService.makeId(),
+      fileName: `${utilService.makeId(12)}.jpg`,
+      url: fileUrl,
+      createdAt: Date.now()
     }
 
     card.attachs.push(attach)
@@ -41,7 +40,7 @@ class _CardDetailsActions extends Component {
     updatedBoard = activityService.addActivityToBoard(updatedBoard, 'attached', attach.fileName, card)
     onSaveBoard(updatedBoard)
     closePopover()
-}
+  }
 
 
 
@@ -61,10 +60,10 @@ class _CardDetailsActions extends Component {
             onClick={(ev) => this.onOpenPopover(ev, 'MEMBERS')}
           >
             <div className="actions-btn-content flex align-center">
-              <MemberIcon className="action-logo"/>
+              <MemberIcon className="action-logo" />
               <span>Members </span>
             </div>
-         
+
           </button>
 
           {/* labels side button  */}
@@ -73,10 +72,10 @@ class _CardDetailsActions extends Component {
             onClick={(ev) => this.onOpenPopover(ev, 'LABELS')}
           >
             <div className="actions-btn-content flex align-center">
-              <LabelIcon className="action-logo"/>
+              <LabelIcon className="action-logo" />
               <span>Labels</span>
             </div>
-         
+
           </button>
 
           {/* checklist side button  */}
@@ -86,10 +85,10 @@ class _CardDetailsActions extends Component {
             onClick={(ev) => this.onOpenPopover(ev, 'CHECKLIST')}
           >
             <div className="actions-btn-content flex align-center">
-              <CheckListIcon className="action-logo"/>
+              <CheckListIcon className="action-logo" />
               <span>Checklist</span>
             </div>
-         
+
           </button>
 
           {/* due date side button  */}
@@ -98,23 +97,23 @@ class _CardDetailsActions extends Component {
             onClick={(ev) => this.onOpenPopover(ev, 'DATE')}
           >
             <div className="actions-btn-content flex align-center">
-              <DateIcon className="action-logo"/>
+              <DateIcon className="action-logo" />
               <span>Date</span>
             </div>
-         
+
           </button>
 
           {/* attach side button  */}
           <button
-          
+
             className="secondary-btn actions-btn"
             onClick={(ev) => this.onOpenPopover(ev, 'ATTACHMENT')}
           >
             <div className="actions-btn-content flex align-center">
-              <AttachmentIcon className="action-logo"/> 
+              <AttachmentIcon className="action-logo" />
               <span>Attachment</span>
             </div>
-         
+
           </button>
 
           {/* cover side button  */}
@@ -123,10 +122,10 @@ class _CardDetailsActions extends Component {
             onClick={(ev) => this.onOpenPopover(ev, 'COVER')}
           >
             <div className="actions-btn-content flex align-center">
-              <CoverIcon className="action-logo"/> 
+              <CoverIcon className="action-logo" />
               <span>Cover</span>
             </div>
-         
+
           </button>
         </div>
 
@@ -140,7 +139,7 @@ class _CardDetailsActions extends Component {
               <i className="fas fa-arrow-right icon-sm"></i>
               <span>Move</span>
             </div>
-         
+
           </button>
 
           <button
@@ -150,7 +149,7 @@ class _CardDetailsActions extends Component {
             <div className="actions-btn-content flex align-center">
               <span>Copy</span>
             </div>
-         
+
           </button>
         </div>
       </div>

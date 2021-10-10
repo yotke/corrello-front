@@ -28,7 +28,7 @@ class _PopoverUser extends Component {
         }
         card.checklists.push(checklist)
         const updatedBoard = boardService.updateCardInBoard(board, card)
-        
+
         //todo
         onSaveBoard(updatedBoard)
         this.props.closePopover()
@@ -37,7 +37,7 @@ class _PopoverUser extends Component {
     render() {
         return <Popover title={"Account"}>
             {/* <hr /> */}
-    
+
             <button className="logout-btn-user-popover btn" onClick={() => {
                 this.props.onLogout()
                 this.props.closePopover()

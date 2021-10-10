@@ -1,11 +1,8 @@
 import React from "react"
-import { Link, NavLink } from 'react-router-dom'
-import { boardService } from "../../services/board.service"
 import { utilService } from "../../services/util.service"
 import { CardChecklistItem } from "./card-details-checklist-item"
 import { ProgressBar } from "./progress-bar"
 import { ReactComponent as CheckIcon } from '../../assets/img/cmps/card-details/icon-checklist.svg'
-import { ThreeSixty } from "@material-ui/icons"
 
 export class CardChecklist extends React.Component {
     state = {

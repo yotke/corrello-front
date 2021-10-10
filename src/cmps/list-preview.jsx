@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { CardAdd } from './card-add.jsx';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { CardPreview } from './card-preview/card-preview.jsx';
-import {MoreHoriz} from '@material-ui/icons';
-import {onSaveBoard} from '../store/board.actions.js'
-import {closePopover, openPopover} from '../store/popover.actions.js'
+import { MoreHoriz } from '@material-ui/icons';
+import { onSaveBoard } from '../store/board.actions.js'
+import { closePopover, openPopover } from '../store/popover.actions.js'
 
 class _ListPreview extends Component {
   state = {
@@ -19,13 +19,13 @@ class _ListPreview extends Component {
     const elPos = ev.target.getBoundingClientRect()
     const { board, currList, onSaveBoard, closePopover } = this.props
     const props = {
-        currList,
-        board,
-        onSaveBoard,
-        closePopover
+      currList,
+      board,
+      onSaveBoard,
+      closePopover
     }
     this.props.openPopover(PopoverName, elPos, props)
-}
+  }
 
 
   toggleCardAdd = () => {
@@ -85,8 +85,8 @@ class _ListPreview extends Component {
           )}{' '}
 
           <div onClick={(ev) => this.onOpenPopover(ev, 'LIST_OPTIONS')} className="card-list-btn-menu">
-            <MoreHoriz className="list-menu"/>
-                                        </div>
+            <MoreHoriz className="list-menu" />
+          </div>
         </div>
         <div className="card-container">
           {/* <DragDropContext onDragEnd={this.handleOnDragEnd}> */}

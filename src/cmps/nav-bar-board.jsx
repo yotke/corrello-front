@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import { loadBoards, loadBoard, loadRecentBoards } from "../store/board.actions";
-import {MoreHoriz} from '@material-ui/icons';
+import { MoreHoriz } from '@material-ui/icons';
 
 export class _NavBarBoard extends React.Component {
     state = {
@@ -53,7 +53,7 @@ export class _NavBarBoard extends React.Component {
 
     onOpenPopover = (ev, PopoverName, props) => {
         const elPos = ev.target.getBoundingClientRect();
-   
+
         this.props.openPopover(PopoverName, elPos, props);
     };
     handleChange = (ev) => {
@@ -129,7 +129,7 @@ export class _NavBarBoard extends React.Component {
                 <div className="second-board-part">
                     {/* todo <InvitedMembers InvitedMembers={}/> */}
                     <button className="invite-member-board-btn" onClick={(ev) => this.onOpenPopover(ev, 'INVITE')}>Invite</button>
-                    <button onClick={this.openNav} className="show-more-activity"><span><MoreHoriz/></span> Show Menu</button>
+                    <button onClick={this.openNav} className="show-more-activity"><span><MoreHoriz /></span> Show Menu</button>
 
                 </div>
             </section>

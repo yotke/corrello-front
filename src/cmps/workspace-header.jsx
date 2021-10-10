@@ -3,7 +3,7 @@ import React from "react"
 export class WorkspaceHeader extends React.Component {
     render() {
         const { user } = this.props
-        const [name, lastname] = user?user.fullname.split(' '):['','']
+        const [name, lastname] = user ? user.fullname.split(' ') : ['', '']
         return (
             <section className="tabbed-pane-header-wrapper">
                 <div className="first-letter-logo-workspace-header">
@@ -11,7 +11,7 @@ export class WorkspaceHeader extends React.Component {
                 </div>
                 <div className="workspace-header-container">
                     <div className="username-container">
-                        <h1 className="user-name-h1">{user?user.username:'guest'}</h1>
+                        <h1 className="user-name-h1">{user ? user.username : 'guest'}</h1>
                         <span className="private-lock">
                             <span className="lock-style" role="img" aria-label="PrivateIcon">
                                 <svg width="24" height="24" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

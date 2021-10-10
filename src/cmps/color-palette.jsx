@@ -17,7 +17,6 @@ export function ColorPalette({ handleChange, selectedColor, count }) {
         '#b3bac5',
 
     ]
-    
 
     function getStyles() {
         const styles = colorCodes
@@ -30,8 +29,6 @@ export function ColorPalette({ handleChange, selectedColor, count }) {
                 <input type="radio" name="color" id={`color-${colorCode}`} value={colorCode} onClick={handleChange} />
                 {selectedColor === colorCode && <CheckIcon key={colorCode} style={{ width: '16px', height: '16px', color: 'white' }} />}
             </label>
-        })}
-                  
-
+        })}           
     </div>
 }

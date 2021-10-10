@@ -7,8 +7,6 @@ import { onSaveBoard } from '../../store/board.actions'
 import { connect } from 'react-redux';
 import { FileUpload } from '../file-upload';
 
-
-
 class _PopoverCover extends Component {
 
     state = {

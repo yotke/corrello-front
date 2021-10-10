@@ -19,12 +19,10 @@ import {
   onEditBoard,
   updateRecentBoard,
 } from '../store/board.actions.js';
-import { boardService } from '../services/board.service.js';
-import { LocalGroceryStoreTwoTone, TimerSharp } from '@material-ui/icons';
-// import { showSuccessMsg } from '../services/event-bus.service.js'
+
 import { isEmpty } from 'lodash';
 import { SideNavRight } from '../cmps/sidenav-right.jsx';
-import NaturalDragAnimation from 'natural-drag-animation-rbdnd';
+import NaturalDragAnimation from 'natural-drag-animation-rbdnd'; //todo
 
 class _BoardApp extends React.Component {
   state = {
@@ -32,19 +30,15 @@ class _BoardApp extends React.Component {
     isCardClicked: false,
     isDragged: false,
   };
+
   componentWillUnmount() {
     window.removeEventListener('mouseup', this.HandleDrop)
     this.unlisten();
   }
 
-
-
   HandleDrop = () => {
     this.setState({ isDragged: false })
   }
-
-
-
 
   componentWillMount() {
     this.unlisten = this.props.history.listen((location) => {
@@ -77,14 +71,10 @@ class _BoardApp extends React.Component {
 
       socketService.emit('SOCKET_EVENT_START_BOARD', boardId);
       socketService.on('SOCKET_EVENT_ON_RELOAD_BOARD', this.props.loadBoard);
-      // socketService.emit(socketService.SOCKET_EVENT_ON_BOARD_SAVED, boardId)
     } catch (err) {
     }
 
-
   }
-
-
 
 
   loadBoard = async (boardId) => {
@@ -167,7 +157,7 @@ class _BoardApp extends React.Component {
     const { board, onSaveBoard, boards, user } = this.props;
     const { isMainBoard, isDragged } = this.state;
     if (!board) return <Loader />;
-    const { board: { activities }} = this.props
+    const { board: { activities } } = this.props
 
     return (
       <>
@@ -246,8 +236,8 @@ class _BoardApp extends React.Component {
               </DragDropContext>
             </div>
           </div>
-          <SideNavRight activities={activities} isInCardLocation={false} 
-/>
+          <SideNavRight activities={activities} isInCardLocation={false}
+          />
         </section>
       </>
     );

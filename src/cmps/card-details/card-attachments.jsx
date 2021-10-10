@@ -16,7 +16,7 @@ export function CardAttachments({ attachs, onDeleteCardAttachment, card, openPop
                     return <a key={attach.id} target="_blank"
                         rel="noreferrer" href={attach.url} className="clean-link">
                         <div className="attach-preview flex">
-            
+
                             <div className="attach-content flex column full">
                                 <span className="file-name">{attach.fileName} </span>
                                 <div className="time-n-actions flex wrap align-center ">

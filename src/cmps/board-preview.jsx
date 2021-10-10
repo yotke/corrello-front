@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import StarIcon from '../assets/img/icons/star.svg';
+import StarIcon from '../assets/img/icons/star.svg'; //todo
 import { Star } from './star.jsx';
 
 export class BoardPreview extends React.Component {
@@ -18,7 +18,8 @@ export class BoardPreview extends React.Component {
       <section className="board-preview-container">
         <ul className="board-list">
           <li>
-            {/* <button className="board-preview-add-btn" onClick={() => {
+            {/* todo 
+               <button className="board-preview-add-btn" onClick={() => {
                             this.setState({isNewBoard:true})
                         }}>Create new board</button> */}
           </li>

@@ -1,4 +1,4 @@
-import { ReactComponent as AddIcon } from '../assets/img/icons/add.svg'
+import { ReactComponent as AddIcon } from '../../assets/img/icons/add.svg'
 
 export function CardDetailsLabels({ labels, openPopover, card }) {
 

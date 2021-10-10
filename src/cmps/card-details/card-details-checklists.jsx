@@ -6,14 +6,12 @@ import { activityService } from '../../services/activity.service';
 export class CardChecklists extends React.Component {
 
     onSaveCardChecklists(checklists, activityType, txt) {
-        console.log('enter your check list :',checklists);
+        console.log('enter your check list :', checklists);
         const { board, card, onSaveBoard } = this.props
         card.checklists = checklists;
         let updatedBoard = boardService.updateCardInBoard(board, card)
-        
         updatedBoard = activityService.addActivityToBoard(updatedBoard, activityType, txt, card)
-        onSaveBoard(updatedBoard)   
-        // onSaveBoard(board)
+        onSaveBoard(updatedBoard)
     }
 
     onSaveChecklist = (checklist, activityType) => {
@@ -31,7 +29,7 @@ export class CardChecklists extends React.Component {
     }
 
     render() {
-        const { checklists,board, card, onSaveBoard } = this.props
+        const { checklists, board, card, onSaveBoard } = this.props
         return (
             <section className="card-checklists-container_new">
                 {checklists && checklists.map(checklist =>
@@ -44,7 +42,7 @@ export class CardChecklists extends React.Component {
                         checklist={checklist}
                         onDeleteChecklist={this.onDeleteChecklist}
                         onSaveChecklist={this.onSaveChecklist} />
-                        )}
+                )}
             </section>
         )
     }

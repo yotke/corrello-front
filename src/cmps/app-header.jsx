@@ -5,16 +5,16 @@ import { ReactComponent as AddIcon } from '../assets/img/icons/add.svg'
 import { ReactComponent as BellIcon } from '../assets/img/icons/notific-bell.svg'
 import { openPopover } from '../store/popover.actions'
 import { socketService } from "../services/socket.service";
-
 import { onLogin, onLogout, onSignup, loadUsers, removeUser } from '../store/user.actions.js'
+<<<<<<< HEAD
 import { LoginSignup } from './login-signup.jsx'
 import Logo from '../assets/img/logos/corollo.png'
 
 
+=======
+>>>>>>> 5f7e07680bb55c1db886d9edf6ae59aca18f8c15
 
 class _AppHeader extends React.Component {
-
-
 
     state = {
         filterTxt: '',
@@ -22,19 +22,18 @@ class _AppHeader extends React.Component {
         isNewNotific: false,
     }
 
-componentDidMount(){
-    this.searchInput = React.createRef();
-    socketService.on('SOCKET_EVENT_ON_ADD_ACTIVITY', activity => {
-        this.setState({ isNewNotific: true })
-    })
-}
-
+    componentDidMount() {
+        this.searchInput = React.createRef();
+        socketService.on('SOCKET_EVENT_ON_ADD_ACTIVITY', activity => {
+            this.setState({ isNewNotific: true })
+        })
+    }
 
     handleChange = (ev) => {
         const title = ev.target.name;
         const value = ev.target.type
     };
-    
+
     onOpenPopover = (ev, PopoverName) => {
         //debugger
         const elPos = ev.target.getBoundingClientRect();
@@ -43,6 +42,7 @@ componentDidMount(){
         };
         this.props.openPopover(PopoverName, elPos, props);
     };
+
     render() {
         const { isNewNotific } = this.state
         var { isBoardStyle, openPopover, user } = this.props
@@ -100,8 +100,9 @@ componentDidMount(){
                     </div>
 
                     <div className="btn-header-container flex" >
-                        <div className="search-input-container"  ref={this.searchInput} onClick={(ev) => {this.onOpenPopover(ev, 'SEARCH_HEADER')
-                            
+                        <div className="search-input-container" ref={this.searchInput} onClick={(ev) => {
+                            this.onOpenPopover(ev, 'SEARCH_HEADER')
+
                         }}>
                             <span className="sc-bdVaJa kBFJig" role="img" aria-label="SearchIcon">
                                 <svg width="24" height="24" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -116,7 +117,7 @@ componentDidMount(){
 
 
 
-                        {/* <div>
+                        {/* <div> //todo
                             <button className="btn-header wide-layout" >
                                 <AddIcon />
                             </button>

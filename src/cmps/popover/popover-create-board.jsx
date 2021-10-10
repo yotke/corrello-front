@@ -5,9 +5,9 @@ import { ColorPalette } from "../color-palette";
 import { closePopover } from "../../store/popover.actions";
 import { onSaveBoard } from "../../store/board.actions";
 import { withRouter } from 'react-router-dom';
-import {ImagePalette} from '../imagePalette.jsx';
-import {openPopover} from '../../store/popover.actions.js';
-import {MoreHoriz, ThreeSixtyOutlined} from '@material-ui/icons';
+import { ImagePalette } from '../image-palette.jsx';
+import { openPopover } from '../../store/popover.actions.js';
+import { MoreHoriz, ThreeSixtyOutlined } from '@material-ui/icons';
 
 class _PopoverCreateBoard extends Component {
 
@@ -23,16 +23,16 @@ class _PopoverCreateBoard extends Component {
         const { name, value } = target
         this.setState({ [name]: value })
     }
-    
+
     onOpenPopover = (ev, PopoverName) => {
-       
+
         const elPos = ev.target.getBoundingClientRect();
         console.log('board', this.props.board);
         const props = {
-            handleChange : this.handleChange,
+            handleChange: this.handleChange,
             color: this.state.color,
         }
-        this.props.openPopover(PopoverName, elPos,props,  true );
+        this.props.openPopover(PopoverName, elPos, props, true);
     };
     onCreateBoard = async () => {
         const { title, color } = this.state
@@ -47,12 +47,12 @@ class _PopoverCreateBoard extends Component {
                 imgUrl: ""
             },
             style: {
-                background:color
+                background: color
             },
             labels: [
             ],
             members: [
-    
+
             ],
             lists: [
             ],
@@ -75,18 +75,19 @@ class _PopoverCreateBoard extends Component {
                 <div className="flex align-center">
                     <div className="board-preview" style={{
                         backgroundColor: color,
-                        backgroundImage:"url(" + color + ")",
+                        backgroundImage: "url(" + color + ")",
                         backgroundSize: 'cover',
                         backgroundPosition: 'center center'
-                        }}>
+                    }}>
                         <input type="text" name="title" value={title}
                             onChange={this.handleChange} placeholder="Add board title" />
                     </div>
                     <div className="create-preview-colors">
                         <ImagePalette count={6} handleChange={this.handleChange} selectedColor={color} />
-                        
+
 
                         <ColorPalette count={3} onOpenPopover={this.onOpenPopover} isGradient={false} handleChange={this.handleChange} selectedColor={color} />
+<<<<<<< HEAD
                         {/* <div  className="add-image-box" onClick={(ev) => {
                             this.onOpenPopover(ev, 'IMAGE_PICKER')
                             ev.preventDefault()
@@ -95,6 +96,16 @@ class _PopoverCreateBoard extends Component {
                     }}>
                         <MoreHoriz/>
                     </div> */}
+=======
+                        <div className="add-image-box" onClick={(ev) => {
+                            this.onOpenPopover(ev, 'IMAGE_PICKER')
+                            ev.preventDefault()
+                            ev.stopPropagation()
+
+                        }}>
+                            <MoreHoriz />
+                        </div>
+>>>>>>> 5f7e07680bb55c1db886d9edf6ae59aca18f8c15
                     </div>
 
                 </div>
@@ -106,7 +117,7 @@ class _PopoverCreateBoard extends Component {
 
 function mapStateToProps(state) {
     return {
-        
+
         loggedInUser: state.userModule.loggedInUser,
         board: state.boardModule.board
     }
@@ -114,7 +125,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     closePopover,
-    onSaveBoard, 
+    onSaveBoard,
     openPopover
 }
 

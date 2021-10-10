@@ -14,11 +14,9 @@ export class ProgressBar extends Component {
         completed: 0
     }
 
-
-    
     componentDidMount() {
         const { completed } = this.props;
-        this.setState({completed})
+        this.setState({ completed })
         console.log(completed);
         this.setState({ completed, fillerStyles: { width: `${completed}%` } });
     }
@@ -43,7 +41,7 @@ export class ProgressBar extends Component {
             <div className="progress flex align-center">
                 <span className="precent">
                     {completed}%
-        </span>
+                </span>
                 <div className="progress-bar-container ">
                     <div className="progress-bar" style={{ width, backgroundColor: this.bgColor, ...finished }}>
                     </div>
