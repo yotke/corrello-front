@@ -8,6 +8,8 @@ import { socketService } from "../services/socket.service";
 
 import { onLogin, onLogout, onSignup, loadUsers, removeUser } from '../store/user.actions.js'
 import { LoginSignup } from './login-signup.jsx'
+import Logo from '../assets/img/logos/corollo.png'
+
 
 
 class _AppHeader extends React.Component {
@@ -58,7 +60,8 @@ componentDidMount(){
                     </button>
                     <div className="logo flex ">
                         <Link to="/">
-                            <img className="main-logo" src="https://a.trellocdn.com/prgb/dist/images/header-logo-spirit-loading.87e1af770a49ce8e84e3.gif"></img>
+                            {/* <img className="main-logo" src="https://a.trellocdn.com/prgb/dist/images/header-logo-spirit-loading.87e1af770a49ce8e84e3.gif"></img> */}
+                           <img  className="main-logo" src={Logo}/>
                         </Link>
                     </div>
                     <div className="btn-header-container flex">

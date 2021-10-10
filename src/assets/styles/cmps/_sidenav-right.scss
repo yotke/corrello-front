@@ -59,9 +59,8 @@
   background-color: #091e4221;
   border: 0;
   height: 1px;
-  margin: 16px 0;
+  margin: 0 13px;
   padding: 0;
-  width: 100%;
 }
 
 .board-menu-content {
@@ -73,4 +72,20 @@
   overflow-y: auto;
   padding: 12px 6px 12px 12px;
   width: 100%;
+}
+
+.board-menu-header-title {
+  flex: 1;
+  line-height: 20px;
+  margin: 14px 32px;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  transition: margin 0.12s ease-in;
+  white-space: nowrap;
+}
+
+.u-fancy-scrollbar {
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateZ(0);
 }

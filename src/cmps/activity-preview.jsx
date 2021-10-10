@@ -29,7 +29,7 @@ export class ActivityPreview extends Component {
         const { activity: { txt, createdAt, byMember, card }, } = this.props
         return (<section>
             <div className="activity-preview flex">
-                <div className="activity-content flex column">
+                <div className="activity-content flex column justify-center">
                     <div className="main flex row">
                         <span className="MuiAvatar-root MuiAvatar-circular avatar"> <img src={byMember.imgUrl}/></span>
                         <span>{this.activityShowMsg}</span>
