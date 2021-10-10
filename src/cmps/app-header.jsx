@@ -6,13 +6,6 @@ import { ReactComponent as BellIcon } from '../assets/img/icons/notific-bell.svg
 import { openPopover } from '../store/popover.actions'
 import { socketService } from "../services/socket.service";
 import { onLogin, onLogout, onSignup, loadUsers, removeUser } from '../store/user.actions.js'
-<<<<<<< HEAD
-import { LoginSignup } from './login-signup.jsx'
-import Logo from '../assets/img/logos/corollo.png'
-
-
-=======
->>>>>>> 5f7e07680bb55c1db886d9edf6ae59aca18f8c15
 
 class _AppHeader extends React.Component {
 

@@ -87,16 +87,6 @@ class _PopoverCreateBoard extends Component {
 
 
                         <ColorPalette count={3} onOpenPopover={this.onOpenPopover} isGradient={false} handleChange={this.handleChange} selectedColor={color} />
-<<<<<<< HEAD
-                        {/* <div  className="add-image-box" onClick={(ev) => {
-                            this.onOpenPopover(ev, 'IMAGE_PICKER')
-                            ev.preventDefault()
-                            ev.stopPropagation()
-                    
-                    }}>
-                        <MoreHoriz/>
-                    </div> */}
-=======
                         <div className="add-image-box" onClick={(ev) => {
                             this.onOpenPopover(ev, 'IMAGE_PICKER')
                             ev.preventDefault()
@@ -105,7 +95,6 @@ class _PopoverCreateBoard extends Component {
                         }}>
                             <MoreHoriz />
                         </div>
->>>>>>> 5f7e07680bb55c1db886d9edf6ae59aca18f8c15
                     </div>
 
                 </div>
