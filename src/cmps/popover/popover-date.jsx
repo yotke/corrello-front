@@ -8,14 +8,14 @@ import React, { Component } from 'react';
 import { Popover } from './popover';
 import { activityService } from '../../services/activity.service';
 
-class _PopoverDate extends React.Component {
+class _PopoverDate extends Component {
 
     state = {
         date: null
     }
 
     componentDidMount() {
-        // const date = new Date()
+
         const date = this.props.card.dueDate ? new Date(this.props.card.dueDate).toLocaleString() : new Date()
         this.setState({ date })
     }
@@ -28,7 +28,7 @@ class _PopoverDate extends React.Component {
     saveDueDate = (date) => {
         const { card, onSaveBoard, closePopover, board } = this.props
         const dueDateBefore = card.dueDate
-        // card.dueDate = 1;
+
         card.dueDate = date ? Date.parse(date) : 0;
         
         let updatedBoard = boardService.updateCardInBoard(board, card)
@@ -49,7 +49,6 @@ class _PopoverDate extends React.Component {
         if (!date) return ''//loading
         return <Popover title="Date">
             <div className="date-pop-over-content">
-
  
             <MuiPickersUtilsProvider utils={MomentUtils}>
                     <DatePicker

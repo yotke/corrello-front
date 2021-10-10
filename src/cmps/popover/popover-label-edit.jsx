@@ -2,7 +2,7 @@ import { Component } from "react";
 
 
 import { Popover } from './popover'
-import {ColorPalette}  from '../color-palette.jsx'
+import { ColorPalette } from '../color-palette.jsx'
 export class PopoverLabelEdit extends Component {
 
     state = {

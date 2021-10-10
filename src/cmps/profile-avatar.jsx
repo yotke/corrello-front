@@ -4,7 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 
-function _ProfileAvatar({ member, size, onOpenPopover, showStatus = false, onlineUsers}) {
+function _ProfileAvatar({ member, size, onOpenPopover, showStatus = false, onlineUsers }) {
 
     if (!member) return ''
 
@@ -62,7 +62,7 @@ function _ProfileAvatar({ member, size, onOpenPopover, showStatus = false, onlin
             onOpenPopover(ev, 'PROFILE', member)
         }
     }
-    
+
     return (
         <div className="profile-avatar" onClick={(ev) => onClickAvatar(ev)}>
             <StyledBadge

@@ -9,7 +9,6 @@ import { Popover } from './popover';
 import { Link, NavLink } from 'react-router-dom'
 class _PopoverRecentBoard extends Component {
 
-
     componentDidMount() {
         this.props.loadRecentBoards()
     }

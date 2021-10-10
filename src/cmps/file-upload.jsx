@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { cloudinaryService } from '../services/cloudinary.service'
+
 export class FileUpload extends Component {
   state = {
     fileUrl: null,

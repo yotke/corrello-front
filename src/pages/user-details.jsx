@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {loadAndWatchUser} from '../store/user.actions'
+import { loadAndWatchUser } from '../store/user.actions'
 
 export class _UserDetails extends Component {
-  
+
   async componentDidMount() {
     this.props.loadAndWatchUser(this.props.match.params.id)
   }
 
   render() {
-    const {user} = this.props
+    const { user } = this.props
     return (
       <section className="user-details">
         <h1>User Details</h1>

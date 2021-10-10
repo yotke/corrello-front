@@ -15,7 +15,7 @@ export class ListAdd extends Component {
       return;
     }
 
-    this.setState({ titleTxt: ev.target.value});
+    this.setState({ titleTxt: ev.target.value });
   };
 
   toggleListAdd = () => {
@@ -25,8 +25,8 @@ export class ListAdd extends Component {
 
   onAddList = () => {
     const { titleTxt } = this.state;
-    if (!titleTxt)  return;
-    
+    if (!titleTxt) return;
+
 
     const { board, onSaveBoard } = this.props;
     const list = {
@@ -57,7 +57,7 @@ export class ListAdd extends Component {
             />
             <div className="flex row align-center">
               <button className="add-list primary-btn" onMouseDown={this.onAddList}>Add list</button>
-              <a className="close-btn" onMouseDown={this.toggleListAdd}><CloseRounded/></a>
+              <a className="close-btn" onMouseDown={this.toggleListAdd}><CloseRounded /></a>
             </div>
           </div>
         ) : (

@@ -11,19 +11,12 @@ import { ColorPalette } from "../color-palette";
 
 class _PopoverImagePicker extends Component {
 
-
     render() {
-  
-      const {handleChange, color} = this.props;
+        const { handleChange, color } = this.props;
         return <Popover title={"image picker"} >
-   <ColorPalette count={12} isGradient={false} handleChange={handleChange} selectedColor={color} />
-
-   
+            <ColorPalette count={12} isGradient={false} handleChange={handleChange} selectedColor={color} />
         </Popover>
-
-
     }
-
 }
 
 function mapStateToProps(state) {
@@ -36,7 +29,6 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     onSaveBoard
 }
-
 
 export const PopoverImagePicker = connect(mapStateToProps, mapDispatchToProps)(_PopoverImagePicker)
 

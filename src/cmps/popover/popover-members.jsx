@@ -29,11 +29,11 @@ class _PopoverMembers extends Component {
 
     toggleMember = (member) => {
         const { card, board, loggedInUser } = this.props
-        if(!card.members) {
+        if (!card.members) {
             card.members = [];
         }
         const idx = card.members.findIndex(cardMember => cardMember._id === member._id)
-        
+
         if (idx === -1) {
             card.members.push(member)
         } else {
@@ -45,8 +45,8 @@ class _PopoverMembers extends Component {
     }
 
     isMemberInCard = (member) => {
-        const {members} = this.props.card;
-        return (members) ?  members.some(cardMember => cardMember._id === member._id) : false
+        const { members } = this.props.card;
+        return (members) ? members.some(cardMember => cardMember._id === member._id) : false
     }
     render() {
         const { presentedMembers, inputTxt } = this.state

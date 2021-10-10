@@ -16,7 +16,6 @@ export class HomeHeader extends Component {
         window.removeEventListener('scroll', this.handleScroll)
     }
 
-
     onOpenPopover = (ev, PopoverName) => {
         //debugger
         const elPos = ev.target.getBoundingClientRect();
@@ -36,12 +35,11 @@ export class HomeHeader extends Component {
         }
     }
 
-
     render() {
         const { isNavBgVisible } = this.state
         const { user, guest } = this.props
-        const [name, lastname] = user?user.fullname.split(' '):['','']
- 
+        const [name, lastname] = user ? user.fullname.split(' ') : ['', '']
+
         return (
             <header className={`home-header ${isNavBgVisible ? 'visibleBg' : ''}`}>
                 <nav className="flex justify-space-between">

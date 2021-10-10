@@ -1,13 +1,11 @@
 
 import { connect } from 'react-redux';
-import { utilService } from '../../services/util.service';
 import { Component } from 'react';
-import { boardService } from '../../services/board.service';
 import { closePopover } from '../../store/popover.actions';
-import { onSaveBoard,loadBoard,loadBoards } from "../../store/board.actions";
+import { onSaveBoard, loadBoard, loadBoards } from "../../store/board.actions";
 import { Popover } from './popover';
 import { Link, NavLink } from 'react-router-dom'
-import {} from '../../store/board.actions'
+import { } from '../../store/board.actions'
 
 class _PopoverStarred extends Component {
 

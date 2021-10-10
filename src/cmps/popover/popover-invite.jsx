@@ -4,9 +4,6 @@ import { boardService } from '../../services/board.service'
 import { PopoverMemberPreview } from './popover-member-preview'
 import { onSaveBoard } from '../../store/board.actions.js';
 import { connect } from 'react-redux'
-import { socketService } from '../../services/socket.service'
-import { onLogin, onSignup, onGoogleLogin } from '../../store/user.actions.js'
-
 
 class _PopoverMembers extends Component {
 
@@ -17,7 +14,6 @@ class _PopoverMembers extends Component {
 
     componentDidMount() {
         this.setState({ presentedMembers: this.props.board.members })
-
     }
 
     handleChange = ({ target }) => {
@@ -29,25 +25,25 @@ class _PopoverMembers extends Component {
 
     toggleMember = (member) => {
         const { board } = this.props
-        if(!card.members) {
+        if (!card.members) {
             card.members = [];
         }
-        const idx = card.members.findIndex(cardMember => cardMember._id === member._id)  
+        const idx = card.members.findIndex(cardMember => cardMember._id === member._id)
         if (idx === -1) {
             card.members.push(member)
         } else {
             card.members.splice(idx, 1)
         }
         const updatedBoard = boardService.updateCardInBoard(board, card)
-        
+
 
         //todo
         this.props.onSaveBoard(updatedBoard)
     }
 
     isMemberInCard = (member) => {
-        const {members} = this.props.card;
-        return (members) ?  members.some(cardMember => cardMember._id === member._id) : false
+        const { members } = this.props.card;
+        return (members) ? members.some(cardMember => cardMember._id === member._id) : false
     }
     render() {
         const { presentedMembers, inputTxt } = this.state
@@ -63,10 +59,7 @@ class _PopoverMembers extends Component {
                 </ul>
             </div>
         </Popover>
-
-
     }
-
 }
 
 function mapStateToProps(state) {
@@ -79,7 +72,6 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     onSaveBoard
 }
-
 
 export const PopoverMembers = connect(mapStateToProps, mapDispatchToProps)(_PopoverMembers)
 

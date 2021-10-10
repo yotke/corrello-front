@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavBarBoard } from './nav-bar-board'
-import { loadBoard, loadRecentBoards,loadBoards } from "../store/board.actions";
+import { loadBoard, loadRecentBoards, loadBoards } from "../store/board.actions";
 
 class _MainBoardHeader extends Component {
 
@@ -33,7 +33,7 @@ class _MainBoardHeader extends Component {
 
 function mapStateToProps(state) {
     return {
-        recentBoards:state.boardModule.recentBoards,
+        recentBoards: state.boardModule.recentBoards,
         boards: state.boardModule.boards,
         board: state.boardModule.board,
     }

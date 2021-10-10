@@ -1,6 +1,6 @@
 import { Component } from 'react'
 export class CardPreviewChecklist extends Component {
-    
+
     get todosMap() {
         const { checklists } = this.props
         const todosMap = checklists.reduce((acc, checklist) => {
@@ -14,7 +14,7 @@ export class CardPreviewChecklist extends Component {
     }
 
     render() {
-        const {doneTodosCount, todosCount} = this.todosMap
+        const { doneTodosCount, todosCount } = this.todosMap
         return (
             <div className={`card-preview-checklist ${doneTodosCount === todosCount && 'done'}`}>
                 <div className="check-icon"></div>

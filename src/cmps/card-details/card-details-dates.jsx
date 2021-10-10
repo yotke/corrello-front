@@ -1,7 +1,5 @@
 import React from "react"
-import { Link, NavLink } from 'react-router-dom'
 import { boardService } from "../../services/board.service";
-import { PopoverDate } from "../popover/popover-date";
 import { activityService } from '../../services/activity.service';
 
 export class DueDateDisplay extends React.Component {
@@ -39,7 +37,6 @@ export class DueDateDisplay extends React.Component {
                         this.props.openPopover('DATE', elPos, props);
                     }
                     }>
-
                         <span className="due-date-date-btn">{new Date(card.dueDate).toLocaleString()}</span>
                         {!isChecked && <span className="due-date-status-btn due-soon" >Due Soon</span>}
                         {isChecked && <span className="due-date-status-btn due-complete">Complete</span>}

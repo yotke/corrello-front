@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { boardService } from '../services/board.service';
 import { utilService } from '../services/util.service';
-import { CardDetailsActions } from '../cmps/card-details-actions';
+import { CardDetailsActions } from '../cmps/card-details/card-details-actions';
 import { onSaveBoard } from '../store/board.actions.js';
 import { openPopover, closePopover } from '../store/popover.actions.js';
 import { Loader } from '../cmps/loader.jsx';
-import { CardDetailsLabels } from '../cmps/card-details-labels.jsx';
+import { CardDetailsLabels } from '../cmps/card-details/card-details-labels.jsx';
 import { DueDateDisplay } from '../cmps/card-details/card-details-dates.jsx';
 import { Description } from '../cmps/card-details/card-details-discription.jsx';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { TextareaAutosize } from '@material-ui/core';
 import { ScreenOverlay } from '../cmps/screen-overlay.jsx';
-import { CardDetailsMembers } from '../cmps/card-details-members.jsx'
-import { CardDetailsCover } from '../cmps/card-details-cover'
+import { CardDetailsMembers } from '../cmps/card-details/card-details-members.jsx'
+import { CardDetailsCover } from '../cmps/card-details/card-details-cover'
 import { CardChecklists } from '../cmps/card-details/card-details-checklists';
 import { ReactComponent as HeaderIcon } from '../assets/img/cmps/card-details/icon-header.svg'
 import { socketService } from '../services/socket.service.js';

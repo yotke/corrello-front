@@ -60,6 +60,5 @@ const mapDispatchToProps = {
     closePopover
 }
 
-
 export const PopoverChecklist = connect(mapStateToProps, mapDispatchToProps)(_PopoverChecklist)
 

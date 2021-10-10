@@ -1,15 +1,15 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { CSSTransitionGroup } from 'react-transition-group'
 
 
-function FancyBox(props) {
-        return <div className="fancy-box">
-            <button style={{ float: 'right' }} onClick={props.onClose}>x</button>
-            {props.children}
-        </div>
-    }
-    
+function FancyBox(props) {
+    return <div className="fancy-box">
+        <button style={{ float: 'right' }} onClick={props.onClose}>x</button>
+        {props.children}
+    </div>
+}
+
 FancyBox.propTypes = {
     onClose: PropTypes.func.isRequired
 }
@@ -26,9 +26,9 @@ function Projects() {
             ev.stopPropagation();
             setProjs(projs.filter(p => p !== proj))
         }}>
-          {proj}
+            {proj}
         </div>
-      ));
+    ));
     return <section style={{ height: '50vh', backgroundColor: 'lightblue' }}>
         <h2>Projects</h2>
         <CSSTransitionGroup transitionName="example" transitionEnterTimeout={500}
@@ -72,7 +72,7 @@ export class AboutUs extends React.Component {
     state = {
         count: 1000,
     }
-    componentDidMount(){
+    componentDidMount() {
         // this.interval = setInterval(() => {
         //     console.log('Setting Followers Count');
         //     this.setState(({ count }) => ({ count: count + utilService.getRandomIntInclusive(5, 20) }))
@@ -85,17 +85,17 @@ export class AboutUs extends React.Component {
     shouldComponentUpdate() {
         return true
     }
-    
-    onTellMeMore = () =>{
+
+    onTellMeMore = () => {
     }
     render() {
-        const {count} = this.state
+        const { count } = this.state
         return (
             <section>
                 <h2>About Us</h2>
                 <MyErrorBoundary>
 
-                <SplitPane
+                    <SplitPane
                         left={
                             <Contacts />
                         }
@@ -105,7 +105,7 @@ export class AboutUs extends React.Component {
 
                 </MyErrorBoundary>
 
-                <FancyBox onClose={() =>{}}>
+                <FancyBox onClose={() => { }}>
                     <h3>{count.toLocaleString()} Followers</h3>
                     <button onClick={this.onTellMeMore}>Tell me More</button>
                 </FancyBox>
@@ -136,7 +136,7 @@ class MyErrorBoundary extends React.Component {
             return (
                 <div>
                     <h2>Something went wrong.</h2>
-                    
+
                     <details style={{ whiteSpace: 'pre-wrap' }}>
                         {this.state.error && this.state.error.toString()}
                         <br />

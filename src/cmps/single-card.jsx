@@ -129,8 +129,8 @@ class _Card extends Component {
               </div>
               }
             </div>
-          }        
-          </div>
+          }
+        </div>
       </div>
     );
   }

@@ -13,9 +13,7 @@ export class _Popover extends Component {
         isOpen: true
     }
 
-
     componentDidMount() 
-
     {
         window.addEventListener('resize', () => {
             if (window.innerWidth > 1000) return

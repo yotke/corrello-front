@@ -35,17 +35,17 @@ export class CardAdd extends Component {
             comments: [],
             checklists: [],
             members: [],
-            byMember: 'loggedinUser', 
+            byMember: 'loggedinUser',
             labelIds: [],
             createdAt: Date.now(),
             style: {
-         
+
             }
         }
 
         board.lists[listIdx].cards.push(card)
 
-        
+
 
         onSaveBoard(board)
         this.setState({ titleTxt: '' }, () => {

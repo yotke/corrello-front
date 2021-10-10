@@ -51,6 +51,5 @@ const mapDispatchToProps = {
     loadRecentBoards
 }
 
-
 export const PopoverSearchAppheader = connect(mapStateToProps, mapDispatchToProps)(_PopoverSearchAppheader)
 

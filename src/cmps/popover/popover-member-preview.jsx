@@ -10,6 +10,6 @@ export function PopoverMemberPreview({ member, toggleMember, isSelected }) {
         <span>{member.fullname}</span>
         {isSelected && <span className="icon-check" >
             <CheckIcon style={{ width: '16px' }} />
-            </span>}
+        </span>}
     </li>
 }

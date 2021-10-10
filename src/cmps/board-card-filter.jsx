@@ -7,7 +7,7 @@ export class EmailFilter extends React.Component {
         field: ''
     };
 
-    // componentDidMount() {
+    // componentDidMount() { //todo
     //     this.setState({ filterBy: { ...this.state.filterBy, name: '' } },)
     //     this.setState({ filterBy: { ...this.state.filterBy, emailAddress: '' } },)
     // }

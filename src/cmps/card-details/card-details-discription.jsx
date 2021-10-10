@@ -1,7 +1,5 @@
 import React from "react"
-import { Link, NavLink } from 'react-router-dom'
 import { boardService } from "../../services/board.service";
-import { PopoverDate } from "../popover/popover-date";
 import { ReactComponent as IconDescription } from '../../assets/img/cmps/card-details/icon-description.svg'
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { activityService } from '../../services/activity.service';
@@ -11,7 +9,6 @@ export class Description extends React.Component {
     isOnEditState: false,
     description: 'new description'
   }
-
 
   onSaveDescription = () => {
     const { description } = this.state

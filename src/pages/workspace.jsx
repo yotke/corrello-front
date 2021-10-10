@@ -27,7 +27,7 @@ class _Workspace extends React.Component {
     onAddBoard = () => {
         this.props.onAddBoard()
     }
-    
+
     onSelectSort = (boards) => {
         this.setState(boards)
     }
