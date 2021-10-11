@@ -25,7 +25,7 @@ class _CardDetailsActions extends Component {
     this.props.openPopover(PopoverName, elPos, props);
   };
 
-  addFile = (fileUrl) => {
+   addFile = (fileUrl) => {
     const { card, onSaveBoard, closePopover, board } = this.props
     if (!card.attachs) card.attachs = []
     const attach = {

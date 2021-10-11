@@ -55,7 +55,7 @@ export class ListAdd extends Component {
               onKeyDown={this.handleChange}
               placeholder="list title"
             />
-            <div className="flex row align-center">
+            <div className="add-list-open">
               <button className="add-list primary-btn" onMouseDown={this.onAddList}>Add list</button>
               <a className="close-btn" onMouseDown={this.toggleListAdd}><CloseRounded /></a>
             </div>

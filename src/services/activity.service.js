@@ -6,23 +6,24 @@ export const activityService = {
     addActivityToBoard
 }
 
-export function addActivityToBoard(board, activityType, txt, card) {
-    const savedActivity = createActivity(activityType, txt, card)
+export function addActivityToBoard(board, activityType, subject, card) {
+    const savedActivity = createActivity(activityType, subject, card)
     socketService.emit('SOCKET_EVENT_ON_NEW_ACTIVITY', savedActivity)
     board.activities.unshift(savedActivity)
     return board
 }
 
-export function createActivity(activityType, txt = '', card = null) {
+export function createActivity(activityType, subject = '', card = null) {
 
     const loggedInUser = userService.getLoggedinUser();
 
     let byMember
     if (loggedInUser) {
+        const { _id, fullname, imgUrl } = loggedInUser;
         byMember = {
-            id: loggedInUser._id,
-            fullname: loggedInUser.fullname,
-            imgUrl: loggedInUser.imgUrl
+            id: _id,
+            fullname,
+            imgUrl
         }
     } else {
         byMember = {
@@ -32,8 +33,7 @@ export function createActivity(activityType, txt = '', card = null) {
         }
     }
 
-
-    let cardData
+    let cardData = null;
     if (card) {
         cardData = {
             id: card.id,
@@ -44,11 +44,11 @@ export function createActivity(activityType, txt = '', card = null) {
 
     const activityToCreate = {
         id: utilService.makeId(),
-        txt,
+        subject,
         createdAt: Date.now(),
         byMember,
         activityType,
-        card: cardData || null
+        card: cardData
     }
 
     return activityToCreate
