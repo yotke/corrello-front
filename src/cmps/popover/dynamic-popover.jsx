@@ -20,6 +20,7 @@ function _DynamicPopover({ currPopover }) {
 
   const { name, props, isNewPop } = currPopover
 
+<<<<<<< HEAD
   if(isNewPop) {
     console.log('is new pop!!!!');
  
@@ -30,6 +31,18 @@ function _DynamicPopover({ currPopover }) {
     </section>  
 
   }
+=======
+  //todo
+  //   if(isNewPop) {
+  //     console.log('is new pop!!!!');
+
+  //     return <section>
+  //  <PopoverCreateBoard />
+  // <PopoverImagePicker {...props}/>
+  //     </section>  
+
+  //   }
+>>>>>>> 87a916c1776cf62c9cb72967392bfba0d79b0930
 
   switch (name) {
     //card popovers
