@@ -59,7 +59,7 @@ export class CardChecklist extends React.Component {
             return todo.id === todoId
         })
         checklist.todos[todoIdx].title = checklistItem
-        const activityType = 'onEditlistItem'
+        const activityType = 'changed_with_loc'
         onSaveChecklist(checklist, activityType)
         this.setState({ isOnEditState: false })
     }
@@ -71,7 +71,7 @@ export class CardChecklist extends React.Component {
         todo.title = checklistItem
         const { checklist, onSaveChecklist } = this.props
         checklist.todos.push(todo)
-        const activityType = 'onSaveChecklistItem'
+        const activityType = 'changed_with_loc'
         onSaveChecklist(checklist, activityType)
         this.setState({ isOnEditState: false })
     }

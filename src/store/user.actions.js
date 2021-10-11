@@ -91,6 +91,7 @@ export function onLogout() {
 export function loadAndWatchUser(userId) {
     return async (dispatch) => {
         try {
+            debugger
             const user = await userService.getById(userId);
             dispatch({ type: 'SET_WATCHED_USER', user })
             socketService.emit(SOCKET_EMIT_USER_WATCH, userId)
