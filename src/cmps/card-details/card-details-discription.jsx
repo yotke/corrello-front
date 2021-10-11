@@ -16,7 +16,6 @@ export class Description extends React.Component {
     card.description = description
     let updatedBoard = boardService.updateCardInBoard(board, card)
     updatedBoard = activityService.addActivityToBoard(updatedBoard, 'changed_with_loc', 'description', card)
-    //todo
     onSaveBoard(updatedBoard)
   }
   goBackToCard = () => {

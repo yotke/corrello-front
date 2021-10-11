@@ -19,10 +19,11 @@ export function createActivity(activityType, txt = '', card = null) {
 
     let byMember
     if (loggedInUser) {
+        const { _id, fullname, imgUrl } = loggedInUser;
         byMember = {
-            id: loggedInUser._id,
-            fullname: loggedInUser.fullname,
-            imgUrl: loggedInUser.imgUrl
+            id: _id,
+            fullname,
+            imgUrl
         }
     } else {
         byMember = {
@@ -32,8 +33,7 @@ export function createActivity(activityType, txt = '', card = null) {
         }
     }
 
-
-    let cardData
+    let cardData = null;
     if (card) {
         cardData = {
             id: card.id,
@@ -48,7 +48,7 @@ export function createActivity(activityType, txt = '', card = null) {
         createdAt: Date.now(),
         byMember,
         activityType,
-        card: cardData || null
+        card: cardData
     }
 
     return activityToCreate

@@ -26,7 +26,7 @@ export class ActivityPreview extends Component {
     }
 
     render() {
-        const { activity: { txt, createdAt, byMember, card }, } = this.props
+        const { activity: {createdAt, byMember}, } = this.props
         return (<section>
             <div className="activity-preview flex">
                 <div className="activity-content flex column justify-center">
