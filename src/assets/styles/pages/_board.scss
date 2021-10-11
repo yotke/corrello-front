@@ -63,6 +63,7 @@
   width: 250px;
   padding: 0.8rem;
   border-radius: 3px;
+  margin-right: 8px;
   &:hover {
     background-color: #00000014;
   }
@@ -75,7 +76,6 @@
   overflow-x: auto;
   overflow-y: hidden;
   height: 100%;
-  margin: 0 0.3rem;
   white-space: nowrap;
 }
 
@@ -163,6 +163,15 @@
 
 .add-list {
   margin-top: 4px;
+}
+.add-list-open {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.list-add-toggle {
+  align-items: center;
 }
 
 .list-header h2 {
