@@ -24,7 +24,7 @@ function _DynamicPopover({ currPopover }) {
     console.log('is new pop!!!!');
  
     return <section>
- <PopoverCreateBoard 
+ <PopoverCreateBoard {...props}
  />
 <PopoverImagePicker {...props}/>
     </section>  

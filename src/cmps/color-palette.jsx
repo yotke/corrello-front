@@ -30,5 +30,6 @@ export function ColorPalette({ handleChange, selectedColor, count }) {
                 {selectedColor === colorCode && <CheckIcon key={colorCode} style={{ width: '16px', height: '16px', color: 'white' }} />}
             </label>
         })}           
+        
     </div>
 }

@@ -46,6 +46,31 @@
     z-index: 2;
   }
 }
+
+.image-palette {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  label[name='label-color'] {
+    width: 28px;
+    height: 28px;
+    margin: 0 8.4px 0.5rem 0;
+    border-radius: 3px;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(90%);
+    }
+  }
+  input[type='radio'] {
+    opacity: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+  svg {
+    z-index: 2;
+  }
+}
 .label {
   cursor: pointer;
   color: $clr2;
