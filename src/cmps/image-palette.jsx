@@ -9,7 +9,14 @@ export function ImagePalette({ handleChange, selectedColor, count }) {
         'https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x1920/43d6569d8effa6131b09458d898fc234/photo-1629648530797-ea135d60d534.jpg',
         'https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1472x1920/60ebd80dbbc858dcbbff83b586099ce5/photo-1630691432568-b202e42643e2.jpg',
         'https://images.unsplash.com/photo-1503437313881-503a91226402?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2232&q=80',
-        'https://images.unsplash.com/photo-1633797694830-138fc0df9ade?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1335&q=80'
+        'https://images.unsplash.com/photo-1633797694830-138fc0df9ade?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1335&q=80',
+        'https://source.unsplash.com/random',
+        'https://source.unsplash.com/random',
+        'https://source.unsplash.com/random',
+        'https://source.unsplash.com/random',
+        'https://source.unsplash.com/random',
+        'https://source.unsplash.com/random',
+        'https://source.unsplash.com/random',
     ]
 
     function getStyles() {

@@ -46,7 +46,7 @@ export class Description extends React.Component {
               <textarea
                 type="text"
                 className="card-list-header-input"
-                value={description}
+                placeholder={description}
                 autoFocus
                 onChange={this.handleChange}
                 onKeyDown={this.handleChange}

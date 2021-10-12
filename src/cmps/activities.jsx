@@ -20,6 +20,7 @@ export class Activities extends Component {
     }
 
     render() {
+        const { card} = this.props
         const { isInCardLocation } = this.props
         const activities = this.suitedActivities
         console.log('Activities', activities)
@@ -33,6 +34,7 @@ export class Activities extends Component {
                         <h3>Activities</h3>
                     </div>
                 </div>
+
                 {!!activities.length && <ActivitiesList activities={activities} isInCardLocation={isInCardLocation} />}
             </div>
         </section>)

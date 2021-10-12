@@ -59,7 +59,7 @@ class _DueDateDisplay extends Component {
         return <> { displayType === 'preview' ?
             <div className={`card-preview-date ${dueStatus}`} onClick={toggleCardDone}>
                 <div className="card-preview-icon-date">
-                {/* <DateIcon className="date-icon-svg"/> */}
+                <i class="far fa-clock"></i>
                 </div>
                 <div>
                     {this.dueDateFormat(card.dueDate)}

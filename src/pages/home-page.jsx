@@ -15,7 +15,7 @@ class _HomePage extends React.Component {
     }
     render() {
         const { email, guest } = this.state
-        const { count, user, openPopover, closePopover } = this.props
+        const {  user, openPopover, closePopover } = this.props
         return (
 
             <section className="home-page-container">
@@ -31,10 +31,13 @@ class _HomePage extends React.Component {
 
                         </div>
                         <div className="btn-homepage-signup">
-                            <input name="email" className="form-control h-100" type="email" placeholder="Email" onChange={(ev) => { this.handleChange(ev) }} />
+                            {/* <input name="email" className="form-control h-100" type="email" placeholder="Email" onChange={(ev) => { this.handleChange(ev) }} />
                             <button type="submit" data-analytics-button="greenSignupHeroButton" className="btn btn-home-page-submit" onClick={() => {
                                 this.props.history.push(`/log/sign-up/${email}`)
-                            }}>Sign up—it’s free!</button>
+                            }}>Sign up—it’s free!</button> */}
+                          <button type="submit" data-analytics-button="greenSignupHeroButton" className="btn btn-home-page-submit" onClick={() => {
+                        this.props.history.push('/workspace')
+                    }}>Get started  →</button>
                         </div>
                     </div>
                     <div className="home-page-pic">
@@ -49,9 +52,9 @@ class _HomePage extends React.Component {
                         Start with a Corollo board, lists, and cards. Customize and expand with more features as your teamwork grows.
                         Manage projects, organize tasks, and build team spirit—all in one place.
                     </p>
-                    <button type="submit" data-analytics-button="greenSignupHeroButton" className="btn btn-home-page-submit " onClick={() => {
+                    <button type="submit" data-analytics-button="greenSignupHeroButton" className="info-btn " onClick={() => {
                         this.props.history.push('/workspace')
-                    }}>Start doing →</button>
+                    }}>Tell me more</button>
                     {/* <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/spirit/product/89d378b845766a8f0c48e955336266f8/board.png" alt="" /> */}
                     <img src={board} alt="" />
                 </div>

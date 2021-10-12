@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { TextareaAutosize } from '@material-ui/core';
+import { CloseRounded } from '@material-ui/icons';
 import { utilService } from '../services/util.service'
+
 
 export class CardAdd extends Component {
 
@@ -61,7 +63,7 @@ export class CardAdd extends Component {
                 <TextareaAutosize className="card-add-input" ref={(textArea) => this.textArea = textArea} value={titleTxt} autoFocus onChange={this.handleChange} onKeyDown={this.handleChange} placeholder="Enter a title for this card..." aria-label="empty textarea" />
                 <div className="card-add-active">
                     <button className="primary-btn" onMouseDown={this.onAddCard}>Add card</button>
-                    <a className="clean-link" onMouseDown={() => toggleCardAdd()} > x </a>
+                    <a className="clean-link" onMouseDown={() => toggleCardAdd()} ><CloseRounded/></a>
                 </div>
             </div>
         )

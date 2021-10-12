@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { utilService } from '../services/util.service';
 import { CloseRounded } from '@material-ui/icons';
+import { ReactComponent as AddIcon } from '../assets/img/icons/add.svg'
+
 
 export class ListAdd extends Component {
   state = {
@@ -62,7 +64,7 @@ export class ListAdd extends Component {
           </div>
         ) : (
           <div className="card-list-add" onClick={this.toggleListAdd}>
-            + Add another list
+             <AddIcon className="add-icon-svg"/> Add another list
           </div>
         )}
       </div>

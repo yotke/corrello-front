@@ -142,14 +142,12 @@ class _PopoverCreateBoard extends Component {
           open={isOpen}
           onClose={this.handleClose}
         >
-          <div className="popover-header">
-          <ColorPalette
-                  count={6}
-                  onOpenPopover={this.onOpenPopover}
-                  handleChange={this.handleChange}
-                  selectedColor={color}
-                />
-
+          <div className="image-palette extra">
+          <ImagePalette
+                count={10}
+                handleChange={this.handleChange}
+                selectedColor={color}
+              />
           </div>
         </Popover>
       </ScreenOverlay>

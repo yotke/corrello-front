@@ -132,7 +132,7 @@ export class SearchNavBar extends React.Component {
                             name={field}
                             id='by-name'
                             type='text'
-                            placeholder="Search all workspace boards"
+                            placeholder="Search workspace boards"
                             value={filterBy[field]}
                             onChange={this.handleChange}
                         />

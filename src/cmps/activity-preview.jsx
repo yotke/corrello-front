@@ -28,15 +28,20 @@ export class ActivityPreview extends Component {
     render() {
         const { activity: {createdAt, byMember}, } = this.props
         return (<section>
-            <div className="activity-preview flex">
-                <div className="activity-content flex column justify-center">
-                    <div className="main flex row">
+                <div className="phenom mod-attachment-type">
+                <div class="phenom-creator">
                         <span className="MuiAvatar-root MuiAvatar-circular avatar"> <img src={byMember.imgUrl}/></span>
+                      </div>
+                      <div className="phenom-desc">
+                        <span className="member-name">{byMember.fullname}</span>
                         <span>{this.activityShowMsg}</span>
-                    </div>
+                      </div>
+                      <div className="phenom-meta quiet">
                     <span className="created-at-time">{new Date(createdAt).toLocaleString()}</span>
+
+                      </div>
                 </div>
-            </div>
+     
         </section>)
     }
 

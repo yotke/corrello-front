@@ -6,6 +6,8 @@ import { CardPreview } from './card-preview/card-preview.jsx';
 import { MoreHoriz } from '@material-ui/icons';
 import { onSaveBoard } from '../store/board.actions.js'
 import { closePopover, openPopover } from '../store/popover.actions.js'
+import { ReactComponent as AddIcon } from '../assets/img/icons/add.svg'
+
 
 class _ListPreview extends Component {
   state = {
@@ -145,8 +147,8 @@ class _ListPreview extends Component {
           )}
         </div>
         {!isAddToggeld && (
-          <div className="list-footer" onClick={this.toggleCardAdd}>
-            <span className="add-icon">+</span> Add card
+          <div className="list-footer flex align-center" onClick={this.toggleCardAdd}>
+          <AddIcon className="add-icon-svg"/> Add card
           </div>
         )}
       </div>

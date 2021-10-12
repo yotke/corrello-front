@@ -8,19 +8,17 @@
   color: #6b778c;
 
   :first-child {
-    margin-inline-end: 3px;
+    margin-inline-end: 2px;
   }
 
   .card-preview-date-icon {
     display: flex;
-    font-family: fontawesome-far;
     &::before {
       width: 16px;
       height: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      content: '\f017';
     }
   }
 

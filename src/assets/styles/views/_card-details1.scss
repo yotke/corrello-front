@@ -104,6 +104,9 @@
   }
 }
 .card-add-active {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   margin-bottom: 7px;
 }
 
@@ -113,6 +116,7 @@
 
 .card-details-title {
   background: #0000;
+  color: #172b4d;
   border-radius: 3px;
   box-shadow: none;
   font-size: 20px;
@@ -130,8 +134,8 @@
 }
 
 .members-container {
-  margin: 0 8px 8px 0;
   max-width: 100%;
+  margin-right: 8px;
 }
 
 .profile-avatar {
@@ -158,4 +162,8 @@
 
 .card-details-sidebar {
   padding: 0 8px 8px 16px;
+}
+
+.activity-list {
+  padding: 20px 0;
 }

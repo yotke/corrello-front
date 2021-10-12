@@ -61,7 +61,7 @@ export class CardChecklistItem extends React.Component {
                         <textarea
                             type="text"
                             className="card-checklist-item-input"
-                            value={checklistItem}
+                            placeholder={checklistItem}
                             autoFocus
                             onChange={this.handleChange}
                             onKeyDown={this.handleChange}

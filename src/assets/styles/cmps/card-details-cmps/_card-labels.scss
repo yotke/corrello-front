@@ -47,6 +47,13 @@
   }
 }
 
+.extra {
+  display: grid;
+  grid-template-columns: repeat(3, 28px);
+  grid-gap: 6px 8px;
+  gap: 6px 8px;
+}
+
 .image-palette {
   width: 100%;
   display: flex;

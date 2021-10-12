@@ -1,17 +1,50 @@
 .activity-preview {
-    word-break: break-word;
-    > *:first-child {
-        margin-inline-end: 10px;
-    }
+  word-break: break-word;
+  > *:first-child {
+    margin-inline-end: 10px;
+  }
 
-    .member-name{
-        font-weight: bold;
-        margin-inline-end: 6px;
-    }
+  .member-name {
+    font-weight: bold;
+    margin-inline-end: 6px;
+  }
+}
 
-    .created-at-time{
-        font-size: 12px;
-        color: $clr3;
-        white-space: nowrap;
-    }
+.created-at-time {
+  font-size: 12px;
+  color: #5e6c84;
+  white-space: nowrap;
+}
+.phenom {
+  margin-left: 40px;
+  min-height: 32px;
+  padding: 8px 0;
+  position: relative;
+
+  & .avatar {
+    width: 32px;
+    height: 32px;
+  }
+  & .member-name {
+    font-weight: 700;
+    margin-inline-end: 6px;
+  }
+}
+.phenom-creator,
+.phenom-icon {
+  height: 32px;
+  left: -40px;
+  position: absolute;
+  top: 10px;
+  width: 32px;
+}
+.phenom-desc {
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.activities-list {
+  padding-bottom: 30px;
+  padding-top: 6px;
+  margin-bottom: 20px;
 }

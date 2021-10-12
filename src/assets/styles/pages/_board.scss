@@ -19,7 +19,7 @@
 }
 
 .list-wrapper {
-  padding-bottom: 3.4rem;
+  padding-bottom: 13px;
   scroll-snap-align: center;
 }
 
@@ -59,6 +59,9 @@
 }
 
 .card-list-add {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   background-color: #cecece7a;
   width: 250px;
   padding: 0.8rem;
@@ -159,6 +162,7 @@
 .list-footer {
   margin: 2px 0 8px 8px;
   padding: 4px 8px;
+  gap: 3px;
 }
 
 .add-list {
@@ -177,7 +181,7 @@
 .list-header h2 {
   margin: 0;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .add-image-box {
