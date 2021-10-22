@@ -112,3 +112,9 @@
   line-height: 20px !important;
   font-weight: 400 !important;
 }
+
+@media (max-width: $normal-breakpoint) {
+  .search-bar-container {
+    display: none;
+  }
+}

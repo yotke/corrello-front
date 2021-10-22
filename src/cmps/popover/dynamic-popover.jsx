@@ -14,7 +14,8 @@ import { PopoverAttachment } from './popover-attachment.jsx'
 import { PopoverSearchAppheader } from "./popover-search-appheader.jsx";
 import { PopoverList } from './popover-list.jsx'
 import { PopoverImagePicker } from './popover-image-picker.jsx'
-
+import {PopoverMoreOptions} from './popover-more.jsx'
+ 
 
 function _DynamicPopover({ currPopover }) {
 
@@ -34,6 +35,7 @@ function _DynamicPopover({ currPopover }) {
   switch (name) {
     //card popovers
     case 'LABELS': return <PopoverLabels {...props} />; 
+    case 'MORE_OPTIONS': return <PopoverMoreOptions {...props}/> 
     case 'DATE': return <PopoverDate {...props} />;
     case 'MEMBERS': return <PopoverMembers {...props} />; 
     case 'COVER': return <PopoverCover {...props} />; 

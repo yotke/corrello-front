@@ -71,3 +71,18 @@
     transition: color 0.2s linear 0.4s, min-width 0.2s, height 0.2s linear 0.2s;
   }
 }
+
+.full-cover-card {
+  background: linear-gradient(
+    180deg,
+    #ffffff00,
+    rgba(255, 255, 255, 0.267),
+    rgb(255, 255, 255)
+  );
+  overflow: visible;
+  align-self: flex-end;
+  width: 100%;
+  padding: 6px 8px 2px;
+  height: 40px;
+  z-index: 10;
+}

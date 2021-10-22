@@ -27,6 +27,12 @@
   padding: 0;
 }
 
+.clean-btn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
 //link helper
 .clean-link {
   text-decoration: none;
@@ -38,6 +44,10 @@
 
 .justify-space-between {
   justify-content: space-between;
+}
+
+.wrap {
+  flex-wrap: wrap;
 }
 .flex {
   display: flex;

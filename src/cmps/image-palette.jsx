@@ -1,39 +1,96 @@
-import CheckIcon from '@material-ui/icons/Check';
+import { Component } from 'react'
+import { unSplashService } from '../services/unsplash.service'
+import{Loader} from '../cmps/loader.jsx'
+import InfiniteScroll from 'react-infinite-scroll-component';
 
-export function ImagePalette({ handleChange, selectedColor, count }) {
+export class ImagePalette extends Component {
 
-    const urls = [
-        'https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x1920/366b2643e789735182636ab3af05243c/photo-1575351881847-b3bf188d9d0a.jpg',
-        'https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2048x1152/cc16313af10dd43c6fa5132e380f43d0/photo-1629199022827-eede3c3df471.jpg',
-        'https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1283x1920/5442c84e9d91238aeb465e80974294ff/photo-1536293182766-c9c0c4133b55.jpg',
-        'https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x1920/43d6569d8effa6131b09458d898fc234/photo-1629648530797-ea135d60d534.jpg',
-        'https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1472x1920/60ebd80dbbc858dcbbff83b586099ce5/photo-1630691432568-b202e42643e2.jpg',
-        'https://images.unsplash.com/photo-1503437313881-503a91226402?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2232&q=80',
-        'https://images.unsplash.com/photo-1633797694830-138fc0df9ade?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1335&q=80',
-        'https://source.unsplash.com/random',
-        'https://source.unsplash.com/random',
-        'https://source.unsplash.com/random',
-        'https://source.unsplash.com/random',
-        'https://source.unsplash.com/random',
-        'https://source.unsplash.com/random',
-        'https://source.unsplash.com/random',
-    ]
-
-    function getStyles() {
-        const styles = urls
-        return count ? styles.slice(0, count) : styles
+    state = {
+        imgs: [],
+        keyword: ''
     }
 
-    return <div className="flex row">
-        {getStyles().map(imageUrl => {
-            return <label key={imageUrl} className="flex align-center justify-center" style={{
-                backgroundImage: "url(" + imageUrl + ")",
-                backgroundPosition: 'center center',
-                backgroundSize: 'cover'
-            }} name="label-color" htmlFor={`color-${imageUrl}`}>
-                <input type="radio" name="color" id={`color-${imageUrl}`} value={imageUrl} onClick={handleChange} />
-                {selectedColor === imageUrl && <CheckIcon key={imageUrl} style={{ width: '16px', height: '16px', color: 'white' }} />}
-            </label>
-        })}
-    </div>
+    componentDidMount() {
+        this.fetchImages()
+    }
+
+    loadImgs = async () => {
+        try {
+            const imgs = await unSplashService.getInitialImgs()
+            
+            this.setState({ imgs : imgs})
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    handleChange = ({ target }) => {
+        const { value } = target
+        this.setState({ keyword: value }, () => {
+            if (value.length >= 3) this.onSearch()
+            else if (value.length === 0) this.loadImgs()
+        })
+    }
+
+    onSearch = async () => {
+        try {
+            const imgs = await unSplashService.searchImgs(this.state.keyword)
+            this.setState({ imgs })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    fetchImages = async () => {
+        const { count, start,keyword } = this.state;
+        this.setState({ start: this.state.start++});
+        const imgs = await unSplashService.getInitialImgs(keyword,count,start)
+
+         
+        this.setState({ imgs: this.state.imgs.concat(imgs) })
+        
+      };
+
+    render() {
+        const { imgs, keyword } = this.state
+        const { handleChange } = this.props
+        console.log('images', imgs);
+
+        if (!imgs) return <Loader/>
+
+             return       <div className="image-palette"
+             id="scrollableDiv"
+             style={{
+               overflowY: 'auto',
+               overflowX:'auto',
+               
+   
+             }}
+             >
+            <div className="image-palette-search">
+                <span className="search-icon"></span>
+                <input type="text" className="search-input" value={keyword}
+                    onChange={this.handleChange} onKeyDown={this.handleChange} />
+            </div>
+  
+
+
+            <div className="images">
+                {imgs.map(img => {
+                    return <label
+                        key={img.id}
+                        name="label-img"
+                        className="flex align-center justify-center"
+                        style={{ backgroundImage: `url(${img.small})` }}
+                        htmlFor={`img-${img.id}`}>
+                        <input type="radio" name="color" id={`img-${img.id}`} value={img.full}
+                            onClick={handleChange} />
+                    </label>
+                })}
+            </div>
+
+  
+        </div>
+    }
 }
+

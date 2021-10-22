@@ -167,3 +167,17 @@
 .activity-list {
   padding: 20px 0;
 }
+
+@media (max-width: $normal-breakpoint) {
+  .card-details-container .card-details {
+    width: 97vw;
+  }
+}
+@media (max-width: $mobile-breakpoint) {
+  .card-details-container .card-details {
+    width: 97 vw;
+  }
+  .card-details-container .card-details .card-details-main-container {
+    flex-direction: column-reverse;
+  }
+}

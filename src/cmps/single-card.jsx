@@ -7,13 +7,25 @@ import { ProfileAvatar } from '../cmps/profile-avatar.jsx';
 import { DueDateDisplay } from './card-preview/due-date-display.jsx';
 import { CardPreviewChecklist } from '../cmps/card-preview/card-preview-checklist.jsx';
 import { Subject as SubjectIcon } from '@material-ui/icons';
-import { ReactComponent as AttachmentIcon } from '../assets/img/cmps/card-details/icon-attachment.svg'
-import {AttachFile as AttachFileIcon} from '@material-ui/icons'
+import { ReactComponent as AttachmentIcon } from '../assets/img/cmps/card-details/icon-attachment.svg';
+import { AttachFile as AttachFileIcon } from '@material-ui/icons';
+import EditIcon from '@material-ui/icons/CreateOutlined'
+import {eventBusService} from '../services/event-bus.service'
 
 class _Card extends Component {
   componentDidMount() {
     const { card, isEditMode } = this.props;
+    if (isEditMode)
+    this.setState({ cardTitle: card.title })
   }
+
+
+  onOpenCardEdit = (ev) => {
+    const { card } = this.props
+    ev.preventDefault();
+    const elPos = this.cardContainer.getBoundingClientRect();
+    eventBusService.emit('card-edit', { elPos, card });
+}
 
   get cardStyles() {
     const { isEditMode } = this.props;
@@ -92,10 +104,16 @@ class _Card extends Component {
     }
 
     return (
-      <div className="card-preview-container">
+      <div className="card-preview-container" ref={(div) => { this.cardContainer = div }} onContextMenu={this.onOpenCardEdit}>
+        {!isEditMode && (
+          <div className="card-preview-edit-btn" onClick={this.onOpenCardEdit}>
+            <EditIcon />
+          </div>
+        )}
+
         <div
           className={`card-preview  ${card.style.bgImgUrl && 'is-imaged'} ${
-            coverMode === 'full' && 'cover-full'
+            (coverMode === 'full' && !isEditMode) && 'cover-full'
           }`}
           style={this.cardStyles}
         >
@@ -106,6 +124,7 @@ class _Card extends Component {
             ></div>
           )}
           <div className="card-content">
+          {(coverMode !== 'full' || isEditMode)  && (
             <div className="card-preview-labels open">
               {card.labelIds &&
                 card.labelIds.map((labelId) => (
@@ -116,9 +135,10 @@ class _Card extends Component {
                   />
                 ))}
             </div>
-            <div className="card-preview-name clean-link">{card.title}</div>
+          )}
+          {  (coverMode !== 'full' || isEditMode) &&  <div className="card-preview-name clean-link">{card.title}</div> }
           </div>
-          {coverMode !== 'full' && (
+          {coverMode !== 'full' || isEditMode && (
             <div className="card-preview-bagdes">
               <div className="card-preview-icons">
                 {!!card.dueDate && (
@@ -138,7 +158,7 @@ class _Card extends Component {
                 )}
                 {card.attachs && (
                   <div>
-                    <AttachFileIcon/>
+                    <AttachFileIcon />
                   </div>
                 )}
               </div>
@@ -164,6 +184,13 @@ class _Card extends Component {
               )}
             </div>
           )}{' '}
+        {
+          (coverMode === 'full') && 
+          <div className="full-cover-card">
+          {  (!isEditMode) &&  <div className="card-preview-name-full clean-link">{card.title}</div> }
+
+          </div>
+        }
         </div>
       </div>
     );

@@ -8,7 +8,9 @@
 .dragged {
   min-height: 2px;
 }
-.card-preview {
+.cover-full {
+  display: flex !important;
+  flex-wrap: wrap;
 }
 
 .card-preview-bagdes {

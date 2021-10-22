@@ -13,7 +13,7 @@ export const userService = {
     getById,
     remove,
     update,
-    changeScore
+    googleLogin,
 }
 
 window.userService = userService
@@ -62,31 +62,15 @@ async function remove(userId) {
 async function update(user) {
     if (user._id) {
         try {
-            return await httpService.put(`user/${user._id}`, user) 
+            return await httpService.put(`user/${user._id}`, user)
         } catch (err) {
             throw err
         }
     }
 }
 
-// async function update(user) {
-//     await storageService.put('user', user)
-//     // user = await httpService.put(`user/${user._id}`, user)
-//     // Handle case in which admin updates other user's details
-//     if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
-//     return user;
-// }
-
 
 async function login(userCred) {
-    //const users = await httpService.get('user')
-    //const users = await storageService.query('user')
-    //if(users===[]){
-    //    const user = {username:'Guest',password:''}
-    //    return _saveLocalUser(user)
-    //}
-    //const user = users.find(user => user.username === userCred.username)
-    //return _saveLocalUser(user)
 
     const user = await httpService.post('auth/login', userCred)
     socketService.emit('set-user-socket', user._id);
@@ -94,8 +78,6 @@ async function login(userCred) {
 }
 
 async function signup(userCred) {
-    userCred.score = 10000;
-    //const user = await storageService.post('user', userCred)
     const user = await httpService.post('auth/signup', userCred)
     socketService.emit('set-user-socket', user._id);
     return _saveLocalUser(user)
@@ -106,14 +88,16 @@ async function logout() {
     return await httpService.post('auth/logout')
 }
 
-async function changeScore(by) {
-    const user = getLoggedinUser()
-    if (!user) throw new Error('Not loggedin')
-    user.score = user.score + by || by
-    await update(user)
-    return user.score
-}
 
+
+async function googleLogin(tokenId) {
+    try {
+        const user = await httpService.post('auth/googlelogin', { tokenId })
+        if (user) return _saveLocalUser(user)
+    } catch (err) {
+        throw err
+    }
+}
 
 function _saveLocalUser(user) {
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
@@ -123,14 +107,6 @@ function _saveLocalUser(user) {
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
 }
-
-
-// (async ()=>{
-//     await userService.signup({fullname: 'Puki Norma', username: 'user1', password:'123',score: 10000, isAdmin: false})
-//     await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
-//     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
-// })();
-
 
 
 // This IIFE functions for Dev purposes 
@@ -154,8 +130,8 @@ function getLoggedinUser() {
 })();
 
 // This is relevant when backend is connected
- (async () => {
-     var user = getLoggedinUser()
-     if (user) socketService.emit('set-user-socket', user._id)
- })();
+(async () => {
+    var user = getLoggedinUser()
+    if (user) socketService.emit('set-user-socket', user._id)
+})();
 

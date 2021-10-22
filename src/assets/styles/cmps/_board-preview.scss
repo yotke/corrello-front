@@ -160,6 +160,11 @@
   gap: 3px;
 }
 
+.board-nav-bar-container {
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
 .board-nav-bar-container .show-more-activity {
   align-items: unset;
 }
@@ -280,5 +285,39 @@
   only screen and (min-width: 901px) and (max-width: 1280px) {
   .board-preview-wrapper {
     flex-basis: 33.33%;
+  }
+}
+
+@media (max-width: $mobile-breakpoint) {
+  .board-list {
+    justify-content: center;
+  }
+  .board-preview-wrapper {
+    flex-basis: 93% !important;
+    align-items: center;
+  }
+
+  .second-board-part {
+    width: 100vw;
+    justify-content: space-between;
+  }
+
+  .first-board-part {
+    flex-direction: row-reverse;
+    width: 100vw;
+
+    .dashboard-btn {
+      margin-left: auto;
+    }
+  }
+  ._2w6KZMbwKqxZVN {
+    margin: 0;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: $normal-breakpoint) {
+  .board-preview-wrapper {
+    flex-basis: 50%;
   }
 }

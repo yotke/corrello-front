@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { onLogin, onSignup, onGoogleLogin, onLogout } from '../store/user.actions.js'
+import { GoogleLogin } from 'react-google-login'
 
 
 export class _LoginSignup extends React.Component {
@@ -10,6 +11,8 @@ export class _LoginSignup extends React.Component {
             username: '',
             password: '',
             fullname: '',
+            imgUrl: ''
+
         },
         isSignup: false
     }
@@ -57,6 +60,16 @@ export class _LoginSignup extends React.Component {
     toggleSignup = () => {
         this.setState({ isSignup: !this.state.isSignup })
     }
+    onSuccessGoogle = (res) => {
+        const { tokenId } = res
+        const { onGoogleLogin } = this.props
+        onGoogleLogin(tokenId)
+    }
+
+    onFailureGoogle = (res) => {
+        console.log('Login with google failed', res)
+    }
+
 
     render() {
         const { username, password, fullname } = this.state.credentials;
@@ -68,6 +81,7 @@ export class _LoginSignup extends React.Component {
                 </p>
                 {!isSignup && <form className="login-form" onSubmit={this.onLogin}>
                     <input
+                    className="username"
                         type="text"
                         name="username"
                         value={username}
@@ -77,6 +91,7 @@ export class _LoginSignup extends React.Component {
                         autoFocus
                     />
                     <input
+                     className="password"
                         type="password"
                         name="password"
                         value={password}
@@ -84,8 +99,19 @@ export class _LoginSignup extends React.Component {
                         onChange={this.handleChange}
                         required
                     />
-                    <button>Login!</button>
+                    <button className="login-btn-in">Login!</button>
                 </form>}
+
+                <p>OR</p>
+
+                <GoogleLogin
+                    className="google-login-btn flex align-center justify-center"
+                    clientId='640315421255-e4mv3dirnt2lbm4ati92b1euclri0j8d.apps.googleusercontent.com'
+                    buttonText='Continue with Google'
+                    onSuccess={this.onSuccessGoogle}
+                    onFailure={this.onFailureGoogle}
+                    cookiePolicy={'single_host_origin'}
+                />
 
                 <div className="signup-section">
                     {isSignup && <form className="signup-form" onSubmit={this.onSignup}>
@@ -113,7 +139,7 @@ export class _LoginSignup extends React.Component {
                             onChange={this.handleChange}
                             required
                         />
-                        <button >Signup!</button>
+                        <button className="signup-btn" >Signup!</button>
                     </form>}
                 </div>
             </div>

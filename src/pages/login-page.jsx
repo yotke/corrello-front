@@ -24,7 +24,7 @@ class _LoginSignupPage extends React.Component {
                 <header>
                     <LoginHeader />
                 </header>
-                <main>
+                <main className="main-login-wrapper">
                     <div className="layout-twothirds-center account-form">
                         <LoginSignup onLogin={this.props.onLogin} onSignup={this.props.onSignup} onGoogleLogin={this.props.onGoogleLogin} user={this.props.user} isSignup={isSignup} />
                     </div>

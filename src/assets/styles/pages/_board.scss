@@ -25,6 +25,7 @@
 
 .layout-helper {
   overflow-x: auto;
+  width: 100%;
 }
 
 .list-header {
@@ -106,7 +107,8 @@
 
 // all the card in the list
 .card-container {
-  padding: 0 8px;
+  padding: 0 4px;
+  margin: 0 4px;
   list-style: none;
   overflow-x: hidden;
 }

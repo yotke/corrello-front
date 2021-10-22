@@ -1,5 +1,5 @@
 .leftMenu {
-  height: calc(100vh - 44px);
+  height: 100vh;
   position: relative;
   left: 0;
   min-width: 40px;
@@ -83,5 +83,11 @@
 
   .small-nav-bar-btn-container {
     display: flex;
+  }
+}
+
+@media (max-width: $mobile-breakpoint) {
+  .leftMenu {
+    height: auto;
   }
 }

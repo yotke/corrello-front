@@ -8,7 +8,12 @@ import { MainBoardHeader } from '../cmps/main-board-header.jsx';
 import { ListAdd } from '../cmps/list-add.jsx';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { SideNav } from '../cmps/sidenav.jsx';
+import { Dashboard } from './Dashboard.jsx';
 import { socketService } from '../services/socket.service.js';
+import { eventBusService } from '../services/event-bus.service';
+import { CardEdit } from '../cmps/CardEdit.jsx';
+import $ from 'jquery';
+import {Chat} from '../cmps/chat.jsx'
 
 import {
   loadBoard,
@@ -29,53 +34,61 @@ class _BoardApp extends React.Component {
     isMainBoard: true,
     isCardClicked: false,
     isDragged: false,
+    isCardEditOpen: false,
+    currCard: null,
+    elPos: null,
+    EditBtnsPosition: 'right',
   };
 
   componentWillUnmount() {
-    window.removeEventListener('mouseup', this.HandleDrop)
+    window.removeEventListener('mouseup', this.HandleDrop);
     this.unlisten();
   }
 
   HandleDrop = () => {
-    this.setState({ isDragged: false })
-  }
+    this.setState({ isDragged: false });
+  };
 
   componentWillMount() {
     this.unlisten = this.props.history.listen((location) => {
-
       const splittedPath = location.pathname.split('/');
 
       const boardId = splittedPath[2];
       if (!boardId || boardId === this.props.match.params.boardId) return;
-      this.props.updateRecentBoard(boardId)
+      this.props.updateRecentBoard(boardId);
       this.onBoardChange(boardId);
     });
   }
 
-  async componentDidMount() {
+  removeEvent;
 
-    window.addEventListener('mouseup', this.HandleDrop)
+  async componentDidMount() {
+    window.addEventListener('mouseup', this.HandleDrop);
     try {
       const { boardId } = this.props.match.params;
       window.addEventListener('popstate', function () {
-        console.log('updateRecentBoard as changed')
+        console.log('updateRecentBoard as changed');
         console.log('this.props', this.props);
         if (this.props) {
-          const { updateRecentBoard } = this.props
-          if (updateRecentBoard) updateRecentBoard(boardId)
+          const { updateRecentBoard } = this.props;
+          if (updateRecentBoard) updateRecentBoard(boardId);
         }
-
       });
 
       await this.loadBoard(boardId);
 
       socketService.emit('SOCKET_EVENT_START_BOARD', boardId);
       socketService.on('SOCKET_EVENT_ON_RELOAD_BOARD', this.props.loadBoard);
-    } catch (err) {
-    }
 
+      this.removeEvent = eventBusService.on('card-edit', ({ elPos, card }) => {
+        let distanseFromRight = $(window).width() - elPos.left + elPos.width;
+        console.log('distanse from right window , ', elPos, distanseFromRight);
+        if (distanseFromRight < 700) this.setState({ EditBtnsPosition: 'left' });
+        else this.setState({ EditBtnsPosition: 'right' });
+        this.setState({ isCardEditOpen: true, currCard: card, elPos });
+      });
+    } catch (err) {}
   }
-
 
   loadBoard = async (boardId) => {
     await Promise.all([
@@ -85,10 +98,9 @@ class _BoardApp extends React.Component {
     ]);
   };
 
-
   componentWillUnmount() {
-    socketService.off('SOCKET_EVENT_ON_RELOAD_BOARD')
-    socketService.terminate()
+    socketService.off('SOCKET_EVENT_ON_RELOAD_BOARD');
+    socketService.terminate();
     this.unlisten();
   }
 
@@ -103,6 +115,9 @@ class _BoardApp extends React.Component {
     this.props.onAddBoard();
   };
 
+  onCloseCardEdit = () => {
+    this.setState({ isCardEditOpen: false });
+  };
   handleOnDragEnd = (result) => {
     const { destination, source, draggableId } = result;
     if (!result.destination) return;
@@ -155,9 +170,18 @@ class _BoardApp extends React.Component {
   render() {
     // console.log(this.props.board.activities);
     const { board, onSaveBoard, boards, user } = this.props;
-    const { isMainBoard, isDragged } = this.state;
+    const {
+      isMainBoard,
+      isDragged,
+      currCard,
+      elPos,
+      isCardEditOpen,
+      EditBtnsPosition,
+    } = this.state;
     if (!board) return <Loader />;
-    const { board: { activities } } = this.props
+    const {
+      board: { activities },
+    } = this.props;
 
     return (
       <>
@@ -170,12 +194,13 @@ class _BoardApp extends React.Component {
               title={board.title}
             />
             <div className="board-content">
-
               <Route
                 path="/board/:boardId/:listId/:cardId"
                 exact
                 component={CardDetails}
               />
+              <Route path="/board/:boardId/dashboard" component={Dashboard} />
+
               <DragDropContext onDragEnd={this.handleOnDragEnd}>
                 <Droppable
                   droppableId="all-lists"
@@ -187,7 +212,7 @@ class _BoardApp extends React.Component {
                       className="lists-container clean-list flex row"
                       {...provided.droppableProps}
                       ref={provided.innerRef}
-                    >
+                      >
                       {board.lists.map((currList, listIdx) => (
                         <Draggable
                           key={currList.id}
@@ -195,37 +220,31 @@ class _BoardApp extends React.Component {
                           index={listIdx}
                         >
                           {(provided) => (
-                            <li onMouseDown={async () => {
-                              await this.setState({ isDragged: true })
-                            }}
-
+                            <li
+                              onMouseDown={async () => {
+                                await this.setState({ isDragged: true });
+                              }}
                               className="list-wrapper"
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
-                            // onMouse={async () => {
-                            //   await this.setState({ isDragged: false })
-                            // }}
+                              // onMouse={async () => {
+                              //   await this.setState({ isDragged: false })
+                              // }}
                             >
                               <ListPreview
-                                className={
-                                  isDragged ? 'list-dragged' : ''
-                                }
+                                className={isDragged ? 'list-dragged' : ''}
                                 isDragged={isDragged}
                                 board={board}
                                 key={listIdx}
                                 listIdx={listIdx}
                                 currList={currList}
                                 onSaveBoard={onSaveBoard}
-                                handleOnDragEndCards={
-                                  this.handleOnDragEndCards
-                                }
+                                handleOnDragEndCards={this.handleOnDragEndCards}
                                 onCardClicked={this.onCardClicked}
                               />
                             </li>
                           )}
-
-
                         </Draggable>
                       ))}
                       {provided.placeholder}
@@ -236,8 +255,18 @@ class _BoardApp extends React.Component {
               </DragDropContext>
             </div>
           </div>
-          <SideNavRight activities={activities} isInCardLocation={false}
-          />
+          <SideNavRight activities={activities} isInCardLocation={false} />
+          {isCardEditOpen && (
+            <CardEdit
+              board={board}
+              card={currCard}
+              EditBtnsPosition={EditBtnsPosition}
+              elPos={elPos}
+              onCloseCardEdit={this.onCloseCardEdit}
+            />
+          )}
+            <Chat/>
+
         </section>
       </>
     );

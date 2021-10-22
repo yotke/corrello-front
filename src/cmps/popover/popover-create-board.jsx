@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 import { ImagePalette } from '../image-palette.jsx';
 import { openPopover } from '../../store/popover.actions.js';
 import { MoreHoriz, ThreeSixtyOutlined } from '@material-ui/icons';
-import { Button } from '@material-ui/core';
+import { Button, Hidden } from '@material-ui/core';
 
 import { Popover } from '@material-ui/core';
 // import {CloseIcon} from '@material-ui/icons';
@@ -33,7 +33,9 @@ class _PopoverCreateBoard extends Component {
   }
 
   handleChange = ({ target }) => {
+    
     const { name, value } = target;
+    console.log('name + value', name , value);
     this.setState({ [name]: value });
   };
 
@@ -80,7 +82,7 @@ class _PopoverCreateBoard extends Component {
     return (
       <ScreenOverlay goBack={closePopover} styleMode="darken">
         <div className="create-board-popover">
-          <div className="flex align-center">
+          <div className="create-board-preview flex align-center">
             <div
               className="board-preview"
               style={{
@@ -107,17 +109,12 @@ class _PopoverCreateBoard extends Component {
                 />
 
                 <div className="image-palette">
-              <ImagePalette
-                count={2}
-                handleChange={this.handleChange}
-                selectedColor={color}
-              />
+     
               <a
                 ref={(div) => {
                   this.selectedDiv = div;
                 }}
                 className="add-image-box"
-                aria-describedby={1}
                 variant="contained"
                 onClick={this.handleClick}
               >
@@ -138,17 +135,15 @@ class _PopoverCreateBoard extends Component {
         <Popover
           className="pop-over1"
           anchorEl={this.selectedDiv}
-          id={1}
           open={isOpen}
+          anchorReference = 'none'
           onClose={this.handleClose}
+
         >
-          <div className="image-palette extra">
-          <ImagePalette
-                count={10}
+          <ImagePalette  
+
                 handleChange={this.handleChange}
-                selectedColor={color}
               />
-          </div>
         </Popover>
       </ScreenOverlay>
     );
