@@ -2,7 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import { loadBoards, loadBoard, loadRecentBoards } from "../store/board.actions";
+import { openPopover } from "../store/popover.actions";
 import { MoreHoriz } from '@material-ui/icons';
+import AvatarGroup from '@material-ui/lab/AvatarGroup';
+import { ProfileAvatar } from './profile-avatar';
+
 import { Link } from 'react-router-dom';
 
 export class _NavBarBoard extends React.Component {
@@ -133,8 +137,16 @@ export class _NavBarBoard extends React.Component {
 
                 </div>
                 <div className="second-board-part">
-                    {/* todo <InvitedMembers InvitedMembers={}/> */}
+
+
+                <AvatarGroup className="align-center" max={4}>
+                    {console.log('board',board.members)}
+                            {board.members && board.members.map(member => <ProfileAvatar  key={member._id} member={member}
+                                onOpenPopover={this.onOpenPopover} size={28} showStatus={true} />)}
+                        </AvatarGroup>
                     <button className="invite-member-board-btn" onClick={(ev) => this.onOpenPopover(ev, 'INVITE')}>Invite</button>
+
+
                     <button onClick={this.openNav} className="show-more-activity"><span><MoreHoriz /></span> Show Menu</button>
 
                 </div>
@@ -148,14 +160,14 @@ function mapStateToProps(state) {
         recentBoards: state.boardModule.recentBoards,
         boards: state.boardModule.boards,
         board: state.boardModule.board,
-        loggedInUser: state.userModule.loggedInUser
     }
 }
 
 const mapDispatchToProps = {
     loadRecentBoards,
     loadBoards,
-    loadBoard
+    loadBoard, 
+    openPopover
 }
 
 export const NavBarBoard = connect(mapStateToProps, mapDispatchToProps)(withRouter(_NavBarBoard))

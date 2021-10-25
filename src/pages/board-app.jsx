@@ -255,7 +255,7 @@ class _BoardApp extends React.Component {
               </DragDropContext>
             </div>
           </div>
-          <SideNavRight activities={activities} isInCardLocation={false} />
+          <SideNavRight activities={activities} isInCardLocation={false} board={board} />
           {isCardEditOpen && (
             <CardEdit
               board={board}

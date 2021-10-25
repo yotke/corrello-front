@@ -50,16 +50,12 @@ class _PopoverCreateBoard extends Component {
   };
   onCreateBoard = async () => {
     const { title, color } = this.state;
-    const { loggedInUser, onSaveBoard, closePopover } = this.props;
+    const { user, onSaveBoard, closePopover } = this.props;
     const boardToSave = {
-      createdBy: loggedInUser,
+      createdBy: {...user},
       title: title,
-      createdAt: Date.now(),
-      createdBy: {
-        _id: '',
-        fullname: '',
-        imgUrl: '',
-      },
+      createdAt:user,
+
       style: {
         background: color,
       },
@@ -152,7 +148,7 @@ class _PopoverCreateBoard extends Component {
 
 function mapStateToProps(state) {
   return {
-    loggedInUser: state.userModule.loggedInUser,
+    user: state.userModule.user,
     board: state.boardModule.board,
   };
 }

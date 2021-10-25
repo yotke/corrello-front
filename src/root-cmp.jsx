@@ -28,7 +28,9 @@ class _RootCmp extends React.Component {
 
     get style() {
         const { board, location } = this.props
+        console.log('background style ?', board)
         if (!location.pathname.includes('/board')) return {}
+
         const style = board ? {
             backgroundImage: "url(" + board.style.background + ")",
             backgroundColor: board.style.background,

@@ -92,6 +92,7 @@ async function logout() {
 
 async function googleLogin(tokenId) {
     try {
+        console.log('tokenid', tokenId)
         const user = await httpService.post('auth/googlelogin', { tokenId })
         if (user) return _saveLocalUser(user)
     } catch (err) {

@@ -26,9 +26,21 @@ export class ActivityPreview extends Component {
     }
 
     render() {
-        const { activity: {createdAt, byMember}, } = this.props
+        const { activity: {createdAt, byMember, activityType, subject}} = this.props
+        console.log('type', activityType)
         return (<section>
-                <div className="phenom mod-attachment-type">
+                 {activityType === 'comment' &&
+                    <div className="phenom mod-attachment-type">
+                       <div class="phenom-creator">
+                        <span className="MuiAvatar-root MuiAvatar-circular avatar"> <img src={byMember.imgUrl}/></span>
+                      </div>
+                        <div className="comment flex column">
+                        <span className="member-name">{byMember.fullname}</span>
+                            <span className="comment-action">{subject}</span>
+                        </div>
+                            <span className="created-at-time">{new Date(createdAt).toLocaleString()}</span>
+                    </div>}
+               {activityType !== 'comment' && <div className="phenom mod-attachment-type">
                 <div class="phenom-creator">
                         <span className="MuiAvatar-root MuiAvatar-circular avatar"> <img src={byMember.imgUrl}/></span>
                       </div>
@@ -41,6 +53,7 @@ export class ActivityPreview extends Component {
 
                       </div>
                 </div>
+    }
      
         </section>)
     }

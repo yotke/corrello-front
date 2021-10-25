@@ -1,0 +1,95 @@
+.sticker-list {
+  padding: 12px 6px 12px 12px;
+}
+
+.stickers-preview {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 12px;
+  position: relative;
+}
+
+.sticker-input {
+  width: 100%;
+  background: #fafbfc;
+  -webkit-appearance: none;
+  background-color: #fafbfc;
+  border: none;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 2px #dfe1e6;
+  box-sizing: border-box;
+  display: block;
+  line-height: 20px;
+  margin-bottom: 12px;
+  outline: none;
+  padding: 8px 12px;
+  transition-duration: 85ms;
+  transition-property: background-color, border-color, box-shadow;
+  transition-timing-function: ease;
+}
+
+.sticker-select {
+  cursor: grab;
+  flex: 0 0 64px;
+  height: 64px;
+  margin: 6px;
+  position: relative;
+  text-align: center;
+  .sticker-select-image {
+    height: 64px;
+    width: 64px;
+  }
+  .sticker-select-shadow {
+    clip: rect(0 64px 64px 32px);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: block;
+    filter: brightness(0);
+    left: 0;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    transform: scaleX(1) skewY(0deg);
+    transition: transform 0.25s ease;
+  }
+  .sticker-select-fixed {
+    clip: rect(0 32px 64px 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: block;
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+  .sticker-select-peel {
+    clip: rect(0 64px 64px 32px);
+    transform: perspective(300px);
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease;
+    backface-visibility: hidden;
+    display: block;
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+}
+
+.sticker-select:hover .sticker-select-shadow {
+  transform: scaleX(0.95) skewY(8deg);
+}
+
+.sticker-select:hover .sticker-select-peel {
+  transform: perspective(300px) rotateY(-50deg);
+}
+
+.sticker-animated {
+  align-items: center;
+  gap: 5px;
+  h3 {
+    font-size: 12px;
+    margin: 0;
+    color: #172b4d;
+    font-weight: 400;
+  }
+}

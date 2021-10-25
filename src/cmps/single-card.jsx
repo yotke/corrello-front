@@ -11,6 +11,7 @@ import { ReactComponent as AttachmentIcon } from '../assets/img/cmps/card-detail
 import { AttachFile as AttachFileIcon } from '@material-ui/icons';
 import EditIcon from '@material-ui/icons/CreateOutlined'
 import {eventBusService} from '../services/event-bus.service'
+import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
 
 class _Card extends Component {
   componentDidMount() {
@@ -192,6 +193,12 @@ class _Card extends Component {
           </div>
         }
         </div>
+        
+
+{/* <div  className="card-stickers-area">
+
+</div> */}
+
       </div>
     );
   }

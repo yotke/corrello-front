@@ -3,7 +3,8 @@ import { userService } from './user.service.js'
 import { utilService } from './util.service.js'
 
 export const activityService = {
-    addActivityToBoard
+    addActivityToBoard,
+    createActivity
 }
 
 export function addActivityToBoard(board, activityType, subject, card) {

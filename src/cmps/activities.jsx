@@ -1,8 +1,13 @@
 import React, { Component } from "react"
 import { ActivitiesList } from './activities-list.jsx'
 import { ReactComponent as ActivitiesIcon } from '../assets/img/icons/icon-activity.svg'
+import { CommentAdd } from "./CommentAdd.jsx"
 
 export class Activities extends Component {
+
+    state = {
+        toggleActivityComments : false
+    }
 
     get suitedActivities() {
         const { card, activities, isInCardLocation } = this.props
@@ -19,9 +24,15 @@ export class Activities extends Component {
         }
     }
 
+    onToggleFilter = () => {
+        const { toggleActivityComments } = this.state
+        this.setState({ toggleActivityComments: !toggleActivityComments })
+    }
+
+
     render() {
-        const { card} = this.props
-        const { isInCardLocation } = this.props
+        const { isInCardLocation, card } = this.props
+        const {toggleActivityComments} = this.state
         const activities = this.suitedActivities
         console.log('Activities', activities)
         console.log('!!Activities.length', !!activities.length)
@@ -32,10 +43,14 @@ export class Activities extends Component {
                     <div className="activity-section flex align-center">
                         <ActivitiesIcon className="activity-logo" />
                         <h3>Activities</h3>
+                     {isInCardLocation &&   <button className="secondary-btn" onClick={this.onToggleFilter}>
+                        {toggleActivityComments ? 'Show details' : 'Hide details'}
+                    </button>}
                     </div>
                 </div>
+              {isInCardLocation &&  <CommentAdd card={card} />}
 
-                {!!activities.length && <ActivitiesList activities={activities} isInCardLocation={isInCardLocation} />}
+                {!toggleActivityComments && !!activities.length && <ActivitiesList activities={activities} isInCardLocation={isInCardLocation} />}
             </div>
         </section>)
     }
