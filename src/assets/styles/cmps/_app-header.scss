@@ -81,6 +81,7 @@
       color: white !important;
     }
   }
+
   .search-input-container {
     display: flex;
     align-items: center;
@@ -213,4 +214,16 @@
   .search-input-header {
     display: none;
   }
+}
+
+.user-avatar {
+  height: 32px;
+  width: 32px;
+  border-radius: 3rem;
+}
+
+.user-avatar-workspace {
+  height: 85px;
+  border-radius: 4px;
+  width: 85px;
 }

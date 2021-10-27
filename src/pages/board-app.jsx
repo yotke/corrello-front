@@ -99,8 +99,8 @@ class _BoardApp extends React.Component {
   };
 
   componentWillUnmount() {
-    socketService.off('SOCKET_EVENT_ON_RELOAD_BOARD');
-    socketService.terminate();
+    // socketService.off('SOCKET_EVENT_ON_RELOAD_BOARD');
+    // socketService.terminate();
     this.unlisten();
   }
 

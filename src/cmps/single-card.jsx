@@ -139,7 +139,7 @@ class _Card extends Component {
           )}
           {  (coverMode !== 'full' || isEditMode) &&  <div className="card-preview-name clean-link">{card.title}</div> }
           </div>
-          {coverMode !== 'full' || isEditMode && (
+          {(coverMode !== 'full' || (isEditMode && coverMode === 'full')) && (
             <div className="card-preview-bagdes">
               <div className="card-preview-icons">
                 {!!card.dueDate && (
@@ -186,7 +186,7 @@ class _Card extends Component {
             </div>
           )}{' '}
         {
-          (coverMode === 'full') && 
+          (coverMode === 'full' && !isEditMode) && 
           <div className="full-cover-card">
           {  (!isEditMode) &&  <div className="card-preview-name-full clean-link">{card.title}</div> }
 

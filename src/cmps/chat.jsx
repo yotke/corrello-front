@@ -20,7 +20,6 @@ export class _Chat extends React.Component {
     const {board} = this.props
     if(board.chatHistory) this.setState({msgs: board.chatHistory}) 
     console.log(this.selectedDiv)
-    this.selectedDiv.scrollIntoView({behavior: "smooth"});
 
 
     socketService.setup()

@@ -1,10 +1,9 @@
 import { HomePage } from './pages/home-page.jsx'
-import { AboutUs } from './pages/about-us.jsx'
 import { Workspace } from './pages/workspace.jsx'
 import { ChatApp } from './pages/chat-app.jsx'
 import { BoardApp } from './pages/board-app.jsx'
 
-import { LoginSignupPage } from './pages/login-page.jsx'
+import { LoginSignup } from './pages/login-page.jsx'
 
 // Routes accesible from the main navigation (in AppHeader)
 const routes = [
@@ -24,20 +23,19 @@ const routes = [
         label: 'board'
     },
     {
-        path: '/log/:loginSignup?/:email?/',
-        component: LoginSignupPage,
-        label: 'login'
+        path: '/login',
+        component: LoginSignup,
+    },
+    {
+        path: '/signup',
+        component: LoginSignup,
     },
     {
         path: '/chat',
         component: ChatApp,
         label: 'Chat'
     },
-    {
-        path: '/about',
-        component: AboutUs,
-        label: 'About us'
-    },
+
 
 ]
 

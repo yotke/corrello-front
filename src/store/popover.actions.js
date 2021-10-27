@@ -5,7 +5,6 @@ export function openPopover(popoverName, elPos, props, isNewPop = false) {
       popoverName,
       elPos,
       props,
-      isNewPop
     }
     dispatch(action)
   }

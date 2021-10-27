@@ -149,7 +149,7 @@ export class _LoginSignup extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        loggedInUser: state.userModule.loggedInUser,
+        user: state.userModule.user,
         loginErr: state.userModule.loginErr
     }
 }

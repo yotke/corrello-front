@@ -94,6 +94,9 @@ export class BoardCharts extends Component {
                     <h3>Tasks per label</h3>
                     <div className="chart">
                         <Bar
+                        style = {{
+                            height:'336px'
+                        }}
                             data={this.cardsPerLabelData}
                             options={{
                                 maintainAspectRatio: false,
@@ -115,6 +118,9 @@ export class BoardCharts extends Component {
                     <h3>Tasks per member</h3>
                     <div className="chart">
                         <Bar
+                        style = {{
+                            height:'336px'
+                        }}
                             data={this.cardsPerMemberData}
                             options={{
                                 indexAxis: 'y',

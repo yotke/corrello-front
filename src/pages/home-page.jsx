@@ -19,7 +19,7 @@ class _HomePage extends React.Component {
         return (
 
             <section className="home-page-container">
-                <HomeHeader user={user} guest={guest} openPopover={openPopover} closePopover={closePopover} />
+                <HomeHeader guest={guest} />
                 <div className="first-home-page-container">
                     <div className="introduction-signup">
                         <div className="first-part-txt">

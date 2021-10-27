@@ -1,8 +1,12 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { ReactComponent as HomepageLogo } from '../assets/img/logos/home-logo.svg'
+import { connect } from 'react-redux'
+import { openPopover } from '../store/popover.actions.js'
 
-export class HomeHeader extends Component {
+
+
+ class _HomeHeader extends Component {
 
     state = {
         isNavBgVisible: false,
@@ -38,7 +42,9 @@ export class HomeHeader extends Component {
     render() {
         const { isNavBgVisible } = this.state
         const { user, guest } = this.props
+        console.log('cuur user', user)
         const [name, lastname] = user ? user.fullname.split(' ') : ['', '']
+        console.log('nl', name + lastname)
 
         return (
             <header className={`home-header ${isNavBgVisible ? 'visibleBg' : ''}`}>
@@ -48,24 +54,39 @@ export class HomeHeader extends Component {
                         Corollo
                     </div>
                     {(!user || guest) && <div className="nav-btns ">
-                        <Link to="log/login" className="login-btn clean-link">
+                        <Link to="login" className="login-btn clean-link">
                             Log in
                         </Link>
-                        <Link to="log/signup" className="signup-btn clean-link">
+                        <Link to="signup" className="signup-btn clean-link">
                             Sign up
                         </Link>
                     </div>}
                     <div className="user-details-header">
 
-                        {user && <button className="user-logo-in-app-header " onClick={(ev) => {
+                         {user && <button className="user-logo-in-app-header " onClick={(ev) => {
                             this.onOpenPopover(ev, 'USER')
-                        }}><div className="letter-logo-workspace-header">
-                                {name[0]}{lastname[0]}
-                            </div>
-                        </button>}
+                        }}>
+                            
+                            {!user.imgUrl && <div className="letter-logo-workspace-header">
+                                {name[0]}{lastname && lastname[0]}
+                            </div>}
+
+                            {user.imgUrl && <img className="user-avatar" src={user.imgUrl}/>}
+                        </button>} 
                     </div>
                 </nav>
             </header>
         )
     }
 }
+
+
+function mapStateToProps(state) {
+    return {
+        user: state.userModule.user,
+    }
+}
+const mapDispatchToProps = {
+    openPopover
+}
+export const HomeHeader = connect(mapStateToProps, mapDispatchToProps)(_HomeHeader)

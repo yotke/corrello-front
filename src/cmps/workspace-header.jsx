@@ -3,12 +3,14 @@ import React from "react"
 export class WorkspaceHeader extends React.Component {
     render() {
         const { user } = this.props
-        const [name, lastname] = user ? user.fullname.split(' ') : ['', '']
+        const [name] = user ? user.fullname.split(' ') : ['', '']
         return (
             <section className="tabbed-pane-header-wrapper">
-                <div className="first-letter-logo-workspace-header">
-                    {name[0]}
-                </div>
+                {!user.imgUrl && <div className="first-letter-logo-workspace-header">
+                                {name[0]}
+                            </div>}
+
+                            {user.imgUrl && <img className="user-avatar-workspace" src={user.imgUrl}/>}
                 <div className="workspace-header-container">
                     <div className="username-container">
                         <h1 className="user-name-h1">{user ? user.username : 'guest'}</h1>

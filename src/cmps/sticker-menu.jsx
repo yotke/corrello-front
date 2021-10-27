@@ -72,6 +72,7 @@ export class StickerMenu extends Component {
               return (
                 <div
                   id="draggable"
+                  draggable={true}
                   className="sticker-select js-draggable-sticker ui-draggable"
                   bis_skin_checked="1"
                   key={sticker.id}

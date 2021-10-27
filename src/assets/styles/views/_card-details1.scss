@@ -175,7 +175,8 @@
 }
 @media (max-width: $mobile-breakpoint) {
   .card-details-container .card-details {
-    width: 97 vw;
+    overflow-x: hidden;
+    max-width: 97 vw;
   }
   .card-details-container .card-details .card-details-main-container {
     flex-direction: column-reverse;
