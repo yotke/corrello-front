@@ -105,7 +105,7 @@ class _AppHeader extends React.Component {
                     
 
                     <div className="btn-header-container flex" >
-                        <div className="search-input-container" ref={this.searchInput} onClick={(ev) => {
+                        {/* <div className="search-input-container" ref={this.searchInput} onClick={(ev) => {
                             this.onOpenPopover(ev, 'SEARCH_HEADER')
 
                         }}>
@@ -117,13 +117,13 @@ class _AppHeader extends React.Component {
                             </span>
                             <input autoComplete="off" autoCorrect="off" spellCheck="false" className="search-input-header"
                                 data-test-id="header-search-input" id="9lkgOKT6X4ViGFKUiWS6OBVxAsVyJLk2" type="search" placeholder="Search" onChange={this.hndleChange} />
-                        </div>
+                        </div> */}
                         <div>
                             <button className={`btn-header ${isNewNotific ? 'new-notific' : ''}`} >
                                 <BellIcon />
                             </button>
                         </div>
-                        {user && <button className="user-logo-in-app-header " onClick={(ev) => {
+                        {user && <button className="user-logo-in-app-header flex" onClick={(ev) => {
                             this.onOpenPopover(ev, 'USER')
                         }}>
                                 {!user.imgUrl && <div className="letter-logo-workspace-header">

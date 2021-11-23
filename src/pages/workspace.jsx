@@ -3,21 +3,21 @@ import { connect } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 
 import { loadBoards, onAddBoard, onEditBoard, onRemoveBoard, onSaveBoard, updateRecentBoard } from '../store/board.actions.js'
-import { showSuccessMsg } from '../services/event-bus.service.js'
 import { BoardPreview } from '../cmps/board-preview.jsx'
 import { SideNav } from '../cmps/sidenav.jsx';
 import { WorkspaceHeader } from '../cmps/workspace-header.jsx'
 import { WorkspaceNavBar } from '../cmps/workspace-nav-bar.jsx'
-import { SearchNavBar } from '../cmps/search-nav-bar.jsx'
+import { SearchNavBar } from '../cmps/search-nav-bar.jsx';
+import {Loader} from '../cmps/loader'
 
 class _Workspace extends React.Component {
     state = {
         isMainBoard: false,
-        boardsToShow: []
+        boardsToShow: [],
+        boards: []
     }
-    componentDidMount() {
-        this.props.loadBoards()
-        const { boards } = this.props
+     async componentDidMount () {
+    await this.props.loadBoards()
     }
 
     onRemoveBoard = (boardId) => {
@@ -43,9 +43,11 @@ class _Workspace extends React.Component {
     }
 
     render() {
-        const { boards, onAddBoard, user } = this.props
-        const { isWorkSpace } = this.state;
+        const { onAddBoard , boards} = this.props
+        let {user} = this.props
         const boardsToShow = this.state.boardsToShow.length ? this.state.boardsToShow : boards
+        if(!user)  user = {fullname: 'guest', username: 'guest'}
+        if(!boards.length) return <Loader/>
         return (
             <section className="workspace-container">
                 <div className="workspace-sticky-cotainter">

@@ -1,6 +1,5 @@
 import React from 'react'
 
-// const { Switch, Route } = ReactRouterDOM
 import { Switch, Route, withRouter } from 'react-router'
 
 import routes from './routes'
@@ -9,6 +8,8 @@ import { AppHeader } from './cmps/app-header'
 import { UserDetails } from './pages/user-details'
 import { DynamicPopover } from './cmps/popover/dynamic-popover.jsx'
 import { socketService } from './services/socket.service.js';
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import { DndProvider } from 'react-dnd'
 
 class _RootCmp extends React.Component {
 
@@ -20,6 +21,7 @@ class _RootCmp extends React.Component {
         }
     }
 
+ 
     get isHeaderAppears() {
         const { pathname } = this.props.location
         return (pathname.includes('/board') || pathname.includes('workspace'))
@@ -32,6 +34,7 @@ class _RootCmp extends React.Component {
         if (!location.pathname.includes('/board')) return {}
 
         const style = board ? {
+            
             backgroundImage: "url(" + board.style.background + ")",
             backgroundColor: board.style.background,
             backgroundSize: 'cover',
@@ -54,6 +57,8 @@ class _RootCmp extends React.Component {
     render() {
         const { board, location } = this.props
         return (
+            <DndProvider backend={HTML5Backend}>
+
             <div style={this.style}>
                 {this.isHeaderAppears && <header>
                     <AppHeader board={board} isBoardStyle={location.pathname.includes('/board')} />
@@ -66,7 +71,9 @@ class _RootCmp extends React.Component {
                     <DynamicPopover />
                 </main>
             </div>
+        </DndProvider>
         )
+
     }
 }
 function mapStateToProps(state) {

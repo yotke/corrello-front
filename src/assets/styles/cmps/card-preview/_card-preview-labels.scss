@@ -76,9 +76,16 @@
   background: linear-gradient(
     180deg,
     #ffffff00,
-    rgba(255, 255, 255, 0.267),
-    rgb(255, 255, 255)
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.801)
   );
+  // background: linear-gradient(
+  //   180deg,
+  //   #00000007,
+  //   rgba(0, 0, 0, 0.205),
+  //   rgba(0, 0, 0, 0.671)
+  // );
+
   overflow: visible;
   align-self: flex-end;
   width: 100%;

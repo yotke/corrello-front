@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import React, { useState , useEffect, useRef, useDispatch } from 'react';
+import { socketService } from '../services/socket.service';
 import { connect } from 'react-redux';
 import { onSaveBoard } from '../store/board.actions';
 import { CardPreviewLabel } from './card-preview/card-preview-labels';
@@ -12,35 +14,33 @@ import { AttachFile as AttachFileIcon } from '@material-ui/icons';
 import EditIcon from '@material-ui/icons/CreateOutlined'
 import {eventBusService} from '../services/event-bus.service'
 import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
-import {StickersBucket} from '../cmps/stickers-bucket'
-import thunk from 'redux-thunk';
 
-class _Card extends Component {
-
-  state = {
-    elPos: '', 
-  }
-
-  componentDidMount() {
-    const elPos = this.cardContainer.getBoundingClientRect()
-    this.setState(
-      (prevState,props)=>{
-          return {elPos : elPos};
-       }
-   ); 
-  }
+export const Card = ({ isEditMode, card, board, handleChange, cardTitle }) => {
 
   
-  onOpenCardEdit = (ev) => {
-    const { card } = this.props
+
+  // const dispatch = useDispatch()
+
+
+// useEffect(() => {
+//   debugger
+//   return () => {
+//     console.log("card mounted")
+//     console.log('card?', card)
+//   }
+// }, [])
+
+  const cardContainer = useRef(null);
+
+
+  const onOpenCardEdit = (ev) => {
     ev.preventDefault();
-    const elPos = this.cardContainer.getBoundingClientRect();
+    const elPos = cardContainer.getBoundingClientRect();
     eventBusService.emit('card-edit', { elPos, card });
 }
 
-  get cardStyles() {
-    const { isEditMode } = this.props;
-    const { coverMode, bgColor, bgImgUrl } = this.props.card.style;
+  const cardStyles =() => {
+    const { coverMode, bgColor, bgImgUrl } = card.style;
 
     if (coverMode === 'full' && bgImgUrl && !isEditMode)
       return {
@@ -64,27 +64,27 @@ class _Card extends Component {
     else return { borderRadius: '3px' };
   }
 
-  get getCardHeaderStyles() {
-    const { isEditMode } = this.props;
-    const { coverMode, bgColor, bgImgUrl } = this.props.card.style;
-    if (coverMode === 'full' && bgImgUrl && isEditMode)
-      return {
-        backgroundImage: `url(${bgImgUrl})`,
-        minHeight: '260px',
-      };
-    if (coverMode === 'header' && bgImgUrl)
-      return {
-        backgroundImage: `url(${bgImgUrl})`,
-        minHeight: '260px',
-      };
-    if (coverMode === 'full' || coverMode === 'header')
-      return { backgroundColor: bgColor };
-    else return {};
-  }
 
-  get getCardHeaderStyles() {
-    const { isEditMode } = this.props;
-    const { coverMode, bgColor, bgImgUrl } = this.props.card.style;
+  const toggleCardDone = (ev) => {
+    if (card.isArchived) return
+    ev.preventDefault();
+    card.isDone = !card.isDone
+    if (card.isDone) {
+        const txt = 'the due date complete'
+        const savedActivity = boardService.createActivity('marked', txt, card)
+        board.activities.unshift(savedActivity)
+        socketService.emit('app newActivity', savedActivity)
+    }
+    const savedBoard = boardService.updateCardInBoard(board, card)
+    
+    
+    
+    // dispatch(onSaveBoard(savedBoard));
+}
+
+  const getCardHeaderStyles = () =>  {
+   
+    const { coverMode, bgColor, bgImgUrl } = card.style
     if (coverMode === 'full' && bgImgUrl && isEditMode)
       return {
         backgroundImage: `url(${bgImgUrl})`,
@@ -100,24 +100,22 @@ class _Card extends Component {
     else return {};
   }
 
-  isChecklistsEmpty = ({ checklists }) => {
+  const isChecklistsEmpty = ({ checklists }) => {
     return checklists.every((checklist) => !checklist.todos.length);
   };
 
-  render() {
-    const { isEditMode, card, board, isDragged } = this.props;
+    // const {coverMode} = card.style
     var coverMode;
     if (card.style) {
       coverMode = card.style.coverMode;
     } else {
       card.style = {};
     }
-    // console.log('curr Pos' , this.state.elPos)
 
     return (
-      <div className={`card-preview-container ${isDragged && 'on-grab-drag-drop'}`} ref={(div) => { this.cardContainer = div }} onContextMenu={this.onOpenCardEdit}>
+      <div className="card-preview-container" ref={cardContainer} onContextMenu={onOpenCardEdit}>
         {!isEditMode && (
-          <div className="card-preview-edit-btn" onClick={this.onOpenCardEdit}>
+          <div className="card-preview-edit-btn" onClick={onOpenCardEdit}>
             <EditIcon />
           </div>
         )}
@@ -126,12 +124,12 @@ class _Card extends Component {
           className={`card-preview  ${card.style.bgImgUrl && 'is-imaged'} ${
             (coverMode === 'full' && !isEditMode) && 'cover-full'
           }`}
-          style={this.cardStyles}
+          style={cardStyles}
         >
           {(coverMode === 'header' || (coverMode === 'full' && isEditMode)) && (
             <div
               className="card-preview-header"
-              style={this.getCardHeaderStyles}
+              style={getCardHeaderStyles}
             ></div>
           )}
           <div className="card-content">
@@ -149,17 +147,17 @@ class _Card extends Component {
           )}
           {  (coverMode !== 'full' || isEditMode) &&  <div className="card-preview-name clean-link">{card.title}</div> }
           </div>
-          {coverMode !== 'full' || isEditMode && (
+          {(coverMode !== 'full' || (isEditMode && coverMode === 'full')) && (
             <div className="card-preview-bagdes">
               <div className="card-preview-icons">
                 {!!card.dueDate && (
                   <DueDateDisplay
                     card={card}
-                    toggleCardDone={this.toggleCardDone}
+                    toggleCardDone={toggleCardDone}
                     displayType="preview"
                   />
                 )}
-                {!!card.checklists && !this.isChecklistsEmpty(card) && (
+                {!!card.checklists && !isChecklistsEmpty(card) && (
                   <CardPreviewChecklist checklists={card.checklists} />
                 )}
                 {card.description && (
@@ -187,7 +185,6 @@ class _Card extends Component {
                         member={member}
                         key={member._id}
                         size={28}
-                        onOpenPopover={this.onOpenPopover}
                       />
                     );
                   })}
@@ -205,23 +202,12 @@ class _Card extends Component {
         </div>
         
 
-<StickersBucket elPos={this.state.elPos}/> 
+<div  className="card-stickers-area">
+
+</div>
 
       </div>
     );
-  }
+  
 }
 
-function mapStateToProps(state) {
-  return {
-
-    stickers: state.boardModule.stickers
-  };
-}
-
-
-const mapDispatchToProps = {
-  onSaveBoard,
-};
-
-export const Card = connect(mapStateToProps, mapDispatchToProps)(_Card);

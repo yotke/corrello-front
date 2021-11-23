@@ -101,5 +101,15 @@
 @media (max-width: $mobile-breakpoint) {
   .workspace-container {
     overflow-x: unset;
+    hr {
+      display: none;
+    }
+  }
+  .tabbed-pane-header-wrapper {
+    display: none;
+  }
+
+  .nav-bar-workspace-horizontal {
+    display: none;
   }
 }

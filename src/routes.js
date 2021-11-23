@@ -1,6 +1,5 @@
 import { HomePage } from './pages/home-page.jsx'
 import { Workspace } from './pages/workspace.jsx'
-import { ChatApp } from './pages/chat-app.jsx'
 import { BoardApp } from './pages/board-app.jsx'
 
 import { LoginSignup } from './pages/login-page.jsx'
@@ -29,11 +28,6 @@ const routes = [
     {
         path: '/signup',
         component: LoginSignup,
-    },
-    {
-        path: '/chat',
-        component: ChatApp,
-        label: 'Chat'
     },
 
 

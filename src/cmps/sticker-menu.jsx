@@ -1,49 +1,64 @@
-import React, { Component } from 'react';
+import React, { useState , useEffect } from 'react';
 import { giphyService } from '../services/giphy.service';
 import { Loader } from './loader';
-import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
+import { useDrag } from 'react-dnd'
+import { Sticker } from './Sticker';
+import { onSaveStickers } from '../store/board.actions';
+import { connect, useDispatch, useSelector } from 'react-redux';
 
-export class StickerMenu extends Component {
-  state = {
-    stickers: [],
-    keyword: '',
-    isAnimated: false,
-  };
-  componentDidMount() {
-    this.fetchImages();
-  }
+import { onEditBoard } from '../store/board.actions';
 
-  fetchImages = async () => {
+
+
+
+export const StickerMenu = () => {
+  
+  // const [stickers, setStickers] = useState([])
+  const [keyword, setKeyword] = useState('')
+  const [isAnimated, setIsAnimated] = useState(false)
+
+  const { stickers } = useSelector(state => state.boardModule)
+
+  const dispatch = useDispatch()
+
+
+  useEffect(() => {
+    fetchImages()
+  }, [])
+
+
+  const fetchImages = async () => {
     const stickers = await giphyService.getInitialGiphys();
-    this.setState({ stickers: stickers });
+    console.log('stickers from service' , stickers)
+    // setStickers(stickers)
+    dispatch(onSaveStickers(stickers))
+
   };
 
-  handleChange = ({ target }) => {
+  const handleChange = ({ target }) => {
     const { value } = target;
-    this.setState({ keyword: value }, () => {
-      if (value.length >= 3) this.onSearch();
-      else if (value.length === 0) this.fetchImages();
-    });
+    setKeyword( value);
+    if (value.length >= 3) onSearch();
+    else if (value.length === 0) fetchImages();
   };
 
-  onSearch = async () => {
+  const onSearch = async () => {
     try {
-      const stickers = await giphyService.searchGiphys(this.state.keyword);
-      this.setState({ stickers: stickers });
+      const stickers = await giphyService.searchGiphys(keyword);
+      // setStickers(stickers)
+      dispatch(onSaveStickers(stickers))
+
     } catch (err) {
       console.log(err);
     }
   };
-  landedOn(e) {
-    console.log('I was dropped on ' + e.dropData.name);
-  }
 
-  render() {
-    const { stickers, keyword, isAnimated } = this.state;
+  
 
-    if (!stickers) return <Loader />;
-    return (
-      <>
+  if (!stickers) return <Loader />;
+  return (
+    <>
+
         <div className="sticker-list">
           <div className="sticker-search">
             <input
@@ -51,8 +66,8 @@ export class StickerMenu extends Component {
               placeholder="Search GIPHY"
               className="sticker-input"
               value={keyword}
-              onChange={this.handleChange}
-              onKeyDown={this.handleChange}
+              onChange={handleChange}
+              onKeyDown={handleChange}
             />
 
             <div className="sticker-animated flex row">
@@ -60,7 +75,7 @@ export class StickerMenu extends Component {
                 type="checkbox"
                 defaultChecked={isAnimated}
                 onChange={() => {
-                  this.setState({ isAnimated: !isAnimated });
+                  setIsAnimated(!isAnimated)
                 }}
               />
               <h3>Use animated stickers</h3>
@@ -70,43 +85,14 @@ export class StickerMenu extends Component {
           <div className="stickers-preview">
             {stickers.map((sticker) => {
               return (
-                <div
-                  id="draggable"
-                  draggable={true}
-                  className="sticker-select js-draggable-sticker ui-draggable"
-                  bis_skin_checked="1"
-                  key={sticker.id}
-                >
-                  <img
-                    className="sticker-select-image sticker-select-shadow"
-                    src={
-                      isAnimated
-                        ? sticker.images.original.url
-                        : sticker.images.fixed_width_still.url
-                    }
-                  />
-                  <img
-                    className="sticker-select-image sticker-select-fixed"
-                    src={
-                      isAnimated
-                        ? sticker.images.original.url
-                        : sticker.images.fixed_width_still.url
-                    }
-                  />
-                  <img
-                    className="sticker-select-image sticker-select-peel"
-                    src={
-                      isAnimated
-                        ? sticker.images.original.url
-                        : sticker.images.fixed_width_still.url
-                    }
-                  />
-                </div>
+<Sticker  sticker={sticker} isAnimated={isAnimated} key={sticker.id}/>
+
               );
             })}
           </div>
         </div>
-      </>
-    );
+        </>
+
+        );
   }
-}
+

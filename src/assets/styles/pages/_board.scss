@@ -7,7 +7,8 @@
   box-sizing: border-box;
   max-height: 100%;
   white-space: normal;
-  margin: 2px 0 8px 8px;
+  // margin: 2px 0 8px 8px;
+  margin: 0 4px;
 }
 .list-actions {
   cursor: pointer;
@@ -21,10 +22,13 @@
 .list-wrapper {
   padding-bottom: 13px;
   scroll-snap-align: center;
+  &:first-child {
+    margin-left: 4px;
+  }
 }
 
 .layout-helper {
-  overflow-x: auto;
+  overflow-y: hidden;
   width: 100%;
 }
 
@@ -56,7 +60,9 @@
 }
 
 .list-add-containter {
-  margin: 2px 0 8px 8px;
+  // margin: 2px 0 8px 8px;
+  margin: 0 4px;
+  margin-right: 8px;
 }
 
 .card-list-add {
@@ -165,6 +171,14 @@
   margin: 2px 0 8px 8px;
   padding: 4px 8px;
   gap: 3px;
+  color: #5e6c84;
+
+  &:hover {
+    background-color: #091e4214;
+    color: #172b4d;
+    border-radius: 3px;
+    width: 90%;
+  }
 }
 
 .add-list {

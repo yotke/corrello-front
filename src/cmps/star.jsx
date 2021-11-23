@@ -1,18 +1,26 @@
-import React from 'react'
+import React from 'react';
 
-export class Star extends React.Component {
+
+ export class Star extends React.Component {
   state = {
-    isStarred: false
+    isStarred: false,
   };
 
+  componentDidMount() {
+    const { board } = this.props;
+    this.setState({ isStarred: board.star });
+  }
+
   render() {
-    const { board } = this.props
+    const { board, onSaveBoard , onEditBoard} = this.props;
     // (board.star) ? board.star = !board.star : board.star = true
     return (
       <svg
         onClick={(ev) => {
-          this.setState({ isStarred: !this.state.isStarred })
-          board.star = this.state.isStarred
+          this.setState({ isStarred: !this.state.isStarred });
+          board.star = !this.state.isStarred;
+          console.log('board', board);
+          onEditBoard(board);
 
           ev.stopPropagation();
           ev.preventDefault();
@@ -32,6 +40,9 @@ export class Star extends React.Component {
           fill="currentColor"
         ></path>
       </svg>
-    )
+    );
   }
 }
+
+
+

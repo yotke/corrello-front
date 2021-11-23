@@ -27,7 +27,6 @@ export class ActivityPreview extends Component {
 
     render() {
         const { activity: {createdAt, byMember, activityType, subject}} = this.props
-        console.log('type', activityType)
         return (<section>
                  {activityType === 'comment' &&
                     <div className="phenom mod-attachment-type">

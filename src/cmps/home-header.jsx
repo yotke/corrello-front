@@ -63,7 +63,7 @@ import { openPopover } from '../store/popover.actions.js'
                     </div>}
                     <div className="user-details-header">
 
-                         {user && <button className="user-logo-in-app-header " onClick={(ev) => {
+                         {user && <button className="user-logo-in-app-header flex" onClick={(ev) => {
                             this.onOpenPopover(ev, 'USER')
                         }}>
                             

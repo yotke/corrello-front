@@ -3,6 +3,7 @@ import { act } from "react-dom/test-utils"
 const initialState = {
     boards: [],
     board: null,
+    filterBy: 'random',
     recentBoards: [],
     lastRemoveBoard: null,
     isLabelesOpend: false,
@@ -53,6 +54,12 @@ export function boardReducer(state = initialState, action) {
         case 'SAVE_BOARD':
             newState = { ...state, board: { ...action.board } }
             break;
+        case 'SAVE_STICKERS':
+            newState = { ...state, stickers: [...action.stickers] }
+            break;
+        case 'SET_STICKERS':
+            newState = { ...state, stickers: action.stickers }
+            break;;
         default:
     }
     // For debug:

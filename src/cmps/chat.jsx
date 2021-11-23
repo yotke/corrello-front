@@ -92,16 +92,6 @@ toggleUserIsTyping = (user) => {
 
 }
 
-onAddUserQuestion = (ev) => {
-    ev.preventDefault()
-    const { questions, currTxt } = this.state
-    let updatedQuests = [...questions, currTxt]
-    this.setState(prevState => (
-        {
-            ...prevState,
-            questions: updatedQuests, currTxt: ''
-        }))
-}
 
 sendMsg = ev => {
     ev.preventDefault()
@@ -116,7 +106,7 @@ sendMsg = ev => {
 msgHandleChange = ev => {
     const { name, value } = ev.target
     this.setState(prevState => {
-        return { //Would it be better to spread ...prevState here insted of return?
+        return { 
             msg: {
                 ...prevState.msg,
                 [name]: value
@@ -127,7 +117,9 @@ msgHandleChange = ev => {
 
 
   openElement = (ev) => {
-    this.selectedDiv.scrollIntoView();
+    // this.selectedDiv.scrollIntoView();
+    if(this.selectedDiv) this.selectedDiv.scrollIntoView()
+
     this.setState({ isOpen: true });
     console.log('open?', this.state.isOpen);
   };

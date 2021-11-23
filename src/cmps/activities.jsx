@@ -11,13 +11,11 @@ export class Activities extends Component {
 
     get suitedActivities() {
         const { card, activities, isInCardLocation } = this.props
-        console.log('ACTIVITIES: ', activities);
 
         if (isInCardLocation) {
             const cardActivities = activities.filter(currActivity => {
                 return currActivity.card.id === card.id
             })
-            console.log('ACTIVITIES: THIS CARD', cardActivities);
             return cardActivities
         } else {
             return activities
@@ -34,8 +32,6 @@ export class Activities extends Component {
         const { isInCardLocation, card } = this.props
         const {toggleActivityComments} = this.state
         const activities = this.suitedActivities
-        console.log('Activities', activities)
-        console.log('!!Activities.length', !!activities.length)
         if (!activities) return <div>Load Activities...</div>
         return (<section>
             <div className="activities-container flex column">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { CardDetails } from '../pages/card-details.jsx';
 import { Route } from 'react-router';
@@ -6,14 +6,14 @@ import { Loader } from '../cmps/loader.jsx';
 import { ListPreview } from '../cmps/list-preview.jsx';
 import { MainBoardHeader } from '../cmps/main-board-header.jsx';
 import { ListAdd } from '../cmps/list-add.jsx';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { SideNav } from '../cmps/sidenav.jsx';
 import { Dashboard } from './Dashboard.jsx';
 import { socketService } from '../services/socket.service.js';
 import { eventBusService } from '../services/event-bus.service';
 import { CardEdit } from '../cmps/CardEdit.jsx';
 import $ from 'jquery';
-import { Chat } from '../cmps/chat.jsx';
+import {Chat} from '../cmps/chat.jsx'
 
 import {
   loadBoard,
@@ -27,16 +27,15 @@ import {
 
 import { SideNavRight } from '../cmps/sidenav-right.jsx';
 import NaturalDragAnimation from 'natural-drag-animation-rbdnd'; //optinal
-import { activityService } from '../services/activity.service.js';
 
 class _BoardApp extends React.Component {
   state = {
     isMainBoard: true,
     isCardClicked: false,
+    isDragged: false,
     isCardEditOpen: false,
     currCard: null,
     elPos: null,
-    loading:true,
     EditBtnsPosition: 'right',
   };
 
@@ -44,6 +43,10 @@ class _BoardApp extends React.Component {
     window.removeEventListener('mouseup', this.HandleDrop);
     this.unlisten();
   }
+
+  HandleDrop = () => {
+    this.setState({ isDragged: false });
+  };
 
   componentWillMount() {
     this.unlisten = this.props.history.listen((location) => {
@@ -59,13 +62,6 @@ class _BoardApp extends React.Component {
   removeEvent;
 
   async componentDidMount() {
-
-this.setState({loading : true})
-    //debounce loading 
-    setTimeout(function() { //Start the timer
-      this.setState({loading: false}) //After 1 second, set render to true
-  }.bind(this), 1300)
-
     window.addEventListener('mouseup', this.HandleDrop);
     try {
       const { boardId } = this.props.match.params;
@@ -85,22 +81,18 @@ this.setState({loading : true})
       this.removeEvent = eventBusService.on('card-edit', ({ elPos, card }) => {
         let distanseFromRight = $(window).width() - elPos.left + elPos.width;
         console.log('distanse from right window , ', elPos, distanseFromRight);
-        if (distanseFromRight < 700)
-          this.setState({ EditBtnsPosition: 'left' });
+        if (distanseFromRight < 700) this.setState({ EditBtnsPosition: 'left' });
         else this.setState({ EditBtnsPosition: 'right' });
         this.setState({ isCardEditOpen: true, currCard: card, elPos });
       });
-    } catch (err) {
-
-    }
+    } catch (err) {}
   }
 
-
-  
-  componentWillUnmount() {
-    this.unlisten();
+  componentDidUpdate = () => {
+    const {board} = this.props
+    console.log('board back',board.style.background)
   }
-  
+
   loadBoard = async (boardId) => {
     await Promise.all([
       this.props.loadBoard(boardId),
@@ -108,6 +100,13 @@ this.setState({loading : true})
       this.props.loadBoards(),
     ]);
   };
+
+  componentWillUnmount() {
+    // socketService.off('SOCKET_EVENT_ON_RELOAD_BOARD');
+    // socketService.terminate();
+    this.unlisten();
+  }
+
   onBoardChange = (boardId) => {
     this.props.loadBoard(boardId);
   };
@@ -122,73 +121,68 @@ this.setState({loading : true})
   onCloseCardEdit = () => {
     this.setState({ isCardEditOpen: false });
   };
+  handleOnDragEnd = (result) => {
+    const { destination, source, draggableId } = result;
+    if (!result.destination) return;
+    const { lists } = this.props.board;
+    if (destination.droppableId != 'all-lists') {
+      const start = lists[source.droppableId];
+      const finish = lists[destination.droppableId];
 
-  onDragEnd = (result) => {
-    let {
-      board,
-      board: { lists },
-      onSaveBoard,
-    } = this.props;
-    const { destination, source, type } = result;
-    if (!destination) return;
-    const droppableIdStart = source.droppableId;
-    const droppableIdEnd = destination.droppableId;
-    const droppableIdxStart = source.index;
-    const droppableIdxEnd = destination.index;
-
-    // dragging lists around
-    if (type === 'list') {
-      const list = lists.splice(droppableIdxStart, 1);
-      lists.splice(droppableIdxEnd, 0, ...list);
-      board.lists = lists;
-      onSaveBoard(board);
-      return;
+      if (start === finish) {
+        const cards = Array.from(start.cards);
+        const [reorderedItem] = cards.splice(source.index, 1);
+        cards.splice(destination.index, 0, reorderedItem);
+        this.props.board.lists[source.droppableId].cards = cards;
+      } else {
+        var itemsArr = this.updateElemDND(
+          start.cards,
+          finish.cards,
+          source,
+          destination
+        );
+        this.updateBoardDND(itemsArr, source, destination);
+      }
+    } else {
+      const items = Array.from(lists);
+      const [reorderedItem] = items.splice(source.index, 1);
+      items.splice(destination.index, 0, reorderedItem);
+      this.props.board.lists = items;
+      this.props.onEditBoard(this.props.board);
     }
-
-    // in the same list
-    if (droppableIdStart === droppableIdEnd) {
-      const list = lists.find((list) => list.id === droppableIdStart);
-      const card = list.cards.splice(droppableIdxStart, 1);
-      list.cards.splice(droppableIdxEnd, 0, ...card);
-      const listIdx = lists.indexOf(list);
-      lists[listIdx] = list;
-    }
-
-    // other list
-    if (droppableIdStart !== droppableIdEnd) {
-      const listStart = lists.find((list) => list.id === droppableIdStart);
-      const card = listStart.cards.splice(droppableIdxStart, 1);
-      const listEnd = lists.find((list) => list.id === droppableIdEnd);
-      listEnd.cards.splice(droppableIdxEnd, 0, ...card);
-      const listStartIdx = lists.indexOf(listStart);
-      const listEndIdx = lists.indexOf(listEnd);
-      lists[listStartIdx] = listStart;
-      lists[listEndIdx] = listEnd;
-      const txt = `${listStart.title} to ${listEnd.title}`;
-      const savedActivity = activityService.createActivity('moved', txt, ...card);
-      board.activities.unshift(savedActivity);
-    }
-    board.lists = lists;
-    onSaveBoard(board);
   };
 
+  updateBoardDND = (itemsArr, src, des) => {
+    this.props.board.lists[src.droppableId].cards = itemsArr.srcItems;
+    this.props.board.lists[des.droppableId].cards = itemsArr.desItems;
+    this.props.onEditBoard(this.props.board);
+  };
+
+  updateElemDND = (srcItemsIn, desItemsIn, src, des) => {
+    const srcItems = Array.from(srcItemsIn);
+    const desItems = Array.from(desItemsIn);
+    const [reorderedItem] = srcItems.splice(src.index, 1);
+    desItems.splice(des.index, 0, reorderedItem);
+    return { srcItems, desItems };
+  };
 
   onCardClicked = () => {
     this.setState({ isCardClicked: true });
   };
 
   render() {
-    const { board, onSaveBoard, boards, user, onEditBoard } = this.props;
+    // console.log(this.props.board.activities);
+    const { board, onSaveBoard, boards, user , onEditBoard} = this.props;
     const {
       isMainBoard,
+      isDragged,
       currCard,
       elPos,
       isCardEditOpen,
       EditBtnsPosition,
-      loading
     } = this.state;
     if (!board) return <Loader />;
-    if (loading) return <Loader />;
+    
     const {
       board: { activities },
     } = this.props;
@@ -204,14 +198,15 @@ this.setState({loading : true})
               onSaveBoard={onSaveBoard}
               title={board.title}
             />
-            <DragDropContext onDragEnd={this.onDragEnd}>
-              <div className="board-content">
-                <Route
-                  path="/board/:boardId/:listId/:cardId"
-                  exact
-                  component={CardDetails}
-                />
-                <Route path="/board/:boardId/dashboard" component={Dashboard} />
+            <div className="board-content">
+              <Route
+                path="/board/:boardId/:listId/:cardId"
+                exact
+                component={CardDetails}
+              />
+              <Route path="/board/:boardId/dashboard" component={Dashboard} />
+
+              <DragDropContext onDragEnd={this.handleOnDragEnd}>
                 <Droppable
                   droppableId="all-lists"
                   direction="horizontal"
@@ -222,31 +217,50 @@ this.setState({loading : true})
                       className="lists-container clean-list flex row"
                       {...provided.droppableProps}
                       ref={provided.innerRef}
-                    >
-                      {board.lists.map((currList, idx) => (
-                        <ListPreview
-                          board={board}
+                      >
+                      {board.lists.map((currList, listIdx) => (
+                        <Draggable
                           key={currList.id}
-                          currListIdx={idx}
-                          currList={currList}
-                          onSaveBoard={onSaveBoard}
-                          onCardClicked={this.onCardClicked}
-                        />
+                          draggableId={currList.id}
+                          index={listIdx}
+                        >
+                          {(provided) => (
+                            <li
+                              onMouseDown={async () => {
+                                await this.setState({ isDragged: true });
+                              }}
+                              className="list-wrapper"
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              // onMouse={async () => {
+                              //   await this.setState({ isDragged: false })
+                              // }}
+                            >
+                              <ListPreview
+                                className={isDragged ? 'list-dragged' : ''}
+                                isDragged={isDragged}
+                                board={board}
+                                key={listIdx}
+                                listIdx={listIdx}
+                                currList={currList}
+                                onSaveBoard={onSaveBoard}
+                                handleOnDragEndCards={this.handleOnDragEndCards}
+                                onCardClicked={this.onCardClicked}
+                              />
+                            </li>
+                          )}
+                        </Draggable>
                       ))}
                       {provided.placeholder}
                       <ListAdd board={board} onSaveBoard={onSaveBoard} />
                     </ul>
                   )}
                 </Droppable>
-              </div>
-            </DragDropContext>
+              </DragDropContext>
+            </div>
           </div>
-          <SideNavRight
-            activities={activities}
-            isInCardLocation={false}
-            board={board}
-          />
-
+          <SideNavRight activities={activities} isInCardLocation={false} board={board} />
           {isCardEditOpen && (
             <CardEdit
               board={board}
@@ -256,7 +270,8 @@ this.setState({loading : true})
               onCloseCardEdit={this.onCloseCardEdit}
             />
           )}
-          <Chat />
+            <Chat/>
+
         </section>
       </>
     );

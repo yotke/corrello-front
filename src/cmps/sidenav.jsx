@@ -89,6 +89,7 @@ export class SideNav extends React.Component {
                     <div className="nav-bar-btns flex row">
                       <li className="board-preview-navbar" key={board._id} style={board.style && {
                         backgroundImage: "url(" + board.style.background + ")",
+                        backgroundColor: board.style.background,
                         backgroundRepeat: 'no-repeat',
                         backgroundAttachment: 'fixed',
                         backgroundPosition: 'center'

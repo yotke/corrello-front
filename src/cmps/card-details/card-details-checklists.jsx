@@ -6,7 +6,6 @@ import { activityService } from '../../services/activity.service';
 export class CardChecklists extends React.Component {
 
     onSaveCardChecklists(checklists, activityType, txt) {
-        console.log('enter your check list :', checklists);
         const { board, card, onSaveBoard } = this.props
         card.checklists = checklists;
         let updatedBoard = boardService.updateCardInBoard(board, card)

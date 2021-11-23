@@ -1,21 +1,27 @@
 import React from 'react';
 import { Activities } from './activities.jsx';
 import {StickerMenu} from '../cmps/sticker-menu'
+import { BackgroundMenu } from '../cmps/background-menu';
 
 export class SideNavRight extends React.Component {
   state = {
     mode: 'normal',
   };
 
-  componentDidMount = () => {};
+  componentDidMount = () => {
+    this.setState({mode : 'normal'})
+  };
+
+  componentDidUpdate = () => {
+    console.log('mode', this.state.mode);
+  }
 
   closeNav = () => {
     document.getElementById('mySidenav').style.width = '0';
   };
 
-  setMode = (ev, mode) => {
+  setMode = (ev , mode) => {
     this.setState({mode})
-    console.log('mode', mode);
   };
 
   render() {
@@ -25,6 +31,8 @@ export class SideNavRight extends React.Component {
       <div id="mySidenav" className="sidenav">
         <div className="sidenav-header">
           <div className="board-menu-header-content">
+
+          {/* title section  */}
 
             {mode !== 'normal' && <i onClick={(ev) => this.setMode(ev, 'normal')} class="fas fa-chevron-left"></i>}
            
@@ -41,6 +49,16 @@ export class SideNavRight extends React.Component {
     <i class="far fa-sticky-note"></i>
              Stickers
             </h3>}
+
+            {mode === 'color' &&   <h3 className="board-menu-header-title js-board-menu-title-text">
+            Color
+            </h3>}
+
+            {mode === 'color' &&   <h3 className="board-menu-header-title js-board-menu-title-text">
+            Photos
+            </h3>}
+
+
             <a
               href="javascript:void(0)"
               className="closebtn"
@@ -53,6 +71,8 @@ export class SideNavRight extends React.Component {
         <hr className="board-menu-header-divider"></hr>
 
         {mode === 'stickers' && <StickerMenu/>}
+        {mode === 'background' && <BackgroundMenu board={board} mode={mode}/>}
+
 
        {mode === 'normal' && <section className="board-menu-content u-fancy-scrollbar js-board-menu-content-wrapper flex column">
           <ul className="clean-list">

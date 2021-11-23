@@ -2,6 +2,9 @@ import { boardService } from "../services/board.service.js";
 import { userService } from "../services/user.service.js";
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { socketService } from "../services/socket.service.js";
+import { giphyService } from "../services/giphy.service.js";
+
+
 
 
 export function loadBoards() {
@@ -52,11 +55,17 @@ export function onSaveBoard(board) {
     return async dispatch => {
         try {
             const savedBoard = await boardService.save(board)
-                .then((board) => {
-                    socketService.emit('SOCKET_EVENT_ON_BOARD_SAVED', board._id)
-                    return board
-                })
             dispatch({ type: 'SAVE_BOARD', board: savedBoard })
+            socketService.emit('SOCKET_EVENT_ON_BOARD_SAVED', board._id)
+        } catch (err) {
+        }
+    }
+}
+
+export function onSaveStickers(stickers) {
+    return async dispatch => {
+        try {
+            dispatch({ type: 'SAVE_STICKERS', stickers: stickers })
         } catch (err) {
         }
     }
@@ -143,6 +152,7 @@ export function onAddBoard() {
 }
 
 export function onEditBoard(boardToSave) {
+
     return (dispatch) => {
         boardService.save(boardToSave)
             .then(savedBoard => {
@@ -160,22 +170,6 @@ export function onEditBoard(boardToSave) {
     }
 }
 
-export function addToCart(board) {
-    return (dispatch) => {
-        dispatch({
-            type: 'ADD_TO_CART',
-            board
-        })
-    }
-}
-export function removeFromCart(boardId) {
-    return (dispatch) => {
-        dispatch({
-            type: 'REMOVE_FROM_CART',
-            boardId
-        })
-    }
-}
 
 
 
@@ -203,3 +197,22 @@ export function onRemoveBoardOptimistic(boardId) {
             })
     }
 }
+
+// export function setFilterBy(filterBy) {
+//     return dispatch => {
+//         dispatch({ type: 'SET_FILTER_BY', filterBy })
+//     }
+// }
+
+
+// export function loadStickers() {
+//     return async (dispatch, getState) => {
+//         const { filterBy } = getState().boardModule
+//         try {
+//             const stickers = await giphyService.searchGiphys(filterBy)
+//             dispatch({ type: 'SET_STICKERS', stickers })
+//         } catch (err) {
+//             console.log(err);
+//         }
+//     }
+// }

@@ -4,10 +4,9 @@ import { CardAdd } from './card-add.jsx';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { CardPreview } from './card-preview/card-preview.jsx';
 import { MoreHoriz } from '@material-ui/icons';
-import { onSaveBoard } from '../store/board.actions.js'
-import { closePopover, openPopover } from '../store/popover.actions.js'
-import { ReactComponent as AddIcon } from '../assets/img/icons/add.svg'
-
+import { onSaveBoard } from '../store/board.actions.js';
+import { closePopover, openPopover } from '../store/popover.actions.js';
+import { ReactComponent as AddIcon } from '../assets/img/icons/add.svg';
 
 class _ListPreview extends Component {
   state = {
@@ -18,17 +17,16 @@ class _ListPreview extends Component {
   };
 
   onOpenPopover = (ev, PopoverName) => {
-    const elPos = ev.target.getBoundingClientRect()
-    const { board, currList, onSaveBoard, closePopover } = this.props
+    const elPos = ev.target.getBoundingClientRect();
+    const { board, currList, onSaveBoard, closePopover } = this.props;
     const props = {
       currList,
       board,
       onSaveBoard,
-      closePopover
-    }
-    this.props.openPopover(PopoverName, elPos, props)
-  }
-
+      closePopover,
+    };
+    this.props.openPopover(PopoverName, elPos, props);
+  };
 
   toggleCardAdd = () => {
     const { isAddToggeld } = this.state;
@@ -66,92 +64,86 @@ class _ListPreview extends Component {
   };
 
   render() {
-    const { board, currList, onSaveBoard, listIdx } = this.props;
+    const { board, currList, onSaveBoard, currListIdx } = this.props;
     const { isAddToggeld, isOnEditState, titleTxt } = this.state;
     this.state.cards = currList.cards;
     return (
-      <div className="list-preview" key={listIdx}>
-        <div className="list-header">
-          {isOnEditState ? (
-            <input
-              type="text"
-              className="card-list-header-input"
-              value={titleTxt}
-              autoFocus
-              onChange={this.handleChange}
-              onKeyDown={this.handleChange}
-              onBlur={this.onSaveTitle}
-            />
-          ) : (
-            <h2 onClick={this.toggleEdit}>{currList.title}</h2>
-          )}{' '}
-
-          <div onClick={(ev) => this.onOpenPopover(ev, 'LIST_OPTIONS')} className="card-list-btn-menu">
-            <MoreHoriz className="list-menu" />
-          </div>
-        </div>
-        <div className="card-container">
-          {/* <DragDropContext onDragEnd={this.handleOnDragEnd}> */}
-          <Droppable droppableId={`${listIdx}`}>
-            {(provided) => (
-              <ul
-                className="card-list-element clean-list"
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-                {(!currList.cards.length) && <li className="dragged"></li>}
-                {currList.cards.map((currCard, cardIdx) => (
-                  <Draggable
-                    key={currCard.id}
-                    draggableId={currCard.id}
-                    index={cardIdx}
-                  >
-                    {(provided) => (
-                      <li
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        onDrag={(ev) => {
-                          {
-                            console.log('ev', ev);
-                          }
-                          this.props.onCardClicked();
-                        }}
-                      >
-                        <CardPreview
-                          isDragged={this.props.isDragged}
-                          key={currCard.id}
-                          card={currCard}
-                          cardIdx={cardIdx}
-                          currList={currList}
-                          board={board}
-                          onSaveBoard={onSaveBoard}
-                        />
-                      </li>
+      <Draggable draggableId={currList.id} index={currListIdx}>
+        {(provided) => (
+          <li
+            className="list-wrapper"
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+          >
+            <Droppable droppableId={currList.id}>
+              {(provided) => (
+                <div
+                  className="list-preview"
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                >
+                  <div className="list-header">
+                    {isOnEditState ? (
+                      <input
+                        type="text"
+                        className="card-list-header-input"
+                        value={titleTxt}
+                        autoFocus
+                        onChange={this.handleChange}
+                        onKeyDown={this.handleChange}
+                        onBlur={this.onSaveTitle}
+                      />
+                    ) : (
+                      <h2 onClick={this.toggleEdit}>{currList.title}</h2>
+                    )}{' '}
+                    <div
+                      onClick={(ev) => this.onOpenPopover(ev, 'LIST_OPTIONS')}
+                      className="card-list-btn-menu"
+                    >
+                      <MoreHoriz className="list-menu" />
+                    </div>
+                  </div>
+                  <div className="card-container">
+                    <ul className="card-list-element clean-list">
+                      {currList.cards.map((currCard, cardIdx) => (
+                        <li>
+                          <CardPreview
+                            key={currCard.id}
+                            card={currCard}
+                            cardIdx={cardIdx}
+                            currList={currList}
+                            board={board}
+                            onSaveBoard={onSaveBoard}
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                    {isAddToggeld && (
+                      <CardAdd
+                        board={board}
+                        currList={currList}
+                        onSaveBoard={onSaveBoard}
+                        toggleCardAdd={this.toggleCardAdd}
+                        cards={this.state.cards}
+                      />
                     )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </ul>
-            )}
-          </Droppable>
-          {/* </DragDropContext> */}
-          {isAddToggeld && (
-            <CardAdd
-              board={board}
-              currList={currList}
-              onSaveBoard={onSaveBoard}
-              toggleCardAdd={this.toggleCardAdd}
-              cards={this.state.cards}
-            />
-          )}
-        </div>
-        {!isAddToggeld && (
-          <div className="list-footer flex align-center" onClick={this.toggleCardAdd}>
-          <AddIcon className="add-icon-svg"/> Add card
-          </div>
+                    {provided.placeholder}
+                  </div>
+                  {!isAddToggeld && (
+                    <div
+                      className="list-footer flex align-center"
+                      onClick={this.toggleCardAdd}
+                    >
+                      <AddIcon className="add-icon-svg" /> Add card
+                    </div>
+                  )}
+                </div>
+              )}
+            </Droppable>
+          </li>
         )}
-      </div>
+      </Draggable>
     );
   }
 }
@@ -159,7 +151,7 @@ class _ListPreview extends Component {
 const mapDispatchToProps = {
   closePopover,
   onSaveBoard,
-  openPopover
+  openPopover,
 };
 
 export const ListPreview = connect(null, mapDispatchToProps)(_ListPreview);

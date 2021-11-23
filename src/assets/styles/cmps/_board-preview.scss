@@ -1,3 +1,15 @@
+.new-board-preview {
+  background-color: #091e420a;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span {
+    color: #172b4d;
+  }
+}
+
 .all-boards-main {
   margin: 40px 10% 0;
   min-width: 288px;
@@ -47,6 +59,10 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+
+  svg:hover {
+    zoom: 1.13;
+  }
 }
 
 .content .content-overlay {
@@ -66,8 +82,8 @@
 }
 
 .starred {
-  filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg)
-    saturate(600%) contrast(0.8);
+  filter: grayscale(100%) brightness(900%) sepia(100%) hue-rotate(-50deg)
+    saturate(1000%) contrast(0.8);
 }
 
 .icon-star:before {
@@ -89,6 +105,22 @@
   -webkit-transition: all 0.3s ease-in-out 0s;
   -moz-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
+}
+
+.static-star {
+  .content-details {
+    left: 95%;
+    opacity: 1;
+    z-index: 2;
+    color: rgb(255, 255, 255);
+  }
+  .content-overlay {
+    opacity: 1;
+    z-index: -1;
+  }
+  svg:hover {
+    zoom: 1.1;
+  }
 }
 
 .content:hover .content-details {
@@ -228,19 +260,6 @@
     margin: 0;
   }
 }
-// // HELPERS TO BOARDS
-// ._1ul6gs_kHQukwk {
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   justify-content: center;
-//   width: 32px;
-//   height: 32px;
-//   margin: 0;
-//   border-radius: 3px;
-//   background-color: #f1f2f5;
-//   cursor: pointer;
-// }
 
 ._1ul6gs_kHQukwk ._3TTqkG5muwOzqZ {
 }
@@ -267,19 +286,6 @@
   transition-duration: 85ms;
   transition-timing-function: ease;
 }
-// .button,
-// button {
-//   -webkit-appearance: none;
-//   border: none;
-//   border-radius: 3px;
-//   box-sizing: border-box;
-//   display: inline-block;
-//   line-height: 20px;
-//   margin-bottom: 8px;
-//   padding: 6px 12px;
-//   position: relative;
-//   text-decoration: none;
-// }
 
 @media only screen and (min-width: 751px) and (max-width: 900px),
   only screen and (min-width: 901px) and (max-width: 1280px) {
@@ -300,6 +306,7 @@
   .second-board-part {
     width: 100vw;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .first-board-part {
