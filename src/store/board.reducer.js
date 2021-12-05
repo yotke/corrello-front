@@ -1,4 +1,3 @@
-import { act } from "react-dom/test-utils"
 
 const initialState = {
     boards: [],
@@ -7,6 +6,7 @@ const initialState = {
     recentBoards: [],
     lastRemoveBoard: null,
     isLabelesOpend: false,
+
 
 }
 export function boardReducer(state = initialState, action) {

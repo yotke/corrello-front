@@ -17,6 +17,17 @@
     background-color: #055a8c;
   }
 }
+.danger-btn {
+  background-color: $clr8;
+  border: none;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 6px 12px;
+  &:hover {
+    background-color: darken($clr8, 5%);
+  }
+}
 
 .secondary-btn {
   font-size: 14px;

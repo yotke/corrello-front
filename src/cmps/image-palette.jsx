@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { unSplashService } from '../services/unsplash.service';
-import { Loader } from '../cmps/loader.jsx';
+import { Loader } from './loader.jsx';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 export class ImagePalette extends Component {
@@ -71,13 +71,7 @@ export class ImagePalette extends Component {
             value={keyword}
             onChange={this.handleChange}
             onKeyDown={this.handleChange}
-            placeholder="&#xF002; Search Photos"
-            style={{
-              fontFamily: 'FontAwesome',
-              fontStyle: 'normal',
-              fontWeight: 'normal',
-              textDecoration: 'inherit',
-            }}
+            placeholder="Search Photos"
           />
         </div>
 

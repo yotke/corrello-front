@@ -1,16 +1,25 @@
-import React from 'react';
+import React, {  } from 'react';
 import { useDrag } from 'react-dnd';
 
-export const Sticker = ({ isAnimated, sticker }) => {
+export const Sticker = ({ isAnimated, sticker, isOnCard }) => {
 
+  
 
-  const [{ isDragging }, drag] = useDrag(() => ({
+  const [{ canDrag }, drag] = useDrag(() => ({
     type: 'sticker',
     item: { id: sticker.id },
+    canDrag:() => canDragOnSticker(),
     collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
+      canDrag: !!monitor.canDrag()
+
     }),
   }));
+
+  const canDragOnSticker = () => {
+    if(isOnCard) return false 
+    return true
+  }
+
 
   return (
     <div
@@ -18,9 +27,10 @@ export const Sticker = ({ isAnimated, sticker }) => {
       bis_skin_checked="1"
       role="Handle"
       ref={drag}
-      style={{ border: isDragging ? '5px solid pink' : '0px',
-      top: (sticker.pos) ? sticker.pos.top : '',
-      left: (sticker.pos) ? sticker.pos.left : '',
+      style={{
+      position:(sticker.pos) ? 'absolute' : 'relative',
+      top: (sticker.pos) ? sticker.pos.topCard : '',
+      left: (sticker.pos) ? sticker.pos.leftCard : '',
 
 
     }}

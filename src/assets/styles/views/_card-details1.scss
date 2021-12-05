@@ -105,9 +105,13 @@
 }
 .card-add-active {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 5px;
   margin-bottom: 7px;
+}
+
+.is-stickerd {
+  height: 62px !important;
 }
 
 .card-details-content {

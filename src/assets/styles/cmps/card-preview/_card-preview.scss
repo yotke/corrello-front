@@ -103,10 +103,12 @@
 
 .card-preview-bagdes {
   display: flex;
+  z-index: 10;
   flex-wrap: wrap;
 
   .card-preview-icons {
     display: flex;
+    z-index: 10;
     align-items: center;
     flex-wrap: wrap;
     margin-bottom: 4px;
@@ -124,6 +126,7 @@
     }
   }
   .card-preview-members {
+    z-index: 10;
     display: flex;
     flex: 1;
     justify-content: flex-end;

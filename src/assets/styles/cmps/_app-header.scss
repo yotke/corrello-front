@@ -172,6 +172,16 @@
   gap: 5px;
 }
 
+.more-btn {
+  width: 100%;
+  border: none;
+  color: #172b4d;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  margin: 0 !important;
+}
+
 @media (max-width: $normal-breakpoint) {
   .search-icon {
     display: none;

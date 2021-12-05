@@ -13,18 +13,18 @@ import { onEditBoard } from '../store/board.actions';
 
 export const StickerMenu = () => {
   
-  // const [stickers, setStickers] = useState([])
   const [keyword, setKeyword] = useState('')
   const [isAnimated, setIsAnimated] = useState(false)
 
   const { stickers } = useSelector(state => state.boardModule)
+  
+    useEffect(() => {
+      fetchImages()
+    }, [])
+
 
   const dispatch = useDispatch()
 
-
-  useEffect(() => {
-    fetchImages()
-  }, [])
 
 
   const fetchImages = async () => {
@@ -76,6 +76,7 @@ export const StickerMenu = () => {
                 defaultChecked={isAnimated}
                 onChange={() => {
                   setIsAnimated(!isAnimated)
+                  dispatch(onSaveStickers(stickers))
                 }}
               />
               <h3>Use animated stickers</h3>
@@ -85,7 +86,7 @@ export const StickerMenu = () => {
           <div className="stickers-preview">
             {stickers.map((sticker) => {
               return (
-<Sticker  sticker={sticker} isAnimated={isAnimated} key={sticker.id}/>
+<Sticker isOnCard={false}  sticker={sticker} isAnimated={isAnimated} key={sticker.id}/>
 
               );
             })}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Activities } from './activities.jsx';
-import {StickerMenu} from '../cmps/sticker-menu'
-import { BackgroundMenu } from '../cmps/background-menu';
+import {StickerMenu} from './sticker-menu'
+import { BackgroundMenu } from './background-menu';
 
 export class SideNavRight extends React.Component {
   state = {

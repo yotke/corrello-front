@@ -28,35 +28,15 @@ class _CardDetails extends React.Component {
   };
 
   componentDidMount() {
-    const { listId, cardId } = this.props.match.params;
-    const { board } = this.props;
-
-
-    //socketService.setup();
-    //socketService.emit('SOCKET_EVENT_START_BOARD', board._id);
-    //socketService.on('SOCKET_EVENT_ON_RELOAD_BOARD', (boardId) => {
-    //  this.setLocalState(listId, cardId);
-    //});
-
-    this.setLocalState(listId, cardId);
+        // SETTING LIST AND CARD FROM PARAMS
+        const { board: { lists }, closePopover } = this.props
+        const { cardId, listId } = this.props.match.params
+        closePopover()
+        const list = lists.find(list => list.id === listId)
+        const { cards } = list;
+        const card = cards.find(card => card.id === cardId)
+        this.setState({ card, list })
   }
-
-  componentWillUnmount() {
-    //socketService.off('SOCKET_EVENT_ON_RELOAD_BOARD')
-    //socketService.terminate()
-  }
-
-  setLocalState = (listId, cardId) => {
-    //debugger
-
-    const { board } = this.props;
-
-    const list = board.lists.find((list) => list.id === listId);
-    const { cards } = list;
-    var card = cards.find((card) => card.id === cardId);
-    this.setState({ card, list });
-  };
-
 
   onDeleteCardAttachment = (ev, attachId) => {
     ev.preventDefault()
@@ -72,7 +52,6 @@ class _CardDetails extends React.Component {
     const { card } = this.state;
     const { board } = this.props;
     const updatedBoard = boardService.updateCardInBoard(board, card);
-    //todo
     this.props.onSaveBoard(updatedBoard);
   };
 
@@ -192,6 +171,7 @@ class _CardDetails extends React.Component {
 
             <div className="card-details-sidebar flex column full">
               <CardDetailsActions
+              goBackToBoard={this.goBackToBoard}
                 board={board}
                 card={card}
                 onSaveBoard={onSaveBoard}

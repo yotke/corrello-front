@@ -1,4 +1,4 @@
-import { ProfileAvatar } from '../../cmps/profile-avatar.jsx'
+import { ProfileAvatar } from '../profile-avatar.jsx'
 import { ReactComponent as AddIcon } from '../../assets/img/icons/add.svg'
 
 export function CardDetailsMembers({ members, card, openPopover }) {

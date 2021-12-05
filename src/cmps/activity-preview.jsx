@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { ProfileAvatar } from './profile-avatar'
 
 export class ActivityPreview extends Component {
 
@@ -31,7 +32,7 @@ export class ActivityPreview extends Component {
                  {activityType === 'comment' &&
                     <div className="phenom mod-attachment-type">
                        <div class="phenom-creator">
-                        <span className="MuiAvatar-root MuiAvatar-circular avatar"> <img src={byMember.imgUrl}/></span>
+                       <ProfileAvatar member={byMember} size={32}/>
                       </div>
                         <div className="comment flex column">
                         <span className="member-name">{byMember.fullname}</span>
@@ -41,7 +42,7 @@ export class ActivityPreview extends Component {
                     </div>}
                {activityType !== 'comment' && <div className="phenom mod-attachment-type">
                 <div class="phenom-creator">
-                        <span className="MuiAvatar-root MuiAvatar-circular avatar"> <img src={byMember.imgUrl}/></span>
+                <ProfileAvatar member={byMember} size={32}/>
                       </div>
                       <div className="phenom-desc">
                         <span className="member-name">{byMember.fullname}</span>

@@ -66,13 +66,15 @@
   flex-direction: column;
   justify-content: center;
   .image-palette-search {
+    width: 100%;
     position: relative;
 
     .search-input {
       width: 100%;
       outline: none;
       border: none;
-      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+        Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
       box-shadow: inset 0 0 0 2px #dfe1e6;
       background-color: #fafbfc;
       border-radius: $borderRad1;
@@ -85,6 +87,9 @@
       input[type='text'] {
         background: #fafbfc;
         width: 100%;
+      }
+      &::placeholder {
+        color: $clr3;
       }
       &:focus {
         box-shadow: inset 0 0 0 2px #0079bf;

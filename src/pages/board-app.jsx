@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { CardDetails } from '../pages/card-details.jsx';
+import { CardDetails } from './card-details.jsx';
 import { Route } from 'react-router';
 import { Loader } from '../cmps/loader.jsx';
 import { ListPreview } from '../cmps/list-preview.jsx';
@@ -94,7 +94,6 @@ this.setState({loading : true})
 
     }
   }
-
 
   
   componentWillUnmount() {

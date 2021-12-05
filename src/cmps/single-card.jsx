@@ -3,40 +3,44 @@ import { connect } from 'react-redux';
 import { onSaveBoard } from '../store/board.actions';
 import { CardPreviewLabel } from './card-preview/card-preview-labels';
 import { boardService } from '../services/board.service.js';
-import { ProfileAvatar } from '../cmps/profile-avatar.jsx';
+import { ProfileAvatar } from './profile-avatar.jsx';
 import { DueDateDisplay } from './card-preview/due-date-display.jsx';
-import { CardPreviewChecklist } from '../cmps/card-preview/card-preview-checklist.jsx';
+import { CardPreviewChecklist } from './card-preview/card-preview-checklist.jsx';
 import { Subject as SubjectIcon } from '@material-ui/icons';
 import { ReactComponent as AttachmentIcon } from '../assets/img/cmps/card-details/icon-attachment.svg';
 import { AttachFile as AttachFileIcon } from '@material-ui/icons';
-import EditIcon from '@material-ui/icons/CreateOutlined'
-import {eventBusService} from '../services/event-bus.service'
-import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
-import {StickersBucket} from '../cmps/stickers-bucket'
-import thunk from 'redux-thunk';
+import EditIcon from '@material-ui/icons/CreateOutlined';
+import { eventBusService } from '../services/event-bus.service';
+import { StickersBucket } from './stickers-bucket';
+import { CardPreviewComments } from './card-preview/card-preview-comments';
 
 class _Card extends Component {
-
   state = {
-    elPos: '', 
-  }
+    elPos: '',
+    isStickerd: false,
+  };
 
   componentDidMount() {
-    const elPos = this.cardContainer.getBoundingClientRect()
-    this.setState(
-      (prevState,props)=>{
-          return {elPos : elPos};
-       }
-   ); 
+    const card = this.props;
   }
 
-  
+  handleIsStickerd = (isStickerd) => {
+    console.log('is Stickerd', isStickerd);
+    this.setState({ isStickerd });
+  };
+
+  getElementPos = () => {
+    const elPos = this.cardContainer.getBoundingClientRect();
+    this.setState({ elPos: elPos });
+    return this.state.elPos;
+  };
+
   onOpenCardEdit = (ev) => {
-    const { card } = this.props
+    const { card } = this.props;
     ev.preventDefault();
     const elPos = this.cardContainer.getBoundingClientRect();
     eventBusService.emit('card-edit', { elPos, card });
-}
+  };
 
   get cardStyles() {
     const { isEditMode } = this.props;
@@ -105,17 +109,21 @@ class _Card extends Component {
   };
 
   render() {
-    const { isEditMode, card, board, isDragged } = this.props;
+    const { isEditMode, card, board, isDragged, stickers, onSaveBoard } =
+      this.props;
+    console.log('stickers on single-card', stickers);
     var coverMode;
     if (card.style) {
       coverMode = card.style.coverMode;
     } else {
       card.style = {};
     }
-    // console.log('curr Pos' , this.state.elPos)
 
     return (
-      <div className={`card-preview-container ${isDragged && 'on-grab-drag-drop'}`} ref={(div) => { this.cardContainer = div }} onContextMenu={this.onOpenCardEdit}>
+      <div
+        className={`card-preview-container ${isDragged && 'on-grab-drag-drop'}`}
+        onContextMenu={this.onOpenCardEdit}
+      >
         {!isEditMode && (
           <div className="card-preview-edit-btn" onClick={this.onOpenCardEdit}>
             <EditIcon />
@@ -124,32 +132,56 @@ class _Card extends Component {
 
         <div
           className={`card-preview  ${card.style.bgImgUrl && 'is-imaged'} ${
-            (coverMode === 'full' && !isEditMode) && 'cover-full'
+            coverMode === 'full' && !isEditMode && 'cover-full'
           }`}
+          ref={(div) => {
+            this.cardContainer = div;
+          }}
           style={this.cardStyles}
         >
-          {(coverMode === 'header' || (coverMode === 'full' && isEditMode)) && (
+          {(coverMode == 'full' || coverMode == 'header') && (
+            <StickersBucket
+              board={board}
+              onSaveBoard={onSaveBoard}
+              card={card}
+              stickers={stickers}
+              getElementPos={this.getElementPos}
+              handleIsStickerd={this.handleIsStickerd}
+            />
+          )}
+          {(coverMode === 'header' ||
+            (coverMode === 'full' && isEditMode) ||
+            (coverMode != 'full' &&
+              coverMode != 'header' &&
+              this.state.isStickerd)) && (
             <div
-              className="card-preview-header"
+              ref={(div) => {
+                this.cardContainer = div;
+              }}
+              className={`card-preview-header ${
+                this.state.isStickerd && 'is-stickerd'
+              }`}
               style={this.getCardHeaderStyles}
             ></div>
           )}
           <div className="card-content">
-          {(coverMode !== 'full' || isEditMode)  && (
-            <div className="card-preview-labels open">
-              {card.labelIds &&
-                card.labelIds.map((labelId) => (
-                  <CardPreviewLabel
-                    key={labelId}
-                    labelId={labelId}
-                    labels={board.labels}
-                  />
-                ))}
-            </div>
-          )}
-          {  (coverMode !== 'full' || isEditMode) &&  <div className="card-preview-name clean-link">{card.title}</div> }
+            {(coverMode !== 'full' || isEditMode) && (
+              <div className="card-preview-labels open">
+                {card.labelIds &&
+                  card.labelIds.map((labelId) => (
+                    <CardPreviewLabel
+                      key={labelId}
+                      labelId={labelId}
+                      labels={board.labels}
+                    />
+                  ))}
+              </div>
+            )}
+            {(coverMode !== 'full' || isEditMode) && (
+              <div className="card-preview-name clean-link">{card.title}</div>
+            )}
           </div>
-          {coverMode !== 'full' || isEditMode && (
+          {(coverMode !== 'full' || (coverMode === 'full' && isEditMode)) && (
             <div className="card-preview-bagdes">
               <div className="card-preview-icons">
                 {!!card.dueDate && (
@@ -171,6 +203,9 @@ class _Card extends Component {
                   <div>
                     <AttachFileIcon />
                   </div>
+                )}
+                {!!card.comments.length && (
+                  <CardPreviewComments commentsCount={card.comments.length} />
                 )}
               </div>
               {!!card.members && !!card.members.length && (
@@ -195,18 +230,26 @@ class _Card extends Component {
               )}
             </div>
           )}{' '}
-        {
-          (coverMode === 'full' && !isEditMode) && 
-          <div className="full-cover-card">
-          {  (!isEditMode) &&  <div className="card-preview-name-full clean-link">{card.title}</div> }
-
-          </div>
-        }
+          {coverMode === 'full' && !isEditMode && (
+            <div className="full-cover-card">
+              {!isEditMode && (
+                <div className="card-preview-name-full clean-link">
+                  {card.title}
+                </div>
+              )}
+            </div>
+          )}
         </div>
-        
-
-<StickersBucket elPos={this.state.elPos}/> 
-
+        {coverMode !== 'full' && coverMode !== 'header' && (
+          <StickersBucket
+            board={board}
+            onSaveBoard={onSaveBoard}
+            card={card}
+            stickers={stickers}
+            getElementPos={this.getElementPos}
+            handleIsStickerd={this.handleIsStickerd}
+          />
+        )}
       </div>
     );
   }
@@ -214,11 +257,9 @@ class _Card extends Component {
 
 function mapStateToProps(state) {
   return {
-
-    stickers: state.boardModule.stickers
+    stickers: state.boardModule.stickers,
   };
 }
-
 
 const mapDispatchToProps = {
   onSaveBoard,

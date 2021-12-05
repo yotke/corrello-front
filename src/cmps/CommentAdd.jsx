@@ -38,10 +38,10 @@ class _CommentAdd extends Component {
 
     render() {
         const { txt, isEdit } = this.state
-        const { user } = this.props
+        const { user, users } = this.props
         return (
             <div className="comment-add flex">
-                <ProfileAvatar member={user} size={32} />
+                <ProfileAvatar member={user} size={32} users={users} />
                 <div
                     className={`comment-editor flex column justify-space-between full ${isEdit ? 'edit-open' : ''}`}>
                     <TextareaAutosize
@@ -71,7 +71,8 @@ class _CommentAdd extends Component {
 function mapStateToProps(state) {
     return {
         board: state.boardModule.board,
-        user: state.userModule.user
+        user: state.userModule.user,
+        users: state.userModule.users
     }
 }
 

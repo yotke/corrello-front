@@ -15,6 +15,7 @@ import { PopoverSearchAppheader } from "./popover-search-appheader.jsx";
 import { PopoverList } from './popover-list.jsx'
 import {PopoverMoreOptions} from './popover-more.jsx'
 import { PopoverInvite } from "./PopoverInvite";
+import {PopoverMoveCopy} from './popover-move-copy'
 
  
 
@@ -35,8 +36,8 @@ function _DynamicPopover({ currPopover }) {
     case 'CREATE_BOARD': return <PopoverCreateBoard {...props} />; 
     case 'CHECKLIST': return <PopoverChecklist {...props} />; 
     case 'LIST_OPTIONS': return <PopoverList {...props} />; 
-    //this is headers popovers
-    case 'STARRED': return <PopoverStarred {...props} />; 
+    case 'COPY': return <PopoverMoveCopy popoverType="copy" {...props} />;
+    case 'MOVE': return <PopoverMoveCopy popoverType="move" {...props} />;    case 'STARRED': return <PopoverStarred {...props} />; 
     case 'RECENT_BOARDS': return <PopoverRecentBoard {...props} />;
     case 'USER': return <PopoverUser {...props} />; 
     case 'ATTACHMENT': return <PopoverAttachment {...props} />;

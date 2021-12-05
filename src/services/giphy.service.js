@@ -8,7 +8,7 @@ export const giphyService = {
     searchGiphys
 }
 
-async function query(keyword = 'random', limit = 32) {
+async function query(keyword = 'emojy', limit = 48) {
 
     const res = await Axios.get(`https://api.giphy.com/v1/stickers/search?api_key=${API_KEY}&q=${keyword}&limit=${limit}`)
     return res.data

@@ -137,7 +137,6 @@ class _PopoverCreateBoard extends Component {
 
         >
           <ImagePalette  
-
                 handleChange={this.handleChange}
               />
         </Popover>

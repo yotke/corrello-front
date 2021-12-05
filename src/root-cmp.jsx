@@ -10,18 +10,47 @@ import { DynamicPopover } from './cmps/popover/dynamic-popover.jsx'
 import { socketService } from './services/socket.service.js';
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
+import {updateOnlineUsers} from './store/user.actions'
+import { userService } from './services/user.service';
 
 class _RootCmp extends React.Component {
 
     async componentDidMount() {
         try {
-            socketService.setup()
+          socketService.setup()
+          const { updateOnlineUsers, user } = this.props
+          const onlineUsersToSet = await userService.getOnlineUsers()
+          updateOnlineUsers(onlineUsersToSet)
+          if (user) {
+            socketService.emit('user-watch', user._id)
+          }
+          socketService.on('user connected', userId => {
+            const { onlineUsers } = this.props
+            const isLoggedIn = this.props.onlineUsers.some(currUserId => currUserId === userId)
+            if (!isLoggedIn) {
+              onlineUsers.push(userId)
+              updateOnlineUsers(onlineUsers)
+            }
+          })
+    
+          socketService.on('user disconnected', userId => {
+            const { onlineUsers } = this.props
+            const onlineUsersToSet = onlineUsers.filter(currUserId => currUserId !== userId)
+            updateOnlineUsers(onlineUsersToSet)
+          })
         } catch (err) {
-            console.log(err)
+          console.log(err)
         }
-    }
-
- 
+      }
+      async componentWillUnmount() {
+        const { user } = this.props
+        if (user) {
+          user.isOnline = false;
+          await userService.updateUser(user)
+          socketService.emit('user endSession', user._id)
+        }
+      }
+    
     get isHeaderAppears() {
         const { pathname } = this.props.location
         return (pathname.includes('/board') || pathname.includes('workspace'))
@@ -80,11 +109,14 @@ function mapStateToProps(state) {
     return {
         board: state.boardModule.board,
         currPopover: state.popoverModule.currPopover,
+        user: state.userModule.user,
+        onlineUsers: state.userModule.onlineUsers
+
     }
 }
 
 const mapDispatchToProps = {
-
+    updateOnlineUsers
 }
 
 const _RootCmpWithRoute = withRouter(_RootCmp)

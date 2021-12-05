@@ -72,18 +72,6 @@ export function onLogout(user) {
         }
     }
 }
-// export function onLogout() {
-//     return  async dispatch => {
-//         userService.logout()
-//             .then(() => dispatch({
-//                 type: 'SET_USER',
-//                 user: null
-//             }))
-//             .catch(err => {
-//                 console.log('Cannot logout', err)
-//             })
-//     }
-// }
 
 export function loadAndWatchUser(userId) {
     return async (dispatch) => {
@@ -104,3 +92,12 @@ export function loadAndWatchUser(userId) {
     }
 }
 
+export function updateOnlineUsers(onlineUsers) {
+    return async dispatch => {
+        try {
+            dispatch({ type: 'SET_ONLINE_USERS', onlineUsers })
+        } catch (err) {
+            console.log('UserActions: err in login', err)
+        }
+    }
+}

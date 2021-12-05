@@ -12,6 +12,7 @@ export const userService = {
     getUsers,
     getById,
     remove,
+    getOnlineUsers,
     update,
     googleLogin,
 }
@@ -26,10 +27,6 @@ async function getUsers() {
     }
 }
 
-// function getUsers() {
-//     return storageService.query('user')
-//     // return httpService.get(`user`)
-// }
 
 async function getById(userId) {
     try {
@@ -39,12 +36,7 @@ async function getById(userId) {
     }
 }
 
-// async function getById(userId) {
-//     const user = await storageService.get('user', userId)
-//     // const user = await httpService.get(`user/${userId}`)
-//     gWatchedUser = user;
-//     return user;
-// }
+
 
 async function remove(userId) {
     try {
@@ -53,11 +45,6 @@ async function remove(userId) {
         throw err
     }
 }
-
-// function remove(userId) {
-//     return storageService.remove('user', userId)
-//     // return httpService.delete(`user/${userId}`)
-// }
 
 async function update(user) {
     if (user._id) {
@@ -136,3 +123,20 @@ function getLoggedinUser() {
     if (user) socketService.emit('set-user-socket', user._id)
 })();
 
+
+
+async function getOnlineUsers() {
+    debugger
+    try {
+        const users = await getUsers()
+        const onlineUsers = users.reduce((acc, user) => {
+            if (user.isOnline) {
+                acc.push(user._id)
+            }
+            return acc
+        }, [])
+        return onlineUsers
+    } catch (err) {
+        console.log(err)
+    }
+}

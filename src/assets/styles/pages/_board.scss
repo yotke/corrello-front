@@ -68,7 +68,7 @@
 .card-list-add {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   background-color: #cecece7a;
   width: 250px;
   padding: 0.8rem;
@@ -187,11 +187,12 @@
 .add-list-open {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  gap: 4px;
+  align-items: flex-end;
 }
 
 .list-add-toggle {
-  align-items: center;
+  margin-right: 8px;
 }
 
 .list-header h2 {
