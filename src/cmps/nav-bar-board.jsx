@@ -129,7 +129,6 @@ export class _NavBarBoard extends React.Component {
 
 
                 <AvatarGroup className="align-center" max={4}>
-                    {console.log('board',board.members)}
                             {board.members && board.members.map(member => <ProfileAvatar  key={member._id} member={member}
                                 onOpenPopover={this.onOpenPopover} size={28} showStatus={true} />)}
                         </AvatarGroup>

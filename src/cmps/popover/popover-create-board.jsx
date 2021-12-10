@@ -39,31 +39,31 @@ class _PopoverCreateBoard extends Component {
     this.setState({ [name]: value });
   };
 
-  onOpenPopover = (ev, PopoverName, isNew) => {
+  onOpenPopover = (ev, PopoverName) => {
     const elPos = ev.target.getBoundingClientRect();
     console.log('board', this.props.board);
     const props = {
       handleChange: this.handleChange,
       color: this.state.color,
     };
-    this.props.openPopover(PopoverName, elPos, props, isNew);
+    this.props.openPopover(PopoverName, elPos, props);
   };
   onCreateBoard = async () => {
     const { title, color } = this.state;
-    const { user, onSaveBoard, closePopover } = this.props;
+    const { loggedInUser, onSaveBoard, closePopover } = this.props;
     const boardToSave = {
-      createdBy: {...user},
+      createdBy: loggedInUser || {
+        _id: "1111",
+        fullname: "guest",
+        imgUrl: ""
+      },
       title: title,
-      createdAt:user,
+      createdAt: Date.now,
 
       style: {
         background: color,
       },
-      labels: [],
-      members: [],
-      lists: [],
-      activities: [],
-    };
+    }
     try {
       await onSaveBoard(boardToSave);
       if (this.props.board)
@@ -147,7 +147,7 @@ class _PopoverCreateBoard extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.userModule.user,
+    loggedInUser: state.userModule.loggedInUser,
     board: state.boardModule.board,
   };
 }

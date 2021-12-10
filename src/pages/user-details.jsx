@@ -1,24 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { loadAndWatchUser } from '../store/user.actions'
 
 export class _UserDetails extends Component {
 
-  async componentDidMount() {
-    this.props.loadAndWatchUser(this.props.match.params.id)
-  }
-
   render() {
-    const { user } = this.props
+    const { loggedInUser } = this.props
     return (
-      <section className="user-details">
+      <section className="loggedInUser-details">
         <h1>User Details</h1>
-        {user && <div>
+        {loggedInUser && <div>
           <h3>
-            {user.fullname}
+            {loggedInUser.fullname}
           </h3>
           <pre>
-            {JSON.stringify(user, null, 2)}
+            {JSON.stringify(loggedInUser, null, 2)}
           </pre>
         </div>}
       </section>
@@ -30,11 +25,10 @@ export class _UserDetails extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.userModule.watchedUser
+    loggedInUser: state.userModule.loggedInUser
   }
 }
 const mapDispatchToProps = {
-  loadAndWatchUser
 }
 
 export const UserDetails = connect(mapStateToProps, mapDispatchToProps)(_UserDetails)

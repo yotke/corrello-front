@@ -111,7 +111,6 @@ class _Card extends Component {
   render() {
     const { isEditMode, card, board, isDragged, stickers, onSaveBoard } =
       this.props;
-    console.log('stickers on single-card', stickers);
     var coverMode;
     if (card.style) {
       coverMode = card.style.coverMode;

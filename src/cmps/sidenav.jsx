@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { BoardPreview } from './board-preview';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {openPopover} from '../store/popover.actions'
 
-export class SideNav extends React.Component {
+export class _SideNav extends React.Component {
 
   state = {
     isOpen: false,
@@ -16,10 +17,10 @@ export class SideNav extends React.Component {
   };
 
   render() {
-    const { boards, isMainBoard, onAddBoard, user } = this.props
+    const { boards, isMainBoard, loggedInUser, openPopover } = this.props
     const { isOpen, isboardView } = this.state
-    const [name, lastname] = user ? user.fullname.split(' ') : ['', '']
-    const username = user ? user.username : 'guest'
+    // const [name, lastname] = loggedInUser ? loggedInUser.fullname.split(' ') : ['', '']
+    const username = loggedInUser ? loggedInUser.username : 'guest'
     return (
       <div className={`leftMenu ${isMainBoard ? 'main' : 'workspace'}`}>
         <div className="header-nav-bar-container flex">
@@ -29,7 +30,6 @@ export class SideNav extends React.Component {
               <div className="nav-logo active" onClick={this.toggleMenu}>
                 C
               </div>
-              {/* {!isOpen && <div className="small-btn-open-nav-bar" role="presentation" onClick={this.toggleMenu}><svg width="20" height="20" viewBox="0 0 20 20" fill="blue" xmlns="http://www.w3.org/2000/svg"><path d="M10.4381 10.438L6.05766 14.8185C5.81574 15.0604 5.4235 15.0604 5.18157 14.8185C4.93964 14.5766 4.93964 14.1843 5.18157 13.9424L9.124 9.99998L5.18157 6.05754C4.93964 5.81561 4.93964 5.42337 5.18157 5.18145C5.4235 4.93952 5.81574 4.93952 6.05766 5.18145L10.4381 9.56193C10.6801 9.80386 10.6801 10.1961 10.4381 10.438Z" fill="black" className="sHwgrRUGaNb2Id"></path><path d="M15.7997 10.438L11.4192 14.8185C11.1773 15.0604 10.7851 15.0604 10.5431 14.8185C10.3012 14.5766 10.3012 14.1843 10.5431 13.9424L14.4856 9.99998L10.5431 6.05754C10.3012 5.81561 10.3012 5.42337 10.5431 5.18145C10.7851 4.93952 11.1773 4.93952 11.4192 5.18145L15.7997 9.56193C16.0416 9.80386 16.0416 10.1961 15.7997 10.438Z" fill="black" class="sHwgrRUGaNb2Id"></path></svg></div>} */}
             </div>
             {isOpen && <div className="for-free flex column">
               <span className="username-nav-bar-logo">{username}</span>
@@ -48,7 +48,9 @@ export class SideNav extends React.Component {
               {!isboardView && <span className="board-counter">({boards.length})</span>}
             </div>
             <div className="small-nav-bar-btn-container">
-              <button className="" onClick={onAddBoard}>
+              <button onClick={() => {
+                                openPopover('CREATE_BOARD')
+                            }}>
                 <svg
                   width="15"
                   height="15"
@@ -111,3 +113,13 @@ export class SideNav extends React.Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+  };
+}
+
+const mapDispatchToProps = {
+  openPopover,
+};
+
+export const SideNav = connect(mapStateToProps, mapDispatchToProps)(_SideNav);

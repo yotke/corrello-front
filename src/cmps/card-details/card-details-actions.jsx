@@ -47,9 +47,10 @@ class _CardDetailsActions extends Component {
   }
 
   joinCard = () => {
+    if(!this.props.loggedInUser) return 
     if (this.isUserMember()) return
-    const { card, user, onSaveCardFromActions, onSaveBoard, board } = this.props
-    card.members.push(user)
+    const { card, loggedInUser, onSaveCardFromActions, onSaveBoard, board } = this.props
+    card.members.push(loggedInUser)
     onSaveCardFromActions(card)
     const savedActivity = activityService.createActivity('joined', '', card)
     socketService.emit('app newActivity', savedActivity)
@@ -64,9 +65,10 @@ toggleArchive = () => {
 }
 
 isUserMember = () => {
-    const { card, user } = this.props
-    console.log('user', user)
-    const idx = card.members.findIndex(member => member._id === user._id)
+    const { card, loggedInUser } = this.props
+    if(!loggedInUser) return 
+    console.log('user', loggedInUser)
+    const idx = card.members.findIndex(member => member._id === loggedInUser._id)
     if (idx !== -1) return true
     return false
 }
@@ -228,7 +230,7 @@ function mapStateToProps(state) {
   return {
     board: state.boardModule.board,
     currPopoverName: state.popoverModule.currPopover.name,
-    user: state.userModule.user
+    loggedInUser: state.userModule.loggedInUser
   };
 }
 

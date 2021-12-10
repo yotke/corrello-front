@@ -22,7 +22,6 @@ class _PopoverImagePicker extends Component {
 function mapStateToProps(state) {
     return {
         board: state.boardModule.board,
-        loggedInUser: state.userModule.loggedInUser
     }
 }
 

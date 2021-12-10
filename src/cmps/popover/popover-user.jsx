@@ -7,7 +7,7 @@ import {closePopover} from '../../store/popover.actions'
 import { useHistory } from "react-router-dom";
 
 
- const _PopoverUser = ({user, onLogout, closePopover}) => {
+ const _PopoverUser = ({loggedInUser, onLogout, closePopover}) => {
     let history = useHistory();
 
     
@@ -16,7 +16,7 @@ import { useHistory } from "react-router-dom";
             {/* <hr /> */}
 
             <button className="logout-btn-user-popover btn" onClick={() => {
-                onLogout(user)
+                onLogout(loggedInUser)
                 closePopover()
                 history.push("/");
 
@@ -29,7 +29,7 @@ import { useHistory } from "react-router-dom";
 function mapStateToProps(state) {
     return {
         board: state.boardModule.board,
-        user: state.userModule.user
+        loggedInUser: state.userModule.loggedInUser
     }
 }
 

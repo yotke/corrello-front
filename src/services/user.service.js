@@ -1,85 +1,29 @@
-import { storageService } from './async-storage.service'
+
 import { httpService } from './http.service'
-import { socketService, SOCKET_EVENT_USER_UPDATED } from './socket.service'
-const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
-var gWatchedUser = null;
 
 export const userService = {
     login,
     logout,
     signup,
+    updateUser,
     getLoggedinUser,
+    getOnlineUsers,
     getUsers,
     getById,
-    remove,
-    getOnlineUsers,
-    update,
-    googleLogin,
+    googleLogin
 }
 
-window.userService = userService
-
-async function getUsers() {
+async function login(credentials) {
     try {
-        return await httpService.get('user')
+        const user = await httpService.post('auth/login', credentials)
+        if (user) return _saveLocalUser(user)
     } catch (err) {
         throw err
     }
 }
-
-
-async function getById(userId) {
-    try {
-        return await httpService.get(`board/${userId}`)
-    } catch (err) {
-        throw err
-    }
-}
-
-
-
-async function remove(userId) {
-    try {
-        return await httpService.delete(`user/${userId}`)
-    } catch (err) {
-        throw err
-    }
-}
-
-async function update(user) {
-    if (user._id) {
-        try {
-            return await httpService.put(`user/${user._id}`, user)
-        } catch (err) {
-            throw err
-        }
-    }
-}
-
-
-async function login(userCred) {
-
-    const user = await httpService.post('auth/login', userCred)
-    socketService.emit('set-user-socket', user._id);
-    if (user) return _saveLocalUser(user)
-}
-
-async function signup(userCred) {
-    const user = await httpService.post('auth/signup', userCred)
-    socketService.emit('set-user-socket', user._id);
-    return _saveLocalUser(user)
-}
-async function logout() {
-    sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-    socketService.emit('unset-user-socket');
-    return await httpService.post('auth/logout')
-}
-
-
 
 async function googleLogin(tokenId) {
     try {
-        console.log('tokenid', tokenId)
         const user = await httpService.post('auth/googlelogin', { tokenId })
         if (user) return _saveLocalUser(user)
     } catch (err) {
@@ -87,46 +31,43 @@ async function googleLogin(tokenId) {
     }
 }
 
+async function signup(userInfo) {
+    try {
+        const user = await httpService.post('auth/signup', userInfo)
+        return _saveLocalUser(user)
+    } catch (err) {
+        throw err
+    }
+}
+
+async function logout(user) {
+    try {
+        sessionStorage.clear()
+        return await httpService.post('auth/logout', user)
+    } catch (err) {
+        throw err
+    }
+}
+
+async function updateUser(user) {
+    try {
+        await httpService.put(`user/${user.id}`, user)
+    } catch (err) {
+        throw err
+    }
+}
+
 function _saveLocalUser(user) {
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
+    sessionStorage.setItem('loggedinUser', JSON.stringify(user))
     return user
 }
 
 function getLoggedinUser() {
-    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
+    let user = JSON.parse(sessionStorage.getItem('loggedinUser' || null));
+    return user
 }
 
-
-// This IIFE functions for Dev purposes 
-// It allows testing of real time updates (such as sockets) by listening to storage events
-(async () => {
-    var user = getLoggedinUser()
-    // Dev Helper: Listens to when localStorage changes in OTHER browser
-
-    // Here we are listening to changes for the watched user (comming from other browsers)
-    window.addEventListener('storage', async () => {
-        if (!gWatchedUser) return;
-        const freshUsers = await storageService.query('user')
-        const watchedUser = freshUsers.find(u => u._id === gWatchedUser._id)
-        if (!watchedUser) return;
-        if (gWatchedUser.score !== watchedUser.score) {
-            //console.log('Watched user score changed - localStorage updated from another browser')
-            socketService.emit(SOCKET_EVENT_USER_UPDATED, watchedUser)
-        }
-        gWatchedUser = watchedUser
-    })
-})();
-
-// This is relevant when backend is connected
-(async () => {
-    var user = getLoggedinUser()
-    if (user) socketService.emit('set-user-socket', user._id)
-})();
-
-
-
 async function getOnlineUsers() {
-    debugger
     try {
         const users = await getUsers()
         const onlineUsers = users.reduce((acc, user) => {
@@ -140,3 +81,21 @@ async function getOnlineUsers() {
         console.log(err)
     }
 }
+
+async function getUsers() {
+    try {
+        return await httpService.get(`user`)
+    } catch (err) {
+        throw err
+    }
+}
+
+async function getById(userId) {
+    try {
+        return httpService.get(`user/${userId}`)
+    } catch (err) {
+        throw err
+    }
+}
+
+

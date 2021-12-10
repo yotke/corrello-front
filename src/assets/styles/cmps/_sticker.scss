@@ -93,3 +93,37 @@
     font-weight: 400;
   }
 }
+
+.hover {
+}
+.sticker-remove {
+  position: relative;
+}
+
+.sticker-removing-highlight {
+  background-color: #0000001f;
+  border-radius: 10px;
+  width: 72px;
+  height: 72px;
+  left: -4px;
+  top: -4px;
+}
+
+.remove-sticker-btn {
+  background-color: #0000007e;
+  z-index: 2;
+  position: absolute;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  padding: 4px 10px;
+  &:hover {
+    background-color: #000000bd;
+  }
+}
+
+.sticker-on-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

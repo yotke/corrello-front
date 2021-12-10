@@ -6,6 +6,7 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { giphyService } from '../services/giphy.service';
 import { boardService } from '../services/board.service';
+import { red } from '@material-ui/core/colors';
 
 export const StickersBucket = ({
   getElementPos,
@@ -18,6 +19,7 @@ export const StickersBucket = ({
   const [bucket, setBucket] = useState(card.bucket || []);
   const [currStickers, setCurrStickers] = useState([]);
   const { stickers } = useSelector((state) => state.boardModule);
+  const [isLastInBucket, setIsLastInBucket] = useState(false);
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: 'sticker',
@@ -34,16 +36,39 @@ export const StickersBucket = ({
   }, [stickers]);
 
   useEffect(() => {
+    console.log('last?', isLastInBucket);
+
+  }, [isLastInBucket]);
+
+  useEffect(() => {
     console.log('curr stickeres', currStickers);
   }, [currStickers]);
 
   useEffect(() => {
     card.bucket = bucket;
-    if (bucket.length > 0) {
+    if (card.bucket.length > 0) {
       handleIsStickerd(true);
-      onSaveCard()
+      onSaveCard();
+    }
+    else if(isLastInBucket) {
+      handleIsStickerd(false);
+      onSaveCard();
     }
   }, [bucket]);
+
+  const onRemoveSticker = (stickerId) => {
+    console.log("id", stickerId)
+  console.log("card bucket" , bucket)  
+
+  const updatedBucket = bucket.filter((sticker) => sticker.id !== stickerId)
+  console.log(updatedBucket)
+  setBucket(prevBucket => {
+    if(prevBucket.length === 1) {
+      setIsLastInBucket(true)
+    }
+    return updatedBucket
+  })
+  }
 
   const onSaveCard = () => {
     const savedBoard = boardService.updateCardInBoard(board, card);
@@ -79,20 +104,15 @@ export const StickersBucket = ({
       {card.bucket &&
         card.bucket.map((sticker) => {
           return (
-            <div className="sticker-wrapper"
-            style={
-              {
-                position: 'relative'
-              }
-            }> 
-
+   
               <Sticker
                 isOnCard={true}
                 isAnimated={false}
                 sticker={sticker}
                 key={sticker.id}
+                onRemoveSticker={onRemoveSticker}
               />
-            </div>
+     
           );
         })}
     </div>

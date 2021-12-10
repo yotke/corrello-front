@@ -44,17 +44,17 @@ class _Workspace extends React.Component {
 
     render() {
         const { onAddBoard , boards} = this.props
-        let {user} = this.props
+        let {loggedInUser} = this.props
         const boardsToShow = this.state.boardsToShow.length ? this.state.boardsToShow : boards
-        if(!user)  user = {fullname: 'guest', username: 'guest'}
+        if(!loggedInUser)  loggedInUser = {fullname: 'guest', username: 'guest'}
         if(!boards.length) return <Loader/>
         return (
             <section className="workspace-container">
                 <div className="workspace-sticky-cotainter">
-                    <SideNav boards={boards} onAddBoard={onAddBoard} user={user} />
+                    <SideNav boards={boards} onAddBoard={onAddBoard} loggedInUser={loggedInUser} />
                     <div className="main-board-preview">
                         <div className="workspace-header">
-                            <WorkspaceHeader boards={boards} onAddBoard={onAddBoard} user={user} />
+                            <WorkspaceHeader boards={boards} onAddBoard={onAddBoard} loggedInUser={loggedInUser} />
                             <WorkspaceNavBar />
                         </div>
                         <div className="all-boards-main">
@@ -71,7 +71,7 @@ class _Workspace extends React.Component {
 function mapStateToProps(state) {
     return {
         boards: state.boardModule.boards,
-        user: state.userModule.user
+        loggedInUser: state.userModule.loggedInUser
     }
 }
 const mapDispatchToProps = {

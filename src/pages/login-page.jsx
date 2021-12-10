@@ -27,15 +27,15 @@ import {LoginHeader} from '../cmps/login-signup-header'
     }
 
     componentDidMount() {
-        const { loggedinUser } = this.props
-        if (loggedinUser) this.props.history.push('/workspace')
+        const { loggedInUser } = this.props
+        if (loggedInUser) this.props.history.push('/workspace')
         const pageMode = this.props.location.pathname === '/login' ? 'login' : 'signup'
         this.setState({ pageMode })
     }
 
     componentDidUpdate() {
-        const { user } = this.props
-        if (user) this.props.history.push('/workspace')
+        const { loggedInUser } = this.props
+        if (loggedInUser) this.props.history.push('/workspace')
     }
 
     validate = (values) => {
@@ -136,7 +136,7 @@ import {LoginHeader} from '../cmps/login-signup-header'
 
 function mapStateToProps(state) {
     return {
-        user: state.userModule.user,
+        loggedInUser: state.userModule.loggedInUser,
         loginErr: state.userModule.loginErr
     }
 }

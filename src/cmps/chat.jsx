@@ -35,12 +35,12 @@ componentDidUpdate(prevState) {
     if (!prevState.msg.txt
         && [...this.state.msg.txt].length > 0) {
         console.log('I am typing');
-        socketService.emit('iAmTyping', this.props.user)
+        socketService.emit('iAmTyping', this.props.loggedInUser)
     }
     if (prevState.msg.txt
         && !this.state.msg.txt) {
         console.log('I stopped typing');
-        socketService.emit('iStoppedTyping', this.props.user)
+        socketService.emit('iStoppedTyping', this.props.loggedInUser)
     }
 
 }
@@ -96,9 +96,9 @@ toggleUserIsTyping = (user) => {
 sendMsg = ev => {
     ev.preventDefault()
     if(!this.state.msg.txt) return
-    const from = (this.props.user) ? this.props.user.fullname : 'guest'
-    const userImg = (this.props.user) ? this.props.user.imgUrl : ''
-    console.log('user',  this.props.user)
+    const from = (this.props.loggedInUser) ? this.props.loggedInUser.fullname : 'guest'
+    const userImg = (this.props.loggedInUser) ? this.props.loggedInUser.imgUrl : ''
+    console.log('user',  this.props.loggedInUser)
     socketService.emit('chat newMsg', { from, txt: this.state.msg.txt, userImg: userImg})
     this.setState({ msg: { from: from, txt: '' } })
 }
@@ -133,8 +133,8 @@ msgHandleChange = ev => {
   };
 
   render() {
-      const {board,user} = this.props
-      const currUser = (user) ? user.fullname : 'guest'
+      const {board,loggedInUser} = this.props
+      const currUser = (loggedInUser) ? loggedInUser.fullname : 'guest'
       console.log('chat' , board.chatHistory);
     const { typingUser } = this.state
     const { isOpen } = this.state;
@@ -188,7 +188,7 @@ msgHandleChange = ev => {
 function mapStateToProps(state) {
   return {
 
-    user: state.userModule.user,
+    loggedInUser: state.userModule.loggedInUser,
     board: state.boardModule.board
   };
 }

@@ -137,6 +137,9 @@
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
+  &.new-notific {
+    background-color: #e54c31d6;
+  }
 }
 
 .btn-header-more {
@@ -181,6 +184,12 @@
   padding: 12px;
   margin: 0 !important;
 }
+.mobile-create {
+  display: none;
+}
+.desktop-create {
+  display: block;
+}
 
 @media (max-width: $normal-breakpoint) {
   .search-icon {
@@ -194,8 +203,20 @@
   .board-preview-wrapper {
     flex-basis: 45%;
   }
+  .mobile-create {
+    display: none;
+  }
+  .desktop-create {
+    display: block;
+  }
 }
 @media (max-width: $mobile-breakpoint) {
+  .desktop-create {
+    display: none;
+  }
+  .mobile-create {
+    display: block;
+  }
   .btn-header-more {
     display: flex;
   }

@@ -24,7 +24,7 @@ import { openPopover } from '../store/popover.actions.js'
         //debugger
         const elPos = ev.target.getBoundingClientRect();
         const props = {
-            user: this.props.user,
+            loggedInUser: this.props.loggedInUser,
         };
         this.props.openPopover(PopoverName, elPos, props);
     };
@@ -41,9 +41,9 @@ import { openPopover } from '../store/popover.actions.js'
 
     render() {
         const { isNavBgVisible } = this.state
-        const { user, guest } = this.props
-        console.log('cuur user', user)
-        const [name, lastname] = user ? user.fullname.split(' ') : ['', '']
+        const { loggedInUser, guest } = this.props
+        console.log('cuur loggedInUser', loggedInUser)
+        const [name, lastname] = loggedInUser ? loggedInUser.fullname.split(' ') : ['', '']
         console.log('nl', name + lastname)
 
         return (
@@ -53,7 +53,7 @@ import { openPopover } from '../store/popover.actions.js'
                         <HomepageLogo />
                         Corollo
                     </div>
-                    {(!user || guest) && <div className="nav-btns ">
+                    {(!loggedInUser || guest) && <div className="nav-btns ">
                         <Link to="login" className="login-btn clean-link">
                             Log in
                         </Link>
@@ -63,15 +63,15 @@ import { openPopover } from '../store/popover.actions.js'
                     </div>}
                     <div className="user-details-header">
 
-                         {user && <button className="user-logo-in-app-header flex" onClick={(ev) => {
+                         {loggedInUser && <button className="user-logo-in-app-header flex" onClick={(ev) => {
                             this.onOpenPopover(ev, 'USER')
                         }}>
                             
-                            {!user.imgUrl && <div className="letter-logo-workspace-header">
+                            {!loggedInUser.imgUrl && <div className="letter-logo-workspace-header">
                                 {name[0]}{lastname && lastname[0]}
                             </div>}
 
-                            {user.imgUrl && <img className="user-avatar" src={user.imgUrl}/>}
+                            {loggedInUser.imgUrl && <img className="user-avatar" src={loggedInUser.imgUrl}/>}
                         </button>} 
                     </div>
                 </nav>
@@ -83,7 +83,7 @@ import { openPopover } from '../store/popover.actions.js'
 
 function mapStateToProps(state) {
     return {
-        user: state.userModule.user,
+        loggedInUser: state.userModule.loggedInUser,
     }
 }
 const mapDispatchToProps = {

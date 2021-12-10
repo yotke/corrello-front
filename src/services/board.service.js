@@ -1,18 +1,9 @@
 
 import { storageService } from './async-storage.service.js'
-// import { utilService } from './util.service.js'
-import { utilService } from './util.service.js'
-import { userService } from './user.service.js'
-import data from '../json/board.json'
-import { useLocation } from 'react-router'
-import testUtils from 'react-dom/test-utils'
 import { httpService } from './http.service'
-import { noConflict } from 'lodash'
 
-const STORAGE_KEY = 'boardDB'
 const RECEBT_BOARDS_KEY = 'recentBoardsDB'
 const listeners = []
-const DATA = data;
 
 export const boardService = {
     query,

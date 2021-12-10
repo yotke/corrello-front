@@ -79,7 +79,7 @@ function _ProfileAvatar({ member, size, onOpenPopover, showStatus = false, onlin
                     src={member.imgUrl}
                     style={avatarStyles()}
                 >
-                    {!member.imgUrl && member.fullname.split(' ').map(word => word.charAt(0)).join('')}
+                    {/* {!member.imgUrl && member.fullname.split(' ').map(word => word.charAt(0)).join('')} */}
                 </Avatar>
             </StyledBadge>
         </div>

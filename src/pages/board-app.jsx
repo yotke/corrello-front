@@ -52,7 +52,7 @@ class _BoardApp extends React.Component {
       const boardId = splittedPath[2];
       if (!boardId || boardId === this.props.match.params.boardId) return;
       this.props.updateRecentBoard(boardId);
-      this.onBoardChange(boardId);
+      // this.onBoardChange(boardId);
     });
   }
 
@@ -77,10 +77,12 @@ this.setState({loading : true})
         }
       });
 
-      await this.loadBoard(boardId);
+      await this.props.loadBoard(boardId);
 
       socketService.emit('SOCKET_EVENT_START_BOARD', boardId);
-      socketService.on('SOCKET_EVENT_ON_RELOAD_BOARD', this.props.loadBoard);
+      socketService.on('SOCKET_EVENT_ON_RELOAD_BOARD', savedBoard => {
+        this.props.loadBoard(boardId)
+    })
 
       this.removeEvent = eventBusService.on('card-edit', ({ elPos, card }) => {
         let distanseFromRight = $(window).width() - elPos.left + elPos.width;
@@ -100,22 +102,12 @@ this.setState({loading : true})
     this.unlisten();
   }
   
-  loadBoard = async (boardId) => {
-    await Promise.all([
-      this.props.loadBoard(boardId),
-      this.props.updateRecentBoard(boardId),
-      this.props.loadBoards(),
-    ]);
-  };
-  onBoardChange = (boardId) => {
-    this.props.loadBoard(boardId);
-  };
+  // onBoardChange = (boardId) => {
+  //   this.props.loadBoard(boardId);
+  // };
 
   onRemoveBoard = (boardId) => {
     this.props.onRemoveBoard(boardId);
-  };
-  onAddBoard = () => {
-    this.props.onAddBoard();
   };
 
   onCloseCardEdit = () => {
@@ -177,7 +169,7 @@ this.setState({loading : true})
   };
 
   render() {
-    const { board, onSaveBoard, boards, user, onEditBoard } = this.props;
+    const { board, onSaveBoard, boards, loggedInUser, onEditBoard } = this.props;
     const {
       isMainBoard,
       currCard,
@@ -195,7 +187,7 @@ this.setState({loading : true})
     return (
       <>
         <section className="main-board flex row">
-          <SideNav boards={boards} isMainBoard={isMainBoard} user={user} />
+          <SideNav boards={boards} isMainBoard={isMainBoard} loggedInUser={loggedInUser} />
           <div className="layout-helper flex column">
             <MainBoardHeader
               board={board}
@@ -266,7 +258,7 @@ function mapStateToProps(state) {
   return {
     board: state.boardModule.board,
     boards: state.boardModule.boards,
-    user: state.userModule.user,
+    loggedInUser: state.userModule.loggedInUser,
   };
 }
 const mapDispatchToProps = {

@@ -16,6 +16,7 @@ import { PopoverList } from './popover-list.jsx'
 import {PopoverMoreOptions} from './popover-more.jsx'
 import { PopoverInvite } from "./PopoverInvite";
 import {PopoverMoveCopy} from './popover-move-copy'
+import { PopoverNotifics } from './PopoverNotifics';
 
  
 
@@ -41,6 +42,7 @@ function _DynamicPopover({ currPopover }) {
     case 'RECENT_BOARDS': return <PopoverRecentBoard {...props} />;
     case 'USER': return <PopoverUser {...props} />; 
     case 'ATTACHMENT': return <PopoverAttachment {...props} />;
+    case 'NOTIFICATIONS': return <PopoverNotifics {...props} />
     case 'SEARCH_HEADER': return <PopoverSearchAppheader {...props} />;
 
     default: return '';

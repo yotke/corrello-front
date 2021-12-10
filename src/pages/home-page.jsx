@@ -15,7 +15,7 @@ class _HomePage extends React.Component {
     }
     render() {
         const { email, guest } = this.state
-        const {  user, openPopover, closePopover } = this.props
+        const {  loggedInUser, openPopover, closePopover } = this.props
         return (
 
             <section className="home-page-container">
@@ -31,10 +31,6 @@ class _HomePage extends React.Component {
 
                         </div>
                         <div className="btn-homepage-signup">
-                            {/* <input name="email" className="form-control h-100" type="email" placeholder="Email" onChange={(ev) => { this.handleChange(ev) }} />
-                            <button type="submit" data-analytics-button="greenSignupHeroButton" className="btn btn-home-page-submit" onClick={() => {
-                                this.props.history.push(`/log/sign-up/${email}`)
-                            }}>Sign up—it’s free!</button> */}
                           <button type="submit" data-analytics-button="greenSignupHeroButton" className="btn btn-home-page-submit" onClick={() => {
                         this.props.history.push('/workspace')
                     }}>Get started  →</button>
@@ -65,8 +61,7 @@ class _HomePage extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.userModule.user,
-        count: state.userModule.count,
+        loggedInUser: state.userModule.loggedInUser,
         currPopoverName: state.popoverModule.currPopover.name,
     }
 }
